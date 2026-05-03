@@ -26,7 +26,7 @@ NY_TZ = pytz.timezone("America/New_York")
 # ─────────────────────────────────────────────
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix="!", help_command=None)
+bot = commands.Bot(command_prefix="!", help_command=None, intents=intents)
 
 # ─────────────────────────────────────────────
 # WEEKLY PROFILE TRACKER
