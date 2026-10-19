@@ -80,7 +80,10 @@ def _save_state(s: dict) -> None:
 
 async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bool, force_board: str | None = None):
     wanted = {m.root for m in config.MARKETS if m.root not in config.EXCLUDE_ROOTS}
-    contracts = pick_front_contracts(await px.available_contracts(), wanted)
+    all_contracts = await px.available_contracts()
+    contracts = pick_front_contracts(all_contracts, wanted)
+    micro_roots = {mi for m in config.MARKETS for mi in m.micros}
+    micros = pick_front_contracts(all_contracts, micro_roots)
     missing = sorted(wanted - set(contracts))
     if missing:
         log.info("Not offered by ProjectX right now: %s", ", ".join(missing))
@@ -96,6 +99,9 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
             log.warning("Bars failed for %s: %s", root, e)
             continue
         r = compute(root, hourly)
+        if r:
+            r.contract = c
+            r.micro_contracts = [(mi, micros.get(mi)) for mi in m.micros]
         if not r:
             log.info("Not enough history for %s", root)
             continue

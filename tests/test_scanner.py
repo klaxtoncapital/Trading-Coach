@@ -226,3 +226,14 @@ def test_daily_stop_and_profit_cap(monkeypatch):
     assert any("daily stop" in e["title"] for e in guardrails.review_account("A", losing, set(), now))
     winning = [_fill(1, 0, "NKD", None), _fill(2, 50, "NKD", 3500.0)]
     assert any("Consistency cap" in e["title"] for e in guardrails.review_account("A", winning, set(), now))
+
+
+def test_symbols_and_size():
+    from scanner import symbols
+    assert symbols.tradingview("NQ", "NQZ6") == ("CME_MINI:NQ1!", "CME_MINI:NQZ2026")
+    assert symbols.tradingview("GC", "GCZ6")[0] == "COMEX:GC1!"
+    assert symbols.tradingview("NKD", None) == ("CME:NKD1!", None)
+    pv = symbols.point_value({"tickSize": 5, "tickValue": 25})   # NKD: $5 a point
+    assert pv == 5.0
+    assert symbols.size_for_risk(90, pv, 450) == (1, 450.0)
+    assert symbols.size_for_risk(200, pv, 275)[0] == 0
