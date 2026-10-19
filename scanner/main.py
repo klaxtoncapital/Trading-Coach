@@ -245,6 +245,9 @@ async def run(args):
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
         log.info("Scanner running every %d min; guardrails checking accounts every minute", config.SCAN_INTERVAL_MIN)
+        log.info("Guardrails: %d ideas/day, %d trades/day, %d min cool-down, daily stop $%.0f, profit cap $%.0f",
+                 guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
+                 guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)
         asyncio.create_task(guard_loop(px, http, args.dry_run))
         first = True
         while True:

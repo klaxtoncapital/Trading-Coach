@@ -22,14 +22,22 @@ from zoneinfo import ZoneInfo
 SYD = ZoneInfo("Australia/Sydney")
 NY = ZoneInfo("America/New_York")
 
-MAX_IDEAS_PER_DAY = int(os.getenv("MAX_IDEAS_PER_DAY", "2"))
-MAX_TRADES_PER_DAY = int(os.getenv("MAX_TRADES_PER_DAY", "2"))
-COOLDOWN_MIN = int(os.getenv("COOLDOWN_MIN", "30"))
-QUICK_EXIT_MIN = int(os.getenv("QUICK_EXIT_MIN", "10"))
+def _num(name: str, default: float) -> float:
+    """Read a number from the environment; blank or invalid values fall back to the default."""
+    try:
+        return float(os.getenv(name, "") or default)
+    except ValueError:
+        return default
+
+
+MAX_IDEAS_PER_DAY = int(_num("MAX_IDEAS_PER_DAY", 2))
+MAX_TRADES_PER_DAY = int(_num("MAX_TRADES_PER_DAY", 2))
+COOLDOWN_MIN = int(_num("COOLDOWN_MIN", 30))
+QUICK_EXIT_MIN = int(_num("QUICK_EXIT_MIN", 10))
 # Personal daily stop in dollars (0 = off). Set it below the firm's limit.
-PERSONAL_DAILY_STOP = float(os.getenv("PERSONAL_DAILY_STOP", "0"))
+PERSONAL_DAILY_STOP = _num("PERSONAL_DAILY_STOP", 0)
 # Alert when the day's profit reaches this (dollars, 0 = off): keeps the best day under the consistency cap.
-DAILY_PROFIT_CAP = float(os.getenv("DAILY_PROFIT_CAP", "0"))
+DAILY_PROFIT_CAP = _num("DAILY_PROFIT_CAP", 0)
 # London window in Sydney time, [start, end) hours
 NO_IDEA_WINDOW = tuple(int(x) for x in os.getenv("NO_IDEA_WINDOW_SYD", "15,21").split(","))
 
