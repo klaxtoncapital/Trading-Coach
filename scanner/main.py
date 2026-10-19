@@ -4,6 +4,8 @@
   python -m scanner.main --once           # one scan, post to Discord
   python -m scanner.main --once --dry-run # one scan, print posts instead
   python -m scanner.main --list-contracts # show what ProjectX offers and how it maps
+  python -m scanner.main --regime         # print the 200-day regime for every market
+  python -m scanner.main --news           # print the latest market-moving headlines
 """
 from __future__ import annotations
 
@@ -17,8 +19,8 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import config, gates, guardrails
-from .discord_out import leaderboard_embed, post, watch_embed
+from . import config, desk, gates, guardrails, macro, news, regime
+from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
 from .score import classify, score
@@ -67,7 +69,7 @@ def _load_state() -> dict:
         with open(STATE_FILE) as f:
             return json.load(f)
     except (OSError, ValueError):
-        return {"posted": {}, "boards": {}, "ideas": {}}
+        return {"posted": {}, "boards": {}, "ideas": {}, "verified": {}, "rejected": {}}
 
 
 def _save_state(s: dict) -> None:
@@ -89,6 +91,7 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
         log.info("Not offered by ProjectX right now: %s", ", ".join(missing))
 
     cal = await gates.macro_calendar(http)
+    macro_call = await macro.latest(http)
     now = datetime.now(timezone.utc)
     results = []
     for root, c in contracts.items():
@@ -101,12 +104,14 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
         r = compute(root, hourly)
         if r:
             r.contract = c
+            r.last_t = hourly[-1]["t"] if hourly else None
             r.micro_contracts = [(mi, micros.get(mi)) for mi in m.micros]
         if not r:
             log.info("Not enough history for %s", root)
             continue
         r.thesis = build_thesis(r)
         sc, reasons = score(r)
+        reg = await regime.regime_for(http, px, root, c)
         g = None
         if r.thesis:
             d = r.thesis["dir"]
@@ -117,17 +122,20 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
                 "options": gates.options_gate(iv, r.rv20, d),
                 "catalyst": gates.catalyst_gate(m, cal, now, config.HOLD_WINDOW_HOURS),
             }
-        results.append((m, r, sc, reasons, g))
+        results.append((m, r, sc, reasons, g, reg))
 
     results.sort(key=lambda x: -x[2])
     state = _load_state()
 
     # Watch ideas (once per market, direction and trading day), best first.
-    # Guardrails: none in the London window, at most MAX_IDEAS_PER_DAY per trading day.
-    embeds = []
-    state.setdefault("ideas", {})
+    # Every idea goes to the head of desk. The raw idea (with the verdict) goes to
+    # #scanner; only VERIFIED ideas go to the desk channel.
+    # Guardrails: none in the London window, at most MAX_IDEAS_PER_DAY verified per trading day.
+    embeds, verified_embeds = [], []
+    for k in ("ideas", "verified", "rejected"):
+        state.setdefault(k, {})
     quiet = guardrails.in_no_idea_window(now)
-    for m, r, sc, reasons, g in results:
+    for m, r, sc, reasons, g, reg in results:
         if not g or classify(sc, r, g, config.WATCH_MIN_SCORE) != "watch":
             continue
         key = f"{m.root}:{r.thesis['dir']}:{r.trading_day}"
@@ -137,14 +145,26 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
         if quiet:
             log.info("Skipping %s idea: London window", m.root)
             continue
-        if state["ideas"].get(day, 0) >= guardrails.MAX_IDEAS_PER_DAY:
-            log.info("Skipping %s idea: daily idea cap reached", m.root)
-            continue
-        embeds.append(watch_embed(m, r, sc, reasons, g))
+        v = desk.verify(r, g, reg, macro_call, now, state["verified"].get(day))
+        if v["verdict"] == "verified" and state["ideas"].get(day, 0) >= guardrails.MAX_IDEAS_PER_DAY:
+            v["verdict"] = "rejected"
+            v["reason"] = f"Daily cap: {guardrails.MAX_IDEAS_PER_DAY} ideas already verified today."
+        embeds.append(watch_embed(m, r, sc, reasons, g, reg, v))
         state["posted"][key] = now.isoformat()
-        state["ideas"][day] = state["ideas"].get(day, 0) + 1
-    for i in range(0, len(embeds), 5):
-        await post(http, config.DISCORD_SCANNER_WEBHOOK, embeds[i:i + 5], dry_run)
+        if v["verdict"] == "verified":
+            verified_embeds.append(verified_embed(m, r, sc, g, reg, v))
+            state["ideas"][day] = state["ideas"].get(day, 0) + 1
+            state["verified"].setdefault(day, {})[f"{m.root}:{r.thesis['dir']}"] = now.isoformat()
+        else:
+            side = "long" if r.thesis["dir"] == 1 else "short"
+            state["rejected"].setdefault(day, []).append({"market": m.root, "side": side, "reason": v["reason"][:300]})
+            log.info("Head of desk rejected %s %s: %s", m.root, side, v["reason"])
+    # One embed per message keeps each post under Discord's 6,000-character limit
+    for e in embeds:
+        await post(http, config.DISCORD_SCANNER_WEBHOOK, [e], dry_run)
+    for e in verified_embeds:
+        if config.DISCORD_DESK_WEBHOOK or dry_run:
+            await post(http, config.DISCORD_DESK_WEBHOOK, [e], dry_run)
 
     # Leaderboard at set times
     ny_now = now.astimezone(NY)
@@ -157,17 +177,33 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
                 state["boards"][key] = now.isoformat()
                 label = name
     if label:
-        top = [(m, r, sc, reasons) for m, r, sc, reasons, _ in results[: config.LEADERBOARD_SIZE]]
-        await post(http, config.DISCORD_SCANNER_WEBHOOK, [leaderboard_embed(top, label)], dry_run)
+        top = [(m, r, sc, reasons, reg) for m, r, sc, reasons, _, reg in results[: config.LEADERBOARD_SIZE]]
+        await post(http, config.DISCORD_SCANNER_WEBHOOK, [leaderboard_embed(top, label, desk_note(state))], dry_run)
 
     # Keep state small: drop entries older than 10 days
     cutoff = (now - timedelta(days=10)).isoformat()
     for k in ("posted", "boards"):
         state[k] = {a: b for a, b in state[k].items() if b >= cutoff}
-    state["ideas"] = dict(sorted(state.get("ideas", {}).items())[-10:])
+    for k in ("ideas", "verified", "rejected"):
+        state[k] = dict(sorted(state.get(k, {}).items())[-10:])
     _save_state(state)
-    log.info("Scan done: %d markets, %d watch ideas posted", len(results), len(embeds))
+    log.info("Scan done: %d markets, %d ideas, %d verified", len(results), len(embeds), len(verified_embeds))
     return results
+
+
+def desk_note(state: dict) -> str:
+    """Head of desk tally for the leaderboard: today's verified and rejected ideas."""
+    if not state.get("verified") and not state.get("rejected"):
+        return ""
+    day = max(list(state.get("verified", {})) + list(state.get("rejected", {})), default=None)
+    if not day:
+        return ""
+    ver = state.get("verified", {}).get(day, {})
+    rej = state.get("rejected", {}).get(day, [])
+    lines = [f"🧑‍💼 **Head of desk, trading day {day}:** {len(ver)} verified, {len(rej)} rejected"]
+    for x in rej[-4:]:
+        lines.append(f"   ❌ {x['market']} {x['side']}: {x['reason'][:140]}")
+    return "\n".join(lines)
 
 
 async def guard_once(px: ProjectXClient, http: aiohttp.ClientSession, accounts: list[dict], dry_run: bool):
@@ -232,6 +268,17 @@ async def guard_loop(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: b
         await asyncio.sleep(60)
 
 
+async def print_regimes(px: ProjectXClient, http: aiohttp.ClientSession):
+    wanted = {m.root for m in config.MARKETS if m.root not in config.EXCLUDE_ROOTS}
+    contracts = pick_front_contracts(await px.available_contracts(), wanted)
+    for m in config.MARKETS:
+        if m.root not in wanted:
+            continue
+        reg = await regime.regime_for(http, px, m.root, contracts.get(m.root))
+        src = f"  [{reg['source']}, as of {reg['asof']}]" if reg else ""
+        print(f"{m.root:4} {regime.summary(reg)}{src}")
+
+
 async def list_contracts(px: ProjectXClient):
     cs = await px.available_contracts()
     for c in sorted(cs, key=lambda c: c.get("name", "")):
@@ -247,10 +294,23 @@ async def run(args):
         if args.list_contracts:
             await list_contracts(px)
             return
+        if args.regime:
+            await print_regimes(px, http)
+            return
+        if args.news:
+            await news.poll(http, first_run=True)
+            every_market = {x for _, mk in news.TOPICS.values() for x in mk}
+            for h in news.recent(every_market, 24 * 60, high_only=False)[-25:]:
+                print(f"{'HIGH' if h['high'] else '    '} {h['source']:22} {h['title'][:100]}  -> {', '.join(h['markets'][:5])}")
+            return
         if args.once:
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
         log.info("Scanner running every %d min; guardrails checking accounts every minute", config.SCAN_INTERVAL_MIN)
+        log.info("News agent every %d min (%s); desk channel %s; macro call from %s",
+                 news.NEWS_INTERVAL_MIN, "posting" if news.DISCORD_NEWS_WEBHOOK else "checks only, no news webhook",
+                 "on" if config.DISCORD_DESK_WEBHOOK else "OFF (set DISCORD_DESK_WEBHOOK)", macro.MACRO_CALL_URL or "nowhere")
+        asyncio.create_task(news.news_loop(http, post, args.dry_run))
         log.info("Guardrails: %d ideas/day, %d trades/day, %d min cool-down, daily stop $%.0f, profit cap $%.0f",
                  guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
                  guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)
@@ -274,6 +334,8 @@ def main():
     p.add_argument("--once", action="store_true", help="run one scan and exit")
     p.add_argument("--dry-run", action="store_true", help="print Discord posts instead of sending")
     p.add_argument("--list-contracts", action="store_true", help="list ProjectX contracts and exit")
+    p.add_argument("--regime", action="store_true", help="print the 200-day regime for every market and exit")
+    p.add_argument("--news", action="store_true", help="print the latest market-moving headlines and exit")
     asyncio.run(run(p.parse_args()))
 
 

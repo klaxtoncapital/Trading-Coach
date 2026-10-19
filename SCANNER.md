@@ -1,6 +1,33 @@
 # Klaxton Desk Scanner
 
-Scans every Topstep-tradable futures market through the ProjectX API every 15 minutes, ranks them by how far each one is from its own normal behaviour, runs the Four Gates, and posts to Discord.
+Scans every Topstep-tradable futures market through the ProjectX API every 15 minutes, ranks them by how far each one is from its own normal behaviour, runs the Five Gates, and posts to Discord.
+
+## The desk (v2, Oct 2026)
+
+| Agent | What it does | Where it runs |
+|---|---|---|
+| **Scanner** | Finds candidate ideas across 36 markets (range, displacement, volume, sweeps, room to target) | This service, every 15 min |
+| **Technicals** | Daily trend regime per market: 200-day state and slope, ROC 50 and its percentile, stretched / flattening / reset flags, size ceiling (full, half, starter) | This service (`scanner/regime.py`) |
+| **News** | Trump (trumpstruth.org archive), White House, Fed policy and speeches, Bank of Japan, CNBC headlines, tagged by market. Posts market-moving ones; morning Forex Factory digest at 8am Sydney | This service, every 5 min (`scanner/news.py`) |
+| **Macro** | Daily direction call per market (bullish / bearish / neutral, conviction 1-3) from macro data, news and COT positioning | Scheduled Claude run, 8:24am Sydney weekdays; writes `desk/macro_call.json` on the `desk-data` branch |
+| **Head of desk** | Checks every idea before you see it (below). Only verified ideas reach the desk channel | This service (`scanner/desk.py`) |
+
+### Head of desk checks
+
+Code rules only: fast, free and predictable. An idea is **verified** only if nothing fails.
+
+1. **Data** is fresh (last bar under 90 min old, `DATA_STALE_MIN`)
+2. **Levels** line up: stop, entry and target on the right sides, R:R at least 2 (`MIN_RR`) and adds up
+3. **Stop size** is 0.1 to 1.5 daily ATR
+4. **Entry** is a live price inside today's range
+5. **Trend regime** sets the size ceiling. It flags counter-trend ideas but never rejects on its own
+6. **Macro call**: rejected if today's call is the other way; neutral is a warning
+7. **Positioning**: rejected if the idea joins a crowded COT position
+8. **Catalyst**: rejected if a high-impact event is under 60 min away (`CATALYST_BLOCK_MIN`); a warning if it's inside the hold
+9. **Headlines**: a warning if a high-priority headline hit this market in the last 30 min (`NEWS_BLOCK_MIN`)
+10. **Conflict**: rejected if the opposite idea on the same market was verified today
+
+Raw ideas still go to `#scanner`, each with the verdict. Verified ideas go to the desk channel with every check listed and the size ceiling applied. The daily idea cap (`MAX_IDEAS_PER_DAY`) now counts verified ideas. The leaderboard shows the 200-day state per market and the day's verified / rejected tally.
 
 ## What it posts
 
@@ -29,6 +56,12 @@ Each Watch post shows:
   - 🏁 a consistency-cap message when the day's profit reaches `DAILY_PROFIT_CAP` (dollars)
 - The scanner never places, changes or cancels orders.
 
+## Testing desk v2 without touching the live scanner
+
+1. In the Railway project, add a **second service** from this repo on the **`desk-v2`** branch, start command `python -m scanner.main`.
+2. Give it the same ProjectX variables, but point all three webhooks at **test channels** (e.g. `#desk-test`, `#news-test`) so the live `#scanner` is untouched.
+3. Watch it for a few sessions. When you're happy, merge `desk-v2` into `scanner` and delete the test service.
+
 ## Score (0-100)
 
 | Part | Points | Full marks at |
@@ -56,6 +89,8 @@ Data is pulled for the full-size contract; each idea lists the micro you can tra
    - `DISCORD_SCANNER_WEBHOOK`: webhook URL of the Discord channel for scanner posts
    - optional: `PROJECTX_LIVE_DATA=true` if your API plan includes live data (default uses sim data)
    - optional: `SCAN_INTERVAL_MIN` (15), `WATCH_MIN_SCORE` (55), `HOLD_WINDOW_HOURS` (24), `EXCLUDE_ROOTS` (e.g. `HE,LE`)
+   - desk v2: `DISCORD_DESK_WEBHOOK` (verified ideas), `DISCORD_NEWS_WEBHOOK` (headlines and the morning calendar)
+   - desk v2, optional: `NEWS_INTERVAL_MIN` (5), `NEWS_BLOCK_MIN` (30), `CATALYST_BLOCK_MIN` (60), `DATA_STALE_MIN` (90), `MIN_RR` (2), `REGIME_EXHAUSTED_PCT` (90), `REGIME_RESET_BAND` (2.0), `MACRO_CALL_URL`, `MACRO_MAX_AGE_HOURS` (26), `GITHUB_TOKEN` (only if the repo is made private), `NEWS_FEEDS_OFF` (e.g. `cnbc_world,whitehouse`)
 4. Deploy. The logs show `Scanner running every 15 min`.
 
 ## Commands
@@ -63,6 +98,8 @@ Data is pulled for the full-size contract; each idea lists the micro you can tra
 ```
 python -m scanner.main --list-contracts   # what ProjectX offers and how it maps (✓ = scanned)
 python -m scanner.main --once --dry-run   # one scan, print the posts instead of sending
+python -m scanner.main --regime           # 200-day regime for every market
+python -m scanner.main --news             # latest market-moving headlines
 python -m scanner.main --once             # one scan, post to Discord
 python -m pytest -q tests                 # tests on synthetic data
 ```

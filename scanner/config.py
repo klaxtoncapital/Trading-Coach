@@ -19,6 +19,8 @@ PROJECTX_API_KEY = os.getenv("PROJECTX_API_KEY", "")
 PROJECTX_LIVE_DATA = os.getenv("PROJECTX_LIVE_DATA", "false").lower() in ("1", "true", "yes")
 
 DISCORD_SCANNER_WEBHOOK = os.getenv("DISCORD_SCANNER_WEBHOOK", "")
+# Verified ideas only (the head of desk's channel). Unset = verified ideas aren't posted anywhere extra.
+DISCORD_DESK_WEBHOOK = os.getenv("DISCORD_DESK_WEBHOOK", "")
 
 # How often to scan, in minutes.
 SCAN_INTERVAL_MIN = int(os.getenv("SCAN_INTERVAL_MIN", "15"))

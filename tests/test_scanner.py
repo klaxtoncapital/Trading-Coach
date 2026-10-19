@@ -190,7 +190,7 @@ def test_idea_cap(monkeypatch, tmp_path):
         async def available_contracts(self):
             return [{"name": "ESZ6", "id": "A", "activeContract": True}, {"name": "GCZ6", "id": "B", "activeContract": True}]
 
-        async def bars(self, cid, unit, n, days_back):
+        async def bars(self, cid, unit, n, days_back, **k):
             return swept if cid == "A" else swept2
 
     async def none(*a, **k):
@@ -201,14 +201,27 @@ def test_idea_cap(monkeypatch, tmp_path):
     monkeypatch.setattr(gates, "cot", none)
     monkeypatch.setattr(gates, "implied_vol", none)
     monkeypatch.setattr(gates, "macro_calendar", empty)
-    posted = []
+    from scanner import desk as desk_mod
+
+    def all_pass(r, g, reg, macro_call, now, verified_today=None):
+        return {"verdict": "verified", "reason": "", "checks": [], "ceiling": None, "ceiling_factor": 1.0}
+    monkeypatch.setattr(desk_mod, "verify", all_pass)
+
+    async def no_macro(*a, **k):
+        return None
+    monkeypatch.setattr(sm.macro, "latest", no_macro)
+    raw, verified = [], []
 
     async def fake_post(http, hook, embeds, dry):
-        posted.extend(e for e in embeds if "WATCH" in e.get("title", ""))
+        raw.extend(e for e in embeds if "WATCH" in e.get("title", ""))
+        verified.extend(e for e in embeds if "VERIFIED" in e.get("title", ""))
         return True
     monkeypatch.setattr(sm, "post", fake_post)
     asyncio.run(sm.scan_once(FakePX(), None, dry_run=True))
-    assert len(posted) == 1
+    # Both ideas show in the raw feed; the cap lets only one through as verified
+    assert len(raw) == 2 and len(verified) == 1
+    capped = [e for e in raw if any("Daily cap" in f["value"] for f in e["fields"])]
+    assert len(capped) == 1
 
 
 def test_merge_by_account():
