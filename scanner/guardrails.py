@@ -28,6 +28,8 @@ COOLDOWN_MIN = int(os.getenv("COOLDOWN_MIN", "30"))
 QUICK_EXIT_MIN = int(os.getenv("QUICK_EXIT_MIN", "10"))
 # Personal daily stop in dollars (0 = off). Set it below the firm's limit.
 PERSONAL_DAILY_STOP = float(os.getenv("PERSONAL_DAILY_STOP", "0"))
+# Alert when the day's profit reaches this (dollars, 0 = off): keeps the best day under the consistency cap.
+DAILY_PROFIT_CAP = float(os.getenv("DAILY_PROFIT_CAP", "0"))
 # London window in Sydney time, [start, end) hours
 NO_IDEA_WINDOW = tuple(int(x) for x in os.getenv("NO_IDEA_WINDOW_SYD", "15,21").split(","))
 
@@ -114,6 +116,14 @@ def review_account(name: str, fills: list[dict], seen: set, now: datetime) -> li
                                            "Days with 1-2 trades made money in your history; 4+ trade days lost. Close the charts."),
                            "color": AMBER})
 
+    if DAILY_PROFIT_CAP and day_pnl >= DAILY_PROFIT_CAP:
+        key = f"profitcap:{trading_day_start(now).date()}"
+        if key not in seen:
+            seen.add(key)
+            embeds.append({"title": f"🏁 Consistency cap reached · {name}",
+                           "description": (f"Up {day_pnl:+,.0f} today. Stop here: more profit today only raises the best-day "
+                                           "figure for the consistency rule. Bank it and come back tomorrow."),
+                           "color": 0x1F6B52})
     if PERSONAL_DAILY_STOP and day_pnl <= -PERSONAL_DAILY_STOP:
         key = f"dailystop:{trading_day_start(now).date()}"
         if key not in seen:

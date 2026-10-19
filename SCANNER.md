@@ -26,6 +26,7 @@ Each Watch post shows:
   - ⚠️ a warning when size goes up after a loss
   - ✅ "that's the day" after 2 round trips (`MAX_TRADES_PER_DAY`)
   - ⛔ a personal daily stop message when `PERSONAL_DAILY_STOP` (dollars) is set
+  - 🏁 a consistency-cap message when the day's profit reaches `DAILY_PROFIT_CAP` (dollars)
 - The scanner never places, changes or cancels orders.
 
 ## Score (0-100)

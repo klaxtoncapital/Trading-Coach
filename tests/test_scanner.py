@@ -216,3 +216,13 @@ def test_merge_by_account():
           {"title": "✅ 2 trades done · A", "description": "y"}]
     m = scan_main.merge_by_account(es)
     assert len(m) == 2 and m[0]["footer"]["text"] == "Accounts: A, B"
+
+
+def test_daily_stop_and_profit_cap(monkeypatch):
+    now = datetime(2026, 10, 20, 1, 0, tzinfo=timezone.utc)
+    monkeypatch.setattr(guardrails, "PERSONAL_DAILY_STOP", 550.0)
+    monkeypatch.setattr(guardrails, "DAILY_PROFIT_CAP", 3450.0)
+    losing = [_fill(1, 0, "NKD", None), _fill(2, 30, "NKD", -600.0)]
+    assert any("daily stop" in e["title"] for e in guardrails.review_account("A", losing, set(), now))
+    winning = [_fill(1, 0, "NKD", None), _fill(2, 50, "NKD", 3500.0)]
+    assert any("Consistency cap" in e["title"] for e in guardrails.review_account("A", winning, set(), now))
