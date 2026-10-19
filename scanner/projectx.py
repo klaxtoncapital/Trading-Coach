@@ -160,3 +160,31 @@ def pick_front_contracts(contracts: list[dict], wanted_roots: set[str]) -> dict[
         if prev is None or (c.get("activeContract") and not prev.get("activeContract")):
             chosen[root] = c
     return chosen
+
+
+# ── account monitoring (read-only) ──
+async def _active_accounts(self) -> list[dict]:
+    await self._ensure_token()
+    data = await self._post("/api/Account/search", {"onlyActiveAccounts": True})
+    return data.get("accounts", [])
+
+
+async def _trades(self, account_id: int, since: datetime) -> list[dict]:
+    """Fills on an account since `since`. profitAndLoss is None on opening (half-turn) fills."""
+    await self._ensure_token()
+    body = {"accountId": account_id, "startTimestamp": since.strftime("%Y-%m-%dT%H:%M:%SZ")}
+    data = await self._post("/api/Trade/search", body)
+    out = []
+    for t in data.get("trades", []):
+        if t.get("voided"):
+            continue
+        ts = datetime.fromisoformat(str(t["creationTimestamp"]).replace("Z", "+00:00"))
+        if ts.tzinfo is None:
+            ts = ts.replace(tzinfo=timezone.utc)
+        out.append({**t, "t": ts.astimezone(timezone.utc)})
+    out.sort(key=lambda x: x["t"])
+    return out
+
+
+ProjectXClient.active_accounts = _active_accounts
+ProjectXClient.trades = _trades

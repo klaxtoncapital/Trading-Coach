@@ -16,6 +16,18 @@ Each Watch post shows:
 
 "Take" calls are switched off until the playbook entry signatures are added and backtested on ProjectX history.
 
+## Guardrails (from the Oct 2026 trade-history autopsy)
+
+- **No Watch ideas 3pm-9pm Sydney** (London: 1 win in 5) and no London leaderboard.
+- **At most 2 Watch ideas per trading day** (`MAX_IDEAS_PER_DAY`).
+- **Account watch, read-only, every minute**, on every active account the ProjectX login can see:
+  - 🛑 a 30-minute cool-down after any losing trade (`COOLDOWN_MIN`)
+  - ⏱️ a reminder when a trade closes inside 10 minutes (`QUICK_EXIT_MIN`)
+  - ⚠️ a warning when size goes up after a loss
+  - ✅ "that's the day" after 2 round trips (`MAX_TRADES_PER_DAY`)
+  - ⛔ a personal daily stop message when `PERSONAL_DAILY_STOP` (dollars) is set
+- The scanner never places, changes or cancels orders.
+
 ## Score (0-100)
 
 | Part | Points | Full marks at |

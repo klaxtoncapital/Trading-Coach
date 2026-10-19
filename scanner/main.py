@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import config, gates
+from . import config, gates, guardrails
 from .discord_out import leaderboard_embed, post, watch_embed
 from .metrics import build_thesis, compute
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -26,9 +26,27 @@ from .score import classify, score
 log = logging.getLogger("scanner")
 NY = ZoneInfo("America/New_York")
 STATE_FILE = os.getenv("SCANNER_STATE_FILE", "scanner_state.json")
+GUARD_FILE = os.getenv("GUARD_STATE_FILE", "guard_state.json")
+
+
+def _load_seen() -> set:
+    try:
+        with open(GUARD_FILE) as f:
+            return set(json.load(f))
+    except (OSError, ValueError):
+        return set()
+
+
+def _save_seen(seen: set) -> None:
+    try:
+        with open(GUARD_FILE, "w") as f:
+            json.dump(sorted(seen)[-3000:], f)
+    except OSError as e:
+        log.warning("Couldn't save guard state: %s", e)
 
 # Leaderboard posts (New York time): before Asia, before London, before New York
-LEADERBOARD_TIMES = [(17, 45, "Asia open"), (2, 45, "London open"), (9, 15, "New York open")]
+# London board dropped: the London session won 1 trade in 5 in the trade history.
+LEADERBOARD_TIMES = [(17, 45, "Asia open"), (9, 15, "New York open")]
 
 
 def globex_open(now: datetime) -> bool:
@@ -49,7 +67,7 @@ def _load_state() -> dict:
         with open(STATE_FILE) as f:
             return json.load(f)
     except (OSError, ValueError):
-        return {"posted": {}, "boards": {}}
+        return {"posted": {}, "boards": {}, "ideas": {}}
 
 
 def _save_state(s: dict) -> None:
@@ -98,16 +116,27 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
     results.sort(key=lambda x: -x[2])
     state = _load_state()
 
-    # Watch ideas (once per market, direction and trading day)
+    # Watch ideas (once per market, direction and trading day), best first.
+    # Guardrails: none in the London window, at most MAX_IDEAS_PER_DAY per trading day.
     embeds = []
+    state.setdefault("ideas", {})
+    quiet = guardrails.in_no_idea_window(now)
     for m, r, sc, reasons, g in results:
         if not g or classify(sc, r, g, config.WATCH_MIN_SCORE) != "watch":
             continue
         key = f"{m.root}:{r.thesis['dir']}:{r.trading_day}"
         if key in state["posted"]:
             continue
+        day = str(r.trading_day)
+        if quiet:
+            log.info("Skipping %s idea: London window", m.root)
+            continue
+        if state["ideas"].get(day, 0) >= guardrails.MAX_IDEAS_PER_DAY:
+            log.info("Skipping %s idea: daily idea cap reached", m.root)
+            continue
         embeds.append(watch_embed(m, r, sc, reasons, g))
         state["posted"][key] = now.isoformat()
+        state["ideas"][day] = state["ideas"].get(day, 0) + 1
     for i in range(0, len(embeds), 5):
         await post(http, config.DISCORD_SCANNER_WEBHOOK, embeds[i:i + 5], dry_run)
 
@@ -129,9 +158,53 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
     cutoff = (now - timedelta(days=10)).isoformat()
     for k in ("posted", "boards"):
         state[k] = {a: b for a, b in state[k].items() if b >= cutoff}
+    state["ideas"] = dict(sorted(state.get("ideas", {}).items())[-10:])
     _save_state(state)
     log.info("Scan done: %d markets, %d watch ideas posted", len(results), len(embeds))
     return results
+
+
+async def guard_once(px: ProjectXClient, http: aiohttp.ClientSession, accounts: list[dict], dry_run: bool):
+    """Read-only check of each active account's fills today; posts guardrail messages."""
+    now = datetime.now(timezone.utc)
+    seen = _load_seen()
+    embeds = []
+    for a in accounts:
+        try:
+            fills = await px.trades(a["id"], guardrails.trading_day_start(now))
+        except Exception as e:  # noqa: BLE001
+            log.warning("Trade check failed for %s: %s", a.get("name"), e)
+            continue
+        embeds += guardrails.review_account(a.get("name") or str(a["id"]), fills, seen, now)
+    if embeds:
+        await post(http, config.DISCORD_SCANNER_WEBHOOK, embeds[:10], dry_run)
+    _save_seen(seen)
+
+
+async def guard_loop(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bool):
+    accounts, fetched = [], datetime.min.replace(tzinfo=timezone.utc)
+    first = True
+    while True:
+        now = datetime.now(timezone.utc)
+        if globex_open(now):
+            try:
+                if now - fetched > timedelta(hours=1):
+                    accounts = [a for a in await px.active_accounts() if a.get("canTrade", True)]
+                    fetched = now
+                    log.info("Watching %d account(s): %s", len(accounts), ", ".join(str(a.get("name")) for a in accounts))
+                if first:
+                    # Don't replay today's old trades on start-up: mark them seen silently.
+                    seen = _load_seen()
+                    for a in accounts:
+                        guardrails.review_account(a.get("name") or str(a["id"]),
+                                                  await px.trades(a["id"], guardrails.trading_day_start(now)), seen, now)
+                    _save_seen(seen)
+                    first = False
+                else:
+                    await guard_once(px, http, accounts, dry_run)
+            except Exception:  # noqa: BLE001
+                log.exception("Guard check failed; retrying")
+        await asyncio.sleep(60)
 
 
 async def list_contracts(px: ProjectXClient):
@@ -152,7 +225,8 @@ async def run(args):
         if args.once:
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
-        log.info("Scanner running every %d min", config.SCAN_INTERVAL_MIN)
+        log.info("Scanner running every %d min; guardrails checking accounts every minute", config.SCAN_INTERVAL_MIN)
+        asyncio.create_task(guard_loop(px, http, args.dry_run))
         first = True
         while True:
             now = datetime.now(timezone.utc)

@@ -144,3 +144,68 @@ def test_dry_run_end_to_end(monkeypatch, capsys, tmp_path):
     es = results[0]
     if classify(es[2], es[1], es[4], 55) == "watch":
         assert "WATCH" in out and "Gate 2" in out
+
+
+# ── guardrails ──
+from scanner import guardrails
+
+
+def _fill(i, minute, contract, pnl, size=1):
+    t = datetime(2026, 10, 20, 0, minute, tzinfo=timezone.utc)
+    return {"id": i, "contractId": f"CON.F.US.{contract}.Z26", "t": t, "profitAndLoss": pnl, "fees": 2.0, "size": size}
+
+
+def test_guardrails_cooldown_quick_exit_sizeup_and_cap():
+    now = datetime(2026, 10, 20, 1, 0, tzinfo=timezone.utc)
+    fills = [
+        _fill(1, 0, "ENQ", None, 2), _fill(2, 4, "ENQ", -150.0, 2),   # loss after 4 min
+        _fill(3, 6, "ENQ", None, 4), _fill(4, 40, "ENQ", 300.0, 4),   # sized up after loss, held 34 min
+    ]
+    seen = set()
+    titles = [e["title"] for e in guardrails.review_account("TS-50K", fills, seen, now)]
+    assert any("cool-down" in t for t in titles)
+    assert any("Closed after 4 min" in t for t in titles)
+    assert any("Size went UP" in t for t in titles)
+    assert any("2 trades done" in t for t in titles)
+    # Nothing repeats on the next check
+    assert guardrails.review_account("TS-50K", fills, seen, now) == []
+
+
+def test_no_idea_window_is_london_in_sydney_time():
+    assert guardrails.in_no_idea_window(datetime(2026, 10, 20, 5, 0, tzinfo=timezone.utc))      # 4pm Sydney
+    assert not guardrails.in_no_idea_window(datetime(2026, 10, 19, 23, 0, tzinfo=timezone.utc))  # 10am Sydney
+
+
+def test_idea_cap(monkeypatch, tmp_path):
+    monkeypatch.setattr(scan_main, "STATE_FILE", str(tmp_path / "s.json"))
+    monkeypatch.setattr(guardrails, "in_no_idea_window", lambda now: False)
+    monkeypatch.setattr(guardrails, "MAX_IDEAS_PER_DAY", 1)
+    import scanner.main as sm
+    from scanner import score as sc_mod
+    monkeypatch.setattr(sm, "classify", lambda *a, **k: "watch")
+    swept, _ = _add_sweep_of_prior_low(make_hourly(seed=3))
+    swept2, _ = _add_sweep_of_prior_low(make_hourly(seed=5, base=50))
+
+    class FakePX:
+        async def available_contracts(self):
+            return [{"name": "ESZ6", "id": "A", "activeContract": True}, {"name": "GCZ6", "id": "B", "activeContract": True}]
+
+        async def bars(self, cid, unit, n, days_back):
+            return swept if cid == "A" else swept2
+
+    async def none(*a, **k):
+        return None
+
+    async def empty(*a, **k):
+        return []
+    monkeypatch.setattr(gates, "cot", none)
+    monkeypatch.setattr(gates, "implied_vol", none)
+    monkeypatch.setattr(gates, "macro_calendar", empty)
+    posted = []
+
+    async def fake_post(http, hook, embeds, dry):
+        posted.extend(e for e in embeds if "WATCH" in e.get("title", ""))
+        return True
+    monkeypatch.setattr(sm, "post", fake_post)
+    asyncio.run(sm.scan_once(FakePX(), None, dry_run=True))
+    assert len(posted) == 1
