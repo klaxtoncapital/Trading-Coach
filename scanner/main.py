@@ -153,11 +153,14 @@ async def run(args):
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
         log.info("Scanner running every %d min", config.SCAN_INTERVAL_MIN)
+        first = True
         while True:
             now = datetime.now(timezone.utc)
             if globex_open(now):
                 try:
-                    await scan_once(px, http, args.dry_run)
+                    # Post a leaderboard on start-up so a redeploy shows the scanner is alive
+                    await scan_once(px, http, args.dry_run, force_board="scanner started" if first else None)
+                    first = False
                 except Exception:  # noqa: BLE001
                     log.exception("Scan failed; retrying next cycle")
             await asyncio.sleep(config.SCAN_INTERVAL_MIN * 60)
