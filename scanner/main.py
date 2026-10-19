@@ -177,8 +177,27 @@ async def guard_once(px: ProjectXClient, http: aiohttp.ClientSession, accounts: 
             continue
         embeds += guardrails.review_account(a.get("name") or str(a["id"]), fills, seen, now)
     if embeds:
-        await post(http, config.DISCORD_SCANNER_WEBHOOK, embeds[:10], dry_run)
+        await post(http, config.DISCORD_SCANNER_WEBHOOK, merge_by_account(embeds)[:10], dry_run)
     _save_seen(seen)
+
+
+def merge_by_account(embeds: list[dict]) -> list[dict]:
+    """Copied accounts trigger the same message; post it once and list the accounts."""
+    merged: dict[str, dict] = {}
+    for e in embeds:
+        head, _, acct = e["title"].rpartition(" · ")
+        key = head or e["title"]
+        if key not in merged:
+            merged[key] = {**e, "title": key, "_accts": [acct] if head else []}
+        elif head:
+            merged[key]["_accts"].append(acct)
+    out = []
+    for e in merged.values():
+        accts = e.pop("_accts")
+        if accts:
+            e["footer"] = {"text": ("Accounts: " + ", ".join(accts))[:2000]}
+        out.append(e)
+    return out
 
 
 async def guard_loop(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bool):

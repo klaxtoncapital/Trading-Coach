@@ -209,3 +209,10 @@ def test_idea_cap(monkeypatch, tmp_path):
     monkeypatch.setattr(sm, "post", fake_post)
     asyncio.run(sm.scan_once(FakePX(), None, dry_run=True))
     assert len(posted) == 1
+
+
+def test_merge_by_account():
+    es = [{"title": "🛑 30-minute cool-down · A", "description": "x"}, {"title": "🛑 30-minute cool-down · B", "description": "x"},
+          {"title": "✅ 2 trades done · A", "description": "y"}]
+    m = scan_main.merge_by_account(es)
+    assert len(m) == 2 and m[0]["footer"]["text"] == "Accounts: A, B"
