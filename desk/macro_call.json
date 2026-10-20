@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-10-20T12:11:00+11:00",
+  "trading_day": "2026-10-20",
+  "summary": "US tech bounced Monday (Nasdaq-100 +1.1%) on easing AI-credit worries, but the rally was narrow and Treasury yields jumped ~6bp to 5.15% as oil near $100 and Fed-hike pricing (~26bp by December) rose; the dollar firmed and USD/JPY climbed to ~158.5. No tier-1 events in the next 24 hours; Netflix reports after the US close.",
+  "events_next_24h": [
+    "Tue 12:15pm CNY China loan prime rate (Oct)",
+    "Tue 5:00pm GBP UK unemployment / average earnings (Aug)",
+    "Tue 8:00pm EUR German ZEW sentiment (Oct)",
+    "Tue 11:30pm USD Building permits (Sep)",
+    "Wed ~7:00am USD Netflix earnings (after US close)",
+    "Wed 8:45am NZD NZ CPI (Q3)",
+    "Wed 10:50am JPY Japan trade balance (Sep)"
+  ],
+  "markets": {
+    "NKD": {"bias": "neutral", "conviction": 1, "why": "Nikkei closed -0.6% Monday and is ~6% off over five days, but the US tech bounce and weak yen help, and hedge funds are near a crowded short (12th pct).", "risk": "A second leg of the AI/chip sell-off or a sharp yen rally would turn it bearish."},
+    "NQ": {"bias": "neutral", "conviction": 1, "why": "Monday's +1.1% bounce only recovered part of Friday's -2% drop, and 5.15% 10-year yields plus a heavy earnings week (Netflix tonight) leave direction open.", "risk": "Strong megacap earnings and falling yields would make it bullish; renewed AI-credit fears bearish."},
+    "ES": {"bias": "neutral", "conviction": 1, "why": "S&P rose 0.4% on a few megacaps while the equal-weight index fell and decliners beat advancers ~2:1, as rising yields hit rate-sensitive sectors.", "risk": "Broadening breadth with yields easing would flip it bullish."},
+    "YM": {"bias": "neutral", "conviction": 1, "why": "Dow was flat (-0.1%) with JPMorgan the main drag; no clear macro driver either way for the price-weighted index.", "risk": "A further jump in yields or bank weakness would tilt it bearish."},
+    "RTY": {"bias": "neutral", "conviction": 1, "why": "Small caps held +0.25% despite yields rising to 5.15% and Fed-hike odds climbing, so the rate headwind and price action disagree.", "risk": "Another leg higher in yields or hike pricing would make it bearish."},
+    "6J": {"bias": "bearish", "conviction": 1, "why": "USD/JPY rose 0.4% to ~158.5 as the US-Japan yield gap widened and reports say the BOJ leans against an October hike.", "risk": "Verbal or actual MoF intervention as USD/JPY nears 160, or hawkish BOJ guidance."},
+    "6E": {"bias": "bearish", "conviction": 1, "why": "EUR/USD slipped ~0.3% to 1.121 on French civil unrest and higher US yields supporting the dollar.", "risk": "Calmer France, hawkish ECB speakers or a drop in US yields."},
+    "6B": {"bias": "neutral", "conviction": 1, "why": "Sterling dipped only ~0.1-0.2% on broad dollar strength, with UK jobs data today and UK CPI tomorrow able to swing it.", "risk": "Hot UK wages or CPI would turn it bullish; weak data bearish."},
+    "6A": {"bias": "bullish", "conviction": 1, "why": "AUD outperformed Monday on firm China data and RBA's Kent questioning whether the 4.60% cash rate is restrictive enough.", "risk": "Broad risk-off or a stronger US dollar would undo it."},
+    "ZN": {"bias": "bearish", "conviction": 2, "why": "10-year yields rose ~6bp to 5.15% as oil-driven inflation worries and Fed-hike pricing (~26bp by December) both climbed.", "risk": "An Iran de-escalation that drops oil, or an equity sell-off driving a haven bid."},
+    "GC": {"bias": "neutral", "conviction": 1, "why": "Gold fell ~0.5% to ~$4,160 on higher yields and a firmer dollar, but Middle East risk and steady central-bank buying cushion it.", "risk": "A further yield spike would make it bearish; Gulf escalation bullish."},
+    "CL": {"bias": "neutral", "conviction": 1, "why": "US easing of Russian energy sanctions and talk of an Iran breakthrough offset Houthi attacks and collapsing Hormuz tanker flows; November WTI expires today.", "risk": "A confirmed Gulf supply hit (bullish) or an Iran de-escalation deal (bearish)."}
+  },
+  "sources": [
+    "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ",
+    "https://cappnotes.substack.com/p/closing-look-monday-october-19-2026",
+    "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---20th-october-2026",
+    "https://www.babypips.com/news/financial-forex-market-recap-2026-10-19",
+    "https://www.brecorder.com/news/40445028/nikkei-slides-as-concerns-mount-before-tech-results",
+    "https://share-talk.com/what-happened-overnight-monday-19th-october-2026/",
+    "https://www.fxstreet.com/news/bojs-ueda-signals-further-rate-hikes-as-underlying-inflation-nears-2-202610161239",
+    "https://www.bloomberg.com/news/articles/2026-10-13/boj-is-said-to-lean-against-back-to-back-rate-hike-in-october",
+    "https://www.chase.com/personal/investments/learning-and-insights/article/federal-reserve-officials-hawkish-tone-ahead-of-october-2026-fomc-meeting",
+    "https://energynow.com/2026/10/oil-prices-retreat-from-five-month-highs-as-russian-sanctions-relief-offsets-middle-east-supply-fears/",
+    "https://www.newsquawk.com/headlines/newsquawk-weekly-economic-calendar---19th-23rd-october-2026"
+  ]
+}
