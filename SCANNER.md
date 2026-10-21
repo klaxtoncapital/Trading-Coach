@@ -10,6 +10,8 @@ Scans every Topstep-tradable futures market through the ProjectX API every 15 mi
 | **Technicals** | Daily trend regime per market: 200-day state and slope, ROC 50 and its percentile, stretched / flattening / reset flags, size ceiling (full, half, starter) | This service (`scanner/regime.py`) |
 | **News** | Trump (trumpstruth.org archive), White House, Fed policy and speeches, Bank of Japan, CNBC headlines, tagged by market. Posts market-moving ones; morning Forex Factory digest at 8am Sydney | This service, every 5 min (`scanner/news.py`) |
 | **Macro** | Daily direction call per market (bullish / bearish / neutral, conviction 1-3) from macro data, news and COT positioning | Scheduled Claude run, 8:24am Sydney weekdays; writes `desk/macro_call.json` on the `desk-data` branch |
+| **ACD** | Mark Fisher's opening-range method on each market's own open: A up / A down confirmed, failed A (a trap / sweep), C (the strong reversal), with the prior day's pivot range. Batched into one post per scan, plus an ACD line on every Watch idea | This service (`scanner/acd.py`), each scan |
+| **COT board** | Weekly ranking of every commodity by how stretched hedge funds are (3-year percentile), with commercials alongside and a flag when the two sit at opposite extremes | This service (`scanner/cot_board.py`), Saturday 9am Sydney, catches up if missed |
 | **Head of desk** | Checks every idea before you see it (below). Only verified ideas reach the desk channel | This service (`scanner/desk.py`) |
 
 ### Head of desk checks
@@ -42,6 +44,26 @@ Each Watch post shows:
 - **Gate 4 · Catalysts:** high-impact events in the holding window, for the currencies that move that market, plus EIA reports for energy.
 
 "Take" calls are switched off until the playbook entry signatures are added and backtested on ProjectX history.
+
+## ACD (opening range)
+
+| Market group | Opening range starts | Session ends |
+|---|---|---|
+| ES, NQ, YM, RTY | 9:30 ET | 15:05 CT (Topstep flat) |
+| NKD | 9:00 Tokyo | 15:30 Tokyo |
+| CL, NG, RB, HO | 9:00 ET | 15:05 CT |
+| GC 8:20, SI 8:25, HG 8:10, PL 8:20 ET | | 15:05 CT |
+| Rates and FX | 8:20 ET | 15:05 CT |
+| Grains 8:30 CT (end 13:15), meats 8:30 CT (end 13:00) | | |
+
+- Opening range: first `ACD_OR_MIN` minutes (15). A value: `ACD_A_ATR` x 20-day ATR (0.10).
+- **A confirmed:** closes beyond the A level for half the OR time in a row.
+- **Failed A:** touched the A level, then closed back inside the OR. Leans the other way; invalid beyond the extreme it reached.
+- **C:** after a failed A, price holds the opposite A level. The strongest reversal in the method.
+- Pivot range from the prior day ((H+L)/2 and (H+L+C)/3); a narrow one (bottom 20% of 20 days) is flagged as trend-day risk.
+- Signals are context for your entry signature, never orders.
+
+**Backtest it before trusting it:** `python -m scanner.main --acd-backtest GC,SI,CL,HG,NQ,ES --days 180` (add `--a-atr 0.1,0.15,0.2` to compare A values). It stitches the monthly contracts from ProjectX, runs the same code the live agent uses, and prints win %, average R and total R per market and signal. Takes a few minutes per market because of the API rate limit. No costs or slippage included.
 
 ## Guardrails (from the Oct 2026 trade-history autopsy)
 
@@ -90,6 +112,7 @@ Data is pulled for the full-size contract; each idea lists the micro you can tra
    - optional: `PROJECTX_LIVE_DATA=true` if your API plan includes live data (default uses sim data)
    - optional: `SCAN_INTERVAL_MIN` (15), `WATCH_MIN_SCORE` (55), `HOLD_WINDOW_HOURS` (24), `EXCLUDE_ROOTS` (e.g. `HE,LE`)
    - desk v2: `DISCORD_DESK_WEBHOOK` (verified ideas), `DISCORD_NEWS_WEBHOOK` (headlines and the morning calendar)
+   - ACD and COT board, optional: `DISCORD_ACD_WEBHOOK` (defaults to the scanner channel), `DISCORD_COT_WEBHOOK` (defaults to the desk channel, then scanner), `ACD_ROOTS` (e.g. `GC,SI,CL,HG,NQ,ES`; empty = all), `ACD_OR_MIN` (15), `ACD_A_ATR` (0.10), `COT_BOARD_HOUR_SYD` (9), `COT_EXTREME_PCT` (90)
    - desk v2, optional: `NEWS_INTERVAL_MIN` (5), `NEWS_BLOCK_MIN` (30), `CATALYST_BLOCK_MIN` (60), `DATA_STALE_MIN` (90), `MIN_RR` (2), `REGIME_EXHAUSTED_PCT` (90), `REGIME_RESET_BAND` (2.0), `MACRO_CALL_URL`, `MACRO_MAX_AGE_HOURS` (26), `GITHUB_TOKEN` (only if the repo is made private), `NEWS_FEEDS_OFF` (e.g. `cnbc_world,whitehouse`)
 4. Deploy. The logs show `Scanner running every 15 min`.
 
@@ -100,6 +123,8 @@ python -m scanner.main --list-contracts   # what ProjectX offers and how it maps
 python -m scanner.main --once --dry-run   # one scan, print the posts instead of sending
 python -m scanner.main --regime           # 200-day regime for every market
 python -m scanner.main --news             # latest market-moving headlines
+python -m scanner.main --cot-board        # this week's commodity COT extremes board
+python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on ProjectX history
 python -m scanner.main --once             # one scan, post to Discord
 python -m pytest -q tests                 # tests on synthetic data
 ```

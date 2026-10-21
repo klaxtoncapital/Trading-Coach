@@ -3,3 +3,7 @@ __pycache__/
 .env
 scanner_state.json
 .pytest_cache/
+cot_board_state.json
+guard_state.json
+news_state.json
+acd_backtest_*.csv

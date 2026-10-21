@@ -6,6 +6,8 @@
   python -m scanner.main --list-contracts # show what ProjectX offers and how it maps
   python -m scanner.main --regime         # print the 200-day regime for every market
   python -m scanner.main --news           # print the latest market-moving headlines
+  python -m scanner.main --cot-board      # print this week's commodity COT extremes board
+  python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on ProjectX history
 """
 from __future__ import annotations
 
@@ -19,9 +21,9 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import config, desk, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, config, cot_board, desk, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
-from .metrics import build_thesis, compute
+from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
 from .score import classify, score
 
@@ -94,6 +96,7 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
     macro_call = await macro.latest(http)
     now = datetime.now(timezone.utc)
     results = []
+    readings = {}   # root -> (Reading, days) for the ACD agent
     for root, c in contracts.items():
         m = config.MARKETS_BY_ROOT[root]
         try:
@@ -109,6 +112,7 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
         if not r:
             log.info("Not enough history for %s", root)
             continue
+        readings[root] = (r, to_days(hourly))
         r.thesis = build_thesis(r)
         sc, reasons = score(r)
         reg = await regime.regime_for(http, px, root, c)
@@ -126,6 +130,15 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
 
     results.sort(key=lambda x: -x[2])
     state = _load_state()
+
+    # ACD agent: opening-range signals (own post), plus a line on each Watch idea
+    try:
+        acd_summary = await acd.run_live(px, http, contracts, readings, state, now, post, dry_run)
+    except Exception:  # noqa: BLE001
+        log.exception("ACD agent failed this scan")
+        acd_summary = {}
+    for m, r, *_ in results:
+        r.acd_line = acd.watch_field(acd_summary, m.root)
 
     # Watch ideas (once per market, direction and trading day), best first.
     # Every idea goes to the head of desk. The raw idea (with the verdict) goes to
@@ -288,6 +301,14 @@ async def list_contracts(px: ProjectXClient):
 
 
 async def run(args):
+    if args.cot_board:
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as http:
+            data = await cot_board.fetch(http)
+            emb = cot_board.board_embed(data)
+            print(emb["title"] + "\n\n" + emb["description"])
+            for f in emb["fields"]:
+                print(f"\n{f['name']}\n{f['value']}")
+        return
     async with ProjectXClient(config.PROJECTX_BASE_URL, config.PROJECTX_USERNAME,
                               config.PROJECTX_API_KEY, config.PROJECTX_LIVE_DATA) as px, \
             aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as http:
@@ -303,6 +324,14 @@ async def run(args):
             for h in news.recent(every_market, 24 * 60, high_only=False)[-25:]:
                 print(f"{'HIGH' if h['high'] else '    '} {h['source']:22} {h['title'][:100]}  -> {', '.join(h['markets'][:5])}")
             return
+        if args.acd_backtest:
+            roots = [x.strip().upper() for x in args.acd_backtest.split(",") if x.strip()]
+            a_atrs = [float(x) for x in args.a_atr.split(",")] if args.a_atr else None
+            rows = await acd_backtest.run(px, roots, args.days, a_atrs)
+            acd_backtest.print_table(rows)
+            if rows:
+                print("Saved", acd_backtest.save_csv(rows))
+            return
         if args.once:
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
@@ -311,6 +340,9 @@ async def run(args):
                  news.NEWS_INTERVAL_MIN, "posting" if news.DISCORD_NEWS_WEBHOOK else "checks only, no news webhook",
                  "on" if config.DISCORD_DESK_WEBHOOK else "OFF (set DISCORD_DESK_WEBHOOK)", macro.MACRO_CALL_URL or "nowhere")
         asyncio.create_task(news.news_loop(http, post, args.dry_run))
+        asyncio.create_task(cot_board.board_loop(http, post, args.dry_run))
+        log.info("ACD agent on %s; COT board Saturdays %d:00 Sydney",
+                 ", ".join(sorted(r for r in acd.SESSIONS if acd.enabled(r))), cot_board.COT_BOARD_HOUR_SYD)
         log.info("Guardrails: %d ideas/day, %d trades/day, %d min cool-down, daily stop $%.0f, profit cap $%.0f",
                  guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
                  guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)
@@ -336,6 +368,10 @@ def main():
     p.add_argument("--list-contracts", action="store_true", help="list ProjectX contracts and exit")
     p.add_argument("--regime", action="store_true", help="print the 200-day regime for every market and exit")
     p.add_argument("--news", action="store_true", help="print the latest market-moving headlines and exit")
+    p.add_argument("--cot-board", action="store_true", help="print this week's commodity COT extremes board and exit")
+    p.add_argument("--acd-backtest", metavar="ROOTS", help="ACD backtest, e.g. GC,SI,CL,NQ")
+    p.add_argument("--days", type=int, default=180, help="days of history for --acd-backtest (default 180)")
+    p.add_argument("--a-atr", help="A value(s) as a fraction of ATR, e.g. 0.1,0.15,0.2 (default ACD_A_ATR)")
     asyncio.run(run(p.parse_args()))
 
 

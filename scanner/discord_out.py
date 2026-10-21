@@ -109,6 +109,8 @@ def watch_embed(m: Market, r: Reading, sc: int, reasons: list[str], gates: dict,
         {"name": "📐 Trend regime (200-day)", "value": regime.summary(reg)[:1000], "inline": False},
         {"name": "Why it scored", "value": " · ".join(reasons)[:1000] or "n/a", "inline": False},
     ]
+    if getattr(r, "acd_line", None):
+        fields.insert(-1, {"name": "📐 ACD (opening range)", "value": r.acd_line[:1000], "inline": False})
     if verdict:
         if verdict["verdict"] == "verified":
             head = "✅ **Verified** and sent to the desk channel."
