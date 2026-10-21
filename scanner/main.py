@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, config, cot_board, desk, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, config, cot_board, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -93,6 +93,7 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
         log.info("Not offered by ProjectX right now: %s", ", ".join(missing))
 
     cal = await gates.macro_calendar(http)
+    cal = cal + await earnings.upcoming(http)
     macro_call = await macro.latest(http)
     now = datetime.now(timezone.utc)
     results = []

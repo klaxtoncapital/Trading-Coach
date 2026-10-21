@@ -29,6 +29,7 @@ from zoneinfo import ZoneInfo
 import aiohttp
 
 from . import config
+from . import earnings as earnings_mod
 
 log = logging.getLogger("scanner.news")
 SYD = ZoneInfo("Australia/Sydney")
@@ -288,7 +289,7 @@ async def calendar_items(http: aiohttp.ClientSession) -> list[dict]:
     return sorted(out, key=lambda e: e["t"])
 
 
-def calendar_embed(events: list[dict], now: datetime) -> dict:
+def calendar_embed(events: list[dict], now: datetime, earnings: list[dict] | None = None) -> dict:
     window = [e for e in events if now <= e["t"] <= now + timedelta(hours=24)]
     lines = []
     for e in window[:25]:
@@ -300,13 +301,31 @@ def calendar_embed(events: list[dict], now: datetime) -> dict:
             fp.append(f"prev {e['previous']}")
         lines.append(f"{icon} **{e['t'].astimezone(SYD):%a %-I:%M%p}** {e['currency']} {e['title']}"
                      + (f" ({', '.join(fp)})" if fp else ""))
+    lines = lines or ["No high or medium impact events in the next 24 hours."]
+    lines += earnings_lines(earnings or [], now)
     return {
         "title": f"🗓️ Next 24 hours · {now.astimezone(SYD):%a %-d %b}",
-        "description": "\n".join(lines)[:4000] or "No high or medium impact events in the next 24 hours.",
+        "description": "\n".join(lines)[:4000],
         "color": 0x23456B,
-        "footer": {"text": "Forex Factory calendar, Sydney time. 🔴 high impact · 🟠 medium."},
+        "footer": {"text": "Forex Factory calendar + Nasdaq earnings, Sydney time. 🔴 high · 🟠 medium · 💼 earnings."},
         "timestamp": now.astimezone(SYD).isoformat(),
     }
+
+
+def earnings_lines(evs: list[dict], now: datetime) -> list[str]:
+    """Earnings in the next 24h, then anything else on the watchlist this week."""
+    soon = [e for e in evs if now <= e["t"] <= now + timedelta(hours=24)]
+    later = [e for e in evs if now + timedelta(hours=24) < e["t"] <= now + timedelta(days=7)]
+    if not soon and not later:
+        return []
+    out = ["", "**💼 Earnings**"]
+    for e in soon:
+        out.append(f"💼 **{e['t'].astimezone(SYD):%a %-I:%M%p}** {e['company']} ({e['symbol']}) {e['when']}"
+                   f" · moves {'/'.join(e['roots'])}")
+    if later:
+        out.append("Later this week: " + ", ".join(
+            f"{e['symbol']} {e['t'].astimezone(SYD):%a}" for e in later[:12]))
+    return out
 
 
 def digest_due(now: datetime, state: dict) -> bool:
@@ -327,7 +346,12 @@ async def news_loop(http: aiohttp.ClientSession, post, dry_run: bool):
             now = datetime.now(timezone.utc)
             state = _load_state()
             if digest_due(now, state):
-                emb = calendar_embed(await calendar_items(http), now)
+                try:
+                    evs = await earnings_mod.upcoming(http, now)
+                except Exception:  # noqa: BLE001  earnings must never stop the digest
+                    log.exception("Earnings fetch failed")
+                    evs = []
+                emb = calendar_embed(await calendar_items(http), now, evs)
                 if DISCORD_NEWS_WEBHOOK:
                     await post(http, DISCORD_NEWS_WEBHOOK, [emb], dry_run)
                 state["digest"] = now.astimezone(SYD).date().isoformat()

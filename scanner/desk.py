@@ -21,6 +21,7 @@ from __future__ import annotations
 import os
 from datetime import datetime, timedelta
 
+from . import gates as gates_mod
 from . import macro as macro_mod
 from . import news as news_mod
 from . import regime as regime_mod
@@ -118,7 +119,7 @@ def verify(r, gates: dict, reg: dict | None, macro_call: dict | None, now: datet
     if soon:
         ev = soon[0]
         mins = (ev["t"] - now).total_seconds() / 60
-        checks.append(_c("Catalyst", "fail", f"{ev['name']} ({ev['currency']}) is {mins:.0f} min away: too close to enter."))
+        checks.append(_c("Catalyst", "fail", f"{gates_mod.label(ev)} is {mins:.0f} min away: too close to enter."))
     elif cat["status"] == "warn":
         checks.append(_c("Catalyst", "warn", cat["text"]))
     else:

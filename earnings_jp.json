@@ -1,0 +1,5 @@
+[
+  {"symbol": "6857", "name": "Advantest", "date": "2026-10-28", "session": "after-close", "roots": ["NKD"]},
+  {"symbol": "8035", "name": "Tokyo Electron", "date": "2026-10-30", "session": "after-close", "roots": ["NKD"]},
+  {"symbol": "9984", "name": "SoftBank Group", "date": "2026-11-10", "session": "after-close", "roots": ["NKD"]}
+]

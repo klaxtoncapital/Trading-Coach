@@ -190,14 +190,21 @@ def _recurring(m: Market, now: datetime, hours: int) -> list[dict]:
     return out
 
 
+def label(e: dict) -> str:
+    """'META earnings (after the close)' or 'Unemployment Claims (USD)'."""
+    return f"{e['name']} ({e['when']})" if e.get("roots") else f"{e['name']} ({e['currency']})"
+
+
 def catalyst_gate(m: Market, cal: list[dict], now: datetime, hours: int) -> dict:
-    window = [e for e in cal if e["currency"] in m.currencies and now <= e["t"] <= now + timedelta(hours=hours)]
+    def _hits(e):  # earnings carry the roots they move; macro events go by currency
+        return m.root in e["roots"] if e.get("roots") else e["currency"] in m.currencies
+    window = [e for e in cal if _hits(e) and now <= e["t"] <= now + timedelta(hours=hours)]
     window += _recurring(m, now, hours)
     window.sort(key=lambda e: e["t"])
     if not window:
         return {"status": "pass", "events": [], "text": f"Nothing high-impact in the next {hours}h."}
     from zoneinfo import ZoneInfo
     syd = ZoneInfo("Australia/Sydney")
-    names = [f"{e['name']} ({e['currency']}) {e['t'].astimezone(syd):%a %-I:%M%p} Syd" for e in window[:4]]
+    names = [f"{label(e)} {e['t'].astimezone(syd):%a %-I:%M%p} Syd" for e in window[:4]]
     return {"status": "warn", "events": window,
             "text": "Inside the window: " + "; ".join(names) + ". Plan to flatten or cut size before it."}

@@ -65,6 +65,28 @@ Each Watch post shows:
 
 **Backtest it before trusting it:** `python -m scanner.main --acd-backtest GC,SI,CL,HG,NQ,ES --days 180` (add `--a-atr 0.1,0.15,0.2` to compare A values). It stitches the monthly contracts from ProjectX, runs the same code the live agent uses, and prints win %, average R and total R per market and signal. Takes a few minutes per market because of the API rate limit. No costs or slippage included.
 
+## Earnings (Oct 2026)
+
+Forex Factory has no company earnings, so `scanner/earnings.py` adds them.
+
+- **US:** Nasdaq's public earnings calendar (no key), next 7 days, filtered to the
+  names that move NQ/ES on their own: AAPL, MSFT, NVDA, AMZN, GOOGL, META, TSLA, AVGO,
+  NFLX, AMD, SPCX, ORCL, COST, TSM. Pre-market reports are timed at 7:00am New York,
+  after-hours at 4:05pm, unconfirmed times as after the close.
+- **Japan:** `earnings_jp.json` in the repo root (Advantest, Tokyo Electron, SoftBank
+  Group). Nasdaq doesn't list Tokyo reports, so edit this file when a date is
+  confirmed on the company's IR page. Default time is after the 15:30 Tokyo close;
+  add `"time": "HH:MM"` (Tokyo) to set it exactly.
+- **Where it shows:** the catalyst gate warns only the markets a report moves (US
+  names → NQ, ES; Japanese → NKD), the head of desk blocks entries in the last
+  `CATALYST_BLOCK_MIN` before one, and the 8am digest gets a 💼 Earnings section
+  (next 24h, plus the rest of the week).
+- **Env vars (optional):** `EARNINGS_WATCH_US` (comma list of tickers),
+  `EARNINGS_US_ROOTS` (default `NQ,ES`), `EARNINGS_LOOKAHEAD_DAYS` (default 7),
+  `EARNINGS_JP_FILE`.
+- If Nasdaq is unreachable the log shows `Nasdaq earnings <date> failed` and
+  everything else carries on without earnings.
+
 ## Guardrails (from the Oct 2026 trade-history autopsy)
 
 - **No Watch ideas 3pm-9pm Sydney** (London: 1 win in 5) and no London leaderboard.
