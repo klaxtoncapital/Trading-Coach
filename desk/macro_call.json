@@ -1,96 +1,39 @@
 {
- "generated_at": "2026-10-22T09:40:32+11:00",
- "trading_day": "2026-10-22",
- "summary": "US stocks rose (S&P +0.6%, NDX +1.2%) on AI/chip strength and Russia-Ukraine talks, with Meta, TI, IBM and Lam beating after hours. The backdrop stays hawkish: 10y ~5.13%, Fed hikes priced, Brent ~$110 on Gulf tension.",
- "events_next_24h": [
-  "21:50 GBP BoE Governor Bailey speaks",
-  "23:30 USD Unemployment Claims (medium impact)"
- ],
- "markets": {
-  "ES": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "S&P 500 rose 0.6% on AI/chip strength and Russia-Ukraine talk hopes; earnings after the bell (Meta, TI, IBM) beat, but 5.1% 10y yields and $110 Brent cap it.",
-   "risk": "Gulf escalation headlines or a jump in yields/oil reverses the risk-on tone."
+  "generated_at": "2026-10-23T09:29:00+11:00",
+  "trading_day": "2026-10-23",
+  "summary": "Nasdaq fell 2.6% (worst day since June) on AI-spending worries led by Meta -7%, while the Dow and Russell finished flat as money rotated and bonds rallied. Brent rose to about $112 on Iran-US escalation fears, the dollar sits near a three-week low, the yen at a one-month high, and gold fell for a fifth straight day.",
+  "events_next_24h": [
+    "Fri 10:30am JPY National CPI (Sep)",
+    "Sat 12:45am USD Flash PMIs (Oct)",
+    "Sat 1:00am USD UMich sentiment and inflation expectations",
+    "Sat 6:30am CFTC COT report (positioning to 20 Oct)"
+  ],
+  "markets": {
+    "NQ": {"bias": "bearish", "conviction": 2, "why": "AI capex fears hit megacaps and chips (Meta -7%, CoreWeave -10%) for the worst day since June, with a hawkish Fed backdrop; positioning is not crowded short.", "risk": "A strong rebound in semis or a sharp drop in yields restoring risk appetite."},
+    "ES": {"bias": "bearish", "conviction": 1, "why": "S&P fell 1.2% on the tech drag and oil spike, but the Dow and Russell held flat and leveraged funds are already fairly short (22nd pct).", "risk": "Rotation keeps the broad tape stable and tech stops falling."},
+    "YM": {"bias": "neutral", "conviction": 1, "why": "Dow closed flat as money rotated out of tech into value and energy, so the risk-off and rotation forces offset.", "risk": "A broader risk-off leg pulling value names down with tech."},
+    "RTY": {"bias": "neutral", "conviction": 1, "why": "Small caps edged up as yields fell sharply, but a risk-off oil shock and hawkish Fed cut the other way.", "risk": "Yields reversing higher, or a clean risk-on bounce lifting small caps."},
+    "NKD": {"bias": "bearish", "conviction": 1, "why": "Nasdaq tech rout and a firmer yen weigh on the Nikkei, already down 2.4% in five days; leveraged funds near the 10th pct short limit conviction.", "risk": "Japan CPI at 10:30am or a yen reversal sparking a short-covering bounce."},
+    "6J": {"bias": "bullish", "conviction": 1, "why": "Yen hit a one-month high as the dollar slid to a three-week low, US yields fell and risk appetite soured.", "risk": "Soft Japan CPI or firm BOJ-hold signals reviving the carry trade."},
+    "6E": {"bias": "neutral", "conviction": 1, "why": "Dollar weakness supports the euro, but French debt worries and next week's ECB meeting keep it capped.", "risk": "Dollar breaking lower on weak US PMIs, or fresh French fiscal stress."},
+    "6B": {"bias": "neutral", "conviction": 1, "why": "No clear sterling-specific driver found overnight; the softer dollar is offset by risk-off flows.", "risk": "A decisive US PMI miss or beat moving the dollar."},
+    "6A": {"bias": "neutral", "conviction": 1, "why": "Hawkish RBA talk on oil-driven inflation supports the Aussie, but global risk-off and Asian equity weakness weigh on it.", "risk": "Asian stocks stabilising, or the sell-off deepening."},
+    "ZN": {"bias": "bullish", "conviction": 1, "why": "Bonds caught a strong haven bid as the 10-year yield fell roughly 10-19bp, though oil-driven inflation and a hawkish Fed limit the upside.", "risk": "Oil inflation fears or hot UMich inflation expectations pushing yields back up."},
+    "GC": {"bias": "bearish", "conviction": 1, "why": "Gold fell a fifth straight day as Fed hike bets build, and it slid even with a weaker dollar and Middle East tension.", "risk": "A major Middle East escalation or a sharp dollar drop driving haven buying."},
+    "CL": {"bias": "bullish", "conviction": 2, "why": "Brent topped $112, a five-month high, after attacks on Saudi oil sites, US embassy departures and reports of post-midterm strike plans on Iran.", "risk": "De-escalation news or more sanctions relief on Russian energy supply."}
   },
-  "NQ": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Nasdaq 100 +1.2% led by chips; Meta (+3.5-6%), Lam and TI beat after hours. Leveraged funds at 74th pct, not crowded. Hawkish Fed and 5%+ yields limit conviction.",
-   "risk": "Embassy/Hormuz escalation or a yield spike toward Fed hike pricing for Oct 28."
-  },
-  "YM": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Dow +0.7% with broad participation and IBM beating after hours; offset by high yields, oil and a hawkish Fed backdrop.",
-   "risk": "Oil spike on Gulf news or rising yields hitting cyclicals."
-  },
-  "RTY": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Small caps lagged (+0.3%) with 10y yields at 5.13% and Fed hikes priced; rate-sensitive index lacks sponsorship.",
-   "risk": "A drop in yields or soft jobless claims would favour a bullish turn."
-  },
-  "NKD": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Nikkei rebounded ~1% on AI/chip names and US tech beats add support; leveraged funds near the 12th pct (short-leaning). $110 oil and BOJ hike talk temper it.",
-   "risk": "Hot Japan CPI (Fri 10:30 Sydney), hawkish BOJ talk or a yen spike on intervention."
-  },
-  "6J": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "USD/JPY flat near 158.2: BOJ's Himino sounded hawkish and intervention risk is live, but 5% US yields, Fed hikes and $110 oil keep the yen weak.",
-   "risk": "Japanese intervention or hot Japan CPI (yen up); a break higher in US yields (yen down)."
-  },
-  "6E": {
-   "bias": "bearish",
-   "conviction": 1,
-   "why": "Euro lagged the majors as French 10y yields hit 5% on fiscal worries ahead of Friday's Moody's review; ECB hawkish talk only partly offsets.",
-   "risk": "Easing of French fiscal stress or stronger euro-area PMIs Friday."
-  },
-  "6B": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "UK CPI beat at 3.5% with hot core and services, firming BoE November hike bets; sterling rose modestly but lacked follow-through.",
-   "risk": "Dovish remarks from Governor Bailey tonight or a broad dollar bid."
-  },
-  "6A": {
-   "bias": "bullish",
-   "conviction": 2,
-   "why": "AUD led the majors (~0.703) after RBA's Hauser called inflation 'materially worse' and Goldman moved to a November hike call; risk-on equities help.",
-   "risk": "Risk-off from Gulf escalation or RBA pushback on November hike pricing."
-  },
-  "ZN": {
-   "bias": "bearish",
-   "conviction": 1,
-   "why": "Fed hiking cycle, $110 Brent and a 20y auction at its highest yield since 1986 keep pressure on Treasuries; 10y ~5.13%, roughly flat on the day.",
-   "risk": "Flight to safety on a Gulf escalation or a weak jobless claims print."
-  },
-  "GC": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Gold near $4,120-4,135, mixed after a run of losses: Fed hike bets and higher yields weigh while Middle East risk supports.",
-   "risk": "A decisive move in yields or a major Gulf escalation picks the side."
-  },
-  "CL": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "WTI slipped despite a big EIA draw and a Saudi oilfield drone attack; Russia-Ukraine talks offset Hormuz closure and embassy-departure risk.",
-   "risk": "Confirmed Gulf supply disruption (bullish) or concrete peace-talk progress (bearish)."
-  }
- },
- "sources": [
-  "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---22nd-october-2026",
-  "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-october-21-dow-sp-500-nasdaq-100000105.html",
-  "https://www.babypips.com/news/daily-financial-forex-market-recap-2026-10-21",
-  "https://www.usagold.com/daily-precious-metals-market-report-october-21-2026/",
-  "https://invezz.com/news/2026/10/21/nikkei-225-climbs-as-japans-3-39-billion-trade-deficit-nearly-triples-forecasts/",
-  "https://www.fxstreet.com/news/japans-katayama-says-will-coordinating-with-boj-no-major-divergence-on-inflation-outlook-policy-202610210051",
-  "https://www.chase.com/personal/investments/learning-and-insights/article/federal-reserve-officials-hawkish-tone-ahead-of-october-2026-fomc-meeting",
-  "https://www.investing.com/analysis/fed-october-28-decision-why-hike-odds-hover-near-20-200689427",
-  "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
-  "https://www.trumpstruth.org/feed",
-  "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
- ]
+  "sources": [
+    "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ",
+    "https://finance.yahoo.com/markets/article/stock-market-today-thursday-october-22-dow-sp-500-nasdaq-tesla-meta-112217857.html",
+    "https://www.cnbc.com/2026/10/21/stock-market-today-live-updates.html",
+    "https://finance.yahoo.com/markets/currencies/articles/asia-fx-mixed-dollar-slips-054154955.html",
+    "https://finance.yahoo.com/markets/article/oil-price-gains-on-possible-escalation-of-iran-us-tensions-after-midterms-120738560.html",
+    "https://energynow.com/2026/10/oil-prices-surge-as-middle-east-attacks-push-brent-above-111-and-wti-back-above-100/",
+    "https://www.usagold.com/daily-precious-metals-market-report-october-22-2026/",
+    "https://www.chase.com/personal/investments/learning-and-insights/article/federal-reserve-officials-hawkish-tone-ahead-of-october-2026-fomc-meeting",
+    "https://money.usnews.com/investing/news/articles/2026-10-20/bank-of-japan-may-raise-inflation-forecast-stand-pat-on-rates-sources-say",
+    "https://www.fxstreet.com/news/euro-retreats-as-us-dollar-regains-ground-frances-debt-worries-weigh-202610221448",
+    "https://www.financecalendar.com/japan-cpi/",
+    "https://seekingalpha.com/news/4524723-asia-stocks-plunge-as-renewed-tech-sell-off-and-ai-valuation-fears-spook-markets-japan-pressured-after-sticky-inflation"
+  ]
 }
