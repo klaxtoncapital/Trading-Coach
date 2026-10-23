@@ -7,6 +7,7 @@
   python -m scanner.main --regime         # print the 200-day regime for every market
   python -m scanner.main --news           # print the latest market-moving headlines
   python -m scanner.main --cot-board      # print this week's commodity COT extremes board
+  python -m scanner.main --four-charts    # print today's Four Charts bias post
   python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on ProjectX history
 """
 from __future__ import annotations
@@ -21,7 +22,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, config, cot_board, desk, earnings, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, config, cot_board, four_charts, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -302,6 +303,10 @@ async def list_contracts(px: ProjectXClient):
 
 
 async def run(args):
+    if args.four_charts:
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as http:
+            await post(http, "", [await four_charts.build(http)], True)
+        return
     if args.cot_board:
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=30)) as http:
             data = await cot_board.fetch(http)
@@ -342,6 +347,9 @@ async def run(args):
                  "on" if config.DISCORD_DESK_WEBHOOK else "OFF (set DISCORD_DESK_WEBHOOK)", macro.MACRO_CALL_URL or "nowhere")
         asyncio.create_task(news.news_loop(http, post, args.dry_run))
         asyncio.create_task(cot_board.board_loop(http, post, args.dry_run))
+        asyncio.create_task(four_charts.loop(http, post, args.dry_run))
+        log.info("Four Charts post weekdays %d:%02d Sydney to %s", four_charts.POST_HOUR, four_charts.POST_MINUTE,
+                 "#general" if four_charts.WEBHOOK else "the desk channel (set DISCORD_GENERAL_WEBHOOK for #general)")
         log.info("ACD agent on %s; COT board Saturdays %d:00 Sydney",
                  ", ".join(sorted(r for r in acd.SESSIONS if acd.enabled(r))), cot_board.COT_BOARD_HOUR_SYD)
         log.info("Guardrails: %d ideas/day, %d trades/day, %d min cool-down, daily stop $%.0f, profit cap $%.0f",
@@ -369,6 +377,7 @@ def main():
     p.add_argument("--list-contracts", action="store_true", help="list ProjectX contracts and exit")
     p.add_argument("--regime", action="store_true", help="print the 200-day regime for every market and exit")
     p.add_argument("--news", action="store_true", help="print the latest market-moving headlines and exit")
+    p.add_argument("--four-charts", action="store_true", help="print today's Four Charts bias post and exit")
     p.add_argument("--cot-board", action="store_true", help="print this week's commodity COT extremes board and exit")
     p.add_argument("--acd-backtest", metavar="ROOTS", help="ACD backtest, e.g. GC,SI,CL,NQ")
     p.add_argument("--days", type=int, default=180, help="days of history for --acd-backtest (default 180)")
