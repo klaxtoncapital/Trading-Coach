@@ -13,6 +13,7 @@ Scans every Topstep-tradable futures market through the ProjectX API every 15 mi
 | **ACD** | Mark Fisher's opening-range method on each market's own open: A up / A down confirmed, failed A (a trap / sweep), C (the strong reversal), with the prior day's pivot range. Batched into one post per scan, plus an ACD line on every Watch idea | This service (`scanner/acd.py`), each scan |
 | **Four Charts** | Daily bias read of Crown's four charts: oil curve (front vs next year's December), US 10-year box, RSP/SPY breadth, MAGS/SOXX inside AI. Each chart votes on NKD, NQ, ES, YM, RTY, CL and GC; post shows conviction HIGH / MEDIUM / LOW and the best-aligned markets | This service (`scanner/four_charts.py`), weekdays 8:40am Sydney to `#general` |
 | **COT board** | Weekly ranking of every commodity by how stretched hedge funds are (3-year percentile), with commercials alongside and a flag when the two sit at opposite extremes | This service (`scanner/cot_board.py`), Saturday 9am Sydney, catches up if missed |
+| **Daily setups** | After each daily close, every market's candle is checked for a **daily SFP** (took an untouched daily swing high/low or last week's high/low and closed back) and for **weekly frameworks**: classic expansion raid (Tuesday SFP of Monday), midweek reversal, Thursday reversal → Friday continuation, continuation days (Wednesday beyond 50% of Tuesday; small Monday and Tuesday closing outside it), consolidation weeks, weekly SFP on Fridays. Each gets a 0-100 score, stop beyond the SFP, target at the other end of the leg that made the level, OTE at 50% of the wick, and macro / COT / 200-day confluence (shown, never filtered). Setups to investigate on the hourly, not trades | This service (`scanner/daily_setups.py`), weekdays 17:15 New York (8:15am Sydney) to `DISCORD_DAILY_WEBHOOK`, else the desk channel |
 | **Head of desk** | Checks every idea before you see it (below). Only verified ideas reach the desk channel | This service (`scanner/desk.py`) |
 
 ### Head of desk checks
@@ -153,3 +154,10 @@ python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on
 python -m scanner.main --once             # one scan, post to Discord
 python -m pytest -q tests                 # tests on synthetic data
 ```
+
+
+## Daily setups backtest
+
+    python -m scanner.main --daily-backtest CL,GC,SI,HG,6J,6E,NKD,NQ,ES --days 365
+
+Finds every daily SFP in the stitched hourly history and trades it two ways: entry at the next 6PM open, and a limit at the OTE (50% of the SFP wick) live for the next day only. Stop beyond the SFP, target 1, or out after 5 days. Results by score band, weekly framework, market and weekday, saved to `daily_sfp_backtest_<date>.csv`. `--daily-setups` prints today's post without sending it.

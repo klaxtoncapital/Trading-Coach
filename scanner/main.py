@@ -9,6 +9,8 @@
   python -m scanner.main --cot-board      # print this week's commodity COT extremes board
   python -m scanner.main --four-charts    # print today's Four Charts bias post
   python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on ProjectX history
+  python -m scanner.main --daily-setups   # print today's daily SFP / weekly framework post
+  python -m scanner.main --daily-backtest CL,GC,SI,6J,NKD,NQ,ES --days 365   # daily SFP backtest
 """
 from __future__ import annotations
 
@@ -22,7 +24,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, config, cot_board, four_charts, desk, earnings, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, config, cot_board, daily_setups, four_charts, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -338,6 +340,17 @@ async def run(args):
             if rows:
                 print("Saved", acd_backtest.save_csv(rows))
             return
+        if args.daily_setups:
+            _, embeds = await daily_setups.run_once(px, http)
+            await post(http, "", embeds, True)
+            return
+        if args.daily_backtest:
+            roots = [x.strip().upper() for x in args.daily_backtest.split(",") if x.strip()]
+            trades = await daily_setups.run_backtest(px, roots, args.days)
+            daily_setups.print_report(trades)
+            if trades:
+                print("Saved", daily_setups.save_csv(trades))
+            return
         if args.once:
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
@@ -356,6 +369,9 @@ async def run(args):
                  guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
                  guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)
         asyncio.create_task(guard_loop(px, http, args.dry_run))
+        asyncio.create_task(daily_setups.loop(px, http, post, args.dry_run))
+        log.info("Daily setups (SFP + weekly frameworks) after each close at %s New York to %s", daily_setups.POST_AT,
+                 "the daily channel" if daily_setups.WEBHOOK else "the desk channel (set DISCORD_DAILY_WEBHOOK for its own)")
         first = True
         while True:
             now = datetime.now(timezone.utc)
@@ -380,7 +396,9 @@ def main():
     p.add_argument("--four-charts", action="store_true", help="print today's Four Charts bias post and exit")
     p.add_argument("--cot-board", action="store_true", help="print this week's commodity COT extremes board and exit")
     p.add_argument("--acd-backtest", metavar="ROOTS", help="ACD backtest, e.g. GC,SI,CL,NQ")
-    p.add_argument("--days", type=int, default=180, help="days of history for --acd-backtest (default 180)")
+    p.add_argument("--daily-setups", action="store_true", help="print today's daily setups post and exit")
+    p.add_argument("--daily-backtest", metavar="ROOTS", help="daily SFP backtest, e.g. CL,GC,6J,NKD")
+    p.add_argument("--days", type=int, default=180, help="days of history for the backtests (default 180)")
     p.add_argument("--a-atr", help="A value(s) as a fraction of ATR, e.g. 0.1,0.15,0.2 (default ACD_A_ATR)")
     asyncio.run(run(p.parse_args()))
 
