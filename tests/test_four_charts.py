@@ -68,8 +68,8 @@ def test_yield_breakout_votes_against_nq_and_gold():
 
 
 def test_post_once_per_sydney_weekday_morning():
-    fri = datetime(2026, 10, 23, 8, 45, tzinfo=SYD)
+    fri = datetime(2026, 10, 23, 10, 10, tzinfo=SYD)
     assert fc.due(fri, None)
     assert not fc.due(fri, "2026-10-23")
-    assert not fc.due(datetime(2026, 10, 23, 8, 30, tzinfo=SYD), None)
-    assert not fc.due(datetime(2026, 10, 24, 9, 0, tzinfo=SYD), None)   # Saturday
+    assert not fc.due(datetime(2026, 10, 23, 9, 50, tzinfo=SYD), None)
+    assert not fc.due(datetime(2026, 10, 24, 10, 10, tzinfo=SYD), None)   # Saturday
