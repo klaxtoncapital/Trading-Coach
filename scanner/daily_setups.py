@@ -531,10 +531,16 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
     title = "📅 Daily SFP bias: seek the entry on the hourly"
     if last_day is None:
         return [{"title": title, "color": GREY, "description": "No daily data from ProjectX this morning, so no SFP read."}]
-    sfps = [x for x in found if x[0]["kind"] == "sfp" and x[0]["score"] >= MIN_SCORE]
     against = lambda st: any(l.startswith("❌") for l in st.get("conf", {}).get("lines", []))
-    high = [x for x in sfps if not against(x[0])]
+    macro_ok = lambda st: any(l.startswith("✅ Macro call") for l in st.get("conf", {}).get("lines", []))
+    all_sfp = [x for x in found if x[0]["kind"] == "sfp"]
+    # Top tier: a daily SFP with the macro call behind it. A lower score bar here, because
+    # macro agreeing is the confluence that matters most.
+    star = [x for x in all_sfp if macro_ok(x[0]) and not against(x[0]) and x[0]["score"] >= MIN_SCORE - 10]
+    sfps = [x for x in all_sfp if x[0]["score"] >= MIN_SCORE]
+    high = [x for x in sfps if not against(x[0]) and x not in star]
     watch = [x for x in sfps if against(x[0])]
+    sfps = star + sfps
     frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing") and x[0]["score"] >= MIN_SCORE - 10]
     swings = sorted((x for x in found if x[0]["kind"] == "swing"), key=lambda x: x[0]["dist_atr"])
     # Don't list a swing as "in play" on a market that already has an SFP in the list
@@ -552,8 +558,10 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
                 + (f" · {ok} confluence ✅" if ok else ""))
 
     lines = [f"Daily candles closed {last_day:%a %-d %b} · all {scanned} markets checked."]
-    lines.append("\n**High conviction**")
-    lines += [line(*x) for x in high] or ["None today: no clean daily SFP with confluence behind it."]
+    lines.append("\n**⭐ Daily SFP + macro call agree**: watch these first")
+    lines += [line(*x) for x in star] or ["None today."]
+    lines.append("\n**High conviction** (clean SFP, macro neutral or no call)")
+    lines += [line(*x) for x in high] or ["None today."]
     if watch:
         lines.append("\n**Watch only** (confluence against)")
         lines += [f"**{m.root}** {_arrow(st['dir'])} · score {st['score']} · "
@@ -567,8 +575,9 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
                   f"{st['level']['name']} · {st['dist_atr']} ATR away · SFP {'short' if st['side'] == 'high' else 'long'} "
                   f"if it's taken and closes back" for st, m in swings]
     color = GREY
-    if high:
-        color = GREEN if high[0][0]["dir"] == 1 else RED
+    top = star or high
+    if top:
+        color = GREEN if top[0][0]["dir"] == 1 else RED
     return _chunk(title, lines, color,
                   "A daily setup is a reason to look, not a trade. OTE above the 6PM open for shorts, below for longs.")
 

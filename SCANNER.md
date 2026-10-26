@@ -36,6 +36,7 @@ Raw ideas still go to `#scanner`, each with the verdict. Verified ideas go to th
 ## What it posts
 
 - **👀 WATCH ideas**: a market that is moving hard, has a direction from liquidity (a sweep of a prior day, week or Monday high/low) or displacement, has a liquidity target at least 2R away, and isn't fighting crowded positioning. One post per market, direction and trading day.
+- **📏 Size**: contracts for every account in `RISK_ACCOUNTS` (default `Topstep:1000,Tradeify:275`). Information only: a stop too wide for an account never blocks an idea.
 - **📊 Biggest movers**: the top markets by score, before the Asia, London and New York opens.
 
 Each Watch post shows:

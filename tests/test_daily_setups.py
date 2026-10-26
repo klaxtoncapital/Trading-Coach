@@ -189,10 +189,10 @@ def test_bias_embed_high_conviction_and_watch():
     st["conf"] = {"lines": ["✅ Macro call bearish (conviction 2)"], "adj": 10}
     st["rank"] = st["score"] + 10
     e = ds.bias_embed(days[-1].d, [(st, m)], 36)
-    assert "High conviction**\n**CL**" in e["description"] and e["color"] == ds.RED
+    assert "macro call agree**: watch these first\n**CL**" in e["description"] and e["color"] == ds.RED
     st["conf"] = {"lines": ["❌ Macro call bullish: against this setup"], "adj": -10}
     e = ds.bias_embed(days[-1].d, [(st, m)], 36)
-    assert "None today" in e["description"] and "Watch only" in e["description"]
+    assert "Watch only" in e["description"] and "macro call agree**: watch these first\nNone today." in e["description"]
     assert "No daily data" in ds.bias_embed(None, [], 0)["description"]
 
 
@@ -229,3 +229,22 @@ def test_in_play_finds_nearby_untouched_swing_high():
     sw = ds.in_play("GC", days, a)
     hi = next(x for x in sw if x["side"] == "high")
     assert hi["level"]["price"] == 106 and hi["dist_atr"] <= ds.IN_PLAY_ATR
+
+
+def test_size_field_sizes_every_account_and_never_blocks():
+    from types import SimpleNamespace
+    from scanner import config, discord_out, symbols
+    m = config.MARKETS_BY_ROOT["GC"]
+    gc = {"tickSize": 0.1, "tickValue": 10.0}      # $100 a point
+    mgc = {"tickSize": 0.1, "tickValue": 1.0}      # $10 a point
+    r = SimpleNamespace(atr=76, contract=gc, micro_contracts=[("MGC", mgc)])
+    t = {"entry": 4037, "stop": 3993}              # 44 points: GC $4,400, MGC $440
+    old = symbols.RISK_ACCOUNTS
+    symbols.RISK_ACCOUNTS = [("Topstep", 1000), ("Tradeify", 275)]
+    try:
+        txt = discord_out._size_field(m, r, t)
+    finally:
+        symbols.RISK_ACCOUNTS = old
+    assert "**Topstep $1,000:** 2 MGC" in txt
+    assert "**Tradeify $275:** too wide" in txt
+    assert "lower timeframe" in txt

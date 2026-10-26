@@ -48,22 +48,32 @@ def _symbols_field(m: Market, r: Reading) -> str:
 
 
 def _size_field(m: Market, r: Reading, t: dict, ceiling: str | None = None) -> str:
+    """Contracts per account at this stop. Information only, never a filter."""
     dist = abs(t["entry"] - t["stop"])
-    out = [f"Stop distance {_px(dist, r)} points · risk budget ${symbols.RISK_PER_TRADE:,.0f}"]
+    f = regime.STEP_FACTOR[ceiling] if ceiling else 1.0
+    out = [f"Stop distance {_px(dist, r)} points"]
     if ceiling:
-        f = regime.STEP_FACTOR[ceiling]
-        out.append(f"**Ceiling: {regime.STEP_TEXT[ceiling]}** → risk up to ${symbols.RISK_PER_TRADE * f:,.0f}")
-    full = symbols.size_for_risk(dist, symbols.point_value(getattr(r, "contract", None)))
-    if full:
-        n, per = full
-        out.append(f"**{m.root}:** {n} contract{'s' if n != 1 else ''} (${per:,.0f} risk each)" if n
-                   else f"**{m.root}:** too big, 1 contract = ${per:,.0f} risk")
-    for mi, mc in getattr(r, "micro_contracts", []) or []:
-        sz = symbols.size_for_risk(dist, symbols.point_value(mc))
-        if sz:
-            n, per = sz
-            out.append(f"**{mi}:** {n} contract{'s' if n != 1 else ''} (${per:,.0f} risk each)" if n
-                       else f"**{mi}:** too big, 1 contract = ${per:,.0f} risk")
+        out.append(f"**Ceiling: {regime.STEP_TEXT[ceiling]}** (budgets x{f:g})")
+    contracts = [(m.root, getattr(r, "contract", None))] + [(mi, mc) for mi, mc in getattr(r, "micro_contracts", []) or []]
+    priced = [(name, symbols.point_value(c)) for name, c in contracts]
+    priced = [(name, pv) for name, pv in priced if pv]
+    if not priced:
+        return "\n".join(out)
+    per = {name: dist * pv for name, pv in priced}
+    out.append(" · ".join(f"1 {name} = ${v:,.0f}" for name, v in per.items()))
+    any_fit = False
+    for acct, budget in symbols.RISK_ACCOUNTS:
+        b = budget * f
+        fits = [(name, int(b // v)) for name, v in per.items() if v and int(b // v) >= 1]
+        if fits:
+            any_fit = True
+            out.append(f"**{acct} ${b:,.0f}:** " + " or ".join(f"{n} {name}" for name, n in fits))
+        else:
+            out.append(f"**{acct} ${b:,.0f}:** too wide at this stop")
+    if not any_fit:
+        out.append("Refine on a lower timeframe for a tighter stop.")
+    elif any("too wide" in x for x in out):
+        out.append("Smaller account: refine the entry on a lower timeframe.")
     return "\n".join(out)
 
 

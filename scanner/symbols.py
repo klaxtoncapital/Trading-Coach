@@ -17,6 +17,24 @@ TV_EXCHANGE = {
 
 RISK_PER_TRADE = float(os.getenv("RISK_PER_TRADE", "") or 275)
 
+
+def _accounts(raw: str) -> list[tuple[str, float]]:
+    out = []
+    for part in raw.split(","):
+        name, _, amt = part.partition(":")
+        try:
+            out.append((name.strip(), float(amt)))
+        except ValueError:
+            continue
+    return out
+
+
+# Risk budget per account, e.g. "Topstep:1000,Tradeify:275". Each idea is sized for every account.
+# Sizing is information only: a stop too wide for an account never blocks an idea, because a
+# tighter entry can be found on a lower timeframe.
+RISK_ACCOUNTS = _accounts(os.getenv("RISK_ACCOUNTS", "") or "Topstep:1000,Tradeify:275") \
+    or [("Account", RISK_PER_TRADE)]
+
 _NAME = re.compile(r"^([A-Z0-9]+?)([FGHJKMNQUVXZ])(\d{1,2})$")
 
 
