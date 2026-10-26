@@ -366,15 +366,15 @@ async def build(http: aiohttp.ClientSession, now: datetime | None = None) -> dic
     return embed(read(await fetch_all(http, now.astimezone(SYD).date())), now)
 
 
-async def sfp_section(px, http, now: datetime) -> dict | None:
+async def sfp_section(px, http, now: datetime) -> list[dict]:
     if px is None:
-        return None
+        return []
     from . import daily_setups
     try:
-        return daily_setups.bias_embed(*await daily_setups.scan(px, http, now))
+        return daily_setups.bias_embeds(*await daily_setups.scan(px, http, now))
     except Exception:  # noqa: BLE001
         log.exception("Daily SFP section failed; posting Four Charts without it")
-        return None
+        return []
 
 
 async def loop(http: aiohttp.ClientSession, post, dry_run: bool, px=None):
@@ -385,11 +385,11 @@ async def loop(http: aiohttp.ClientSession, post, dry_run: bool, px=None):
             st = _load()
             if due(now, st.get("posted")):
                 hook = WEBHOOK or config.DISCORD_DESK_WEBHOOK
-                embeds = [await build(http, now)]
-                sfp = await sfp_section(px, http, now)
-                if sfp:
-                    embeds.append(sfp)
-                await post(http, hook, embeds, dry_run)
+                await post(http, hook, [await build(http, now)], dry_run)
+                # SFP section as its own message(s), one embed each: every market listed,
+                # and each message stays under Discord's 6,000-character limit
+                for e in await sfp_section(px, http, now):
+                    await post(http, hook, [e], dry_run)
                 st["posted"] = now.astimezone(SYD).date().isoformat()
                 _save(st)
         except Exception:  # noqa: BLE001

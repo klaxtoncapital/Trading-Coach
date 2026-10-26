@@ -192,7 +192,7 @@ def test_bias_embed_high_conviction_and_watch():
     assert "High conviction**\n**CL**" in e["description"] and e["color"] == ds.RED
     st["conf"] = {"lines": ["❌ Macro call bullish: against this setup"], "adj": -10}
     e = ds.bias_embed(days[-1].d, [(st, m)], 36)
-    assert "none today" in e["description"] and "Watch only" in e["description"]
+    assert "None today" in e["description"] and "Watch only" in e["description"]
     assert "No daily data" in ds.bias_embed(None, [], 0)["description"]
 
 
@@ -205,3 +205,27 @@ def test_four_charts_waits_for_the_daily_close():
     assert not fc.due(datetime(2026, 11, 2, 21, 45, tzinfo=utc), None)
     # 9:20am Sydney = 17:20 New York: due
     assert fc.due(datetime(2026, 11, 2, 22, 20, tzinfo=utc), None)
+
+
+def test_no_cap_and_swings_in_play():
+    from scanner import config
+    days = with_swing_high_then_sfp()
+    st = ds.analyse("CL", days)[0]
+    st["conf"] = {"lines": [], "adj": 0}
+    st["rank"] = st["score"]
+    roots = [m.root for m in config.MARKETS][:12]
+    found = [({**st, "root": r}, config.MARKETS_BY_ROOT[r]) for r in roots]
+    embeds = ds.bias_embeds(days[-1].d, found, 36)
+    text = "\n".join(e["description"] for e in embeds)
+    assert all(f"**{r}**" in text for r in roots)          # every market listed, no top-4 cap
+    assert all(len(e["description"]) <= 4000 for e in embeds)
+
+
+def test_in_play_finds_nearby_untouched_swing_high():
+    rows = base(20) + [(100, 104, 99.5, 103.5), (103.5, 106, 103, 105.5), (105.5, 105.8, 103.5, 104),
+                       (104, 104.6, 103, 103.4), (103.4, 105.2, 103.2, 105)]
+    days = make_days(rows)
+    a = ds.atr(days, 20)
+    sw = ds.in_play("GC", days, a)
+    hi = next(x for x in sw if x["side"] == "high")
+    assert hi["level"]["price"] == 106 and hi["dist_atr"] <= ds.IN_PLAY_ATR

@@ -194,6 +194,32 @@ def _build_sfp(days: list[Day], a: float, direction: int, lvl: dict) -> dict | N
 
 
 # ─────────────────────────────────────────────
+# SWING POINTS IN PLAY
+# ─────────────────────────────────────────────
+IN_PLAY_ATR = float(os.getenv("DAILY_IN_PLAY_ATR", "") or 0.75)   # how close (in daily ATR) counts as in play
+
+
+def in_play(root: str, days: list[Day], a: float) -> list[dict]:
+    """Untouched daily swing highs / lows (and last week's high / low) within IN_PLAY_ATR of the
+    last close: where a daily SFP could form next session. Nearest high and nearest low only."""
+    if len(days) < 8 or a <= 0:
+        return []
+    c = days[-1]
+    # Treat every completed day as history, so "untouched" includes the last day too
+    highs, lows = swing_levels(days + [Day(c.d, c.c, c.c, c.c, c.c, 0, [])])
+    out = []
+    up = sorted((x for x in highs if c.c < x["price"] <= c.c + IN_PLAY_ATR * a), key=lambda x: x["price"])
+    dn = sorted((x for x in lows if c.c - IN_PLAY_ATR * a <= x["price"] < c.c), key=lambda x: -x["price"])
+    for lvl, side in ((up[0] if up else None, "high"), (dn[0] if dn else None, "low")):
+        if not lvl:
+            continue
+        dist = abs(lvl["price"] - c.c) / a
+        out.append({"kind": "swing", "root": root, "side": side, "level": lvl, "dist_atr": round(dist, 2),
+                    "dir": -1 if side == "high" else 1, "score": 0, "atr": a, "day": c.d, "entry": c.c})
+    return out
+
+
+# ─────────────────────────────────────────────
 # WEEKLY FRAMEWORKS
 # ─────────────────────────────────────────────
 def week_context(days: list[Day], a: float) -> dict:
@@ -451,6 +477,10 @@ async def scan(px, http, now: datetime | None = None) -> tuple[date | None, list
             continue
         scanned += 1
         last_day = max(last_day or days[-1].d, days[-1].d)
+        a = atr(days, 20)
+        for sw in in_play(root, days, a):
+            sw["rank"] = -sw["dist_atr"]
+            found.append((sw, m))
         for st in analyse(root, days):
             if st.get("dir"):
                 pos = await gates.cot(http, m)
@@ -469,25 +499,47 @@ async def run_once(px, http, now: datetime | None = None) -> tuple[date | None, 
     last_day, found, scanned = await scan(px, http, now)
     if last_day is None:
         return None, []
-    listed = [x for x in found if x[0]["score"] >= MIN_SCORE - 15][:12]
-    detail = [x for x in found if x[0]["score"] >= MIN_SCORE and x[0].get("dir")][:MAX_DETAIL]
+    listed = [x for x in found if x[0]["kind"] != "swing" and x[0]["score"] >= MIN_SCORE - 15][:12]
+    detail = [x for x in found if x[0]["score"] >= MIN_SCORE and x[0].get("dir") and x[0]["kind"] != "swing"][:MAX_DETAIL]
     return last_day, [summary_embed(listed, last_day, scanned)] + [detail_embed(st, m) for st, m in detail]
 
 
-def bias_embed(last_day: date | None, found: list[tuple], scanned: int) -> dict:
-    """Compact high-conviction section for the #general morning post.
+def _chunk(title: str, lines: list[str], color: int, footer: str | None = None, limit: int = 3800) -> list[dict]:
+    """Lines into as many embeds as needed, each under Discord's description limit."""
+    out, cur = [], ""
+    for ln in lines:
+        if cur and len(cur) + len(ln) + 1 > limit:
+            out.append(cur.strip())
+            cur = ""
+        cur = f"{cur}\n{ln}" if cur else ln
+    if cur:
+        out.append(cur.strip())
+    embeds = [{"title": title if i == 0 else f"{title} (cont.)", "color": color, "description": d}
+              for i, d in enumerate(out)]
+    if embeds and footer:
+        embeds[-1]["footer"] = {"text": footer}
+    return embeds
 
-    High conviction = SFP score at or above MIN_SCORE and nothing in the confluence
-    against it (macro call or crowded positioning). Others with a good score are
-    listed below as watch-only."""
+
+def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list[dict]:
+    """The #general SFP section: every market, no cap.
+
+    High conviction = SFP score at or above MIN_SCORE and nothing in the confluence against it
+    (macro call or crowded positioning). Watch only = good SFP with confluence against.
+    Swing points in play = untouched daily swing highs / lows near the close, where the next
+    SFP could form. Split over several embeds when there is a lot on."""
+    title = "📅 Daily SFP bias: seek the entry on the hourly"
     if last_day is None:
-        return {"title": "📅 Daily SFP bias", "color": GREY,
-                "description": "No daily data from ProjectX this morning, so no SFP read."}
+        return [{"title": title, "color": GREY, "description": "No daily data from ProjectX this morning, so no SFP read."}]
     sfps = [x for x in found if x[0]["kind"] == "sfp" and x[0]["score"] >= MIN_SCORE]
     against = lambda st: any(l.startswith("❌") for l in st.get("conf", {}).get("lines", []))
-    high = [x for x in sfps if not against(x[0])][:4]
-    watch = [x for x in sfps if against(x[0])][:3]
-    frames = [x for x in found if x[0]["kind"] != "sfp" and x[0]["score"] >= MIN_SCORE - 10][:4]
+    high = [x for x in sfps if not against(x[0])]
+    watch = [x for x in sfps if against(x[0])]
+    frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing") and x[0]["score"] >= MIN_SCORE - 10]
+    swings = sorted((x for x in found if x[0]["kind"] == "swing"), key=lambda x: x[0]["dist_atr"])
+    # Don't list a swing as "in play" on a market that already has an SFP in the list
+    sfp_roots = {m.root for _, m in sfps}
+    swings = [x for x in swings if x[1].root not in sfp_roots]
 
     def line(st, m):
         a = st["atr"]
@@ -499,24 +551,31 @@ def bias_embed(last_day: date | None, found: list[tuple], scanned: int) -> dict:
                 f"T1 {_fmt(st['target'][0], a)} ({st['ote_rr']}R from OTE)"
                 + (f" · {ok} confluence ✅" if ok else ""))
 
-    parts = [f"Daily candles closed {last_day:%a %-d %b} · {scanned} markets checked."]
-    if high:
-        parts.append("**High conviction**\n" + "\n".join(line(*x) for x in high))
-    else:
-        parts.append("**High conviction:** none today. No clean daily SFP with confluence behind it.")
+    lines = [f"Daily candles closed {last_day:%a %-d %b} · all {scanned} markets checked."]
+    lines.append("\n**High conviction**")
+    lines += [line(*x) for x in high] or ["None today: no clean daily SFP with confluence behind it."]
     if watch:
-        parts.append("**Watch only** (confluence against)\n" + "\n".join(
-            f"**{m.root}** {_arrow(st['dir'])} · score {st['score']} · "
-            + next(l for l in st['conf']['lines'] if l.startswith('❌'))[2:80] for st, m in watch))
+        lines.append("\n**Watch only** (confluence against)")
+        lines += [f"**{m.root}** {_arrow(st['dir'])} · score {st['score']} · "
+                  + next(l for l in st['conf']['lines'] if l.startswith('❌'))[2:90] for st, m in watch]
     if frames:
-        parts.append("**Weekly frameworks**\n" + "\n".join(
-            f"**{m.root}** {_arrow(st.get('dir', 0))} · {st['name']}" for st, m in frames))
+        lines.append("\n**Weekly frameworks**")
+        lines += [f"**{m.root}** {_arrow(st.get('dir', 0))} · {st['name']}" for st, m in frames]
+    if swings:
+        lines.append(f"\n**Swing points in play** (untouched, within {IN_PLAY_ATR:g} ATR of the close)")
+        lines += [f"**{m.root}** {'⬆️' if st['side'] == 'high' else '⬇️'} {_fmt(st['level']['price'], st['atr'])} "
+                  f"{st['level']['name']} · {st['dist_atr']} ATR away · SFP {'short' if st['side'] == 'high' else 'long'} "
+                  f"if it's taken and closes back" for st, m in swings]
     color = GREY
     if high:
         color = GREEN if high[0][0]["dir"] == 1 else RED
-    return {"title": "📅 Daily SFP bias: seek the entry on the hourly", "color": color,
-            "description": "\n\n".join(parts)[:4000],
-            "footer": {"text": "A daily setup is a reason to look, not a trade. OTE above the 6PM open for shorts, below for longs."}}
+    return _chunk(title, lines, color,
+                  "A daily setup is a reason to look, not a trade. OTE above the 6PM open for shorts, below for longs.")
+
+
+def bias_embed(last_day: date | None, found: list[tuple], scanned: int) -> dict:
+    """First embed only (kept for older callers)."""
+    return bias_embeds(last_day, found, scanned)[0]
 
 
 def _load() -> dict:

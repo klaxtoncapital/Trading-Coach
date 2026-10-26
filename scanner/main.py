@@ -341,7 +341,8 @@ async def run(args):
                 print("Saved", acd_backtest.save_csv(rows))
             return
         if args.daily_setups:
-            await post(http, "", [daily_setups.bias_embed(*await daily_setups.scan(px, http))], True)
+            for e in daily_setups.bias_embeds(*await daily_setups.scan(px, http)):
+                await post(http, "", [e], True)
             _, embeds = await daily_setups.run_once(px, http)
             await post(http, "", embeds, True)
             return
