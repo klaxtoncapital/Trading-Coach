@@ -36,6 +36,7 @@ from .regime import parse_fred_csv
 log = logging.getLogger("scanner.four_charts")
 SYD = ZoneInfo("Australia/Sydney")
 
+NY_TZ = ZoneInfo("America/New_York")
 WEBHOOK = os.getenv("DISCORD_GENERAL_WEBHOOK", "")
 POST_HOUR = int(os.getenv("FOUR_CHARTS_HOUR_SYD", "") or 8)
 POST_MINUTE = int(os.getenv("FOUR_CHARTS_MINUTE_SYD", "") or 40)
@@ -350,9 +351,14 @@ def _save(s: dict) -> None:
 
 
 def due(now: datetime, last: str | None) -> bool:
+    """Weekdays from 8:40am Sydney, and never before 17:15 New York, so the daily candle
+    has closed for the SFP section (matters from November, when New York is on standard time
+    and the close is 9am Sydney)."""
     s = now.astimezone(SYD)
+    ny = now.astimezone(NY_TZ)
+    closed = not (12 <= ny.hour < 17 or (ny.hour == 17 and ny.minute < 15))
     return (s.weekday() < 5 and (s.hour, s.minute) >= (POST_HOUR, POST_MINUTE) and s.hour < 12
-            and last != s.date().isoformat())
+            and closed and last != s.date().isoformat())
 
 
 async def build(http: aiohttp.ClientSession, now: datetime | None = None) -> dict:
@@ -360,7 +366,18 @@ async def build(http: aiohttp.ClientSession, now: datetime | None = None) -> dic
     return embed(read(await fetch_all(http, now.astimezone(SYD).date())), now)
 
 
-async def loop(http: aiohttp.ClientSession, post, dry_run: bool):
+async def sfp_section(px, http, now: datetime) -> dict | None:
+    if px is None:
+        return None
+    from . import daily_setups
+    try:
+        return daily_setups.bias_embed(*await daily_setups.scan(px, http, now))
+    except Exception:  # noqa: BLE001
+        log.exception("Daily SFP section failed; posting Four Charts without it")
+        return None
+
+
+async def loop(http: aiohttp.ClientSession, post, dry_run: bool, px=None):
     import asyncio
     while True:
         try:
@@ -368,7 +385,11 @@ async def loop(http: aiohttp.ClientSession, post, dry_run: bool):
             st = _load()
             if due(now, st.get("posted")):
                 hook = WEBHOOK or config.DISCORD_DESK_WEBHOOK
-                await post(http, hook, [await build(http, now)], dry_run)
+                embeds = [await build(http, now)]
+                sfp = await sfp_section(px, http, now)
+                if sfp:
+                    embeds.append(sfp)
+                await post(http, hook, embeds, dry_run)
                 st["posted"] = now.astimezone(SYD).date().isoformat()
                 _save(st)
         except Exception:  # noqa: BLE001

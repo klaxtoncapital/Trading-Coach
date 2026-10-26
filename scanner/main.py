@@ -341,6 +341,7 @@ async def run(args):
                 print("Saved", acd_backtest.save_csv(rows))
             return
         if args.daily_setups:
+            await post(http, "", [daily_setups.bias_embed(*await daily_setups.scan(px, http))], True)
             _, embeds = await daily_setups.run_once(px, http)
             await post(http, "", embeds, True)
             return
@@ -360,7 +361,7 @@ async def run(args):
                  "on" if config.DISCORD_DESK_WEBHOOK else "OFF (set DISCORD_DESK_WEBHOOK)", macro.MACRO_CALL_URL or "nowhere")
         asyncio.create_task(news.news_loop(http, post, args.dry_run))
         asyncio.create_task(cot_board.board_loop(http, post, args.dry_run))
-        asyncio.create_task(four_charts.loop(http, post, args.dry_run))
+        asyncio.create_task(four_charts.loop(http, post, args.dry_run, px))
         log.info("Four Charts post weekdays %d:%02d Sydney to %s", four_charts.POST_HOUR, four_charts.POST_MINUTE,
                  "#general" if four_charts.WEBHOOK else "the desk channel (set DISCORD_GENERAL_WEBHOOK for #general)")
         log.info("ACD agent on %s; COT board Saturdays %d:00 Sydney",

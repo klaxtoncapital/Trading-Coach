@@ -21,8 +21,10 @@ Macro call, COT positioning and the 200-day regime are shown as confluence and
 move the ranking, but nothing here is rejected: these are setups to investigate
 on the hourly, not trades.
 
-Posted once per trading day at DAILY_SETUPS_NY (17:15 New York, 8:15am Sydney
-in summer), just after the CME daily close and before the 9am NKD open.
+Shown as a "Daily SFP bias" section in the #general morning post (four_charts,
+8:40am Sydney, never before 17:15 New York so the daily candle has closed). With
+DISCORD_DAILY_WEBHOOK set, a full-detail post also goes to its own channel at
+DAILY_SETUPS_NY (17:15 New York).
 """
 from __future__ import annotations
 
@@ -429,8 +431,8 @@ def summary_embed(rows: list[tuple], day: date, scanned: int) -> dict:
 # ─────────────────────────────────────────────
 # LIVE
 # ─────────────────────────────────────────────
-async def run_once(px, http, now: datetime | None = None) -> tuple[date | None, list[dict]]:
-    """Scan every market's last completed daily candle. Returns (day, embeds)."""
+async def scan(px, http, now: datetime | None = None) -> tuple[date | None, list[tuple], int]:
+    """Every market's last completed daily candle. Returns (day, [(setup, market)] best first, markets scanned)."""
     from .projectx import UNIT_HOUR, pick_front_contracts
     now = now or datetime.now(timezone.utc)
     wanted = {m.root for m in config.MARKETS if m.root not in config.EXCLUDE_ROOTS}
@@ -449,21 +451,72 @@ async def run_once(px, http, now: datetime | None = None) -> tuple[date | None, 
             continue
         scanned += 1
         last_day = max(last_day or days[-1].d, days[-1].d)
-        for s in analyse(root, days):
-            if s.get("dir"):
+        for st in analyse(root, days):
+            if st.get("dir"):
                 pos = await gates.cot(http, m)
                 reg = await regime.regime_for(http, px, root, c)
-                s["conf"] = confluence(s, macro_call, pos, reg)
-            s["rank"] = s["score"] + s.get("conf", {}).get("adj", 0)
-            found.append((s, m))
+                st["conf"] = confluence(st, macro_call, pos, reg)
+            st["rank"] = st["score"] + st.get("conf", {}).get("adj", 0)
+            found.append((st, m))
     # Only setups on the latest close (a market with a stale feed would show an old day)
     found = [x for x in found if x[0]["day"] == last_day]
     found.sort(key=lambda x: -x[0]["rank"])
+    return last_day, found, scanned
+
+
+async def run_once(px, http, now: datetime | None = None) -> tuple[date | None, list[dict]]:
+    """The standalone post (summary + detail embeds). Returns (day, embeds)."""
+    last_day, found, scanned = await scan(px, http, now)
     if last_day is None:
         return None, []
     listed = [x for x in found if x[0]["score"] >= MIN_SCORE - 15][:12]
     detail = [x for x in found if x[0]["score"] >= MIN_SCORE and x[0].get("dir")][:MAX_DETAIL]
-    return last_day, [summary_embed(listed, last_day, scanned)] + [detail_embed(s, m) for s, m in detail]
+    return last_day, [summary_embed(listed, last_day, scanned)] + [detail_embed(st, m) for st, m in detail]
+
+
+def bias_embed(last_day: date | None, found: list[tuple], scanned: int) -> dict:
+    """Compact high-conviction section for the #general morning post.
+
+    High conviction = SFP score at or above MIN_SCORE and nothing in the confluence
+    against it (macro call or crowded positioning). Others with a good score are
+    listed below as watch-only."""
+    if last_day is None:
+        return {"title": "📅 Daily SFP bias", "color": GREY,
+                "description": "No daily data from ProjectX this morning, so no SFP read."}
+    sfps = [x for x in found if x[0]["kind"] == "sfp" and x[0]["score"] >= MIN_SCORE]
+    against = lambda st: any(l.startswith("❌") for l in st.get("conf", {}).get("lines", []))
+    high = [x for x in sfps if not against(x[0])][:4]
+    watch = [x for x in sfps if against(x[0])][:3]
+    frames = [x for x in found if x[0]["kind"] != "sfp" and x[0]["score"] >= MIN_SCORE - 10][:4]
+
+    def line(st, m):
+        a = st["atr"]
+        fw = f" · {st['framework'].split(':')[0]}" if st.get("framework") else ""
+        ok = sum(1 for l in st.get("conf", {}).get("lines", []) if l.startswith("✅"))
+        return (f"**{m.root}** {_arrow(st['dir'])} · score {st['score']}{fw}\n"
+                f"  Swept {_fmt(st['level']['price'], a)} ({st['level']['name']}) · "
+                f"OTE {_fmt(st['ote'], a)} · stop {_fmt(st['stop'], a)} · "
+                f"T1 {_fmt(st['target'][0], a)} ({st['ote_rr']}R from OTE)"
+                + (f" · {ok} confluence ✅" if ok else ""))
+
+    parts = [f"Daily candles closed {last_day:%a %-d %b} · {scanned} markets checked."]
+    if high:
+        parts.append("**High conviction**\n" + "\n".join(line(*x) for x in high))
+    else:
+        parts.append("**High conviction:** none today. No clean daily SFP with confluence behind it.")
+    if watch:
+        parts.append("**Watch only** (confluence against)\n" + "\n".join(
+            f"**{m.root}** {_arrow(st['dir'])} · score {st['score']} · "
+            + next(l for l in st['conf']['lines'] if l.startswith('❌'))[2:80] for st, m in watch))
+    if frames:
+        parts.append("**Weekly frameworks**\n" + "\n".join(
+            f"**{m.root}** {_arrow(st.get('dir', 0))} · {st['name']}" for st, m in frames))
+    color = GREY
+    if high:
+        color = GREEN if high[0][0]["dir"] == 1 else RED
+    return {"title": "📅 Daily SFP bias: seek the entry on the hourly", "color": color,
+            "description": "\n\n".join(parts)[:4000],
+            "footer": {"text": "A daily setup is a reason to look, not a trade. OTE above the 6PM open for shorts, below for longs."}}
 
 
 def _load() -> dict:
@@ -498,7 +551,12 @@ def due(now: datetime, last_posted: str | None) -> date | None:
 
 
 async def loop(px, http, post, dry_run: bool):
+    """Standalone post with full detail, only if DISCORD_DAILY_WEBHOOK is set.
+    Otherwise the SFP bias rides in the #general morning post (four_charts)."""
     import asyncio
+    if not WEBHOOK:
+        log.info("Daily setups: no DISCORD_DAILY_WEBHOOK, so the SFP bias goes in the #general morning post only")
+        return
     while True:
         try:
             now = datetime.now(timezone.utc)
@@ -507,7 +565,7 @@ async def loop(px, http, post, dry_run: bool):
             if d:
                 day, embeds = await run_once(px, http, now)
                 if embeds:
-                    hook = WEBHOOK or config.DISCORD_DESK_WEBHOOK or config.DISCORD_SCANNER_WEBHOOK
+                    hook = WEBHOOK
                     for i in range(0, len(embeds), 3):     # stay under Discord's 6,000 characters a message
                         await post(http, hook, embeds[i:i + 3], dry_run)
                 st["posted"] = d.isoformat()

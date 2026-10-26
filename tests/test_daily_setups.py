@@ -179,3 +179,29 @@ def test_ote_entry_fills_in_the_wick_and_improves_r():
     assert r["out"] == "target" and r["r"] > 3
     # Never comes back up: no fill, no trade
     assert ds.simulate(s, make_days([(107, 107.2, 100, 100.5)], start=nxt), mode="ote")["out"] == "no fill"
+
+
+def test_bias_embed_high_conviction_and_watch():
+    from scanner import config
+    days = with_swing_high_then_sfp()
+    m = config.MARKETS_BY_ROOT["CL"]
+    st = ds.analyse("CL", days)[0]
+    st["conf"] = {"lines": ["✅ Macro call bearish (conviction 2)"], "adj": 10}
+    st["rank"] = st["score"] + 10
+    e = ds.bias_embed(days[-1].d, [(st, m)], 36)
+    assert "High conviction**\n**CL**" in e["description"] and e["color"] == ds.RED
+    st["conf"] = {"lines": ["❌ Macro call bullish: against this setup"], "adj": -10}
+    e = ds.bias_embed(days[-1].d, [(st, m)], 36)
+    assert "none today" in e["description"] and "Watch only" in e["description"]
+    assert "No daily data" in ds.bias_embed(None, [], 0)["description"]
+
+
+def test_four_charts_waits_for_the_daily_close():
+    from scanner import four_charts as fc
+    utc = timezone.utc
+    # Tue 27 Oct 8:45am Sydney = Mon 17:45 New York (EDT): closed, due
+    assert fc.due(datetime(2026, 10, 26, 21, 45, tzinfo=utc), None)
+    # Tue 3 Nov 8:45am Sydney = Mon 16:45 New York (EST): close not in yet, wait
+    assert not fc.due(datetime(2026, 11, 2, 21, 45, tzinfo=utc), None)
+    # 9:20am Sydney = 17:20 New York: due
+    assert fc.due(datetime(2026, 11, 2, 22, 20, tzinfo=utc), None)
