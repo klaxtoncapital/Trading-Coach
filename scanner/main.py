@@ -34,6 +34,8 @@ log = logging.getLogger("scanner")
 NY = ZoneInfo("America/New_York")
 STATE_FILE = os.getenv("SCANNER_STATE_FILE", "scanner_state.json")
 GUARD_FILE = os.getenv("GUARD_STATE_FILE", "guard_state.json")
+# ACD (opening range) is switched off: Dave trades his own models. ACD_ENABLED=true brings it back.
+ACD_ON = os.getenv("ACD_ENABLED", "").lower() in ("1", "true", "yes")
 
 
 def _load_seen() -> set:
@@ -137,12 +139,13 @@ async def scan_once(px: ProjectXClient, http: aiohttp.ClientSession, dry_run: bo
 
     # ACD agent: opening-range signals (own post), plus a line on each Watch idea
     try:
-        acd_summary = await acd.run_live(px, http, contracts, readings, state, now, post, dry_run)
+        acd_summary = (await acd.run_live(px, http, contracts, readings, state, now, post, dry_run)
+                       if ACD_ON else {})
     except Exception:  # noqa: BLE001
         log.exception("ACD agent failed this scan")
         acd_summary = {}
     for m, r, *_ in results:
-        r.acd_line = acd.watch_field(acd_summary, m.root)
+        r.acd_line = acd.watch_field(acd_summary, m.root) if ACD_ON else None
 
     # Watch ideas (once per market, direction and trading day), best first.
     # Every idea goes to the head of desk. The raw idea (with the verdict) goes to
@@ -365,8 +368,8 @@ async def run(args):
         asyncio.create_task(four_charts.loop(http, post, args.dry_run, px))
         log.info("Four Charts post weekdays %d:%02d Sydney to %s", four_charts.POST_HOUR, four_charts.POST_MINUTE,
                  "#general" if four_charts.WEBHOOK else "the desk channel (set DISCORD_GENERAL_WEBHOOK for #general)")
-        log.info("ACD agent on %s; COT board Saturdays %d:00 Sydney",
-                 ", ".join(sorted(r for r in acd.SESSIONS if acd.enabled(r))), cot_board.COT_BOARD_HOUR_SYD)
+        log.info("ACD agent %s; COT board Saturdays %d:00 Sydney",
+                 "on" if ACD_ON else "off", cot_board.COT_BOARD_HOUR_SYD)
         log.info("Guardrails: %d ideas/day, %d trades/day, %d min cool-down, daily stop $%.0f, profit cap $%.0f",
                  guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
                  guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)

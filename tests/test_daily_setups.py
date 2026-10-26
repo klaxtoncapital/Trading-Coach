@@ -192,7 +192,8 @@ def test_bias_embed_high_conviction_and_watch():
     assert "macro call agree**: watch these first\n**CL**" in e["description"] and e["color"] == ds.RED
     st["conf"] = {"lines": ["❌ Macro call bullish: against this setup"], "adj": -10}
     e = ds.bias_embed(days[-1].d, [(st, m)], 36)
-    assert "Watch only" in e["description"] and "macro call agree**: watch these first\nNone today." in e["description"]
+    assert "macro doesn't align: could be a squeeze" in e["description"]
+    assert "macro call agree**: watch these first\nNone today." in e["description"]
     assert "No daily data" in ds.bias_embed(None, [], 0)["description"]
 
 
@@ -248,3 +249,20 @@ def test_size_field_sizes_every_account_and_never_blocks():
     assert "**Topstep $1,000:** 2 MGC" in txt
     assert "**Tradeify $275:** too wide" in txt
     assert "lower timeframe" in txt
+
+
+def test_every_sfp_listed_any_score_and_36_fit():
+    from scanner import config
+    days = with_swing_high_then_sfp()
+    base_st = ds.analyse("CL", days)[0]
+    found = []
+    for i, m in enumerate(config.MARKETS):
+        st = dict(base_st, score=20 + i, conf={"lines": ["❌ Macro call bullish: against this setup"] if i % 3 == 0
+                                                else ["✅ Macro call bearish (conviction 1)"] if i % 3 == 1 else []})
+        found.append((st, m))
+    embeds = ds.bias_embeds(days[-1].d, found, 36)
+    text = "\n".join(e["description"] for e in embeds)
+    assert "**36 daily SFPs**" in text
+    assert all(f"**{m.root}**" in text for m in config.MARKETS)        # all 36, including score 20
+    assert text.count("could be a squeeze") == 12
+    assert all(len(e["description"]) <= 4000 for e in embeds) and len(embeds) >= 2

@@ -522,50 +522,58 @@ def _chunk(title: str, lines: list[str], color: int, footer: str | None = None, 
 
 
 def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list[dict]:
-    """The #general SFP section: every market, no cap.
+    """The #general SFP section: EVERY daily SFP on every market, any score, no cap.
 
-    High conviction = SFP score at or above MIN_SCORE and nothing in the confluence against it
-    (macro call or crowded positioning). Watch only = good SFP with confluence against.
-    Swing points in play = untouched daily swing highs / lows near the close, where the next
-    SFP could form. Split over several embeds when there is a lot on."""
+    Three groups, best first, each sorted by score:
+      ⭐ macro call agrees and nothing against
+      ✅ clean SFP, macro neutral or no call
+      ⚠️ macro call disagrees or positioning is crowded against: still listed and labelled,
+         because a squeeze against the macro call can be the best trade of the week
+    Then weekly frameworks and swing points in play. Split over several messages when long."""
     title = "📅 Daily SFP bias: seek the entry on the hourly"
     if last_day is None:
         return [{"title": title, "color": GREY, "description": "No daily data from ProjectX this morning, so no SFP read."}]
-    against = lambda st: any(l.startswith("❌") for l in st.get("conf", {}).get("lines", []))
-    macro_ok = lambda st: any(l.startswith("✅ Macro call") for l in st.get("conf", {}).get("lines", []))
+    cl = lambda st: st.get("conf", {}).get("lines", [])
+    macro_bad = lambda st: any(l.startswith("❌ Macro call") for l in cl(st))
+    pos_bad = lambda st: any(l.startswith("❌") and not l.startswith("❌ Macro call") for l in cl(st))
+    macro_ok = lambda st: any(l.startswith("✅ Macro call") for l in cl(st))
+    by_score = lambda xs: sorted(xs, key=lambda x: -x[0]["score"])
     all_sfp = [x for x in found if x[0]["kind"] == "sfp"]
-    # Top tier: a daily SFP with the macro call behind it. A lower score bar here, because
-    # macro agreeing is the confluence that matters most.
-    star = [x for x in all_sfp if macro_ok(x[0]) and not against(x[0]) and x[0]["score"] >= MIN_SCORE - 10]
-    sfps = [x for x in all_sfp if x[0]["score"] >= MIN_SCORE]
-    high = [x for x in sfps if not against(x[0]) and x not in star]
-    watch = [x for x in sfps if against(x[0])]
-    sfps = star + sfps
-    frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing") and x[0]["score"] >= MIN_SCORE - 10]
+    star = by_score(x for x in all_sfp if macro_ok(x[0]) and not pos_bad(x[0]))
+    clean = by_score(x for x in all_sfp if not macro_ok(x[0]) and not macro_bad(x[0]) and not pos_bad(x[0]))
+    flagged = by_score(x for x in all_sfp if macro_bad(x[0]) or pos_bad(x[0]))
+    frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing")]
     swings = sorted((x for x in found if x[0]["kind"] == "swing"), key=lambda x: x[0]["dist_atr"])
-    # Don't list a swing as "in play" on a market that already has an SFP in the list
-    sfp_roots = {m.root for _, m in sfps}
+    sfp_roots = {m.root for _, m in all_sfp}
     swings = [x for x in swings if x[1].root not in sfp_roots]
 
-    def line(st, m):
+    def line(st, m, flag=""):
         a = st["atr"]
         fw = f" · {st['framework'].split(':')[0]}" if st.get("framework") else ""
-        ok = sum(1 for l in st.get("conf", {}).get("lines", []) if l.startswith("✅"))
-        return (f"**{m.root}** {_arrow(st['dir'])} · score {st['score']}{fw}\n"
+        ok = sum(1 for l in cl(st) if l.startswith("✅"))
+        return (f"**{m.root}** {_arrow(st['dir'])} · score {st['score']}{fw}{flag}\n"
                 f"  Swept {_fmt(st['level']['price'], a)} ({st['level']['name']}) · "
                 f"OTE {_fmt(st['ote'], a)} · stop {_fmt(st['stop'], a)} · "
                 f"T1 {_fmt(st['target'][0], a)} ({st['ote_rr']}R from OTE)"
                 + (f" · {ok} confluence ✅" if ok else ""))
 
-    lines = [f"Daily candles closed {last_day:%a %-d %b} · all {scanned} markets checked."]
+    def flag(st):
+        tags = []
+        if macro_bad(st):
+            tags.append("⚠️ **macro doesn't align: could be a squeeze**")
+        if pos_bad(st):
+            tags.append("⚠️ **positioning crowded against**")
+        return " · " + " · ".join(tags)
+
+    n = len(all_sfp)
+    lines = [f"Daily candles closed {last_day:%a %-d %b} · all {scanned} markets checked · "
+             f"**{n} daily SFP{'s' if n != 1 else ''}**, all listed below."]
     lines.append("\n**⭐ Daily SFP + macro call agree**: watch these first")
     lines += [line(*x) for x in star] or ["None today."]
-    lines.append("\n**High conviction** (clean SFP, macro neutral or no call)")
-    lines += [line(*x) for x in high] or ["None today."]
-    if watch:
-        lines.append("\n**Watch only** (confluence against)")
-        lines += [f"**{m.root}** {_arrow(st['dir'])} · score {st['score']} · "
-                  + next(l for l in st['conf']['lines'] if l.startswith('❌'))[2:90] for st, m in watch]
+    lines.append("\n**✅ Daily SFP, macro neutral or no call**")
+    lines += [line(*x) for x in clean] or ["None today."]
+    lines.append("\n**⚠️ Daily SFP against the macro call or positioning**")
+    lines += [line(st, m, flag(st)) for st, m in flagged] or ["None today."]
     if frames:
         lines.append("\n**Weekly frameworks**")
         lines += [f"**{m.root}** {_arrow(st.get('dir', 0))} · {st['name']}" for st, m in frames]
@@ -575,11 +583,12 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
                   f"{st['level']['name']} · {st['dist_atr']} ATR away · SFP {'short' if st['side'] == 'high' else 'long'} "
                   f"if it's taken and closes back" for st, m in swings]
     color = GREY
-    top = star or high
+    top = star or clean or flagged
     if top:
         color = GREEN if top[0][0]["dir"] == 1 else RED
     return _chunk(title, lines, color,
-                  "A daily setup is a reason to look, not a trade. OTE above the 6PM open for shorts, below for longs.")
+                  "Every daily SFP is listed; the score is the candle's quality. A setup is a reason to look, "
+                  "not a trade. OTE above the 6PM open for shorts, below for longs.")
 
 
 def bias_embed(last_day: date | None, found: list[tuple], scanned: int) -> dict:
