@@ -38,8 +38,8 @@ SYD = ZoneInfo("Australia/Sydney")
 
 NY_TZ = ZoneInfo("America/New_York")
 WEBHOOK = os.getenv("DISCORD_GENERAL_WEBHOOK", "")
-POST_HOUR = int(os.getenv("FOUR_CHARTS_HOUR_SYD", "") or 8)
-POST_MINUTE = int(os.getenv("FOUR_CHARTS_MINUTE_SYD", "") or 40)
+POST_HOUR = int(os.getenv("FOUR_CHARTS_HOUR_SYD", "") or 10)
+POST_MINUTE = int(os.getenv("FOUR_CHARTS_MINUTE_SYD", "") or 5)
 STATE_FILE = os.getenv("FOUR_CHARTS_STATE_FILE", "four_charts_state.json")
 LOOKBACK = 10            # sessions for the change
 HISTORY = 120            # sessions of 10-day changes to compare against

@@ -199,12 +199,12 @@ def test_bias_embed_high_conviction_and_watch():
 def test_four_charts_waits_for_the_daily_close():
     from scanner import four_charts as fc
     utc = timezone.utc
-    # Tue 27 Oct 8:45am Sydney = Mon 17:45 New York (EDT): closed, due
-    assert fc.due(datetime(2026, 10, 26, 21, 45, tzinfo=utc), None)
-    # Tue 3 Nov 8:45am Sydney = Mon 16:45 New York (EST): close not in yet, wait
-    assert not fc.due(datetime(2026, 11, 2, 21, 45, tzinfo=utc), None)
-    # 9:20am Sydney = 17:20 New York: due
-    assert fc.due(datetime(2026, 11, 2, 22, 20, tzinfo=utc), None)
+    # Tue 27 Oct 10:10am Sydney: after 10:05 and after the close, due
+    assert fc.due(datetime(2026, 10, 26, 23, 10, tzinfo=utc), None)
+    # Tue 27 Oct 9:30am Sydney: before 10:05, not yet
+    assert not fc.due(datetime(2026, 10, 26, 22, 30, tzinfo=utc), None)
+    # Never twice the same day
+    assert not fc.due(datetime(2026, 10, 26, 23, 10, tzinfo=utc), "2026-10-27")
 
 
 def test_no_cap_and_swings_in_play():
