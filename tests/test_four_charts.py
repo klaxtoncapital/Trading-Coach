@@ -71,5 +71,5 @@ def test_post_once_per_sydney_weekday_morning():
     fri = datetime(2026, 10, 23, 10, 10, tzinfo=SYD)
     assert fc.due(fri, None)
     assert not fc.due(fri, "2026-10-23")
-    assert not fc.due(datetime(2026, 10, 23, 9, 50, tzinfo=SYD), None)
+    assert not fc.due(datetime(2026, 10, 23, 9, 40, tzinfo=SYD), None)
     assert not fc.due(datetime(2026, 10, 24, 10, 10, tzinfo=SYD), None)   # Saturday

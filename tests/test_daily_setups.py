@@ -202,8 +202,10 @@ def test_four_charts_waits_for_the_daily_close():
     utc = timezone.utc
     # Tue 27 Oct 10:10am Sydney: after 10:05 and after the close, due
     assert fc.due(datetime(2026, 10, 26, 23, 10, tzinfo=utc), None)
-    # Tue 27 Oct 9:30am Sydney: before 10:05, not yet
+    # Tue 27 Oct 9:30am Sydney: before 9:50, not yet
     assert not fc.due(datetime(2026, 10, 26, 22, 30, tzinfo=utc), None)
+    # Tue 3 Nov 9:55am Sydney (NY on standard time, close at 9:00 Sydney): due, before the 10am reopen
+    assert fc.due(datetime(2026, 11, 2, 22, 55, tzinfo=utc), None)
     # Never twice the same day
     assert not fc.due(datetime(2026, 10, 26, 23, 10, tzinfo=utc), "2026-10-27")
 
