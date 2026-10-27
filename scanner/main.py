@@ -19,12 +19,12 @@ import asyncio
 import json
 import logging
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, config, cot_board, daily_setups, four_charts, desk, earnings, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, retrace_backtest, config, cot_board, daily_setups, four_charts, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -343,6 +343,16 @@ async def run(args):
             if rows:
                 print("Saved", acd_backtest.save_csv(rows))
             return
+        if args.retrace_backtest:
+            roots = [x.strip().upper() for x in args.retrace_backtest.split(",") if x.strip()]
+            s = retrace_backtest.Settings(mode=args.rr_mode, stop=args.rr_stop, target=args.rr_target,
+                                          entry=args.rr_entry, cont=args.rr_cont)
+            since = date.fromisoformat(args.since) if args.since else None
+            trades, rows = await retrace_backtest.run(px, roots, args.days, s, since)
+            retrace_backtest.print_table(rows, s.label())
+            if trades:
+                print("Saved", *retrace_backtest.save_csv(trades, rows))
+            return
         if args.daily_setups:
             for e in daily_setups.bias_embeds(*await daily_setups.scan(px, http)):
                 await post(http, "", [e], True)
@@ -404,6 +414,15 @@ def main():
     p.add_argument("--daily-setups", action="store_true", help="print today's daily setups post and exit")
     p.add_argument("--daily-backtest", metavar="ROOTS", help="daily SFP backtest, e.g. CL,GC,6J,NKD")
     p.add_argument("--days", type=int, default=180, help="days of history for the backtests (default 180)")
+    p.add_argument("--retrace-backtest", metavar="ROOTS", help="weekday Retrace Rule backtest, e.g. NKD,ES,CL,GC")
+    p.add_argument("--rr-mode", choices=["ticks", "pct", "atr"], default="atr",
+                   help="stop/target units: ticks, pct of price, or ATR multiples (default atr)")
+    p.add_argument("--rr-stop", type=float, help="stop in rr-mode units (default ticks 50, pct 0.40, atr 0.22)")
+    p.add_argument("--rr-target", type=float, help="target in rr-mode units (default ticks 185, pct 1.47, atr 0.80)")
+    p.add_argument("--rr-entry", type=float, default=0.0, help="entry past the open in rr-mode units (default 0)")
+    p.add_argument("--rr-cont", choices=["close", "lowhigh", "half"], default="close",
+                   help="bull/bear day: beyond prior close, prior low/high, or the 50%% rule")
+    p.add_argument("--since", help="only count trades from this date, e.g. 2025-01-01")
     p.add_argument("--a-atr", help="A value(s) as a fraction of ATR, e.g. 0.1,0.15,0.2 (default ACD_A_ATR)")
     asyncio.run(run(p.parse_args()))
 

@@ -152,6 +152,7 @@ python -m scanner.main --news             # latest market-moving headlines
 python -m scanner.main --four-charts      # today's Four Charts post, printed
 python -m scanner.main --cot-board        # this week's commodity COT extremes board
 python -m scanner.main --acd-backtest GC,SI,CL,NQ --days 180   # ACD backtest on ProjectX history
+python -m scanner.main --retrace-backtest NKD,ES,CL,GC --days 2500   # weekday Retrace Rule backtest
 python -m scanner.main --once             # one scan, post to Discord
 python -m pytest -q tests                 # tests on synthetic data
 ```
@@ -162,3 +163,17 @@ python -m pytest -q tests                 # tests on synthetic data
     python -m scanner.main --daily-backtest CL,GC,SI,HG,6J,6E,NKD,NQ,ES --days 365
 
 Finds every daily SFP in the stitched hourly history and trades it two ways: entry at the next 6PM open, and a limit at the OTE (50% of the SFP wick) live for the next day only. Stop beyond the SFP, target 1, or out after 5 days. Results by score band, weekly framework, market and weekday, saved to `daily_sfp_backtest_<date>.csv`. `--daily-setups` prints today's post without sending it.
+
+
+## Retrace Rule backtest (weekday continuation, Oct 2026)
+
+    # 1. Check it against the TradingView study (same rules: 50t stop, 185t target, entry at the open)
+    python -m scanner.main --retrace-backtest NKD --rr-mode ticks --since 2025-01-01 --days 700
+    # 2. Go further back and across markets, with stop/target scaled to each market's daily range
+    python -m scanner.main --retrace-backtest NKD,ES,NQ,YM,RTY,CL,GC,SI,HG,6J,6E,ZN --days 2500
+
+A Python copy of the Pine "6PM Retrace Rule Study". Bull day = yesterday closed above the day before (bear = below); enter at the 6PM New York open, stop past the open, target from the open, hourly bars with the adverse side checked first, otherwise out at the day's close. Every weekday, bull and bear, for every market.
+
+`--rr-mode` sets the units: `ticks` (fixed, like the Pine study), `pct` (percent of price) or `atr` (multiples of the 20-day ATR, the default: 0.22 stop / 0.80 target, about NKD's 50 / 185 ticks against its recent daily range). Use `pct` or `atr` to compare years and markets fairly. Change them with `--rr-stop`, `--rr-target`, `--rr-entry`; `--rr-cont lowhigh|half` switches the bull/bear definition.
+
+Prints, per market and setup: trades, % that hit target, average and total R, $ per trade on one contract, worst losing streak, deepest drawdown in R, total R per year, and whether every year with 10+ trades was positive. The first line for each market says how far back ProjectX history actually went. Saves `retrace_trades_<date>.csv` and `retrace_summary_<date>.csv`. No costs or slippage.
