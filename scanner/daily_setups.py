@@ -386,6 +386,7 @@ def _fmt(x: float | None, a: float) -> str:
 
 
 COMMODITY_CLASSES = ("energy", "metals", "ags")
+LAST: dict = {}   # the latest scan's completed days and expected move per market, for the morning post
 
 
 def expected_move(close: float, iv: float | None = None, rv20: float | None = None) -> dict | None:
@@ -483,6 +484,8 @@ async def scan(px, http, now: datetime | None = None) -> tuple[date | None, list
     contracts = pick_front_contracts(await px.available_contracts(), wanted)
     macro_call = await macro.latest(http)
     found, last_day, scanned = [], None, 0
+    LAST.clear()
+    LAST.update({"days": {}, "em": {}, "macro": macro_call})
     for root, c in contracts.items():
         m = config.MARKETS_BY_ROOT[root]
         try:
@@ -498,6 +501,7 @@ async def scan(px, http, now: datetime | None = None) -> tuple[date | None, list
         a = atr(days, 20)
         iv = await gates.implied_vol(http, m.iv_series) if m.iv_series else None
         em = expected_move(days[-1].c, (iv or {}).get("iv"), realised_vol(days))
+        LAST["days"][root], LAST["em"][root] = days, em
         if em and m.asset_class in COMMODITY_CLASSES:
             found.append(({"kind": "move", "root": root, "day": days[-1].d, "score": -1, "rank": -999,
                            "atr": a, "close": days[-1].c, "em": em}, m))

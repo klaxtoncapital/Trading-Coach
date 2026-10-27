@@ -177,3 +177,15 @@ A Python copy of the Pine "6PM Retrace Rule Study". Bull day = yesterday closed 
 `--rr-mode` sets the units: `ticks` (fixed, like the Pine study), `pct` (percent of price) or `atr` (multiples of the 20-day ATR, the default: 0.22 stop / 0.80 target, about NKD's 50 / 185 ticks against its recent daily range). Use `pct` or `atr` to compare years and markets fairly. Change them with `--rr-stop`, `--rr-target`, `--rr-entry`; `--rr-cont lowhigh|half` switches the bull/bear definition.
 
 Prints, per market and setup: trades, % that hit target, average and total R, $ per trade on one contract, worst losing streak, deepest drawdown in R, total R per year, and whether every year with 10+ trades was positive. The first line for each market says how far back ProjectX history actually went. Saves `retrace_trades_<date>.csv` and `retrace_summary_<date>.csv`. No costs or slippage.
+
+## #general: one morning message
+
+Weekdays 9:50am Sydney (after the daily close, before the 10am reopen) the desk posts **one** message to
+`DISCORD_GENERAL_WEBHOOK` (`scanner/morning.py`): a header (day note incl. Friday's weekly profile, the macro
+call summary, events in the next 24h, Tier 1 ahead, the Four Charts read, commodity 1 STD moves, the list of
+markets in play) and one card per market in play. NKD always gets a card; other markets get one for a daily
+SFP, a weekly framework or an untouched swing level within reach. Each card: setup and levels, macro call,
+Four Charts lean, Monday-range rule (NQ ES YM NKD), fund positioning (COT), expected daily move, trading hours
+for short-hours markets, and warnings (macro against: could be a squeeze). Max 9 cards; the rest are listed as
+one-liners in the header. It waits for today's macro call until 10:10am, then posts without it.
+`python -m scanner.main --morning` prints it. #scanner keeps the intraday Watch alerts.
