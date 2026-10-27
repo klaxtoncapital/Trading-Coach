@@ -44,9 +44,10 @@ def _save_seen(seen: set) -> None:
     except OSError as e:
         log.warning("Couldn't save guard state: %s", e)
 
-# Leaderboard posts (New York time): before Asia, before London, before New York
+# Leaderboard posts (New York time). Asia board at 18:05, just after the Globex reopen:
+# 17:45 fell inside the 17:00-18:00 daily break, when the scanner pauses, so it never posted.
 # London board dropped: the London session won 1 trade in 5 in the trade history.
-LEADERBOARD_TIMES = [(17, 45, "Asia open"), (9, 15, "New York open")]
+LEADERBOARD_TIMES = [(18, 5, "Asia open"), (9, 15, "New York open")]
 
 
 def globex_open(now: datetime) -> bool:
