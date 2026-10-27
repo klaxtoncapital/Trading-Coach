@@ -35,7 +35,7 @@ from datetime import date, datetime, timedelta, timezone
 from statistics import mean
 from zoneinfo import ZoneInfo
 
-from . import config, gates, macro, regime
+from . import config, gates, macro, regime, sessions
 from .metrics import WEEKDAYS, Day, atr, realised_vol, to_days, trading_day, week_key
 
 log = logging.getLogger("scanner.daily_setups")
@@ -578,7 +578,7 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
         a = st["atr"]
         fw = f" · {st['framework'].split(':')[0]}" if st.get("framework") else ""
         ok = sum(1 for l in cl(st) if l.startswith("✅"))
-        return (f"**{m.root}** {_arrow(st['dir'])} · score {st['score']}{fw}{flag}\n"
+        return (f"**{m.root}** {_arrow(st['dir'])} · score {st['score']}{fw}{flag}{sessions.board_tag(m.root)}\n"
                 f"  Swept {_fmt(st['level']['price'], a)} ({st['level']['name']}) · "
                 f"OTE {_fmt(st['ote'], a)} · stop {_fmt(st['stop'], a)} · "
                 f"T1 {_fmt(st['target'][0], a)} ({st['ote_rr']}R from OTE)"
@@ -616,7 +616,11 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
         moves.sort(key=lambda x: (order[x[1].asset_class], config.MARKETS.index(x[1])))
         lines.append("\n**Expected daily move, commodities** (1 STD: about 2 days in 3 stay inside this)")
         lines += [f"**{m.root}** {m.name} · {_fmt(st['close'], st['atr'])} · **±{_fmt(st['em']['pts'], st['atr'])}** "
-                  f"({st['em']['pct']:.1f}%, {st['em']['src']} vol {st['em']['vol']:.1f})" for st, m in moves]
+                  f"({st['em']['pct']:.1f}%, {st['em']['src']} vol {st['em']['vol']:.1f}){sessions.board_tag(m.root)}"
+                  for st, m in moves]
+        syd = lambda r: sessions.schedule_lines(r)[0].replace("**Sydney:** ", "")
+        lines.append(f"⏰ = short-hours market. Grains (ZC ZW ZS ZM ZL): {syd('ZC')} Sydney. "
+                     f"Hogs and cattle (HE LE): {syd('HE')} Sydney.")
     color = GREY
     top = star or clean or flagged
     if top:
