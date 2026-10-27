@@ -268,3 +268,26 @@ def test_every_sfp_listed_any_score_and_36_fit():
     assert all(f"**{m.root}**" in text for m in config.MARKETS)        # all 36, including score 20
     assert text.count("could be a squeeze") == 12
     assert all(len(e["description"]) <= 4000 for e in embeds) and len(embeds) >= 2
+
+
+def test_expected_move_prefers_implied_vol():
+    e = ds.expected_move(100.0, iv=56.0, rv20=40.0)
+    assert e["src"] == "IV" and abs(e["pts"] - 3.5) < 1e-9
+    r = ds.expected_move(4200.0, iv=None, rv20=24.0)
+    assert r["src"] == "realised" and abs(r["pts"] - 63.0) < 1e-9
+    assert ds.expected_move(100.0) is None
+
+
+def test_commodity_moves_section_listed():
+    from scanner import config
+    d = date(2026, 10, 26)
+    cl, gc = config.MARKETS_BY_ROOT["CL"], config.MARKETS_BY_ROOT["GC"]
+    found = [({"kind": "move", "day": d, "score": -1, "rank": -999, "atr": 2.5, "close": 100.0,
+               "em": ds.expected_move(100.0, iv=56.0)}, cl),
+             ({"kind": "move", "day": d, "score": -1, "rank": -999, "atr": 60.0, "close": 4200.0,
+               "em": ds.expected_move(4200.0, iv=23.0)}, gc)]
+    text = "\n".join(e["description"] for e in ds.bias_embeds(d, found, 36))
+    assert "Expected daily move, commodities" in text
+    assert "**CL** Crude oil" in text and "±3.50" in text and "IV vol 56.0" in text
+    assert "**GC** Gold" in text and "±60" in text
+    assert "Weekly frameworks" not in text   # move rows are not frameworks

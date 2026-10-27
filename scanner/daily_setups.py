@@ -36,7 +36,7 @@ from statistics import mean
 from zoneinfo import ZoneInfo
 
 from . import config, gates, macro, regime
-from .metrics import WEEKDAYS, Day, atr, to_days, trading_day, week_key
+from .metrics import WEEKDAYS, Day, atr, realised_vol, to_days, trading_day, week_key
 
 log = logging.getLogger("scanner.daily_setups")
 NY = ZoneInfo("America/New_York")
@@ -385,6 +385,24 @@ def _fmt(x: float | None, a: float) -> str:
     return f"{x:,.{dp}f}"
 
 
+COMMODITY_CLASSES = ("energy", "metals", "ags")
+
+
+def expected_move(close: float, iv: float | None = None, rv20: float | None = None) -> dict | None:
+    """1 standard deviation daily move = price x vol / 100 / 16 (16 ~ square root of 252 trading days).
+    Uses the implied vol index (OVX for crude, GVZ for gold) when there is one, else 20-day realised vol."""
+    vol, src = (iv, "IV") if iv else (rv20, "realised") if rv20 else (None, None)
+    if not vol or not close:
+        return None
+    return {"pts": close * vol / 100 / 16, "vol": vol, "src": src, "pct": vol / 16}
+
+
+def _em(e: dict | None, a: float) -> str:
+    if not e:
+        return ""
+    return f"1 STD ±{_fmt(e['pts'], a)} ({e['src']})"
+
+
 def _arrow(d: int) -> str:
     return "🟢 Bullish" if d == 1 else "🔴 Bearish" if d == -1 else "⚪ Neutral"
 
@@ -478,10 +496,17 @@ async def scan(px, http, now: datetime | None = None) -> tuple[date | None, list
         scanned += 1
         last_day = max(last_day or days[-1].d, days[-1].d)
         a = atr(days, 20)
+        iv = await gates.implied_vol(http, m.iv_series) if m.iv_series else None
+        em = expected_move(days[-1].c, (iv or {}).get("iv"), realised_vol(days))
+        if em and m.asset_class in COMMODITY_CLASSES:
+            found.append(({"kind": "move", "root": root, "day": days[-1].d, "score": -1, "rank": -999,
+                           "atr": a, "close": days[-1].c, "em": em}, m))
         for sw in in_play(root, days, a):
             sw["rank"] = -sw["dist_atr"]
+            sw["em"] = em
             found.append((sw, m))
         for st in analyse(root, days):
+            st["em"] = em
             if st.get("dir"):
                 pos = await gates.cot(http, m)
                 reg = await regime.regime_for(http, px, root, c)
@@ -499,6 +524,7 @@ async def run_once(px, http, now: datetime | None = None) -> tuple[date | None, 
     last_day, found, scanned = await scan(px, http, now)
     if last_day is None:
         return None, []
+    found = [x for x in found if x[0]["kind"] != "move"]
     listed = [x for x in found if x[0]["kind"] != "swing" and x[0]["score"] >= MIN_SCORE - 15][:12]
     detail = [x for x in found if x[0]["score"] >= MIN_SCORE and x[0].get("dir") and x[0]["kind"] != "swing"][:MAX_DETAIL]
     return last_day, [summary_embed(listed, last_day, scanned)] + [detail_embed(st, m) for st, m in detail]
@@ -542,7 +568,8 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
     star = by_score(x for x in all_sfp if macro_ok(x[0]) and not pos_bad(x[0]))
     clean = by_score(x for x in all_sfp if not macro_ok(x[0]) and not macro_bad(x[0]) and not pos_bad(x[0]))
     flagged = by_score(x for x in all_sfp if macro_bad(x[0]) or pos_bad(x[0]))
-    frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing")]
+    frames = [x for x in found if x[0]["kind"] not in ("sfp", "swing", "move")]
+    moves = [x for x in found if x[0]["kind"] == "move"]
     swings = sorted((x for x in found if x[0]["kind"] == "swing"), key=lambda x: x[0]["dist_atr"])
     sfp_roots = {m.root for _, m in all_sfp}
     swings = [x for x in swings if x[1].root not in sfp_roots]
@@ -555,7 +582,8 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
                 f"  Swept {_fmt(st['level']['price'], a)} ({st['level']['name']}) · "
                 f"OTE {_fmt(st['ote'], a)} · stop {_fmt(st['stop'], a)} · "
                 f"T1 {_fmt(st['target'][0], a)} ({st['ote_rr']}R from OTE)"
-                + (f" · {ok} confluence ✅" if ok else ""))
+                + (f" · {ok} confluence ✅" if ok else "")
+                + (f" · {_em(st.get('em'), a)}" if st.get("em") else ""))
 
     def flag(st):
         tags = []
@@ -581,7 +609,14 @@ def bias_embeds(last_day: date | None, found: list[tuple], scanned: int) -> list
         lines.append(f"\n**Swing points in play** (untouched, within {IN_PLAY_ATR:g} ATR of the close)")
         lines += [f"**{m.root}** {'⬆️' if st['side'] == 'high' else '⬇️'} {_fmt(st['level']['price'], st['atr'])} "
                   f"{st['level']['name']} · {st['dist_atr']} ATR away · SFP {'short' if st['side'] == 'high' else 'long'} "
-                  f"if it's taken and closes back" for st, m in swings]
+                  f"if it's taken and closes back"
+                  + (f" · {_em(st.get('em'), st['atr'])}" if st.get("em") else "") for st, m in swings]
+    if moves:
+        order = {c: i for i, c in enumerate(COMMODITY_CLASSES)}
+        moves.sort(key=lambda x: (order[x[1].asset_class], config.MARKETS.index(x[1])))
+        lines.append("\n**Expected daily move, commodities** (1 STD: about 2 days in 3 stay inside this)")
+        lines += [f"**{m.root}** {m.name} · {_fmt(st['close'], st['atr'])} · **±{_fmt(st['em']['pts'], st['atr'])}** "
+                  f"({st['em']['pct']:.1f}%, {st['em']['src']} vol {st['em']['vol']:.1f})" for st, m in moves]
     color = GREY
     top = star or clean or flagged
     if top:
