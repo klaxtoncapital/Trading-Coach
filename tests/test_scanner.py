@@ -237,3 +237,22 @@ def test_symbols_and_size():
     assert pv == 5.0
     assert symbols.size_for_risk(90, pv, 450) == (1, 450.0)
     assert symbols.size_for_risk(200, pv, 275)[0] == 0
+
+
+def test_trading_hours_short_hours_markets():
+    from datetime import datetime, timezone
+    from scanner import sessions as s
+    now = datetime(2026, 10, 27, 22, 51, tzinfo=timezone.utc)      # Wed 9:51am Sydney
+    he = s.hours_field("HE", now)
+    assert "SHORT-HOURS" in he["name"] and "opens Thu 12:30am Sydney" in he["value"]
+    assert "12:30am–5:05am (Tue–Sat)" in he["value"] and "8:30am–1:05pm" in he["value"]
+    zc = s.hours_field("ZC", now)
+    assert "11am–11:45pm (Mon–Fri)" in zc["value"] and "opens Wed 11am" in zc["value"]
+    cl = s.hours_field("CL", now)
+    assert "Open now" in cl["value"] and "flat by 7:10am Sydney" in cl["value"]
+    assert s.board_tag("CL", now) == "" and "opens Thu 12:30am" in s.board_tag("HE", now)
+    # after the US clock change on 1 Nov, the same CT hours land an hour later in Sydney
+    later = datetime(2026, 11, 4, 1, 0, tzinfo=timezone.utc)
+    assert "1:30am–6:05am" in s.hours_field("HE", later)["value"]
+    assert "Mon 10am → Sat 9am" in s.hours_field("NQ", later)["value"]
+    assert s.status("ES", datetime(2026, 10, 31, 1, 0, tzinfo=timezone.utc))["open"] is False   # Saturday

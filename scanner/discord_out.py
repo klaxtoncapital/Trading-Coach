@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import symbols
+from . import sessions, symbols
 from .config import Market
 from .metrics import Reading
 
@@ -86,6 +86,7 @@ def watch_embed(m: Market, r: Reading, sc: int, reasons: list[str], gates: dict)
     prof = r.profile.get("continuation") or r.profile.get("c2")
     fields = [
         {"name": "📍 Symbols", "value": _symbols_field(m, r)[:1000], "inline": False},
+        sessions.hours_field(m.root),
         {"name": "🎯 Plan", "value": (f"**Entry zone** {_px(t['entry'], r)}\n"
                                      f"**Stop** {_px(t['stop'], r)} (beyond the sweep / structure)\n"
                                      f"**Target** {_px(t['target'], r)}: {t['target_name']} ({_px(reward, r)} pts, {t['rr']}R)"),
@@ -123,7 +124,7 @@ def leaderboard_embed(rows: list[tuple], label: str) -> dict:
             lean = " · lean " + ("long" if r.thesis["dir"] == 1 else "short")
         c = getattr(r, "contract", None) or {}
         cont, _ = symbols.tradingview(m.root, c.get("name"))
-        lines.append(f"**{i}. {m.name}** · **{sc}**{lean}\n   TopstepX `{c.get('name') or m.root}` · TradingView `{cont}`\n   "
+        lines.append(f"**{i}. {m.name}** · **{sc}**{lean}{sessions.board_tag(m.root)}\n   TopstepX `{c.get('name') or m.root}` · TradingView `{cont}`\n   "
                      f"{' · '.join(reasons[:3]) or 'quiet'}")
     return {
         "title": f"📊 Biggest movers · {label}",
