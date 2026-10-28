@@ -25,7 +25,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, retrace_backtest, config, cot_board, daily_setups, four_charts, morning, desk, earnings, gates, guardrails, macro, news, regime
+from . import acd, acd_backtest, retrace_backtest, config, cot_board, daily_setups, four_charts, morning, sentiment_relay, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -379,6 +379,9 @@ async def run(args):
                  news.NEWS_INTERVAL_MIN, "posting" if news.DISCORD_NEWS_WEBHOOK else "checks only, no news webhook",
                  "on" if config.DISCORD_DESK_WEBHOOK else "OFF (set DISCORD_DESK_WEBHOOK)", macro.MACRO_CALL_URL or "nowhere")
         asyncio.create_task(news.news_loop(http, post, args.dry_run))
+        asyncio.create_task(sentiment_relay.loop(http, post, args.dry_run))
+        log.info("Macro sentiment relay every %d min to %s", sentiment_relay.POLL_MIN,
+                 "#macro-sentiment" if sentiment_relay.WEBHOOK else "nowhere (set DISCORD_NEWS_WEBHOOK)")
         asyncio.create_task(cot_board.board_loop(http, post, args.dry_run))
         asyncio.create_task(morning.loop(px, http, post, args.dry_run))
         log.info("Morning message (header + a card per market in play) weekdays %d:%02d Sydney to %s",
