@@ -38,6 +38,8 @@ DISCORD_NEWS_WEBHOOK = os.getenv("DISCORD_NEWS_WEBHOOK", "")
 NEWS_INTERVAL_MIN = int(os.getenv("NEWS_INTERVAL_MIN", "") or 5)
 # Hour (Sydney) for the morning calendar digest, weekdays.
 CALENDAR_DIGEST_HOUR = int(os.getenv("CALENDAR_DIGEST_HOUR_SYD", "") or 8)
+# Off by default since 29 Oct 2026: the #general morning message already lists the day's events.
+CALENDAR_DIGEST_ON = os.getenv("CALENDAR_DIGEST", "off").lower() == "on"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; KlaxtonDesk/1.0)"}
 
 # (key, name, url, always_post_if_tagged)
@@ -253,10 +255,11 @@ def news_embeds(items: list[dict]) -> list[dict]:
         link = f"[{title}]({h['link']})" if h["link"].startswith("http") else title
         lines.append(f"{flag}**{h['source']}** {when}: {link}\n   ↳ {', '.join(h['topics'][:3])} · moves {mk}")
     return [{
-        "title": "📰 Headlines",
+        "title": "📰 Headline alert",
         "description": "\n".join(lines)[:4000],
         "color": 0x23456B,
-        "footer": {"text": "🔴 = high priority (policy, tariffs, intervention, Trump). Titles and links only."},
+        "footer": {"text": "🔴 = high priority (policy, tariffs, intervention, Trump). Titles and links only: "
+                           "the explained version comes in the morning macro wrap."},
         "timestamp": datetime.now(SYD).isoformat(),
     }]
 
@@ -345,7 +348,7 @@ async def news_loop(http: aiohttp.ClientSession, post, dry_run: bool):
                 await post(http, DISCORD_NEWS_WEBHOOK, news_embeds(items), dry_run)
             now = datetime.now(timezone.utc)
             state = _load_state()
-            if digest_due(now, state):
+            if CALENDAR_DIGEST_ON and digest_due(now, state):
                 try:
                     evs = await earnings_mod.upcoming(http, now)
                 except Exception:  # noqa: BLE001  earnings must never stop the digest
