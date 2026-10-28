@@ -1,1 +1,53 @@
-[]
+[
+ {
+  "id": "2026-10-28-usd-fomc",
+  "embeds": [
+   {
+    "title": "🇺🇸 Fed holds at 3.75–4.00%, two officials wanted a hike · 🟡 Mixed for markets",
+    "color": 12024095,
+    "description": "**Decision: HOLD at 3.75%–4.00% · Forecast hold (4.00% top) · Previous 3.75%–4.00% · Vote 10–2**\nThe Federal Funds Rate is the rate banks charge each other overnight. The Fed (the US central bank) sets it, and it flows into every loan, mortgage and bond yield. The FOMC is the Fed committee that votes on it. Note: the chair is now Kevin Warsh (not Powell), and he gave the press conference.",
+    "fields": [
+     {
+      "name": "🟢🔴 Good or bad news?",
+      "value": "In line on the number: a hold was fully expected after September's hike. The surprise was hawkish (hawkish = leaning toward higher rates to fight inflation). Two voters, Governor Cook and Cleveland Fed's Hammack, dissented (voted against) because they wanted another 0.25% hike now. The statement upgraded growth from \"solid\" to \"strong\" and kept \"inflation remains elevated\". It added: \"The Committee will deliver price stability.\" The twist: a strong economy is good news, but it gives the Fed room to hike again. Higher rates hurt Nasdaq most. Stocks still rose, so the market read it as a calm hold, not a shock.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Growth is strong (Atlanta Fed's GDPNow estimate: about 3.4% for Q3), jobs are steady, but inflation is too high: headline CPI ran 3.7% a year in September, pushed by oil above $100. Warsh said policy is starting to work and the Fed wants \"more information\" before the next step. He refused to promise anything about December (no forward guidance, meaning no hints about future moves). Futures markets now lean toward one more hike in December (9 Dec), possibly more in 2027. Rate cuts look far away. Also new: from 2027, one of the eight yearly meetings will be strategy-only, with no rate vote.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Short term, neutral to slightly positive: no hike today, and Warsh sounded patient. The bigger headwind is the 10-year yield above 5%. The 10-year yield is what the US government pays to borrow for 10 years, and it sets the cost of money for everyone. When it rises, future tech profits are worth less today, so NQ suffers more than ES. Tonight's real driver is Big Tech earnings (Microsoft, Alphabet reported after the close), not the Fed.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "6J barely moved: USD/JPY closed flat near 157.9 (so 6J flat). A wide gap between US and Japanese rates keeps the yen weak, because money flows to where it earns more. A weak yen helps the Nikkei: exporters like Toyota earn dollars that convert into more yen. Risk: near 158, Japan may step in to support the yen. A sudden 6J jump would weigh on NKD. A December Fed hike would keep the yen soft, which supports NKD.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Gold usually dislikes higher rates (it pays no interest), but it held up, +0.4% near $4,078, helped by a softer dollar during the press conference and inflation worries. Crude (CL) is the main inflation driver: about $101.5 at the close (+1.3%), after touching ~$103.5. Expensive oil keeps the Fed hawkish. Silver tends to follow gold. Copper likes strong growth, and the Fed called growth strong, so that supports it, but higher rates are a drag over time. No Fed-specific move in hogs or grains.",
+      "inline": false
+     },
+     {
+      "name": "📊 How markets actually reacted",
+      "value": "By the close (investingLive): S&P 500 +0.28% to 7,744. Nasdaq 100 +0.55% to 29,813. US 2-year yield −1 bp to 4.72%, 10-year +5 bp to 5.04%: the curve steepened (short rates fell, long rates rose). bp = basis point = 0.01%. Dollar slipped during the press conference, mixed on the day. USD/JPY flat at 157.94 (6J flat). Gold +0.4% (~$4,078). Crude +1.3% (~$101.5). An intraday snapshot (Yahoo) showed Nasdaq −0.2% and gold −0.6% before both recovered. Nikkei futures: no clear reaction found.",
+      "inline": false
+     },
+     {
+      "name": "🧭 Bias takeaway",
+      "value": "The Fed gave no new push either way. It is a hawkish hold, with rates staying high and maybe one more hike in December. That is a mild headwind for NQ (watch the 10-year near 5%), a mild support for NKD while the yen stays weak, and a supportive backdrop for crude and gold while inflation is the story. Conviction is low: Big Tech earnings tonight, the US midterms (3 Nov) and the next CPI report matter more. A cooler CPI or falling oil would ease the hike talk and help NQ. Japanese action to support the yen would hit NKD.",
+      "inline": false
+     }
+    ],
+    "footer": {
+     "text": "Sources: Federal Reserve, Yahoo Finance, investingLive. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-28T23:37:22.560611+00:00"
+ }
+]
