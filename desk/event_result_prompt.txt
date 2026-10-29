@@ -5,6 +5,7 @@ EVENTS TO REPORT (released at {when_syd} Sydney / {when_ny} New York):
 Post id: {post_id}
 
 1. GET THE RESULT. With WebSearch (and WebFetch on official pages: bea.gov, bls.gov, federalreserve.gov, boj.or.jp, ecb.europa.eu, stats.gov.cn), find each event's ACTUAL result. Confirm it from two sources where possible. If it isn't published yet, run `sleep 300` in Bash and search again, up to 4 times. If it's still missing, post that it wasn't found yet and stop. Never guess a number. For decisions and statements (rate decisions, policy statements, press conferences), the "result" is the decision plus what changed in the wording or guidance, and the 2-3 key things the governor/chair said.
+2a. GET HEDGE-FUND POSITIONING: run `curl -s https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json` (latest CFTC COT snapshot: per market funds_net, pct3y = percentile of the last 3 years, label, chg4w, and the commercials or asset managers). Dave leans on COT heavily.
 2. GET THE REACTION. Search how markets moved in the first 15-60 minutes: Nasdaq and S&P futures, the dollar, US 10-year yield, the yen (6J), Nikkei futures, gold, crude. Use numbers when sources give them; say "no clear reaction found" rather than inventing one.
 3. WRITE one Discord embed per event (or one combined embed when several are really one story, e.g. a rate decision plus its statement). Plain text, short sentences. Each embed:
  - title: "<flag emoji> <event name> · <🟢 Positive | 🔴 Negative | ⚪ In line | 🟡 Mixed> for <the economy/markets: say which>"  (max 200 chars)
@@ -17,7 +18,8 @@ Post id: {post_id}
    4. "🇯🇵 Nikkei (NKD) & yen (6J)": the knock-on for Japan. Explain the yen link (a stronger yen usually weighs on the Nikkei because exporters earn less; a weaker yen helps it).
    5. "🛢️ Commodities & metals": crude, gold, silver, copper, and hogs/grains if relevant. Gold usually likes lower rates and a weaker dollar; copper and crude like strong growth.
    6. "📊 How markets actually reacted": the numbers from step 2.
-   7. "🧭 Bias takeaway": 2-3 sentences: does this support a bullish or bearish lean for NQ, NKD and commodities over the next days, how strong is that, and what would change it. Context for his own setups, not entries.
+   7. "🏦 Hedge funds (COT)": for the 2-4 markets this event moves most, one line each: funds net, percentile and label from cot.json (positions as of its report_date), then whether this news pushes AGAINST a crowded position (squeeze risk: funds forced to exit fast) or WITH it (little fuel left, or room to run if not crowded). Explain it plainly.
+   8. "🧭 Bias takeaway": combine the news AND the positioning in 2-3 sentences: does this support a bullish or bearish lean for NQ, NKD and commodities over the next days, how strong is that, and what would change it. Context for his own setups, not entries.
  - footer: {"text": "Sources: <2-3 short source names>. Context, not signals. Not advice."}
 Keep each embed under 5,000 characters in total.
 4. QUEUE IT. If the repo isn't in this session, call add_repo (owner klaxtoncapital, repo trading-coach, access push). Then in Bash:
