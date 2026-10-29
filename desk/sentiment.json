@@ -270,5 +270,78 @@
    }
   ],
   "created_at": "2026-10-29T14:52:51.672402+00:00"
+ },
+ {
+  "id": "2026-10-30-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Fri 30 Oct · 🟡 Mixed",
+    "color": 12024095,
+    "description": "Overnight was a split session: big tech sold off hard on earnings while small caps and health care rose. Underneath, US data ran hot, so markets now see a Fed rate HIKE in December as very likely (~84%). 'Risk-on' means investors buy riskier assets like stocks; 'risk-off' means they flee to safety. Today is mixed: risk-off in tech, calm elsewhere, with the Bank of Japan deciding rates this afternoon.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "inline": false,
+      "value": "🔴 Alphabet fell 12.6% after earnings (huge AI spending, negative free cash flow); Nasdaq -1.4%, S&P -0.3%.\n🔴 After the bell: Amazon ~-7%, Intel ~-18% on a weak outlook.\n🔴 PCE inflation (the Fed's favourite price gauge) rose to 3.6% a year, speeding up.\n⚪ Q3 GDP (total economic output) grew a strong 3.4% annualised.\n🔴 10-year Treasury yield ~5.05%; gold slid toward $4,000, silver -3%.\n🟢 Small caps (Russell) +1%; Eli Lilly +6% lifted health care to a record."
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "inline": false,
+      "value": "The economy is growing fast and prices are rising faster. On Wednesday the Fed held its rate at 3.75-4.00% but two officials wanted a hike. A 'hike' makes borrowing dearer to cool inflation. Hot growth + hot inflation = more hikes likely, which pushes bond yields (the interest rate on government debt) up and makes stocks and gold less attractive."
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "inline": false,
+      "value": "NQ is the tech-heavy index, so Alphabet, Amazon and Intel hit it directly; Amazon's and Intel's after-hours drops point to more pressure at the open. With 10-year yields near 5%, investors pay less for future tech profits. ES is broader and held up better thanks to health care. Lean: NQ weaker than ES."
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "inline": false,
+      "value": "The BOJ (Japan's central bank, rate 1.25%) is expected to hold today but sound 'hawkish' (hinting at future hikes). Tokyo CPI (Tokyo's inflation) lands first at 10:30. USD/JPY ~158 is near levels where Japan intervened in August (bought yen to prop it up). A surprise hike = 6J up, NKD down. Treat both as wait-and-see until the decision."
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "inline": false,
+      "value": "Gold fell toward $4,000 and silver dropped ~3%: higher rates make non-yielding metals less attractive. Crude: Middle East / Strait of Hormuz supply risk keeps oil supported (Brent ETF ~+0.9%), but I couldn't verify settlement prices. Copper: no clear overnight story found."
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "inline": false,
+      "value": "10:30 Tokyo CPI: Tokyo inflation, a preview of Japan-wide prices; hot = BOJ hike talk.\n~13:00-14:00 BOJ decision (no fixed time): moves 6J and NKD instantly.\n~17:30 BOJ press conference: tone on December hike.\n23:30 US Employment Cost Index: wage growth; hot = more Fed hike fear, bad for NQ/ZN/GC.\nExxonMobil earnings before the US open."
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-10-20 (CFTC report). pct = where funds' net position sits vs the last 3 years (90+ = very crowded long, 10- = very crowded short). A crowded side is fuel for a sharp move the other way, called a 'squeeze'.",
+    "fields": [
+     {
+      "name": "Positioning lines",
+      "inline": false,
+      "value": "NQ · Crowded long (94th) · Bad news meets a crowded long; forced selling could deepen the drop.\nES · Neutral (35th) · No crowd edge; follows news and NQ.\nNKD · Leaning short (22nd) · Weak US tech pushes with them, but a calm BOJ could squeeze shorts up.\n6J · Neutral (74th) · No edge; BOJ decides direction."
+     },
+     {
+      "name": "Commodities",
+      "inline": false,
+      "value": "CL · Leaning short (13th) · Middle East risk pushes against them; squeeze up possible on supply news.\nGC · Leaning short (24th) · Hike talk pushes with them; little squeeze fuel.\nSI · Crowded short (3rd) · Overnight drop pushes with them, but so crowded a sharp short squeeze is possible.\nHE · Crowded short (1st) · No new hog news; extreme crowding = squeeze risk.\nNG · Crowded short (1st) · Record short; squeeze risk on any cold-weather news.\nZS · Crowded long (94th) · Vulnerable to a drop on any bad trade news."
+     },
+     {
+      "name": "🎯 Best setup to watch",
+      "inline": false,
+      "value": "NQ: bad earnings news plus a crowded hedge-fund long is the cleanest 'news + positioning agree' setup today."
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "🔴 NQ · conviction ●●○ · Tech earnings selloff and 5% yields, with funds crowded long = room to fall.\n🔴 ES · conviction ●○○ · Hike fears weigh, but health care cushions it; funds neutral.\n⚪ NKD · conviction ●○○ · Wait for BOJ; funds lean short so downside is less one-way.\n⚪ 6J · conviction ●○○ · BOJ today can flip it either way.\n🔴 GC · conviction ●○○ · Hike talk hurts gold, but funds already lean short.\n⚪ CL · conviction ●○○ · Middle East risk vs unverified moves; funds lean short = squeeze fuel.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call and be pickier with setups against it. Neutral means let your chart decide, with smaller size around the BOJ.",
+    "footer": {
+     "text": "Sources: StockTitan, MarketAlleys, Yahoo Finance, Kitco, CNBC, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-29T22:46:35.882718+00:00"
  }
 ]
