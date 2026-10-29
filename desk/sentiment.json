@@ -158,5 +158,61 @@
    }
   ],
   "created_at": "2026-10-29T00:21:37.357352+00:00"
+ },
+ {
+  "id": "2026-10-29-usd-gdp-pce",
+  "embeds": [
+   {
+    "title": "🇺🇸 US Q3 GDP & Sept Core PCE · 🟡 Mixed for markets (strong growth, sticky inflation, Fed hike risk stays)",
+    "color": 12024095,
+    "description": "**GDP: Actual 3.4% · Forecast 3.2% · Previous 2.2% (Q2, revised; calendar showed 1.5%)**\n**Core PCE m/m: Actual 0.3% · Forecast 0.3% · Previous 0.2%** (y/y 3.1%, as expected; headline PCE +0.5% m/m, 3.6% y/y)\n\nGDP (gross domestic product) is the total value of everything the US produced, shown as an annualised growth rate. Core PCE is the Fed's favourite inflation gauge: price changes on what people buy, minus jumpy food and energy. Traders care because together they tell the Fed whether to raise, hold or cut rates.",
+    "fields": [
+     {
+      "name": "🟢🔴 Good or bad news?",
+      "value": "Growth beat (3.4% vs 3.2%, the fastest in a year per Bloomberg), driven by consumer spending and AI investment. Inflation landed exactly as expected, but 3.1% core is still well above the Fed's 2% goal. The twist: a strong economy is good for company profits, but it gives the Fed no reason to cut and some reason to hike. Higher rates hurt richly priced tech (Nasdaq) the most.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Growth is strong, inflation is stuck around 3%, and there is no sign of the economy cooling. The Fed held at 3.75-4.00% on Wednesday after hiking in September, with two members voting for another hike, and upgraded its view of the economy to 'strong'. Futures priced roughly an 81-87% chance of a December hike before this data. Nothing here argues against it. Next test: the Employment Cost Index (wage growth) on Friday.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Mild headwind. Strong growth supports earnings, but 'higher for longer' rates and a 10-year yield near 5% (the yield is the interest rate on 10-year government bonds) compress tech valuations. NQ was already down about 1% pre-data on a weak Alphabet report. The in-line core number removes the worst-case scare, so the data alone is not a big new sell signal. ES holds up better than NQ.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Strong US data plus Fed hike risk keeps US yields high, which supports the dollar and weighs on the yen (6J down). USD/JPY was trading near 158, so the yen is already weak. A weaker yen usually helps the Nikkei because exporters like Toyota earn more when they convert dollar sales back to yen. Watch the Bank of Japan decision due Fri 30 Oct: a surprise hike would lift 6J and hit NKD.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Gold: hurt by high rates and a firm dollar (gold pays no interest, so it loses appeal when bonds pay 5%). It slid about 1% pre-data to near $4,035. Silver follows gold but also has an industrial side. Copper and crude like strong growth, so 3.4% GDP is mildly supportive, but crude (WTI near $101) is driven more by the Middle East conflict and fell about 1-2% today. Hogs/grains: no direct link.",
+      "inline": false
+     },
+     {
+      "name": "📊 How markets actually reacted",
+      "value": "No clear post-release reaction found yet in sources. Pre-data levels (about 7am NY): NQ -0.9% to -1.25%, ES -0.2% to -0.4%, US 10-year near 5.00%, Dollar Index 102.1 (+0.1%), gold about $4,035 (-0.4%), WTI about $101 (-1.3% to -2%). Since core PCE matched forecast, a big knee-jerk move was unlikely. Check your charts for the 8:30am NY candle.",
+      "inline": false
+     },
+     {
+      "name": "🏦 Hedge funds (COT)",
+      "value": "As of 20 Oct. NQ: funds net +950, 94th pct, crowded long. Hawkish rates push AGAINST it, so squeeze risk if NQ breaks lower.\n6J: -22,890, 74th pct, neutral, but funds sold 30k contracts in 4 weeks. News pushes WITH that yen selling; room to run.\nGC: +104,206, 24th pct, leaning short. High rates push WITH the cut-back; little fuel left to sell.\nSI: 3rd pct, crowded short. Any bounce could squeeze shorts hard.",
+      "inline": false
+     },
+     {
+      "name": "🧭 Bias takeaway",
+      "value": "Mildly bearish NQ over the next days: rates stay high and funds are crowded long, so downside moves can accelerate. Mildly bullish NKD via a weak yen, unless the BoJ surprises Friday. Gold leans soft on rates, but low fund positioning limits the downside, and silver is squeeze-prone. A soft wage (ECI) print Friday or falling yields would weaken this lean.",
+      "inline": false
+     }
+    ],
+    "footer": {
+     "text": "Sources: Bloomberg via Political Wire, PANews/FN News, Reuters via Investing.com. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-29T13:18:05.856945+00:00"
  }
 ]
