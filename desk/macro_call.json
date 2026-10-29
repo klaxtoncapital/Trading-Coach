@@ -1,95 +1,99 @@
 {
-  "generated_at": "2026-10-29T09:44:53+11:00",
-  "trading_day": "2026-10-29",
-  "summary": "The Fed held at 3.75-4% in a 10-2 vote with Cook and Hammack wanting a hike; US stocks closed modestly higher and Alphabet reportedly slipped after hours. With BOJ on Friday and overnight price data thin, the desk is neutral across the board.",
-  "events_next_24h": [
-    "Fri 7:00am USD Amazon and Intel earnings (Forex Factory feed unavailable this run; list from desk calendar only)"
-  ],
-  "tier1_next_14d": [
-    "Bank of Japan decision \u00b7 Fri, 30 Oct, ~2:00pm",
-    "US jobs report (October, expected date) \u00b7 Sat, 7 Nov, 12:30am"
-  ],
-  "markets": {
-    "ES": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Fed held with two hawkish dissents and S&P was slightly up into the close; MSFT/GOOGL after-hours reaction unconfirmed.",
-      "risk": "Clear big-tech earnings move or a yield break after the hawkish hold."
-    },
-    "NQ": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Alphabet reportedly fell after hours and VXN is mid-range; with Amazon earnings due tomorrow the tech picture is mixed.",
-      "risk": "Decisive Microsoft/Alphabet follow-through in cash trade."
-    },
-    "YM": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Dow edged higher on the Fed day but there was no clear catalyst beyond the hold.",
-      "risk": "Hawkish repricing of December hike odds."
-    },
-    "RTY": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Small caps are rate sensitive and two hike dissents cut against them, but close data were not confirmed.",
-      "risk": "Yields rising sharply on December hike talk would tilt bearish."
-    },
-    "NKD": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Nikkei is down 2.3% over 20 days with funds near the 12th percentile short, and the BOJ decides Fri 2pm Sydney.",
-      "risk": "BOJ outcome or a sharp yen move."
-    },
-    "6E": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Fed held 3.75-4% with two dissents for a hike; price reaction after the presser could not be confirmed, so no edge.",
-      "risk": "A firm dollar break after the hawkish dissents."
-    },
-    "6J": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "USD/JPY sits near intervention territory and the BOJ decides Fri 30 Oct; two-way risk is high.",
-      "risk": "BOJ hike signal or Japan intervention would turn it bullish yen."
-    },
-    "6B": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Fed held 3.75-4% with two dissents for a hike; price reaction after the presser could not be confirmed, so no edge.",
-      "risk": "Dollar repricing on December hike odds."
-    },
-    "6A": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Fed held 3.75-4% with two dissents for a hike; price reaction after the presser could not be confirmed, so no edge.",
-      "risk": "Risk sentiment from big-tech earnings and the dollar."
-    },
-    "ZN": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Hawkish dissents and Warsh signalling no rush to ease lean against bonds, but the yield reaction could not be verified.",
-      "risk": "Yields breaking higher on December hike pricing would make it bearish."
-    },
-    "GC": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Could not confirm overnight gold price action; hawkish Fed and Middle East risk pull in opposite directions.",
-      "risk": "Real yields jumping or a Middle East escalation."
-    },
-    "CL": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Oil has been elevated near $105-110 on Middle East supply fears, but no verified overnight move today.",
-      "risk": "New Middle East supply disruption or de-escalation news."
-    }
+ "generated_at": "2026-10-30T09:47:00+11:00",
+ "trading_day": "2026-10-30",
+ "summary": "Hawkish US backdrop: Q3 GDP 3.4% and PCE inflation 3.6% after the Fed held at 3.75-4.00% with two hike dissents; Alphabet -12.6% dragged the Nasdaq 1.4% and Amazon/Intel fell after hours. BOJ decides today.",
+ "events_next_24h": [
+  "Fri 10:30 JPY Tokyo CPI (Oct)",
+  "Fri ~13:00-14:00 JPY BOJ policy decision (no fixed time)",
+  "Fri ~17:30 JPY BOJ Governor press conference",
+  "Fri 23:30 USD Employment Cost Index (Q3)",
+  "Fri pre-US-open ExxonMobil and AbbVie earnings"
+ ],
+ "tier1_next_14d": [
+  "BOJ policy decision · Fri, 30 Oct, ~13:00-14:00 (unconfirmed time)",
+  "US Non-Farm Payrolls (Oct) · Sat, 7 Nov, 00:30 (expected)"
+ ],
+ "markets": {
+  "ES": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Hot PCE inflation and 84% odds of a December Fed hike weigh; S&P slipped 0.3% and Amazon fell ~7% after hours. Funds positioning neutral.",
+   "risk": "Strong ECI-free tape or Amazon/Apple bounce lifts megacaps back."
   },
-  "sources": [
-    "https://www.stocktitan.net/articles/stock-market-today-live-october-28-2026",
-    "https://breakingthenews.net/Article/US-closes-higher-amid-Fed-rate-decision-earnings/67424368",
-    "https://tradersagency.com/blog/fed-holds-rates-at-375percent-4percent-as-cook-and-hammack-dissent-warsh-unveils-fewer-rate-setting-meetings-starting-2027",
-    "https://www.benzinga.com/markets/macro-economic-events/26/10/62672193/warsh-december-hike-bond-market-tightening-credit-spreads",
-    "https://www.khaleejtimes.com/business/uae-fuel-prices-in-november-oil-hits-110-amid-middle-east-war-fears",
-    "https://roboforex.com/beginners/analytics/forex-forecast/currencies/usd-jpy-forecast-2026-10-19/",
-    "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
-  ]
+  "NQ": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Alphabet -12.6% sank Nasdaq 1.4%; Amazon and Intel fell hard after hours with 10y near 5%. Funds crowded long (94th pct) adds downside fuel.",
+   "risk": "Dip-buying in AI names or a sharp drop in yields."
+  },
+  "YM": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Dow dipped ~0.4% but health care hit records; hawkish Fed weighs yet Dow is less exposed to the big-tech earnings selloff.",
+   "risk": "Broad risk-off spills into value names."
+  },
+  "RTY": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Small caps rose ~1% against the tech drop, but 5% 10-year yields and hike odds usually hurt them; signals conflict.",
+   "risk": "Yields jump further after ECI, or rotation out of tech accelerates."
+  },
+  "NKD": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "BOJ decides today and Tokyo CPI is out this morning; US tech weakness weighs, but funds lean short (22nd pct), so a hold could spark a bounce.",
+   "risk": "Hawkish BOJ surprise (hike) lifts yen and hits Nikkei."
+  },
+  "6E": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "EUR/USD flat near 1.113; hawkish Fed supports the dollar but no clear euro catalyst found overnight.",
+   "risk": "Fresh euro-area inflation surprise or dollar breakout."
+  },
+  "6J": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "BOJ decision today: a hawkish hold is expected; USD/JPY near 158 keeps intervention risk alive. Tier-1 event could flip it.",
+   "risk": "BOJ hike or explicit intervention warning sends yen sharply higher."
+  },
+  "6B": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "No clear UK catalyst found overnight; dollar firm on Fed hike odds but sterling move not confirmed.",
+   "risk": "Strong dollar move after US ECI data."
+  },
+  "6A": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Risk tone mixed (tech down, small caps up) and no Australian catalyst found; Aussie lacks a clear driver today.",
+   "risk": "Sharp risk-off or China headline."
+  },
+  "ZN": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "PCE inflation sped up to 3.6% and GDP hit 3.4%; two Fed officials wanted a hike and the 10-year yield rose to ~5.05%.",
+   "risk": "Soft Employment Cost Index tonight eases hike fears."
+  },
+  "GC": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Gold slid toward $4,000 as hot growth and inflation keep a December hike in play; funds lean short (24th pct), limiting the edge.",
+   "risk": "Middle East flare-up or dollar drop revives safe-haven buying."
+  },
+  "CL": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Middle East/Hormuz supply risk keeps oil supported, but I couldn't verify overnight settlement moves; funds lean short (13th pct) = squeeze fuel.",
+   "risk": "Confirmed supply disruption (bullish) or de-escalation news (bearish)."
+  }
+ },
+ "sources": [
+  "https://www.stocktitan.net/articles/stock-market-today-live-october-29-2026",
+  "https://www.marketalleys.com/post/marketalleys-closing-tape-2026-10-29",
+  "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-federal-reserve-october-meeting-kevin-warsh-161129201.html",
+  "https://finance.yahoo.com/economy/policy/articles/boj-preview-october-hawkish-hold-042012157.html",
+  "http://www.kitco.com/news/article/2026-10-29/gold-falls-toward-4000-core-pce-rises-us-growth-accelerates-kitco-am-report",
+  "https://www.cnbc.com/2026/10/28/oil-price-today-wti-brent-hormuz.html",
+  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
+ ]
 }
