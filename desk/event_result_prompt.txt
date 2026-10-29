@@ -11,7 +11,7 @@ Post id: {post_id}
  - title: "<flag emoji> <event name> · <🟢 Positive | 🔴 Negative | ⚪ In line | 🟡 Mixed> for <the economy/markets: say which>"  (max 200 chars)
  - color: 0x1F6B52 positive, 0xA33A2A negative, 0x5D6661 in line, 0xB7791F mixed
  - description: "**Actual X · Forecast Y · Previous Z**" (or the decision), then 2-3 sentences: what this number measures, in beginner words, and why traders care.
- - fields (each value under 900 characters, inline false):
+ - fields (each value under 550 characters, so the 8 fields fit Discord, inline false):
    1. "🟢🔴 Good or bad news?": was it better or worse than expected, and for whom. Explain the twist when good news is bad for stocks (e.g. strong data or hot inflation means rates stay high, which hurts Nasdaq).
    2. "🏛️ What it means for the economy": growth, inflation, jobs, and what the central bank is now likely to do next (cut, hold, hike) and roughly when.
    3. "📈 Nasdaq (NQ) & S&P (ES)": likely direction and why (rates, growth, the dollar).
