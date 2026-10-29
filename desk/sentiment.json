@@ -49,5 +49,114 @@
    }
   ],
   "created_at": "2026-10-28T23:37:22.560611+00:00"
+ },
+ {
+  "id": "2026-10-20-cot-breakdown",
+  "embeds": [
+   {
+    "title": "🏦 Hedge fund positioning · week to Tue 20 Oct",
+    "color": 2311531,
+    "description": "**What this is:** every Friday the US regulator (the CFTC) publishes the **Commitments of Traders (COT)** report: who holds which futures as of the Tuesday before. We watch the **hedge funds** (called *managed money* in commodities, *leveraged funds* in indices and currencies) because they chase trends with big money.\n\n**How to read it:** *net long* = more bets on price going up than down. The **percentile** compares today with the last 3 years: 95th = more bullish than 95% of the time. Above 90th or below 10th = a **crowded trade**: nearly everyone who wants in is already in, so there's little fuel left that way and a sharp **squeeze** the other way gets likely when price turns (losing funds rush to exit). **Commercials** are producers and users (farmers, miners, oil firms). When they sit at the opposite extreme to funds, that's the classic COT setup.\n\n**This week's headlines:**\n1. **Commodities are where the extremes are.** Hogs, natural gas and silver have funds at or near their most bearish in 3 years, with commercials heavily long: squeeze fuel.\n2. **Crude and gold: funds are light**, commercials at 3-year highs. Room for funds to buy back in.\n3. **Nasdaq is the one crowded long** (94th pct), and soybeans too: less fuel left upward.\n\nNext report: Saturday about 6:30am Sydney.",
+    "fields": [
+     {
+      "name": "🎯 Biggest opportunities (ranked)",
+      "value": "1. **HE hogs:** funds 1st pct short, commercials 98th long. Squeeze-long setups favoured; wait for a daily SFP of the July 2024 low.\n2. **NG nat gas:** funds 1st pct, almost a record short and still adding. Squeeze risk high once price stops falling.\n3. **SI silver:** funds 3rd pct, commercials 94th. Long setups favoured on a daily reversal.\n4. **CL crude & GC gold:** funds light (13th, 24th), commercials 94th/99th. Longs have fuel; shorts are swimming against the big players.\n5. **NQ:** funds 94th pct long. Be pickier with longs; a failed high could unwind fast.\n6. **ZS soybeans:** funds 94th long, commercials 17th. Short setups favoured if a daily SFP high forms.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "📈 Indices & yen",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "NQ · Crowded long · 🔴 for new longs",
+      "value": "Funds net +950 (51,749 long / 50,799 short) · **94th pct** of 3y · 4 weeks +31,633\nFunds are the most long they've been in 3 years (they've been net short for most of that time) and added 31k contracts in 4 weeks. That's a crowded long: the rally has had its fuel, and any bad news can make them all sell at once. Not a short signal on its own; it means **long setups need extra confirmation** and a daily SFP high would be a strong short.",
+      "inline": false
+     },
+     {
+      "name": "ES · Neutral · ⚪",
+      "value": "Funds net -371,245 (135,034 long / 506,279 short) · **35th pct** of 3y · 4 weeks +4,329\nFunds always look net short S&P because many use futures to hedge stock portfolios or for a bond-style arbitrage, so judge it against its own history: 35th pct is **middle of the road**. Asset managers (pension and mutual funds) are solidly long. No crowding signal here.",
+      "inline": false
+     },
+     {
+      "name": "NKD · Leaning short · ⚪ leaning short",
+      "value": "Funds net +575 (3,528 long / 2,953 short) · **22th pct** of 3y · 4 weeks -223\nSmall market, so treat it lightly. Funds are roughly flat (22nd pct), well below their 3-year high of +12.8k, so the Nikkei long trade is **not crowded**: if Japan news turns good there's room for funds to buy. No squeeze signal either way. Watch the yen (below) as the bigger driver.",
+      "inline": false
+     },
+     {
+      "name": "6J · Neutral · ⚪ (yen)",
+      "value": "Funds net -22,890 (69,351 long / 92,241 short) · **74th pct** of 3y · 4 weeks -30,313\nFunds are net short the yen (betting it weakens), but less than usual for 3 years (74th pct). Over 4 weeks they **added 30k shorts**, then covered 11k last week. Asset managers are 86th pct long the yen. Read: the bet against the yen has room either way. A hawkish **BoJ tomorrow** (hike talk) could force shorts to cover = yen up, which usually **weighs on the Nikkei**.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🛢️ Energy & metals",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "CL · Leaning short · 🟢 for longs",
+      "value": "Funds net +36,187 (163,413 long / 127,226 short) · **13th pct** of 3y · 4 weeks -65,641\nCommercials +359,568 · 94th pct\nFunds have cut 66k longs in 4 weeks and are near their least bullish in 3 years, while oil producers and users are near their **most long** (94th). That's the classic setup: the big money is light and the industry is buying. Fuel for a rally if supply news or the chart turns up; shorts are against the grain.",
+      "inline": false
+     },
+     {
+      "name": "NG · Crowded short · 🟢 squeeze risk",
+      "value": "Funds net -157,409 (202,570 long / 359,979 short) · **1th pct** of 3y · 4 weeks -91,862\nCommercials -13,154 · 78th pct\nFunds are net short 157k, their **most bearish in 3 years** (record was 161k) and still adding. Extremely crowded. When nat gas stops falling, these shorts have to buy back, and gas squeezes are violent. Don't chase shorts here; a daily SFP low would be a high-conviction long idea.",
+      "inline": false
+     },
+     {
+      "name": "GC · Leaning short · 🟢 room to buy",
+      "value": "Funds net +104,206 (120,970 long / 16,764 short) · **24th pct** of 3y · 4 weeks -23,183\nCommercials -14,783 · 99th pct\nFunds are long but at the **low end** of their 3-year range (24th pct) after cutting 23k in 4 weeks. Commercials are at their **most long in 3 years** (99th). Gold isn't crowded; if rates or the dollar ease, funds have plenty of room to pile back in.",
+      "inline": false
+     },
+     {
+      "name": "SI · Crowded short · 🟢 squeeze risk",
+      "value": "Funds net +3,505 (16,180 long / 12,675 short) · **3th pct** of 3y · 4 weeks -9,804\nCommercials -15,029 · 94th pct\nFunds barely long (3rd pct, near their least bullish in 3 years) and still cutting; commercials 94th pct long. Same story as gold but more extreme. **Long setups favoured** on a daily reversal; silver moves fast when funds rush back.",
+      "inline": false
+     },
+     {
+      "name": "HG · Neutral · ⚪",
+      "value": "Funds net +47,690 (67,225 long / 19,535 short) · **63th pct** of 3y · 4 weeks -34,832\nCommercials -77,406 · 39th pct\nFunds still net long but cut 35k in 4 weeks (63rd pct). Neutral: no crowding. Copper follows growth and China news, so the macro posts matter more than positioning here.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🌾 Livestock & grains",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "HE · Crowded short · 🟢 squeeze risk",
+      "value": "Funds net -46,813 (67,168 long / 113,981 short) · **1th pct** of 3y · 4 weeks -4,673\nCommercials -4,162 · 98th pct\nYour hogs trade: funds are short 46.8k, the **most bearish in 3 years** (record 50.6k on 29 Sep), and they've stopped adding (+1.8k last week). Commercials 98th pct long. Classic opposite extremes. Price sitting on the July 2024 low: a sweep and close back above = the trigger, crowded shorts = the fuel.",
+      "inline": false
+     },
+     {
+      "name": "LE · Leaning short · ⚪ leaning short",
+      "value": "Funds net +51,102 (74,450 long / 23,348 short) · **21th pct** of 3y · 4 weeks +2,012\nCommercials -95,279 · 71th pct\nFunds still long cattle but at the low end of 3 years (21st pct), holding steady. Not crowded; no strong signal.",
+      "inline": false
+     },
+     {
+      "name": "ZC · Leaning long · ⚪ unwinding",
+      "value": "Funds net +164,423 (297,797 long / 133,374 short) · **79th pct** of 3y · 4 weeks -239,674\nCommercials -528,744 · 19th pct\nFunds still fairly long (79th pct) but **dumped 240k contracts in 4 weeks**, a big exit. Commercials 19th pct. The long is unwinding; wait for that selling to finish before taking longs.",
+      "inline": false
+     },
+     {
+      "name": "ZS · Crowded long · 🔴 for new longs",
+      "value": "Funds net +221,325 (259,970 long / 38,645 short) · **94th pct** of 3y · 4 weeks -43,834\nCommercials -287,435 · 17th pct\nFunds are **crowded long** (94th pct) and starting to trim; commercials only 17th pct. The opposite extreme to hogs: less fuel up, and a daily SFP high could start a long-liquidation drop.",
+      "inline": false
+     },
+     {
+      "name": "ZW · Neutral · ⚪",
+      "value": "Funds net -52,005 (88,258 long / 140,263 short) · **68th pct** of 3y · 4 weeks -39,989\nCommercials -40,646 · 23th pct\nFunds short wheat (that's normal for wheat) and added shorts this month; 68th pct = middle of their range. No edge.",
+      "inline": false
+     }
+    ],
+    "footer": {
+     "text": "CFTC Commitments of Traders, futures only, positions as of Tue 20 Oct. Positioning is fuel, not a trigger: wait for price to confirm. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-29T00:21:37.357352+00:00"
  }
 ]
