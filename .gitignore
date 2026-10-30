@@ -8,3 +8,5 @@ guard_state.json
 news_state.json
 acd_backtest_*.csv
 four_charts_state.json
+lab_data/
+lab_reports/
