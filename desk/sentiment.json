@@ -343,5 +343,61 @@
    }
   ],
   "created_at": "2026-10-29T22:46:35.882718+00:00"
+ },
+ {
+  "id": "2026-10-30-jpy-boj",
+  "embeds": [
+   {
+    "title": "🇯🇵 BoJ Rate Decision, Statement & Outlook Report · ⚪ In line for the yen & Japanese markets (hawkish tilt)",
+    "color": 6121057,
+    "description": "**Decision: HOLD at 1.25% · Forecast <1.25% · Previous 1.25% · Vote 8-1 (Takata wanted 1.5%)**\nThe Bank of Japan (BoJ) sets Japan's short-term interest rate. Higher rates usually mean a stronger yen and tighter money. Its quarterly Outlook Report now sees core inflation (prices minus fresh food) at 2.5% this fiscal year and 2.6% next (raised from 2.4%), with growth near 0.7%. New wording: underlying inflation is 'generally consistent' with the 2% target. Traders care because it decides how fast Japan keeps hiking, which drives 6J and the Nikkei.",
+    "fields": [
+     {
+      "name": "🟢🔴 Good or bad news?",
+      "value": "In line on the rate, slightly hawkish in the details. Hawkish = leaning toward higher rates. Three hawkish bits: the BoJ now says its 2% inflation goal is basically met, one member (Takata) voted for a hike to 1.5%, and it will sell its stock ETFs 2.6x faster from Jan 2027 (another form of tightening). But no surprise hike and only one dissenter, so some desks called it a dovish (soft) hold. Good for yen bulls, mildly bad for Japanese stocks.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Japan has steady inflation around 2-2.7% and slow growth (about 0.7% a year). The BoJ now says its job is to stop inflation running above 2%, not to escape deflation. Risks it named: higher energy prices, AI-related demand and a weak yen. Markets priced about 80% odds of a hike to 1.50% at the 18-19 Dec meeting before today, and nothing here pushes against that. Base case: hold now, hike in December, then slowly toward a 'neutral' rate (one that neither speeds up nor slows the economy).",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Small direct effect. The BoJ matters to US stocks through the 'yen carry trade': funds borrow cheap yen to buy US assets. Faster Japanese hikes can force them to unwind and sell. A December hike, flagged in advance, is a slow risk, not a shock. The real driver for NQ today is the AI spending scare after Amazon and Intel results, not Tokyo. ES follows NQ but drops less.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "6J: hawkish hints and a December hike support a firmer yen (6J up). The gap between US and Japanese rates is slowly narrowing. The 157-160 per-dollar zone is where Tokyo has stepped in to buy yen before, which caps how weak it can get. NKD: a stronger yen weighs on the Nikkei because exporters (Toyota, Sony, chip-gear makers) earn less when overseas profits convert back to fewer yen. Faster ETF sales add a small extra headwind from 2027.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Little direct impact. Gold likes a weaker US dollar; a firmer yen softens the dollar a bit, a mild plus. The BoJ cited energy prices as an inflation risk, with WTI crude near $103. Japan is a big crude importer, so a stronger yen makes oil cheaper for it, but it does not move global oil prices much. Copper follows China and AI/data-centre demand more than the BoJ. Hogs and grains: no link.",
+      "inline": false
+     },
+     {
+      "name": "📊 How markets actually reacted",
+      "value": "Calm. Yen about 0.2% firmer near 157.4-157.5 per dollar (6J slightly up); crosses like GBP/JPY barely moved. Nikkei cash around -2.4% (about 63,100), but that was the AI tech selloff that started before the decision. NQ futures about -1.4% and US 10-year yield down ~7bp to about 4.91% on the same AI scare. Gold about $4,009 (-0.6%), WTI about $103.4 (+1.4%). Ueda's press conference is 3:30pm Tokyo (5:30pm Sydney); expect a second move then.",
+      "inline": false
+     },
+     {
+      "name": "🏦 Hedge funds (COT)",
+      "value": "As of 20 Oct. 6J: funds net -22,890 short, 74th percentile, Neutral, but they added about 30k shorts in 4 weeks. A hawkish BoJ pushes AGAINST that new short, so a short squeeze (fast buying back) could lift the yen. NKD: +575, 22nd pct, Leaning short; little long fuel, room to fall further. NQ: +950, 94th pct, Crowded long; the AI scare pushes AGAINST it, so more forced selling is possible. GC: +104k, 24th pct, Leaning short; room to run if the dollar slips.",
+      "inline": false
+     },
+     {
+      "name": "🧭 Bias takeaway",
+      "value": "Mild bullish lean for the yen (6J) into December, helped by funds' recent shorts. Mild bearish lean for NKD, mostly from the AI selloff, with a firmer yen adding pressure. NQ stays driven by AI earnings, and crowded longs make it fragile. This changes if Ueda plays down December at 5:30pm Sydney: the yen would weaken and NKD would bounce. Commodities: neutral, no BoJ-driven bias.",
+      "inline": false
+     }
+    ],
+    "footer": {
+     "text": "Sources: investingLive, Investing.com, EconoTimes, Reuters, CNBC. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-30T03:32:44.366727+00:00"
  }
 ]
