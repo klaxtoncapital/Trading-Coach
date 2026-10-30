@@ -399,5 +399,20 @@
    }
   ],
   "created_at": "2026-10-30T03:32:44.366727+00:00"
+ },
+ {
+  "id": "2026-10-30-jpy-boj-presser",
+  "embeds": [
+   {
+    "title": "🇯🇵 BOJ Press Conference (Ueda) · ⏳ Not found yet",
+    "color": 6121057,
+    "description": "**Ueda's press conference comments: not found yet.** I searched for about 25 minutes after it started (3:30pm Tokyo / 5:30pm Sydney) and found no reliable write-up of what he said about the next hike, the yen or bond buying. I won't guess.\n\n**Confirmed earlier today, from two sources: the decision itself.** The BOJ (Bank of Japan, Japan's central bank) kept its policy rate (the interest rate it sets for short-term borrowing) at 1.25%. The vote was 8-1: board member Takata wanted a hike to 1.5%. The statement said underlying inflation (price rises once one-off swings like energy are removed) is now 'generally consistent' with the 2% target. Risks to prices lean to the upside. The FY2027 core inflation forecast went up to 2.6% from 2.4%. The BOJ will also sell its stock ETFs (funds that track the stock market) more than twice as fast from January 2027: about ¥860bn a year, up from ¥330bn.\n\n**Why it matters:** these are hawkish signals (pointing to higher rates). Before the meeting, around 80% of economists expected a hike at the 18 December meeting. Early reaction: the yen firmed (6J up) to about 157.1 per dollar. Watch Ueda's comments for confirmation of a December hike.",
+    "fields": [],
+    "footer": {
+     "text": "Sources: Tribune India, investingLive, Reuters via Yahoo Finance. Presser details still to come. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-10-30T06:58:38.161261+00:00"
  }
 ]
