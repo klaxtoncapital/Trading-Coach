@@ -1,99 +1,103 @@
 {
- "generated_at": "2026-10-30T09:47:00+11:00",
- "trading_day": "2026-10-30",
- "summary": "Hawkish US backdrop: Q3 GDP 3.4% and PCE inflation 3.6% after the Fed held at 3.75-4.00% with two hike dissents; Alphabet -12.6% dragged the Nasdaq 1.4% and Amazon/Intel fell after hours. BOJ decides today.",
+ "generated_at": "2026-11-02T10:50:21+11:00",
+ "trading_day": "2026-11-02",
+ "summary": "Risk-off into November: Nasdaq -2.8% Friday on AI-spending fears after Amazon and Intel guidance, while Hormuz tanker attacks keep Brent near $117. Busy week: Apple tonight, US midterms Tuesday, RBA Tuesday, BoE Thursday, US jobs Friday.",
  "events_next_24h": [
-  "Fri 10:30 JPY Tokyo CPI (Oct)",
-  "Fri ~13:00-14:00 JPY BOJ policy decision (no fixed time)",
-  "Fri ~17:30 JPY BOJ Governor press conference",
-  "Fri 23:30 USD Employment Cost Index (Q3)",
-  "Fri pre-US-open ExxonMobil and AbbVie earnings"
+  "Mon 12:45 CNY RatingDog manufacturing PMI (Oct)",
+  "Tue 02:00 USD ISM manufacturing PMI (Oct)",
+  "Tue 08:00 USD Apple earnings (after US close)",
+  "Tue all day USD US midterm elections; Japan market holiday (Culture Day)",
+  "Tue 14:30 AUD RBA rate decision (just outside 24h)"
  ],
  "tier1_next_14d": [
-  "BOJ policy decision · Fri, 30 Oct, ~13:00-14:00 (unconfirmed time)",
-  "US Non-Farm Payrolls (Oct) · Sat, 7 Nov, 00:30 (expected)"
+  "US Non-Farm Payrolls (Oct) · Sat, 7 Nov, 00:30 (expected date)"
  ],
  "markets": {
   "ES": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Hot PCE inflation and 84% odds of a December Fed hike weigh; S&P slipped 0.3% and Amazon fell ~7% after hours. Funds positioning neutral.",
-   "risk": "Strong ECI-free tape or Amazon/Apple bounce lifts megacaps back."
+   "why": "S&P fell 1.83% Friday with ~70% of stocks down as AI-spending fears and a likely December Fed hike weigh. Funds positioning neutral (35th pct).",
+   "risk": "Apple beat tonight or a calm midterm result sparks a relief rally."
   },
   "NQ": {
    "bias": "bearish",
    "conviction": 2,
-   "why": "Alphabet -12.6% sank Nasdaq 1.4%; Amazon and Intel fell hard after hours with 10y near 5%. Funds crowded long (94th pct) adds downside fuel.",
-   "risk": "Dip-buying in AI names or a sharp drop in yields."
+   "why": "Nasdaq -2.84% Friday, worst month in over a year, as Amazon and Intel guidance hit AI names. Funds still crowded long (94th pct) adds downside fuel.",
+   "risk": "Strong Apple results after tonight's close or a sharp fall in yields."
   },
   "YM": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Dow dipped ~0.4% but health care hit records; hawkish Fed weighs yet Dow is less exposed to the big-tech earnings selloff.",
-   "risk": "Broad risk-off spills into value names."
+   "why": "Dow fell a milder 1.06% and is less exposed to the AI selloff; energy majors beat, but a hawkish Fed and $104 oil weigh.",
+   "risk": "A broad risk-off leg on election or Iran news drags the Dow lower."
   },
   "RTY": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Small caps rose ~1% against the tech drop, but 5% 10-year yields and hike odds usually hurt them; signals conflict.",
-   "risk": "Yields jump further after ECI, or rotation out of tech accelerates."
+   "why": "Small caps fell 2% Friday after rallying Thursday on softer PCE; December hike odds near 75% hurt them, rotation out of tech helps.",
+   "risk": "A dovish surprise in data lifts small caps; more hike talk sinks them."
   },
   "NKD": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "BOJ decides today and Tokyo CPI is out this morning; US tech weakness weighs, but funds lean short (22nd pct), so a hold could spark a bounce.",
-   "risk": "Hawkish BOJ surprise (hike) lifts yen and hits Nikkei."
-  },
-  "6E": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "EUR/USD flat near 1.113; hawkish Fed supports the dollar but no clear euro catalyst found overnight.",
-   "risk": "Fresh euro-area inflation surprise or dollar breakout."
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Nikkei fell 2.1% Friday and 5.2% in October, seen opening ~1.5% lower after US tech losses and a China PMI back in contraction. Funds lean short (22nd pct), not crowded.",
+   "risk": "A strong Apple print and US tech rebound, or a sharply weaker yen."
   },
   "6J": {
-   "bias": "neutral",
+   "bias": "bullish",
    "conviction": 1,
-   "why": "BOJ decision today: a hawkish hold is expected; USD/JPY near 158 keeps intervention risk alive. Tier-1 event could flip it.",
-   "risk": "BOJ hike or explicit intervention warning sends yen sharply higher."
+   "why": "Yen gained three sessions on haven demand and BOJ said hikes remain possible (Dec hike ~80% priced); US-Japan rate gap still caps it. Funds neutral (74th pct).",
+   "risk": "Risk-on rebound or hawkish Fed talk pushes USD/JPY back up."
+  },
+  "6E": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "ECB paused at 2.5% while French 10y yields hover near 5% and Lagarde announced an early exit; Fed hike odds favour the dollar.",
+   "risk": "Hawkish ECB speakers or softer US data lift the euro."
   },
   "6B": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "No clear UK catalyst found overnight; dollar firm on Fed hike odds but sterling move not confirmed.",
-   "risk": "Strong dollar move after US ECI data."
+   "why": "BoE expected to hike to 4.00% on Thursday, which supports sterling, but global risk-off and high oil weigh; no clear edge before the decision.",
+   "risk": "A firm BoE hike signal Thursday or a deeper risk-off move."
   },
   "6A": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Risk tone mixed (tech down, small caps up) and no Australian catalyst found; Aussie lacks a clear driver today.",
-   "risk": "Sharp risk-off or China headline."
+   "why": "China's official factory PMI slipped to 49.3 and risk is off, but the RBA is ~90% priced to hike to 4.85% Tuesday 2:30pm; wait for both.",
+   "risk": "A hawkish RBA hike lifts AUD; a dovish hold or weak China data sinks it."
   },
   "ZN": {
-   "bias": "bearish",
-   "conviction": 2,
-   "why": "PCE inflation sped up to 3.6% and GDP hit 3.4%; two Fed officials wanted a hike and the 10-year yield rose to ~5.05%.",
-   "risk": "Soft Employment Cost Index tonight eases hike fears."
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "10y yield fell 7bp to ~4.92% Friday on haven buying, but the Fed is in a hiking cycle and $104 oil feeds inflation; jobs data Friday.",
+   "risk": "Hot ISM prices or hawkish Fed talk pushes yields up; deeper selloff pulls them down."
   },
   "GC": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Gold slid toward $4,000 as hot growth and inflation keep a December hike in play; funds lean short (24th pct), limiting the edge.",
-   "risk": "Middle East flare-up or dollar drop revives safe-haven buying."
+   "why": "Gold fell 3.7% Friday to ~$3,875 and ~7% in October despite falling yields, as Fed hike pricing lifts the dollar. Funds lean short (24th pct), limiting fuel.",
+   "risk": "Escalation with Iran or a sharp dollar drop revives haven buying."
   },
   "CL": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Middle East/Hormuz supply risk keeps oil supported, but I couldn't verify overnight settlement moves; funds lean short (13th pct) = squeeze fuel.",
-   "risk": "Confirmed supply disruption (bullish) or de-escalation news (bearish)."
+   "bias": "bullish",
+   "conviction": 2,
+   "why": "Brent ~$117 and WTI ~$104 after more Hormuz tanker attacks; Trump says no hurry on an Iran deal. Funds lean short (13th pct), so short-covering adds fuel.",
+   "risk": "A US-Iran deal or Iran's two-day Hormuz reopening offer being accepted."
   }
  },
  "sources": [
-  "https://www.stocktitan.net/articles/stock-market-today-live-october-29-2026",
-  "https://www.marketalleys.com/post/marketalleys-closing-tape-2026-10-29",
-  "https://finance.yahoo.com/economy/policy/live/fed-meeting-live-updates-federal-reserve-october-meeting-kevin-warsh-161129201.html",
-  "https://finance.yahoo.com/economy/policy/articles/boj-preview-october-hawkish-hold-042012157.html",
-  "http://www.kitco.com/news/article/2026-10-29/gold-falls-toward-4000-core-pce-rises-us-growth-accelerates-kitco-am-report",
-  "https://www.cnbc.com/2026/10/28/oil-price-today-wti-brent-hormuz.html",
+  "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-oct-30-2026",
+  "https://investrade.com/?p=1686",
+  "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-8cc",
+  "https://investinglive.com/news/economic-and-event-calendar-in-asia-monday-november-2-2026-another-china-pmi/",
+  "https://247wallst.com/investing/2026/10/31/two-fed-officials-just-called-for-more-rate-hikes-starting-soon",
+  "https://www.hngn.com/articles/273662/20261101/trump-says-not-hurry-iran-awaits-answer-2-day-hormuz-plan.htm",
+  "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe",
+  "https://www.savings.com.au/news/all-big-four-banks-back-november-rate-hike",
+  "https://forexfundamentals.com/economic-calendar/boe/2026-11-05",
+  "https://silentkz.substack.com/p/trading-journal-2026-11-01",
+  "https://www.macrumors.com/2026/10/06/apple-q4-2026-earnings-nov-2/",
   "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
  ]
 }
