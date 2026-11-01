@@ -133,7 +133,7 @@ def simulate(bars: pd.DataFrame, setups: list[Setup], costs: Costs, gap_fills: b
             "tag": s.tag, "side": "Long" if d == 1 else "Short",
             "decided_at": s.decided_at, "entry_time": t[fill_i], "exit_time": t[exit_i],
             "entry": fill_px, "stop": stop, "target": target, "exit": exit_px, "result": result,
-            "risk_pts": risk, "gross_pts": gross_pts, "gross_r": gross_pts / risk,
+            "risk_pts": risk, "risk_usd": risk_usd, "gross_pts": gross_pts, "gross_r": gross_pts / risk,
             "gross_usd": gross_pts * costs.point_value, "cost_usd": cost_usd,
             "net_usd": gross_pts * costs.point_value - cost_usd,
             "r": (gross_pts * costs.point_value - cost_usd) / risk_usd,
@@ -147,7 +147,7 @@ def simulate(bars: pd.DataFrame, setups: list[Setup], costs: Costs, gap_fills: b
 
 def _empty() -> pd.DataFrame:
     return pd.DataFrame(columns=["tag", "side", "decided_at", "entry_time", "exit_time", "entry", "stop",
-                                 "target", "exit", "result", "risk_pts", "gross_pts", "gross_r", "gross_usd",
+                                 "target", "exit", "result", "risk_pts", "risk_usd", "gross_pts", "gross_r", "gross_usd",
                                  "cost_usd", "net_usd", "r", "mae_r", "mfe_r", "bars_held"])
 
 

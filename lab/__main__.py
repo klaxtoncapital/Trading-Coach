@@ -7,6 +7,7 @@
   python -m lab run retrace --root NKD --sweep stop=40,50,60 target=150,185,220 --walk-forward
   python -m lab compare-retrace --root NKD            # Stage 0 gate: Lab vs the old backtest
   python -m lab check retrace --root NKD              # look-ahead test on its own
+  python -m lab prop retrace --root NKD --only "Bull WED,Bear THU" --contracts 1,2   # Topstep 150K Combine odds
 
 Strategy settings go in as --set key=value (or the shortcuts --only / --since).
 Every run writes an HTML tear sheet to lab_reports/ and a CSV of the trades.
@@ -21,7 +22,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import data, engine, metrics, robust, tearsheet
+from . import data, engine, metrics, prop, robust, tearsheet
 from .strategies import get
 
 # Round-trip commission estimates ($ per contract). Replace with your real fees:
@@ -94,7 +95,7 @@ def cmd_run(args) -> None:
 
 
 def report_and_print(strat, market: str, bars: pd.DataFrame, costs: engine.Costs, note: str, params: dict, args,
-                     extra_notes: list[str] | None = None) -> Path:
+                     extra_notes: list[str] | None = None, prop_fn=None) -> Path:
     gap = not params.get("pine_compat", False)
     trades = engine.simulate(bars, strat.setups(bars, **params), costs, gap)
     if trades.empty:
@@ -126,11 +127,50 @@ def report_and_print(strat, market: str, bars: pd.DataFrame, costs: engine.Costs
                 print(f"  walk-forward out-of-sample: {w['n']} trades, {w['expectancy_r']:+.3f}R a trade")
     elif args.walk_forward:
         print("  (walk-forward needs --sweep: it has to choose between settings)")
+    if prop_fn:
+        rep.prop = prop_fn(trades)
     p = tearsheet.save(rep)
     csv = p.with_suffix(".csv")
     trades.to_csv(csv, index=False)
     print(f"\nTear sheet: {p}\nTrades:     {csv}")
     return p
+
+
+def prop_rules(args) -> prop.Rules:
+    r = prop.PRESETS[args.firm]
+    if args.fee is not None:
+        r.monthly_fee = args.fee
+    if args.dll is not None:
+        r.dll = args.dll or None
+    if args.max_days is not None:
+        r.max_days = args.max_days
+    if args.no_consistency:
+        r.consistency = None
+    return r
+
+
+def cmd_prop(args) -> None:
+    strat = get(args.strategy)
+    root = args.root.upper()
+    meta = data.load_meta(root)
+    bars = load_bars(strat, root, args)
+    costs, note = market_costs(root, meta, args)
+    params = params_for(strat, root, meta, args, costs)
+    rules = prop_rules(args)
+
+    def run_prop(trades):
+        sizes = [("c", int(x)) for x in str(args.contracts).split(",") if x.strip()] if args.contracts else []
+        sizes += [("r", float(x)) for x in str(args.risk_usd).split(",") if x.strip()] if args.risk_usd else []
+        sizes = sizes or [("c", 1)]
+        out = []
+        for method in ("historical", "bootstrap"):
+            res = [prop.simulate(trades, rules, contracts=v if k == "c" else None, risk=v if k == "r" else None,
+                                 method=method, sims=args.sims) for k, v in sizes]
+            prop.print_table(res)
+            out += res
+        return out
+
+    report_and_print(strat, f"{root} {strat.timeframe}", bars, costs, note, params, args, prop_fn=run_prop)
 
 
 def cmd_check(args) -> None:
@@ -269,6 +309,18 @@ def main(argv=None) -> None:
     p.add_argument("strategy")
     common(p)
     robust_opts(p)
+    p = sub.add_parser("prop", help="put a strategy through a prop firm Combine")
+    p.add_argument("strategy")
+    common(p)
+    robust_opts(p)
+    p.add_argument("--firm", choices=sorted(prop.PRESETS), default="topstep150")
+    p.add_argument("--contracts", help="fixed contracts per trade, e.g. 1,2,3")
+    p.add_argument("--risk-usd", help="$ risk per trade instead (as many contracts as fit), e.g. 500,1000")
+    p.add_argument("--fee", type=float, help="monthly fee per account (default 200)")
+    p.add_argument("--dll", type=float, help="daily loss limit in $ (default off, as on TopstepX)")
+    p.add_argument("--max-days", type=int, help="trading days before an attempt counts as timed out (default 60)")
+    p.add_argument("--no-consistency", action="store_true", help="ignore the 50%% consistency target")
+    p.add_argument("--sims", type=int, default=5000, help="bootstrap attempts (default 5000)")
     p = sub.add_parser("check", help="look-ahead test")
     p.add_argument("strategy")
     common(p)
@@ -293,6 +345,8 @@ def main(argv=None) -> None:
         cmd_run(args)
     elif args.cmd == "check":
         cmd_check(args)
+    elif args.cmd == "prop":
+        cmd_prop(args)
     elif args.cmd == "compare-retrace":
         cmd_compare_retrace(args)
     elif args.cmd == "demo":

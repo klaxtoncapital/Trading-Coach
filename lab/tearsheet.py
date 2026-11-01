@@ -40,6 +40,7 @@ class Report:
     wf_trades: pd.DataFrame | None = None
     wf_windows: pd.DataFrame | None = None
     oos_frac: float = 0.3
+    prop: list | None = None          # prop.PropResult objects, one per sizing/method
     notes: list[str] = field(default_factory=list)
 
 
@@ -364,6 +365,25 @@ Settings: <code>{_e(', '.join(f'{k}={v}' for k, v in rep.params.items() if v not
                    + (f" Plateau score: {rep.plateau * 100:.0f}% of neighbours profitable." if rep.plateau is not None else "")
                    + "</p>" + _table(rep.sweep.sort_values("expectancy_r", ascending=False)))
     parts.append('<div class="card">' + "".join(rob) + "</div>")
+    if rep.prop:
+        import math as _m
+        rows_p = []
+        for pr in rep.prop:
+            w = pr.row()
+            dp = "—" if _m.isnan(w["days_to_pass"]) else f"{w['days_to_pass']:.0f}"
+            cpp = "never" if _m.isinf(w["cost_per_pass"]) else _usd(w["cost_per_pass"])
+            rows_p.append(f"<tr><td>{_e(pr.method)}</td><td>{_e(w['sizing'])}</td><td>{w['attempts']}</td>"
+                          f"<td class='pos'>{w['pass']:.0%}</td><td class='neg'>{w['fail']:.0%}</td>"
+                          f"<td>{w['timeout']:.0%}</td><td>{dp}</td><td>{cpp}</td></tr>")
+        r0 = rep.prop[0].rules
+        parts.append(f"<h2>Prop firm Combine: {_e(r0.name)}</h2><div class='card'><p>Each attempt trades this strategy "
+                     f"under the Combine rules: ${r0.target:,.0f} target, ${r0.mll:,.0f} max loss trailing the end-of-day high "
+                     f"(checked at each trade's worst point), {'no' if r0.consistency is None else f'{r0.consistency:.0%}'} consistency target, "
+                     f"{r0.max_days} trading days, ${r0.monthly_fee:,.0f} a month. <b>Historical</b> starts an attempt every week of real "
+                     f"history; <b>bootstrap</b> builds thousands from randomly drawn real days. <b>$ per funded account</b> = "
+                     f"fees paid across all attempts ÷ passes. Copying to several accounts multiplies the fees, not the odds.</p></div>"
+                     "<div class='tw'><table><tr><th>method</th><th>size</th><th>attempts</th><th>pass</th><th>fail</th>"
+                     "<th>timeout</th><th>days to pass</th><th>$ per funded account</th></tr>" + "".join(rows_p) + "</table></div>")
     if t["tag"].nunique() > 1:
         parts.append("<h2>5 · By setup</h2>" + _table(metrics.by(t, "tag"), {"win_rate": lambda v: _f(v, 0, pct=True),
                                                                               "total_usd": _usd}))

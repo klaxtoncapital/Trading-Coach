@@ -11,6 +11,7 @@ Research only. Nothing here places orders, and the live desk (`scanner/`, Railwa
 | `lab/engine.py` | Backtest engine. Strategies return **Setups** (decision time, side, entry, stop, target, time exit); the engine plays them through the bars that come after. Stop before target in the same bar; the target can't count on a limit order's fill bar; gaps fill at the open; costs (commission + slippage) on every trade. Includes the **look-ahead detector**. |
 | `lab/metrics.py` | Expectancy, win rate, payoff, profit factor, drawdown, losing streak, Sharpe, Sortino, t-stat, bootstrap confidence range, breakdowns by setup/year/weekday. All in R after costs, plus $ per contract. |
 | `lab/robust.py` | Monte Carlo (drawdown spread + chance of hitting an account limit), parameter sweep + plateau score, walk-forward (choose settings on the past, trade the future), cost stress (1.5× slippage). |
+| `lab/prop.py` | Prop firm Combine simulator. Replays the strategy through Topstep's rules (target, trailing end-of-day max loss checked at each trade's worst point, 50% consistency, optional daily loss limit) from every week of real history and from thousands of bootstrapped paths. Gives pass/fail/timeout rates, days to pass, and fees paid per funded account. |
 | `lab/tearsheet.py` | One self-contained HTML tear sheet per run: verdict, the 12-point validation checklist auto-ticked, headline numbers with plain-English notes, charts, robustness, trade list. |
 | `lab/strategies/` | One file per strategy. `retrace.py` is the NKD Retrace Rule, the reference strategy. |
 
@@ -24,6 +25,7 @@ python -m lab compare-retrace --root NKD             # STAGE 0 GATE: Lab vs the 
 python -m lab run retrace --root NKD --only "Bull WED,Bear THU" --risk 275 --limit 4500
 python -m lab run retrace --root NKD --set mode=atr --sweep stop=0.18,0.22,0.26 target=0.6,0.8,1.0 --walk-forward
 python -m lab check retrace --root NKD               # look-ahead test only
+python -m lab prop retrace --root NKD --only "Bull WED,Bear THU" --contracts 1,2 --fee 200   # Combine odds + tear sheet
 ```
 
 Tear sheets and trade CSVs land in `lab_reports/`. Costs default to an estimate ($4 round trip, $1.50 for micros, 1 tick slippage a side): set real fees with `--commission` and `--slip-ticks`.
@@ -47,3 +49,9 @@ Tear sheets and trade CSVs land in `lab_reports/`. Costs default to an estimate 
 - **Walk-forward** is the honest out-of-sample test, because it includes the act of picking settings.
 - **Plateau**: neighbouring settings should also work. One lucky cell is curve fitting.
 - **Monte Carlo**: the backtest drawdown is one ordering of the trades. Plan for the bad case (95th percentile), not the backtest's own number.
+
+## Prop firm notes
+
+- Rules default to the Topstep 150K Combine: $9,000 target, $4,500 Maximum Loss Limit trailing the end-of-day high and stopping at the starting balance, best day at most 50% of profit, no daily loss limit (TopstepX), 60 trading days, $200/month. Change with `--firm`, `--fee`, `--dll`, `--max-days`, `--no-consistency`. Check Topstep's current rules before relying on the numbers.
+- "$ per funded account" counts every month paid across every attempt, divided by the passes. Copying one strategy to four accounts gives four times the fees with the same odds, because all four pass or fail together.
+- Size is fixed contracts (`--contracts 1,2`) or dollar risk (`--risk-usd 1000`, takes as many contracts as fit and skips trades where even one is too big).

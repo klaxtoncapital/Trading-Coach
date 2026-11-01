@@ -160,3 +160,53 @@ def test_store_round_trip(tmp_path, monkeypatch):
     back = data.load("NKD", "1h")
     assert len(back) == len(b) and data.load_meta("NKD")["tick_size"] == 5.0
     assert data.available()[0][:2] == ("NKD", "1h")
+
+
+# ── prop firm Combine simulator ──────────────────────────────────────────
+
+from lab import prop  # noqa: E402
+
+R = prop.Rules(max_days=30)
+
+
+def days(*pnls):
+    """One trade a day: (net, worst during the trade)."""
+    return [[(p, min(p, 0.0))] if p is not None else [] for p in pnls]
+
+
+def test_prop_pass_needs_target_and_consistency():
+    a = prop.run_attempt(days(*[1000] * 9), R)
+    assert a.outcome == "PASS" and a.days == 9
+    # one $9,000 day reaches the target but breaks the 50% consistency target: keep trading
+    a = prop.run_attempt(days(9000, *[1000] * 9), R)
+    assert a.outcome == "PASS" and a.days == 10 and a.profit == 18000
+
+
+def test_prop_fails_on_intraday_touch_of_the_limit():
+    a = prop.run_attempt([[(-1000.0, -4600.0)]], R)          # closed at -1,000 but was -4,600 inside the trade
+    assert a.outcome == "FAIL" and a.days == 1
+
+
+def test_prop_loss_limit_trails_end_of_day_and_locks_at_start():
+    assert prop.run_attempt(days(4000, -4600), R).outcome == "FAIL"     # floor moved up to 149,500
+    assert prop.run_attempt(days(4000, -4400), R).outcome == "TIMEOUT"
+    # after +6,000 the floor stops at the 150,000 start, so a 5,900 drop is still alive
+    assert prop.run_attempt(days(6000, -5900), R).outcome == "TIMEOUT"
+    assert prop.run_attempt(days(6000, -6000), R).outcome == "FAIL"
+
+
+def test_prop_daily_loss_limit_ends_the_day_not_the_attempt():
+    r = prop.Rules(max_days=5, dll=1000)
+    a = prop.run_attempt([[(-1000.0, -1000.0), (-1000.0, -1000.0), (-1000.0, -1000.0)]], r)
+    assert a.outcome == "TIMEOUT" and a.trades == 1
+
+
+def test_prop_simulate_scales_contracts():
+    b = synthetic(500)
+    t = engine.simulate(b, Retrace().setups(b, tick=5.0), Costs(4, 1, 5, 5))
+    one = prop.simulate(t, prop.Rules(), contracts=1, method="historical")
+    three = prop.simulate(t, prop.Rules(), contracts=3, method="historical")
+    assert len(one.attempts) > 20
+    assert three.fail_rate >= one.fail_rate                 # same trades, 3x size: never safer
+    boot = prop.simulate(t, prop.Rules(), contracts=1, method="bootstrap", sims=300)
+    assert len(boot.attempts) == 300 and abs(sum([boot.pass_rate, boot.fail_rate, boot.timeout_rate]) - 1) < 1e-9
