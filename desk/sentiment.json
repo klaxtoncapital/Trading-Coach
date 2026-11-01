@@ -414,5 +414,82 @@
    }
   ],
   "created_at": "2026-10-30T06:58:38.161261+00:00"
+ },
+ {
+  "id": "2026-11-02-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Mon 2 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "October ended with a sharp sell-off: on Friday the Nasdaq fell 2.8% and the S&P 500 1.8% as investors punished big tech for spending huge sums on AI without enough cash coming back. At the same time oil is near its highest since April because ships keep getting attacked in the Strait of Hormuz, the narrow sea lane most Gulf oil passes through. \"Risk-off\" means investors are selling things that can fall a lot (stocks, especially tech) and hiding in safer places (bonds, the yen). Today the mood is risk-off, though US futures were edging slightly higher on Sunday evening.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 Nasdaq -2.84%, S&P -1.83%, Dow -1.06%, Russell -2.03% Fri; Nasdaq's worst month in over a year\n🔴 Intel -29% (worst day since 1974), Amazon fell after weak guidance; AI cash-burn fears spread\n🔴 Brent ~$117, WTI ~$104 after more Hormuz tanker attacks; Brent +13.6% in October\n⚪ Trump: Iran talks \"going fine\" but US in \"no hurry\"; no strikes before 3 Nov midterms\n🔴 China's official factory PMI 49.3 (below 50 = shrinking)\n⚪ Fed's Logan and Musalem call for more rate hikes \"soon\"; Dec hike ~72-76% priced",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "The US central bank (the Fed) is in a hiking cycle: its rate is 3.75-4.00% and markets expect another rise in December. Higher rates make borrowing dearer and slow the economy. Oil above $100 pushes up petrol and shipping costs, which keeps inflation (rising prices) high and makes the Fed even less likely to help. Europe, the UK and Australia are also fighting inflation, so central banks everywhere lean tough. Red-folder results last week: PCE inflation came in softer, Fed and BOJ held rates.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "The story is \"AI capex\": capital expenditure, money firms spend on data centres. Investors now worry it is too much for too little profit; Amazon's free cash flow (cash left after spending) has turned negative. Apple reports tonight after the US close (8:00am Sydney Tue), a key test for NQ. Tuesday is the US midterm election, which can cause swings. Bonds were bought as a safe place, so the 10-year yield fell to ~4.92%, a small cushion for stocks. Lean: NQ bearish, ES slightly bearish.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "The Nikkei fell 2.1% Friday and 5.2% in October, and is seen opening about 1.5% lower (~62,330) as it follows US tech down. The yen strengthened for three days to ~157.5 per dollar (6J up) because traders buy it as a safe haven when stocks fall. The Bank of Japan held at 1.25% Friday but said inflation has reached its 2% goal and more hikes are possible (December ~80% priced). Japan is on holiday Tuesday (Culture Day), so liquidity may be thin.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude (CL): supply fear from Hormuz dominates; Iran says it could reopen the strait in 2 days, but only if the US meets conditions such as lifting its naval blockade. A deal headline could drop oil fast. Gold (GC): fell 3.7% Friday to ~$3,875, down ~7% in October; a stronger dollar and Fed hike talk hurt it. Silver followed. Copper: weak China factory data is a headwind. Grains trading heavy; lean hogs funds very short.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Mon 12:45pm China RatingDog factory PMI: a survey of factory managers; below 50 means shrinking. Moves AUD, copper, Asian stocks.\nTue 2:00am US ISM manufacturing: the main US factory survey; a hot prices reading adds to hike fears.\nTue 8:00am Apple earnings: the biggest NQ company report this week.\nTue: US midterm voting. Tue 2:30pm RBA decision (hike to 4.85% expected). Note: US clocks went back, so the US open is now 1:30am Sydney.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 10697258,
+    "fields": [
+     {
+      "name": "Trump (Sat night, Mar-a-Lago) · \"no hurry\" on an Iran deal",
+      "value": "Trump said talks are \"going fine\" but Iran is \"not very reliable\", and one or two nuclear sites remain that could be hit \"in 10 minutes\". He has said no strikes before the 3 Nov midterms, so strike options come back after the vote. Negative for stocks and positive for oil (CL) and possibly the yen: it means the Hormuz supply squeeze may last. Positive if a deal suddenly lands.",
+      "inline": false
+     },
+     {
+      "name": "Iran FM Araghchi · strait could reopen in 2 days, with conditions",
+      "value": "Iran says shipping through Hormuz could restart within two days if the US lifts its naval blockade, waives oil sanctions and unfreezes assets. Both sides are waiting for the other to move first. If accepted it would be very negative for oil and positive for stocks, so it is the main risk to a bullish oil view.",
+      "inline": false
+     },
+     {
+      "name": "Fed's Logan (Dallas) and Musalem (St. Louis) · more hikes needed",
+      "value": "Logan said the Fed needs at least two more quarter-point hikes; Musalem said more firming is needed \"soon\". Hawkish (favouring higher rates) talk supports the dollar and hurts gold, small caps (RTY) and growth stocks (NQ).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-10-20 (CFTC report; before last week's sell-off). \"Percentile\" (pct) ranks today's fund position against the last 3 years: 90+ means unusually long (crowded bets on up), 10 or less unusually short. A crowded side is fuel for a sharp move the other way, called a squeeze, when those traders rush to exit.\n\nNKD · Leaning short (22nd pct) · News pushes with the mild short; not crowded, so little squeeze risk unless US tech rebounds.\nNQ · Crowded long (94th pct) · News is against the crowd: AI fears could force more of these longs to sell, a downside flush is more likely than an up-squeeze.\nES · Neutral (35th pct) · No crowding; price follows the news, which is negative.\n6J · Neutral (74th pct) · Funds are short the yen but not extreme; haven buying works against them, a modest yen squeeze is possible.\nCL · Leaning short (13th pct) · News (Hormuz attacks) is against the shorts, so short-covering could push oil higher.\nGC · Leaning short (24th pct) · News (hike talk, strong dollar) pushes with the funds; commercials at 99th pct hint selling may be late.\nSI · Crowded short (3rd pct) · Funds are very short; a dollar dip or haven bid could spark a sharp silver squeeze up.\nHE · Crowded short (1st pct) · Record-like short in lean hogs; any good demand news could squeeze it higher.\nNG · Crowded short (1st pct) · Natural gas funds very short; cold weather or Gulf LNG news (an LNG ship was hit near Hormuz) could squeeze it.\nZS · Crowded long (94th pct) · Soybean funds very long while grains trade heavy; long liquidation risk.\n\nBest setup today: crude oil, where funds lean short (13th pct) while Hormuz attacks keep supply tight, so news and positioning point the same way: up."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "🔴 NKD · conviction ●●○ · Following US tech lower after a 5% October drop, China weak; funds only lean short, so room to fall.\n🔴 NQ · conviction ●●○ · AI-spending fears hit tech; funds crowded long (94th pct) can add selling. Apple tonight is the swing factor.\n🔴 ES · conviction ●○○ · Broad selling Friday and a likely Dec hike; funds neutral, so just a lean.\n🟢 6J · conviction ●○○ · Yen bought as a haven and BOJ open to hikes; funds not crowded. A lean only.\n🔴 GC · conviction ●○○ · Dollar strength and Fed hike talk; funds already leaning short limits fuel.\n🟢 CL · conviction ●●○ · Hormuz attacks keep supply tight and funds lean short (13th pct), so squeezes favour up. A US-Iran deal flips it.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call and be pickier with setups that fight it. Conviction 1 is only a lean, so let your chart decide there, and stay light around Apple tonight, the midterms Tuesday and the RBA.",
+    "footer": {
+     "text": "Sources: TheStreet, Investrade, Peter Lewis briefing, investingLive, 24/7 Wall St, HNGN, Euronews, Savings.com.au, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-01T23:51:24.039955+00:00"
  }
 ]
