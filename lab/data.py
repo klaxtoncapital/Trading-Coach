@@ -179,6 +179,55 @@ def back_adjust(df: pd.DataFrame, gaps: dict[pd.Timestamp, float] | None = None)
     return out
 
 
+# ── importing CSVs from the Windows history pull ─────────────────────────
+
+MONTH_CODES = "FGHJKMNQUVXZ"
+
+
+def import_history_dir(folder: str | Path, roots: list[str] | None = None, tf: str = "1h") -> list[str]:
+    """Load KlaxtonDesk\\data\\history (one CSV per contract month, e.g. NKD_Z2025.csv with
+    time_utc, open, high, low, close, volume) into the store, stitched and with contract facts
+    from contracts.json. Returns a line per market."""
+    folder = Path(folder)
+    facts = {}
+    cj = folder / "contracts.json"
+    if cj.exists():
+        facts = json.loads(cj.read_text(encoding="utf-8-sig"))
+    files: dict[str, list[tuple[int, int, Path]]] = {}
+    for f in folder.glob("*_*.csv"):
+        root, _, code = f.stem.rpartition("_")
+        if len(code) < 5 or code[0] not in MONTH_CODES or not code[1:].isdigit():
+            continue
+        if roots and root not in roots:
+            continue
+        files.setdefault(root, []).append((int(code[1:]), MONTH_CODES.index(code[0]), f))
+    report = []
+    for root, lst in sorted(files.items()):
+        by_contract = {}
+        for year, month, f in sorted(lst):                      # oldest contract first
+            raw = pd.read_csv(f)
+            if raw.empty:
+                continue
+            df = pd.DataFrame({"t": pd.to_datetime(raw["time_utc"], utc=True), "o": raw["open"], "h": raw["high"],
+                               "l": raw["low"], "c": raw["close"], "v": raw["volume"]})
+            by_contract[f.stem] = _clean(df)
+        bars = stitch(by_contract)
+        if not len(bars):
+            continue
+        fx = facts.get(root, {})
+        meta = {"root": root, "source": f"history CSVs ({folder.name})"}
+        if fx.get("tickSize"):
+            meta.update(tick_size=float(fx["tickSize"]), tick_value=float(fx["tickValue"]),
+                        point_value=float(fx["tickValue"]) / float(fx["tickSize"]))
+        if path(root, tf).exists():
+            old = load(root, tf)
+            bars = _clean(pd.concat([old[~old.index.isin(bars.index)], bars]))
+        save(root, tf, bars, meta)
+        report.append(f"{root:4} {len(bars):>6} bars  {bars.index[0].date()} to {bars.index[-1].date()}  "
+                      f"{len(roll_points(bars))} rolls")
+    return report
+
+
 # ── pulling from ProjectX ────────────────────────────────────────────────
 
 async def _pull_contract(px, cid: str, tf: str, start: datetime, end: datetime) -> pd.DataFrame:

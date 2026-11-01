@@ -21,7 +21,9 @@ import pandas as pd
 from . import metrics
 from .robust import MonteCarlo
 
-REPORT_DIR = Path(__file__).resolve().parent.parent / "lab_reports"
+import os
+
+REPORT_DIR = Path(os.getenv("LAB_REPORT_DIR", Path(__file__).resolve().parent.parent / "lab_reports"))
 
 
 @dataclass

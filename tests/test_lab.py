@@ -210,3 +210,19 @@ def test_prop_simulate_scales_contracts():
     assert three.fail_rate >= one.fail_rate                 # same trades, 3x size: never safer
     boot = prop.simulate(t, prop.Rules(), contracts=1, method="bootstrap", sims=300)
     assert len(boot.attempts) == 300 and abs(sum([boot.pass_rate, boot.fail_rate, boot.timeout_rate]) - 1) < 1e-9
+
+
+def test_import_history_dir(tmp_path, monkeypatch):
+    monkeypatch.setattr(data, "DATA_DIR", tmp_path / "store")
+    src = tmp_path / "history"
+    src.mkdir()
+    for code, px, start in (("Z2025", 100, "2025-12-01"), ("H2026", 110, "2025-12-01")):
+        idx = pd.date_range(start, periods=48, freq="h", tz="UTC")
+        vol = [100] * 24 + [5] * 24 if code == "Z2025" else [5] * 24 + [100] * 24
+        pd.DataFrame({"time_utc": idx.strftime("%Y-%m-%dT%H:%M:%S+00:00"), "open": px, "high": px + 1,
+                      "low": px - 1, "close": px, "volume": vol}).to_csv(src / f"NKD_{code}.csv", index=False)
+    (src / "contracts.json").write_text('{"NKD": {"tickSize": 5, "tickValue": 25}}')
+    out = data.import_history_dir(src)
+    assert len(out) == 1 and data.load_meta("NKD")["point_value"] == 5.0
+    b = data.load("NKD", "1h")
+    assert list(b["contract"].unique()) == ["NKD_Z2025", "NKD_H2026"]
