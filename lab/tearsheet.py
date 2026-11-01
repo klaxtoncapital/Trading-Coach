@@ -405,7 +405,7 @@ Settings: <code>{_e(', '.join(f'{k}={v}' for k, v in rep.params.items() if v not
 
 def save(rep: Report, name: str | None = None) -> Path:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.now().strftime("%Y-%m-%d_%H%M")
+    stamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
     import re
     fname = name or re.sub(r"[^A-Za-z0-9_.-]+", "_", f"{rep.strategy}_{rep.market}_{stamp}").strip("_") + ".html"
     p = REPORT_DIR / fname
