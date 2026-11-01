@@ -228,6 +228,27 @@ def import_history_dir(folder: str | Path, roots: list[str] | None = None, tf: s
     return report
 
 
+def import_databento_csv(file: str | Path, root: str, tf: str = "1h") -> str:
+    """Load a Databento OHLCV CSV (continuous symbol, pretty_px/pretty_ts) into the store.
+    Each Databento instrument_id becomes a contract, so rolls are known. Where the store already
+    has bars (the ProjectX year), those are kept: Databento only fills in the older history."""
+    raw = pd.read_csv(file)
+    if raw.empty:
+        return f"{root}: empty file"
+    df = pd.DataFrame({"t": pd.to_datetime(raw["ts_event"], utc=True, format="ISO8601"),
+                       "o": raw["open"], "h": raw["high"], "l": raw["low"], "c": raw["close"],
+                       "v": raw["volume"], "contract": "DB" + raw["instrument_id"].astype(str)})
+    bars = _clean(df)
+    if path(root, tf).exists():
+        cur = load(root, tf)
+        bars = _clean(pd.concat([bars[bars.index < cur.index[0]], cur]))
+    meta = load_meta(root)
+    meta["databento"] = str(Path(file).name)
+    save(root, tf, bars, meta)
+    return (f"{root:4} {len(bars):>7} bars  {bars.index[0].date()} to {bars.index[-1].date()}  "
+            f"{len(roll_points(bars))} rolls")
+
+
 # ── pulling from ProjectX ────────────────────────────────────────────────
 
 async def _pull_contract(px, cid: str, tf: str, start: datetime, end: datetime) -> pd.DataFrame:

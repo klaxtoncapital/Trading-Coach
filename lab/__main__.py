@@ -305,6 +305,9 @@ def main(argv=None) -> None:
     p.add_argument("--tf", default="1h", help="1m, 1h, 1d (comma-separated for several)")
     p.add_argument("--days", type=int, default=730)
     sub.add_parser("list", help="show the data store")
+    p = sub.add_parser("import-databento", help="load a Databento OHLCV CSV into the store")
+    p.add_argument("file")
+    p.add_argument("--root", required=True)
     p = sub.add_parser("import-history", help="load the Windows history pull (one CSV per contract month)")
     p.add_argument("folder")
     p.add_argument("--roots", help="only these markets, e.g. NKD,NQ,ES")
@@ -344,6 +347,8 @@ def main(argv=None) -> None:
             print(f"Data store is empty ({data.DATA_DIR}). Start with: python -m lab pull NKD --tf 1h")
         for r in rows:
             print(f"{r[0]:6} {r[1]:3} {r[2]:>8,} bars  {r[3]} to {r[4]}")
+    elif args.cmd == "import-databento":
+        print(data.import_databento_csv(args.file, args.root.upper()))
     elif args.cmd == "import-history":
         roots = [r.strip().upper() for r in args.roots.split(",")] if args.roots else None
         for line in data.import_history_dir(args.folder, roots):

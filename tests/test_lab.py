@@ -226,3 +226,19 @@ def test_import_history_dir(tmp_path, monkeypatch):
     assert len(out) == 1 and data.load_meta("NKD")["point_value"] == 5.0
     b = data.load("NKD", "1h")
     assert list(b["contract"].unique()) == ["NKD_Z2025", "NKD_H2026"]
+
+
+def test_import_databento_fills_older_history(tmp_path, monkeypatch):
+    monkeypatch.setattr(data, "DATA_DIR", tmp_path)
+    recent = synthetic(20)
+    data.save("NKD", "1h", recent, {"tick_size": 5.0, "point_value": 5.0})
+    idx = pd.date_range(recent.index[0] - pd.Timedelta(days=30), recent.index[0] + pd.Timedelta(days=5), freq="h", tz="UTC")
+    f = tmp_path / "NKD_db.csv"
+    pd.DataFrame({"ts_event": idx.strftime("%Y-%m-%dT%H:%M:%S.000000000Z"), "rtype": 34, "publisher_id": 1,
+                  "instrument_id": [111] * 400 + [222] * (len(idx) - 400), "open": 1.0, "high": 2.0, "low": 0.5,
+                  "close": 1.5, "volume": 10, "symbol": "NKD.v.0"}).to_csv(f, index=False)
+    data.import_databento_csv(f, "NKD")
+    b = data.load("NKD", "1h")
+    assert b.index[0] == idx[0]                                  # older history added
+    assert (b.loc[recent.index, "c"] == recent["c"]).all()       # the newer source kept where they overlap
+    assert data.load_meta("NKD")["point_value"] == 5.0
