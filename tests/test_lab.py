@@ -240,5 +240,5 @@ def test_import_databento_fills_older_history(tmp_path, monkeypatch):
     data.import_databento_csv(f, "NKD")
     b = data.load("NKD", "1h")
     assert b.index[0] == idx[0]                                  # older history added
-    assert (b.loc[recent.index, "c"] == recent["c"]).all()       # the newer source kept where they overlap
+    assert (b.loc[recent.index, "c"].to_numpy() == recent["c"].to_numpy()).all()   # newer source kept on overlap
     assert data.load_meta("NKD")["point_value"] == 5.0
