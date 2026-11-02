@@ -368,3 +368,19 @@ def test_atm_ny_filters_only_remove_trades_and_no_lookahead():
         assert got <= base
         ok, probs = engine.lookahead_check(s, b, {"disp_mult": 1.5, **p}, samples=8)
         assert ok, probs
+
+
+def test_trend_visser_states_and_backtest():
+    from lab import trend
+    idx = pd.bdate_range("2012-01-02", periods=1500, tz="UTC")
+    up = np.linspace(100, 300, 750)
+    down = np.linspace(300, 120, 750)
+    c = pd.Series(np.r_[up, down], index=idx)
+    d = pd.DataFrame({"o": c.shift(1).fillna(100), "c": c, "raw_c": c})
+    st = trend.visser_state(d["c"])
+    assert st.iloc[700] == 1.0 and st.iloc[-1] == 0.25            # rising trend full, falling trend small
+    hold = trend.backtest_market(d, mode="hold")
+    vis = trend.backtest_market(d, mode="visser")
+    assert trend.stats(vis["pnl"])["max_dd"] > trend.stats(hold["pnl"])["max_dd"]   # smaller drawdown
+    p = trend.portfolio({"A": vis, "B": hold})
+    assert len(p) > 500
