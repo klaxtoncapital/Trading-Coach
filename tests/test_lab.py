@@ -299,3 +299,18 @@ def test_nkd_signature_finds_setups_without_lookahead():
     assert ok, probs
     t = engine.simulate(b, setups, Costs(0, 0, 5.0, 5.0))
     assert len(t) > 0 and (t["entry_time"] >= t["decided_at"]).all()
+
+
+def test_nkd_sweep_reclaim_rules_and_no_lookahead():
+    from lab.strategies.nkd_sweep_reclaim import NKDSweepReclaim
+    b = synthetic_5m(80, seed=8)
+    s = NKDSweepReclaim()
+    st = s.setups(b, tick=5.0)
+    assert len(st) > 5
+    for x in st:
+        risk = abs(x.info["ref_entry"] - x.stop)
+        assert abs(x.target - x.info["ref_entry"]) >= 1.5 * risk - 1e-9      # room rule
+        assert (x.target - x.info["ref_entry"]) * x.side > 0
+    ok, probs = engine.lookahead_check(s, b, {"tick": 5.0}, samples=10)
+    assert ok, probs
+    assert len(s.setups(b, tick=5.0, reclaim_bars=0)) >= len(st) * 0.8         # no limit runs
