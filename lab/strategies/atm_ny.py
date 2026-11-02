@@ -15,7 +15,8 @@
      need_fvg=True: the displacement must also leave an FVG (versions C and D).
   6. Entry: limit at the order block's body (top for longs, bottom for shorts), valid until 11:00.
   7. Stop: `stop_pts` beyond the sweep's extreme.
-  8. Target: "atm" = the opposite ATM level, or "r2" = a fixed 2R.
+  8. Target: "atm" = the opposite ATM level, or "r2" = a fixed 2R. Skip if the target is under
+     `min_rr` x the risk away (Dave's 1.5R rule).
   Out at `exit_hour` New York if neither stop nor target is hit.
 """
 from __future__ import annotations
@@ -36,7 +37,7 @@ def _t(day, hh, mm=0):
 class ATMNewYork:
     name = "atm_ny"
     timeframe = "1m"
-    defaults = {"disp_mult": 2.0, "need_fvg": False, "target": "atm", "stop_pts": 2.0, "swing_n": 2,
+    defaults = {"disp_mult": 2.0, "need_fvg": False, "target": "atm", "min_rr": 1.5, "stop_pts": 2.0, "swing_n": 2,
                 "fast_bars": 3, "body_pct": 0.6, "exit_hour": 12, "tick": None, "since": None, "only": ""}
     hypothesis = ("A sweep of the 07:00-09:30 ATM high or low inside the 09:30-11:00 window, followed by an obvious "
                   "displaced market structure shift, marks the turn; entering at the order block with the stop past "
@@ -45,7 +46,7 @@ class ATMNewYork:
     def resolve(self, params: dict) -> dict:
         return {**self.defaults, **params}
 
-    def setups(self, bars: pd.DataFrame, disp_mult=2.0, need_fvg=False, target="atm", stop_pts=2.0, swing_n=2,
+    def setups(self, bars: pd.DataFrame, disp_mult=2.0, need_fvg=False, target="atm", min_rr=1.5, stop_pts=2.0, swing_n=2,
                fast_bars=3, body_pct=0.6, exit_hour=12, tick=None, since=None, only="") -> list[Setup]:
         if bars.empty:
             return []
@@ -86,8 +87,8 @@ class ATMNewYork:
             if risk <= 0:
                 continue
             tgt = (atm_h if side == 1 else atm_l) if target == "atm" else entry + side * 2 * risk
-            if (tgt - entry) * side <= 0:
-                continue
+            if (tgt - entry) * side < min_rr * risk:
+                continue                      # under min_rr of reward to the target: skip (Dave's rule)
             out.append(Setup(t[decided], side, stop=stop, target=tgt, entry=entry, expires=_t(day, 11),
                              exit_by=_t(day, exit_hour), target_on_fill_bar=False,
                              tag=f"ATM {'low sweep, long' if side == 1 else 'high sweep, short'}",
