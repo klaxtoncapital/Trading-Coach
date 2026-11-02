@@ -58,17 +58,44 @@ def roc_overlay(c: pd.Series, state: pd.Series, n=50, pct=0.90, lookback=750) ->
     return out
 
 
+def ewmac_forecast(c: pd.Series, raw: pd.Series, pairs=((16, 64), (32, 128), (64, 256)), cap=20.0) -> pd.Series:
+    """Carver's EWMAC: (fast EMA - slow EMA) / price volatility, scaled so the average |forecast| is ~10,
+    averaged across speeds, capped at +/-20. Positive = long, negative = short."""
+    pvol = c.diff().ewm(span=36, min_periods=36).std()                # daily volatility in price points
+    fs = []
+    for f, sl in pairs:
+        raw_f = (c.ewm(span=f, min_periods=sl).mean() - c.ewm(span=sl, min_periods=sl).mean()) / pvol
+        scale = 10 / raw_f.abs().expanding(min_periods=250).mean().shift(1)   # scaled on the past only
+        fs.append((raw_f * scale).clip(-cap, cap))
+    return pd.concat(fs, axis=1).mean(axis=1).clip(-cap, cap)
+
+
+def _buffer(m: pd.Series, band: float) -> pd.Series:
+    """Only change the position when the target moves more than `band` from what's held."""
+    held, out = np.nan, []
+    for x in m.to_numpy():
+        if np.isfinite(x) and (not np.isfinite(held) or abs(x - held) > band):
+            held = x
+        out.append(held)
+    return pd.Series(out, index=m.index)
+
+
 def backtest_market(d: pd.DataFrame, mode="visser", weekly=True, vol_target=0.20, vol_len=60,
-                    cost_per_turn=0.0002, max_lev=3.0) -> pd.DataFrame:
+                    cost_per_turn=0.0002, max_lev=3.0, buffer=0.2) -> pd.DataFrame:
     """Daily returns (as a fraction of capital) for one market traded alone at vol_target."""
     c, raw = d["c"], d["raw_c"]
     ret = (d["o"].shift(-1) - d["o"]) / raw.shift(1)          # open-to-open move as % of notional
     if mode == "hold":
         mult = pd.Series(1.0, index=d.index)
+    elif mode == "ewmac":
+        mult = _buffer(ewmac_forecast(c, raw) / 10.0, buffer)
+    elif mode == "ma_ls":
+        ma = c.rolling(200, min_periods=200).mean()
+        mult = pd.Series(np.where(c > ma, 1.0, -1.0), index=d.index).where(ma.notna())
     else:
         st = visser_state(c)
         mult = roc_overlay(c, st) if mode == "roc" else st
-    if weekly:
+    if weekly and mode != "ewmac":
         last_of_week = d.index.to_series().groupby(d.index.to_period("W")).transform("max") == d.index.to_series()
         mult = mult.where(last_of_week).ffill()
     vol = (c.diff() / raw.shift(1)).rolling(vol_len, min_periods=vol_len).std() * math.sqrt(252)

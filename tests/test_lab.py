@@ -384,3 +384,15 @@ def test_trend_visser_states_and_backtest():
     assert trend.stats(vis["pnl"])["max_dd"] > trend.stats(hold["pnl"])["max_dd"]   # smaller drawdown
     p = trend.portfolio({"A": vis, "B": hold})
     assert len(p) > 500
+
+
+def test_trend_long_short_goes_short_in_downtrends():
+    from lab import trend
+    idx = pd.bdate_range("2012-01-02", periods=1500, tz="UTC")
+    rng = np.random.default_rng(1)
+    c = pd.Series(np.r_[np.linspace(100, 300, 750), np.linspace(300, 120, 750)] + rng.normal(0, 1, 1500), index=idx)
+    d = pd.DataFrame({"o": c.shift(1).bfill(), "c": c, "raw_c": c})
+    for mode in ("ewmac", "ma_ls"):
+        r = trend.backtest_market(d, mode=mode)
+        assert r["mult"].loc[idx[650]] > 0 and r["mult"].iloc[-1] < 0
+        assert trend.stats(r["pnl"])["sharpe"] > 0.5
