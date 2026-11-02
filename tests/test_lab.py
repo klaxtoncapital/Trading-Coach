@@ -264,3 +264,38 @@ def test_nkd_expansion_no_lookahead_and_controls():
     n = s.setups(b, tick=5.0, bias="none")
     assert w and a and len(n) >= max(len(w), len(a)) * 0.9
     assert {x.tag.split()[0] for x in n} <= {"sweep", "strong"}
+
+
+def synthetic_5m(days=60, seed=3):
+    rng = np.random.default_rng(seed)
+    idx = []
+    d = pd.Timestamp("2024-01-07 18:00", tz="America/New_York")
+    for _ in range(days):
+        if d.weekday() in (4, 5):
+            d += pd.Timedelta(days=1)
+            continue
+        idx += list(pd.date_range(d, periods=23 * 12, freq="5min").tz_convert("UTC"))
+        d += pd.Timedelta(days=1)
+    n = len(idx)
+    c = 30000 + np.cumsum(rng.standard_t(3, n) * 12)
+    o = np.r_[30000, c[:-1]]
+    w = np.abs(rng.normal(0, 8, n))
+    df = pd.DataFrame({"o": o, "h": np.maximum(o, c) + w, "l": np.minimum(o, c) - w, "c": c,
+                       "v": rng.integers(5, 200, n).astype(float), "contract": "X"}, index=pd.DatetimeIndex(idx, name="t"))
+    for col in ("o", "h", "l", "c"):
+        df[col] = (df[col] / 5).round() * 5
+    df["h"] = df[["o", "h", "c"]].max(axis=1)
+    df["l"] = df[["o", "l", "c"]].min(axis=1)
+    return df
+
+
+def test_nkd_signature_finds_setups_without_lookahead():
+    from lab.strategies.nkd_signature import NKDSignature
+    b = synthetic_5m(60)
+    s = NKDSignature()
+    setups = s.setups(b, tick=5.0, bias="none", vol_filter=False, disp_mult=1.2)
+    assert len(setups) > 5
+    ok, probs = engine.lookahead_check(s, b, {"tick": 5.0, "bias": "none", "vol_filter": False, "disp_mult": 1.2}, samples=10)
+    assert ok, probs
+    t = engine.simulate(b, setups, Costs(0, 0, 5.0, 5.0))
+    assert len(t) > 0 and (t["entry_time"] >= t["decided_at"]).all()
