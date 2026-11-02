@@ -73,7 +73,7 @@ class ATMNewYork:
             ts = t[p0:p1]
             a0, a1 = ts.searchsorted(_t(day, 7)), ts.searchsorted(_t(day, 9, 30))
             w1 = ts.searchsorted(_t(day, 11))
-            if a1 - a0 < 30 or w1 - a1 < 10:
+            if a1 - a0 < 30 or w1 <= a1:
                 continue
             a0, a1, w1 = p0 + a0, p0 + a1, p0 + w1
             atm_h, atm_l = h[a0:a1].max(), l[a0:a1].min()
