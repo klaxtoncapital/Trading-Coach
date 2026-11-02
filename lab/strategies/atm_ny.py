@@ -38,7 +38,8 @@ class ATMNewYork:
     name = "atm_ny"
     timeframe = "1m"
     defaults = {"disp_mult": 2.0, "need_fvg": False, "target": "atm", "min_rr": 1.5, "stop_pts": 2.0, "swing_n": 2,
-                "fast_bars": 3, "body_pct": 0.6, "exit_hour": 12, "tick": None, "since": None, "only": ""}
+                "fast_bars": 3, "body_pct": 0.6, "exit_hour": 12, "prev_filter": False, "struct_filter": "",
+                "tick": None, "since": None, "only": ""}
     hypothesis = ("A sweep of the 07:00-09:30 ATM high or low inside the 09:30-11:00 window, followed by an obvious "
                   "displaced market structure shift, marks the turn; entering at the order block with the stop past "
                   "the sweep and targeting the opposite ATM level has positive expectancy.")
@@ -47,7 +48,13 @@ class ATMNewYork:
         return {**self.defaults, **params}
 
     def setups(self, bars: pd.DataFrame, disp_mult=2.0, need_fvg=False, target="atm", min_rr=1.5, stop_pts=2.0, swing_n=2,
-               fast_bars=3, body_pct=0.6, exit_hour=12, tick=None, since=None, only="") -> list[Setup]:
+               fast_bars=3, body_pct=0.6, exit_hour=12, prev_filter=False, struct_filter="", tick=None, since=None,
+               only="") -> list[Setup]:
+        """prev_filter (H8b F1): skip longs the day after a strong bearish close (close in the bottom 20%
+        of the day's range, bearish body over half the range) and shorts after the bullish mirror.
+        struct_filter (H8b F2), e.g. "15m_6pm", "5m_7am": skip trades against lower highs + lower lows
+        (or higher highs + higher lows) on that chart, counted from the 6pm open or 07:00 NY up to the
+        decision, using only completed candles."""
         if bars.empty:
             return []
         tick = float(tick or 0.25)
@@ -63,6 +70,20 @@ class ATMNewYork:
         pos_by_date: dict = {}
         for k, d in enumerate(dates):
             pos_by_date.setdefault(d, []).append(k)
+        prev_bias = {}
+        if prev_filter:
+            dd = data.daily(data.resample(b, "1h"))
+            rngd = (dd["h"] - dd["l"]).replace(0, np.nan)
+            posd, bodyd = (dd["c"] - dd["l"]) / rngd, (dd["c"] - dd["o"]) / rngd
+            strong = np.where((posd >= 0.8) & (bodyd > 0.5), 1, np.where((posd <= 0.2) & (bodyd < -0.5), -1, 0))
+            keys = list(dd.index)
+            prev_bias = {keys[i]: strong[i - 1] for i in range(1, len(keys))}
+        frames = {}
+        if struct_filter:
+            tf, start = struct_filter.split("_")
+            frames["bars"] = data.resample(b[["o", "h", "l", "c", "v", "contract"]], {"15m": "15min", "5m": "5min"}[tf])
+            frames["tf"] = pd.Timedelta(minutes=int(tf[:-1]))
+            frames["start"] = start
         out = []
         for day, pos in pos_by_date.items():
             if day.weekday() > 4 or (since_d and day < since_d):
@@ -86,6 +107,10 @@ class ATMNewYork:
             risk = (entry - stop) * side
             if risk <= 0:
                 continue
+            if prev_filter and prev_bias.get(day, 0) == -side:
+                continue                      # F1: against yesterday's strong close
+            if frames and self._trend(frames, day, t[decided], swing_n) == -side:
+                continue                      # F2: against the intraday structure
             tgt = (atm_h if side == 1 else atm_l) if target == "atm" else entry + side * 2 * risk
             if (tgt - entry) * side < min_rr * risk:
                 continue                      # under min_rr of reward to the target: skip (Dave's rule)
@@ -94,6 +119,27 @@ class ATMNewYork:
                              tag=f"ATM {'low sweep, long' if side == 1 else 'high sweep, short'}",
                              info={"atm_h": atm_h, "atm_l": atm_l}))
         return out
+
+    @staticmethod
+    def _trend(frames, day, decided_at, n):
+        """+1 higher highs and higher lows, -1 lower highs and lower lows, 0 neither, from completed candles."""
+        fb, tf = frames["bars"], frames["tf"]
+        start = (_t(day, 7) if frames["start"] == "7am"
+                 else pd.Timestamp(datetime.combine(day, time(18)), tz="America/New_York").tz_convert("UTC")
+                 - pd.Timedelta(days=1))
+        w = fb[(fb.index >= start) & (fb.index + tf <= decided_at)]
+        if len(w) < 2 * n + 3:
+            return 0
+        h, l = w["h"].to_numpy(), w["l"].to_numpy()
+        sh = [h[p] for p in range(n, len(w) - n) if h[p] > h[p - n:p].max() and h[p] > h[p + 1:p + 1 + n].max()]
+        sl = [l[p] for p in range(n, len(w) - n) if l[p] < l[p - n:p].min() and l[p] < l[p + 1:p + 1 + n].min()]
+        if len(sh) < 2 or len(sl) < 2:
+            return 0
+        if sh[-1] < sh[-2] and sl[-1] < sl[-2]:
+            return -1
+        if sh[-1] > sh[-2] and sl[-1] > sl[-2]:
+            return 1
+        return 0
 
     @staticmethod
     def _session(o, h, l, c, rng, avg_rng, w0, w1, atm_h, atm_l, tick, disp_mult, need_fvg, swing_n,

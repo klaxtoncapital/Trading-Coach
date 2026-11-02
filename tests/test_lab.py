@@ -356,3 +356,15 @@ def test_atm_ny_setups_follow_rules_without_lookahead():
     ok, probs = engine.lookahead_check(s, b, p, samples=10)
     assert ok, probs
     assert len(s.setups(b, need_fvg=True, **p)) <= len(st) + 1
+
+
+def test_atm_ny_filters_only_remove_trades_and_no_lookahead():
+    from lab.strategies.atm_ny import ATMNewYork
+    b = synthetic_1m_ny(60)
+    s = ATMNewYork()
+    base = {x.decided_at for x in s.setups(b, disp_mult=1.5)}
+    for p in ({"prev_filter": True}, {"struct_filter": "15m_6pm"}, {"struct_filter": "5m_7am"}):
+        got = {x.decided_at for x in s.setups(b, disp_mult=1.5, **p)}
+        assert got <= base
+        ok, probs = engine.lookahead_check(s, b, {"disp_mult": 1.5, **p}, samples=8)
+        assert ok, probs
