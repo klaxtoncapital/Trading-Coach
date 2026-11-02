@@ -28,7 +28,8 @@ from ..engine import Setup
 class NKDSweepReclaim:
     name = "nkd_sweep_reclaim"
     timeframe = "5m"
-    defaults = {"reclaim_bars": 6, "min_rr": 1.5, "target": "level", "stop_ticks": 5, "levels": "pdh,pdl,open",
+    defaults = {"reclaim_bars": 6, "min_rr": 1.5, "target": "level", "stop_ticks": 5, "stop_mode": "wick",
+                "min_stop_ticks": 0, "levels": "pdh,pdl,open",
                 "asia_end_hour": 2, "asr_days": 20, "tick": None, "since": None, "only": ""}
     hypothesis = ("In NKD's Asia session, a sweep of the previous day's high/low or the 6PM open that closes back "
                   "inside on the 5-minute chart marks a liquidity grab and reversal; entering on the reclaim close "
@@ -39,7 +40,7 @@ class NKDSweepReclaim:
         return {**self.defaults, **params}
 
     def setups(self, bars: pd.DataFrame, reclaim_bars=6, min_rr=1.5, target="level", stop_ticks=5,
-               levels="pdh,pdl,open", asia_end_hour=2, asr_days=20, tick=None, since=None, only="") -> list[Setup]:
+               stop_mode="wick", min_stop_ticks=0, levels="pdh,pdl,open", asia_end_hour=2, asr_days=20, tick=None, since=None, only="") -> list[Setup]:
         if bars.empty:
             return []
         tick = float(tick or 5.0)
@@ -70,7 +71,8 @@ class NKDSweepReclaim:
             op = g["o"].iloc[0]
             pdh, pdl = dh[i - 1], dl[i - 1]
             exit_by = pd.Timestamp(datetime.combine(day, time(17)), tz="America/New_York").tz_convert("UTC")
-            s = self._first(g, op, pdh, pdl, use, reclaim_bars, min_rr, target, stop_ticks, tick, a)
+            s = self._first(g, op, pdh, pdl, use, reclaim_bars, min_rr, target, stop_ticks, tick, a,
+                            stop_mode, min_stop_ticks)
             if s:
                 decided, side, stop, tgt, lvl, entry_ref = s
                 out.append(Setup(decided, side, stop=stop, target=tgt, exit_by=exit_by,
@@ -79,7 +81,10 @@ class NKDSweepReclaim:
         return out
 
     @staticmethod
-    def _first(g, op, pdh, pdl, use, reclaim_bars, min_rr, target, stop_ticks, tick, asr):
+    def _first(g, op, pdh, pdl, use, reclaim_bars, min_rr, target, stop_ticks, tick, asr,
+               stop_mode="wick", min_stop_ticks=0):
+        """stop_mode: "wick" = past the sweep extreme by stop_ticks; "ob" = past the reclaim candle by
+        stop_ticks; "fixed" = stop_ticks from the entry. min_stop_ticks: never closer than this."""
         o, h, l, c = (g[k].to_numpy() for k in ("o", "h", "l", "c"))
         idx = g.index
         n = len(g)
@@ -107,7 +112,14 @@ class NKDSweepReclaim:
                     ext = min(ext, l[j]) if side == 1 else max(ext, h[j])
                     if (side == 1 and c[j] > lvl) or (side == -1 and c[j] < lvl):
                         entry = c[j]                                 # reference: the reclaim close
-                        stop = ext - side * stop_ticks * tick
+                        if stop_mode == "wick":
+                            stop = ext - side * stop_ticks * tick
+                        elif stop_mode == "ob":
+                            stop = (l[j] if side == 1 else h[j]) - side * stop_ticks * tick
+                        else:
+                            stop = entry - side * stop_ticks * tick
+                        if min_stop_ticks and (entry - stop) * side < min_stop_ticks * tick:
+                            stop = entry - side * min_stop_ticks * tick
                         risk = (entry - stop) * side
                         if risk <= 0:
                             break
