@@ -242,3 +242,12 @@ def test_import_databento_fills_older_history(tmp_path, monkeypatch):
     assert b.index[0] == idx[0]                                  # older history added
     assert (b.loc[recent.index, "c"].to_numpy() == recent["c"].to_numpy()).all()   # newer source kept on overlap
     assert data.load_meta("NKD")["point_value"] == 5.0
+
+
+def test_profile_renders(tmp_path, monkeypatch):
+    from lab import profile
+    monkeypatch.setattr(data, "DATA_DIR", tmp_path)
+    data.save("NKD", "1h", synthetic(300), {"tick_size": 5.0, "point_value": 5.0})
+    page, facts = profile.render(["NKD"])
+    assert page.startswith("<!DOCTYPE html>") and "Session range by weekday" in page
+    assert set(facts[0]["weekday"].index) == set(profile.DAYS) and len(facts[0]["top_days"]) == 2

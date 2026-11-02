@@ -305,6 +305,8 @@ def main(argv=None) -> None:
     p.add_argument("--tf", default="1h", help="1m, 1h, 1d (comma-separated for several)")
     p.add_argument("--days", type=int, default=730)
     sub.add_parser("list", help="show the data store")
+    p = sub.add_parser("profile", help="when does each market move: by hour, weekday and session")
+    p.add_argument("roots")
     p = sub.add_parser("import-databento", help="load a Databento OHLCV CSV into the store")
     p.add_argument("file")
     p.add_argument("--root", required=True)
@@ -347,6 +349,15 @@ def main(argv=None) -> None:
             print(f"Data store is empty ({data.DATA_DIR}). Start with: python -m lab pull NKD --tf 1h")
         for r in rows:
             print(f"{r[0]:6} {r[1]:3} {r[2]:>8,} bars  {r[3]} to {r[4]}")
+    elif args.cmd == "profile":
+        from . import profile
+        roots = [r.strip().upper() for r in args.roots.split(",") if r.strip()]
+        path_, facts = profile.save(roots)
+        for f in facts:
+            print(f"{f['root']}: biggest days {', '.join(f['top_days'])}; biggest hours {'; '.join(f['top_hours'])}")
+            print(f["weekday"][["range_pct", "range_vs_avg", "rel_vol", "top2_years", "years"]].round(3).to_string())
+            print(f["session"].round(3).to_string(), "\n")
+        print("Profile:", path_)
     elif args.cmd == "import-databento":
         print(data.import_databento_csv(args.file, args.root.upper()))
     elif args.cmd == "import-history":
