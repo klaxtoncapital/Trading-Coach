@@ -491,5 +491,94 @@
    }
   ],
   "created_at": "2026-11-01T23:51:24.039955+00:00"
+ },
+ {
+  "id": "2026-11-03-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Tue 3 Nov · 🟡 Mixed",
+    "color": 12024095,
+    "description": "A split night. \"Risk-on\" means investors are happy to buy riskier things like tech stocks; \"risk-off\" means they flee to safety. Last night was both: oil crashed 7.7% on hopes of a US-Iran deal, which helped the Dow, but tech/AI stocks were sold hard and the Nasdaq-100 fell 1.3%. Meanwhile Fed officials keep talking about RAISING rates, not cutting, which is the big cloud over stocks.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "inline": false,
+      "value": "🟢 Oil (WTI) -7.7% to ~$96 on reports the US and Iran are near a preliminary deal to reopen the Strait of Hormuz (key oil shipping lane).\n🔴 AI/chip selloff: Marvell -13%, AMD -7%, Intel -9%; Nvidia flipped from gain to loss.\n🔴 Fed's Logan: at least two more rate hikes needed. Markets price ~70% odds of a December hike.\n⚪ Apple beat (revenue $114.5B, +12%) but shares flat after hours.\n⚪ Red folder: ISM manufacturing 55.5 (beat), construction spending -1.9% (miss)."
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "inline": false,
+      "value": "Factories are growing (ISM above 50 = expansion) but housing is weakening and prices factories pay are still rising fast. That's \"sticky inflation\": prices not cooling. When inflation is sticky, the Federal Reserve (US central bank) raises interest rates to slow the economy. Higher rates make borrowing pricier and hurt stocks, especially expensive tech. Cheaper oil helps a bit because it lowers fuel and transport costs, which eases inflation."
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "inline": false,
+      "value": "S&P 500 -0.5% to 7,541 after giving up a 1.1% morning gain. Nasdaq Composite -1.1%, Nasdaq-100 -1.3%; it's now ~8% off its 6 Oct peak. A rally that fades into the close is a warning sign: big buyers didn't step in. Dow +0.4% (oil drop helps industrials). Russell 2000 (small caps) -0.2%. VIX (the \"fear gauge\", expected volatility) is about 19.4: elevated, not panicky. Tuesday is the US midterm election: expect choppy moves when results land Wednesday Sydney time."
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "inline": false,
+      "value": "Japan's stock market is closed today (Culture Day holiday), but NKD futures still trade on CME. The yen weakened: USD/JPY rose to 157.9 (6J down). The Bank of Japan held its rate at 1.25% last week, while the Fed talks hikes, so the gap in interest rates keeps favouring the dollar. A weak yen helps Japanese exporters (Nikkei-positive), but the US chip selloff hurts Nikkei tech names. Watch 158-160: Japan intervened (bought yen) earlier this year, and a repeat could spike 6J sharply."
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "inline": false,
+      "value": "Crude: WTI -7.7% to ~$96. Iran's offer is conditional and NOT yet accepted by Washington, so headlines can reverse this fast.\nGold +1.7% to ~$3,943, bouncing off its lowest level in over a year as bond yields fell (gold pays no interest, so lower yields make it more attractive).\nSilver +2.8% to ~$50.5.\nCopper: no major news found overnight."
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "inline": false,
+      "value": "Tue 2:30pm: RBA (Australia's central bank) rate decision. A hike is expected; matters for 6A (Aussie dollar).\nTue (US) all day: midterm elections, which decide who controls Congress. Results flow Wed morning Sydney; surprises can jolt stocks, bonds and the dollar.\nWed 8:00am: AMD earnings. AMD is a big AI chip name, so this hits NQ directly after last night's chip selloff.\nSat 7 Nov 12:30am: US jobs report (tier 1)."
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "Fed's Lorie Logan · wants at least two more rate hikes",
+      "inline": false,
+      "value": "Logan runs the Dallas Fed. She said the Fed needs at least two more quarter-point hikes. The Fed held rates at 3.75-4.00% on 28 Oct, but two members already voted for a hike. Negative for NQ/ES/RTY (higher rates hurt stock valuations, tech most) and for gold; positive for the US dollar, which pushes 6J and 6E lower."
+     },
+     {
+      "name": "US-Iran · reports of a near preliminary deal",
+      "inline": false,
+      "value": "Reports say Iran offered terms aimed at reopening the Strait of Hormuz, the narrow sea lane a large share of the world's oil passes through. Iran's president said the Supreme Leader gave the government room to negotiate. Negative for crude oil (more supply), positive for airlines, transport and the Dow, and mildly positive for bonds (less inflation). It's not agreed yet: a rejection would send oil back up."
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "COT = the weekly CFTC report showing how hedge funds are positioned. \"Crowded\" means funds are at an extreme vs the last 3 years; if news turns against them, their rush to exit (a \"squeeze\") can cause big moves. Positions as of 2026-10-20 (so a bit stale).",
+    "fields": [
+     {
+      "name": "By market",
+      "inline": false,
+      "value": "NKD · Leaning short (22nd pct) · Chip selloff pushes with them, weak yen against; squeeze risk modest.\nNQ · Crowded long (94th pct) · AI selling pushes AGAINST the crowd: more long-exit selling likely; upside squeeze unlikely.\nES · Neutral (35th pct) · No positioning edge; follows NQ and the Fed."
+     },
+     {
+      "name": "​",
+      "inline": false,
+      "value": "6J · Neutral (74th pct) · Hawkish Fed weighs on yen; intervention is the squeeze risk higher.\nCL · Leaning short (13th pct) · Iran-deal news pushes with the crowd, but they're near extreme: a failed deal could squeeze oil up hard.\nGC · Leaning short (24th pct) · Lower yields push against them; room for short covering higher."
+     },
+     {
+      "name": "​ ",
+      "inline": false,
+      "value": "SI · Crowded short (3rd pct) · Silver rose 2.8%: news against the crowd, upside squeeze likely if it holds.\nHE · Crowded short (1st pct) · No hog news overnight; extreme short means any good news can squeeze it up.\nNG · Crowded short (1st pct) · Lower oil helps the shorts; still very stretched.\nZS · Crowded long (94th pct) · No soy news found; vulnerable to long exits.\n\nBest setup today: NQ, where crowded-long funds meet fresh AI selling and a hawkish Fed."
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "🔴 NQ · conviction ●●○ · AI/chip selling plus Fed hike talk, and funds are crowded long so exits add fuel.\n🔴 ES · conviction ●○○ · Faded a 1.1% rally into a loss; funds neutral. Just a lean.\n⚪ NKD · conviction ●○○ · Tokyo shut; chip weakness vs weak-yen support, funds lean short. No edge.\n🔴 6J · conviction ●○○ · Wide rate gap favours the dollar; intervention near 158-160 is the risk.\n🟢 GC · conviction ●○○ · Bounced off 1-year lows on lower yields; funds lean short, room to cover.\n🔴 CL · conviction ●○○ · Iran-deal hopes crushed oil, but funds already lean short and the deal isn't done.\n\nUse this as a filter, not an entry: favour your own setups that agree with a conviction 2-3 call (today only NQ short side), and be pickier with trades against it. With midterms tonight, size down and expect whipsaws.",
+    "footer": {
+     "text": "Sources: investingLive, AP/KRMG, Rio Times, CNBC, CFTC COT, Desk Brief. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-02T22:45:14.520178+00:00"
  }
 ]
