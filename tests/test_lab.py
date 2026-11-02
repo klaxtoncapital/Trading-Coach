@@ -314,3 +314,45 @@ def test_nkd_sweep_reclaim_rules_and_no_lookahead():
     ok, probs = engine.lookahead_check(s, b, {"tick": 5.0}, samples=10)
     assert ok, probs
     assert len(s.setups(b, tick=5.0, reclaim_bars=0)) >= len(st) * 0.8         # no limit runs
+
+
+def synthetic_1m_ny(days=40, seed=5):
+    rng = np.random.default_rng(seed)
+    idx = []
+    d = pd.Timestamp("2024-03-04", tz="America/New_York")
+    while len(idx) < days * 300:
+        if d.weekday() < 5:
+            idx += list(pd.date_range(d + pd.Timedelta(hours=6), d + pd.Timedelta(hours=12), freq="1min", inclusive="left").tz_convert("UTC"))
+        d += pd.Timedelta(days=1)
+    n = len(idx)
+    ret = rng.standard_t(3, n) * 4
+    burst = rng.random(n) < 0.03
+    ret[burst] *= 6
+    c = 18000 + np.cumsum(ret)
+    o = np.r_[18000, c[:-1]]
+    w = np.abs(rng.normal(0, 2, n))
+    df = pd.DataFrame({"o": o, "h": np.maximum(o, c) + w, "l": np.minimum(o, c) - w, "c": c,
+                       "v": 100.0, "contract": "X"}, index=pd.DatetimeIndex(idx, name="t"))
+    for col in ("o", "h", "l", "c"):
+        df[col] = (df[col] * 4).round() / 4
+    df["h"] = df[["o", "h", "c"]].max(axis=1)
+    df["l"] = df[["o", "l", "c"]].min(axis=1)
+    return df
+
+
+def test_atm_ny_setups_follow_rules_without_lookahead():
+    from lab.strategies.atm_ny import ATMNewYork
+    b = synthetic_1m_ny(60)
+    s = ATMNewYork()
+    p = {"disp_mult": 1.5}
+    st = s.setups(b, **p)
+    assert len(st) >= 3
+    for x in st:
+        ny = x.decided_at.tz_convert("America/New_York")
+        assert (9, 30) < (ny.hour, ny.minute) <= (11, 0)
+        assert (x.target - x.entry) * x.side > 0 and (x.entry - x.stop) * x.side > 0
+        if x.side == 1:
+            assert x.target == x.info["atm_h"]
+    ok, probs = engine.lookahead_check(s, b, p, samples=10)
+    assert ok, probs
+    assert len(s.setups(b, need_fvg=True, **p)) <= len(st) + 1
