@@ -251,3 +251,16 @@ def test_profile_renders(tmp_path, monkeypatch):
     page, facts = profile.render(["NKD"])
     assert page.startswith("<!DOCTYPE html>") and "Session range by weekday" in page
     assert set(facts[0]["weekday"].index) == set(profile.DAYS) and len(facts[0]["top_days"]) == 2
+
+
+def test_nkd_expansion_no_lookahead_and_controls():
+    from lab.strategies.nkd_expansion import NKDExpansion
+    b = synthetic(400)
+    s = NKDExpansion()
+    ok, probs = engine.lookahead_check(s, b, {"tick": 5.0}, samples=20)
+    assert ok, probs
+    w = s.setups(b, tick=5.0, bias="with")
+    a = s.setups(b, tick=5.0, bias="against")
+    n = s.setups(b, tick=5.0, bias="none")
+    assert w and a and len(n) >= max(len(w), len(a)) * 0.9
+    assert {x.tag.split()[0] for x in n} <= {"sweep", "strong"}

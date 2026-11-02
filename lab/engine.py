@@ -102,6 +102,8 @@ def simulate(bars: pd.DataFrame, setups: list[Setup], costs: Costs, gap_fills: b
         risk = (fill_px - stop) * d
         if risk <= 0:
             continue
+        if target is not None and (target - fill_px) * d <= 0:
+            continue                  # target already passed at the fill: no trade
         # ── manage ──
         result, exit_i, exit_px = "time", i_end, c[i_end]
         mae = mfe = 0.0

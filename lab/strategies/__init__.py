@@ -11,9 +11,9 @@ setups() may only use bars that start before each Setup's decided_at.
 """
 from __future__ import annotations
 
-from . import retrace
+from . import nkd_expansion, retrace
 
-REGISTRY = {s.name: s for s in (retrace.Retrace(),)}
+REGISTRY = {s.name: s for s in (retrace.Retrace(), nkd_expansion.NKDExpansion())}
 
 
 def get(name: str):
