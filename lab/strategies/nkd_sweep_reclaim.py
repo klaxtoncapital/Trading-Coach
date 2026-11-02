@@ -65,7 +65,7 @@ class NKDSweepReclaim:
                 continue
             g = by_day.get(day)
             a = asr.iloc[i]
-            if g is None or len(g) < 4 or not np.isfinite(a):
+            if g is None or len(g) < 2 or not np.isfinite(a):
                 continue
             op = g["o"].iloc[0]
             pdh, pdl = dh[i - 1], dl[i - 1]
