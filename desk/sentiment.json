@@ -580,5 +580,61 @@
    }
   ],
   "created_at": "2026-11-02T22:45:14.520178+00:00"
+ },
+ {
+  "id": "2026-11-04-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Wed 4 Nov · 🟡 Mixed",
+    "color": 12024095,
+    "description": "Wall Street finished Election Day split: tech and chip stocks bounced while the Dow slipped, and the US midterm vote count is only just starting. \"Risk-on\" means traders are buying riskier things like stocks; \"risk-off\" means they hide in safer things like bonds, the US dollar or gold. Today is neither: markets are waiting for the election result, which will decide who controls Congress (the lawmakers who pass budgets and tax laws). Expect jumpy moves as results come in through the Asian day, and treat early counts with caution because they can reverse.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🟢 Nasdaq +0.8%, S&P 500 +0.4% to 7,569 as AI/chip stocks rebounded, ending a 3-day losing run.\n🔴 Dow -0.4%; Apple's results were seen as disappointing.\n⚪ US midterm elections: polls closing now, results due through today Sydney time.\n🟢 Oil had dropped over 7% Monday after Trump and Iran signalled openness to talks on the Strait of Hormuz; it has since bounced toward $98.\n🔴 RBA (Australia's central bank) raised rates 0.25%, but 3 of 9 members wanted to hold, so the Aussie dollar fell.\n⚪ Red-folder data: US ISM manufacturing was strong at 55.5; JOLTS also out.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "The US economy still looks hot: an ISM above 50 means factories are expanding, and 55.5 is strong. That has traders pricing a Fed rate HIKE in December (reported odds up to 75%). Higher interest rates make borrowing dearer and usually weigh on stocks, gold and bonds. The 10-year Treasury yield (the interest rate on US government 10-year debt, a benchmark for all borrowing) sits near 4.9%, which is high. The oil drop helps because cheaper oil means less inflation pressure.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Chips led the bounce, which is good for NQ. But hedge funds are already heavily long NQ (94th percentile, very crowded), so there are few new buyers left and a shock could cause a quick unwind. The election is the swing factor: a clear result usually lets stocks relax; a messy or disputed count could knock them. Bias: neutral on both until results are clear.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Tokyo was shut Tuesday for a holiday and the Nikkei has been drifting lower around 63,000. USD/JPY is near 158 (the yen is weak, so 6J is low). Weak yen helps Japanese exporters and the Nikkei, but around 158-160 Japan's Finance Ministry has warned it may 'intervene' (sell dollars to buy yen), which would spike 6J up fast. The BoJ (Bank of Japan) has hinted at a December rate hike, which also supports the yen. Bias: neutral on both.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude (CL): Brent fell 7.6% to $104.77 and WTI 7.4% to $96.46 on Monday as the 'war premium' (extra price for supply-disruption fear) came out; a reported clash on Iran's Qeshm Island has since lifted it toward $98. Gold (GC): about $3,948, just above its yearly low near $3,870; needs to get back above $4,000 to turn. Rising rate-hike odds hurt gold because it pays no interest. Silver is under similar pressure.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "All day: US midterm results. Who controls the House and Senate shapes spending, tax and tariff policy, so it moves stocks, bonds and the dollar.\nThu 00:15: ADP jobs (private payroll estimate; a preview of Friday's main jobs report).\nThu 02:00: ISM services (survey of the service sector, ~70% of the US economy). Strong = more Fed-hike fear.\n(Times from usual schedule; Forex Factory feed was unavailable this morning.)",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-10-20 (CFTC report; percentile = where today's position sits versus the last 3 years, 100 = most long ever, 0 = most short).\n\nNKD · Leaning short (22nd pct) · Funds are lightly short and the Nikkei is drifting lower, so news pushes with them; a weak-yen bounce could squeeze shorts but it's not extreme.\nNQ · Crowded long (94th pct) · Chip rebound pushes with the crowd, but with almost everyone long, any election scare risks a sharp downside flush.\nES · Neutral (35th pct) · No crowding, so positioning adds no fuel either way.\n6J · Neutral (74th pct) · Funds have trimmed yen shorts; intervention talk near 158 would push with them toward a stronger yen.\nCL · Leaning short (13th pct) · Funds dumped longs into the Iran-talks drop; with little left to sell, any new Gulf flare-up could squeeze oil higher.\nGC · Leaning short (24th pct) · Rate-hike odds push with funds' bearish lean; not crowded enough yet for a big squeeze.\nSI · Crowded short (3rd pct) · Hawkish Fed pushes with the crowd, but shorts this extreme make silver prone to violent short-covering rallies.\nHE · Crowded short (1st pct) · Record-level shorts in hogs; no news today to justify more selling, so squeeze risk is high.\nNG · Crowded short (1st pct) · Extreme shorts; cold-weather headlines could spark a fast squeeze.\nZS · Crowded long (94th pct) · Funds already cutting; further trade or demand disappointments could accelerate selling.\n\nBest setup to watch: NQ — crowded long into a binary election result, so a disappointing outcome could trigger an outsized drop."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · conviction ●○○ · Nikkei drifting lower, Tokyo back from holiday into US election risk; funds lightly short.\n⚪ NQ · conviction ●○○ · Chips bounced, but funds are crowded long and election results could swing it either way.\n⚪ ES · conviction ●○○ · Up 0.4%, funds neutral; wait for the election result before leaning.\n⚪ 6J · conviction ●○○ · Yen weak near 158 on rate gaps, but intervention risk and a likely December BoJ hike cap the downside.\n🔴 GC · conviction ●○○ · Below $4,000 near yearly lows as Fed-hike odds rise; funds lean short but not crowded.\n⚪ CL · conviction ●○○ · War premium unwinding on Iran talks vs fresh clash reports; funds already cut longs.\n\nUse this as a filter for your own setups, not as entries: favour setups that agree with a conviction 2-3 call and be pickier against it. Today everything is low conviction because of the election, so keep size modest and let price show you the reaction first.",
+    "footer": {
+     "text": "Sources: MarketScreener, CNBC, MQL5, Mitrade, BigGo Finance, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-03T22:50:31.084344+00:00"
  }
 ]
