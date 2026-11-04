@@ -636,5 +636,82 @@
    }
   ],
   "created_at": "2026-11-03T22:50:31.084344+00:00"
+ },
+ {
+  "id": "2026-11-05-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Thu 5 Nov · 🟢 Risk-on",
+    "color": 2059090,
+    "description": "Democrats won control of both the House and Senate, and Wall Street threw a party: the Dow had its best day since April 2025. \"Risk-on\" means investors feel confident and buy riskier things (stocks, the Aussie dollar) instead of hiding in safe havens. Today the mood is risk-on but uneven: AI and data-centre stocks lagged on fears of new regulation, which is why the Nikkei fell 3% yesterday while the Dow soared. Oil crashed ~8% on hopes the US-Iran war ends.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🟢 Democrats take both houses of Congress. \"Gridlock\" (president and Congress from different parties) means fewer surprise laws, which markets like.\n🟢 Dow +3.0%, S&P +1.6%, Russell +1.6%, Nasdaq +1.4%. VIX (the \"fear gauge\") -20% to 16.6.\n🟢 Oil -8% (WTI ~$88) as Qatar steps up US-Iran peace mediation.\n🟢 Gold +3.3%, back above $4,000.\n🔴 Data-centre and defense stocks fell on regulation and spending fears.\n⚪ CVS -12.5% on a plan to split in two.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Cheaper oil means lower fuel and shipping costs, so inflation (prices rising) should cool. That pulled Treasury yields (what the US government pays to borrow) down 3-7bp; the 10-year is ~4.89%. Lower yields make borrowing cheaper and stocks more attractive. The dollar hit its lowest since 30 Sep. Watch-out: markets still price a ~77% chance the Fed RAISES rates in December, so strong jobs data could spoil the mood.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "ES had a broad, healthy rally: consumer stocks +4.2%, healthcare names surged, energy -4.8% (oil crash). NQ rose less: AI/data-centre names were sold because a Democratic Congress may slow the AI build-out with stricter rules. NQ also carries the most crowded hedge-fund long (see below), so it is the more fragile of the two. Strong AI results from AMD and Super Micro earlier this week support chips on dips.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei fell 3.1% Wednesday because it is packed with AI suppliers: Advantest -6%, Tokyo Electron -5%, SoftBank -7%, Kioxia -10%. The US rally helps today, but the same AI worry still hangs over Tokyo. The yen (6J) is firming as the dollar weakens and the Bank of Japan is widely expected to hike in December. A stronger yen usually weighs on Japanese exporters, a small headwind for NKD.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: -8% in a day and ~15% this week (WTI) as traders bet the war ends; no deal is confirmed, so headlines can reverse it fast. Gold: +3.3%, best day since August, helped by the weaker dollar and lower yields (gold pays no interest, so lower rates make it more attractive). Silver and copper: no reliable overnight numbers found. Hogs: funds are extremely short (see below).",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Fri 00:30 USD weekly jobless claims: how many people filed for unemployment; a jump hints the job market is weakening. Thu US hours: Fed's Hammack and Barkin speak; any hint on a December hike moves yields, the dollar and gold. Sat 00:30 US jobs report (NFP), the big one this week. The Forex Factory feed was unreachable this run, so double-check times there. Red folder already out: US JOLTS job openings beat (7.52M vs 7.10M).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "Trump: Iran war cost us the election",
+      "value": "Trump admitted the Iran war's unpopularity was a major factor in the defeat. Markets read that as the White House now wanting the war over. 🔴 for crude oil (less war = less supply fear), 🟢 for stocks and bonds (cheaper energy = lower inflation).",
+      "inline": false
+     },
+     {
+      "name": "Trump: US to stop $4B a year of funding to Israel after this year",
+      "value": "Another sign of pulling back from Middle East conflict. It added to the oil sell-off and helped push defense stocks lower. Watch for pushback in Congress.",
+      "inline": false
+     },
+     {
+      "name": "Trump: veto threat to the new Democratic Congress",
+      "value": "Signals a standoff: Congress passes laws, the president blocks them. That is the \"gridlock\" markets like because big policy changes become unlikely. 🟢 for stocks and Treasuries (less deficit spending).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-10-20 (CFTC COT: a weekly report of who holds what in futures). \"Pct\" = where funds sit vs the last 3 years: 90+ = very crowded long, 10 or less = very crowded short. Crowded trades can unwind violently (a \"squeeze\").\n\n• NKD · Leaning short (22nd pct) · Funds are light, so the AI selling isn't a crowded trade; a Wall St-led bounce could force shorts to cover.\n• NQ · Crowded long (94th pct) · News pushes AGAINST the crowd (AI regulation worries); a long-unwind dip is the bigger risk.\n• ES · Neutral (35th pct) · Rally runs with nobody crowded, so the move has room; low squeeze risk either way.\n• 6J · Neutral (74th pct) · Weaker dollar and BoJ hike hopes help the yen; positioning isn't a big factor.\n• CL · Leaning short (13th pct) · News pushes WITH the crowd (oil down), but funds are nearly maxed short, so a peace-talk stumble could spark a sharp squeeze higher.\n• GC · Leaning short (24th pct) · News pushes AGAINST the crowd (gold ripping); shorts covering can extend the rally.\n• SI · Crowded short (3rd pct) · If gold keeps rising, silver shorts are exposed; a squeeze up is likely if metals stay bid.\n• HE · Crowded short (1st pct) · No hog news overnight; so crowded that any good news could squeeze it up.\n• NG · Crowded short (1st pct) · Near-record shorts; squeeze risk on any cold-weather headline.\n• ZS · Crowded long (94th pct) · No soybean news found; crowded longs vulnerable to any trade disappointment.\n\nBest setup to watch: gold (GC), where today's news (weaker dollar, lower yields) pushes against funds that lean short."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 2059090,
+    "description": "⚪ NKD · conviction ●○○ · Nikkei fell 3% Wednesday as AI stocks were hit by US data-centre scrutiny; Wall St rally helps, but chip-heavy index and a firmer yen cut against it.\n⚪ NQ · conviction ●○○ · Nasdaq +1.4% lagged the Dow as AI/data-centre stocks fell on regulation fears, and funds are crowded long (94th pct).\n🟢 ES · conviction ●●○ · S&P +1.6% as Democrats took Congress (gridlock = fewer policy shocks) and oil crashed 8%; VIX -20%; funds mid-range (35th pct).\n🟢 6J · conviction ●○○ · Dollar and US yields fell while the BOJ is seen hiking in December; funds are neutral (74th pct), so room either way.\n🟢 GC · conviction ●●○ · Gold +3.3% (best day since Aug) back above $4,000 on a weaker dollar and lower yields; funds lean short (24th pct), leaving room to buy.\n🔴 CL · conviction ●○○ · Oil crashed ~8% (WTI ~$88) on hopes Qatar mediation ends the US-Iran war; but funds are near-crowded short (13th pct), so squeezes likely.\n\nUse this as a filter for your own setups, not as entries: favour setups that agree with a conviction 2-3 call, and be pickier with trades against it. Neutral means the evidence is mixed, so let your chart lead and size smaller.",
+    "footer": {
+     "text": "Sources: Reuters/Yahoo Finance, CBS News, The Star/Reuters, gfxfts, TraderFactor, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-04T22:47:01.918569+00:00"
  }
 ]
