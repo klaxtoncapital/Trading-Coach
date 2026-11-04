@@ -81,7 +81,7 @@ def _buffer(m: pd.Series, band: float) -> pd.Series:
 
 
 def backtest_market(d: pd.DataFrame, mode="visser", weekly=True, vol_target=0.20, vol_len=60,
-                    cost_per_turn=0.0002, max_lev=3.0, buffer=0.2) -> pd.DataFrame:
+                    cost_per_turn=0.0002, max_lev=3.0, buffer=0.2, mult_override: pd.Series | None = None) -> pd.DataFrame:
     """Daily returns (as a fraction of capital) for one market traded alone at vol_target."""
     c, raw = d["c"], d["raw_c"]
     ret = (d["o"].shift(-1) - d["o"]) / raw.shift(1)          # open-to-open move as % of notional
@@ -95,6 +95,8 @@ def backtest_market(d: pd.DataFrame, mode="visser", weekly=True, vol_target=0.20
     else:
         st = visser_state(c)
         mult = roc_overlay(c, st) if mode == "roc" else st
+    if mult_override is not None:
+        mult = mult_override.reindex(d.index).fillna(0.0)
     if weekly and mode != "ewmac":
         last_of_week = d.index.to_series().groupby(d.index.to_period("W")).transform("max") == d.index.to_series()
         mult = mult.where(last_of_week).ffill()
