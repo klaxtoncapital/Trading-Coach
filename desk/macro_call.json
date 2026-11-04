@@ -1,9 +1,10 @@
 {
- "generated_at": "2026-11-05T09:45:07+11:00",
+ "generated_at": "2026-11-05T09:45:55+11:00",
  "trading_day": "2026-11-05",
- "summary": "Wall St surged on the Democratic midterm sweep (Dow +~1,500 pts, best day of 2026) as markets cheered gridlock and oil tumbled on Iran peace-talk hopes; the dollar and Treasury yields slipped. AI/data-centre names lag on regulation fears, which hit the Nikkei -3% on Wednesday.",
+ "summary": "Democrats won both houses of Congress and Wall St surged (Dow +3.0%, S&P +1.6%, Nasdaq +1.4%, Russell +1.6%) while oil crashed ~8% on Iran peace hopes and gold jumped 3.3%; the dollar hit a 5-week low and yields fell. AI/data-centre stocks lagged on regulation fears, sinking the Nikkei 3% Wednesday.",
  "events_next_24h": [
   "Fri 00:30 USD Unemployment claims (expected; FF calendar unreachable this run)",
+  "Thu US day USD Fed's Hammack and Barkin speak",
   "Check Forex Factory manually: feed blocked this run"
  ],
  "tier1_next_14d": [
@@ -14,25 +15,25 @@
   "ES": {
    "bias": "bullish",
    "conviction": 2,
-   "why": "Stocks leapt on the Democratic sweep (gridlock read as calmer policy) and falling oil; funds sit mid-range (35th pct), so no crowding against it.",
+   "why": "S&P +1.6% as Democrats took Congress (gridlock = fewer policy shocks) and oil crashed 8%; VIX -20%; funds mid-range (35th pct).",
    "risk": "Oil spikes again on Iran headlines or yields jump on a hot jobs/ISM read."
   },
   "NQ": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Nasdaq rallied with the market, but AI/data-centre stocks face new regulation fears and funds are crowded long (94th pct).",
+   "why": "Nasdaq +1.4% lagged the Dow as AI/data-centre stocks fell on regulation fears, and funds are crowded long (94th pct).",
    "risk": "Tech leads a clean follow-through higher, or AI names drop and trigger a crowded-long unwind."
   },
   "YM": {
    "bias": "bullish",
    "conviction": 2,
-   "why": "The Dow led with its best day of 2026 (~1,500 pts) on the midterm result and lower oil; broad, value-heavy buying.",
+   "why": "Dow +3.0%, best day since April 2025, on the midterm result and plunging oil; broad buying in consumer and healthcare.",
    "risk": "A sharp oil rebound or a hawkish Fed repricing of the December hike."
   },
   "RTY": {
    "bias": "bullish",
-   "conviction": 1,
-   "why": "Lower yields, cheaper oil and a domestic-growth risk-on tone favour small caps; exact close not confirmed.",
+   "conviction": 2,
+   "why": "Russell +1.6% with lower yields and cheap oil helping domestic small caps; no crowded positioning data against it.",
    "risk": "Yields climb back toward recent highs."
   },
   "NKD": {
@@ -54,10 +55,10 @@
    "risk": "Risk-on carry trades weaken the yen again, or US yields rebound."
   },
   "6B": {
-   "bias": "neutral",
+   "bias": "bullish",
    "conviction": 1,
-   "why": "Pound only edged up with the softer dollar; no clear UK-specific driver found.",
-   "risk": "A BoE surprise or a broad dollar move."
+   "why": "Pound hit a seven-week high near $1.35 as the dollar fell to a 5-week low.",
+   "risk": "A dovish BoE surprise or broad dollar rebound."
   },
   "6A": {
    "bias": "bullish",
@@ -68,25 +69,26 @@
   "ZN": {
    "bias": "bullish",
    "conviction": 1,
-   "why": "Treasuries rallied (10y ~4.9%, down ~3bp) as gridlock limits deficit spending and oil fell, easing inflation fears.",
+   "why": "Treasuries rallied (10y ~4.89%, yields -3 to -7bp) as gridlock limits deficit spending and the oil crash eases inflation fears.",
    "risk": "Strong jobs data push December Fed-hike odds (~77%) higher."
   },
   "GC": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Weaker dollar helps gold, but falling oil eases inflation fears and risk-on lowers safe-haven demand; reports conflict.",
-   "risk": "A clear break in the dollar or a new Iran flare-up."
+   "bias": "bullish",
+   "conviction": 2,
+   "why": "Gold +3.3% (best day since Aug) back above $4,000 on a weaker dollar and lower yields; funds lean short (24th pct), leaving room to buy.",
+   "risk": "Dollar rebounds hard or Fed-hike odds jump on strong data."
   },
   "CL": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Oil tumbled on hopes US-Iran peace talks end the war; but funds are already near-crowded short (13th pct), limiting downside follow-through.",
+   "why": "Oil crashed ~8% (WTI ~$88) on hopes Qatar mediation ends the US-Iran war; but funds are near-crowded short (13th pct), so squeezes likely.",
    "risk": "Talks stall or new strikes revive the war premium; short squeeze risk."
   }
  },
  "sources": [
+  "https://finance.yahoo.com/markets/articles/trading-day-oil-tanks-stocks-220426496.html",
+  "https://www.cbsnews.com/news/stock-market-soar-democrats-take-control-of-congress/",
   "https://www.investing.com/news/economy-news/trading-day-oil-tanks-stocks-leap-on-us-midterms-5001616",
-  "https://www.cnn.com/2026/11/04/investing/us-markets-midterm-elections",
   "https://www.cbsnews.com/news/stock-market-soar-democrats-take-control-of-congress/",
   "https://thestar.com.my/business/business-news/2026/11/04/japan039s-nikkei-drops-3-as-democratic-gains-in-us-midterms-hit-ai-stocks",
   "https://gfxfts.substack.com/p/stocks-and-dollar-slip-as-democrats",
