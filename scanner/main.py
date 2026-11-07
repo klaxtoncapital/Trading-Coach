@@ -25,7 +25,7 @@ from zoneinfo import ZoneInfo
 
 import aiohttp
 
-from . import acd, acd_backtest, retrace_backtest, config, cot_board, daily_setups, four_charts, morning, sentiment_relay, desk, earnings, gates, guardrails, macro, news, regime
+from . import journal_export, acd, acd_backtest, retrace_backtest, config, cot_board, daily_setups, four_charts, morning, sentiment_relay, desk, earnings, gates, guardrails, macro, news, regime
 from .discord_out import leaderboard_embed, post, verified_embed, watch_embed
 from .metrics import build_thesis, compute, to_days
 from .projectx import UNIT_HOUR, ProjectXClient, contract_root, pick_front_contracts
@@ -371,6 +371,18 @@ async def run(args):
             if trades:
                 print("Saved", daily_setups.save_csv(trades))
             return
+        if args.journal_export:
+            res = await journal_export.export(px, args.days if args.days != 180 else journal_export.LOOKBACK_DAYS)
+            for d, p in sorted(res["days"].items()):
+                print(f"{d}: {len(p['trades'])} trade(s)")
+                for t in p["trades"]:
+                    c = t["context"]
+                    print(f"  {t['key']} {t['side']} {t['qty']} {t['account']} x{t['accounts']} entry {t['entry']} "
+                          f"exit {t['exit']} ${t['pnl_usd']} ({t['exit_reason']}) 6PM {c['six_pm_open']} "
+                          f"{c['entry_vs_open']} MFE {c['mfe_ticks']}t MAE {c['mae_ticks']}t")
+            n = await journal_export.publish(http, res, out_dir=None if args.publish else "journal_out")
+            print(f"{n} file(s) written to", "desk-data" if args.publish else "journal_out/")
+            return
         if args.once:
             await scan_once(px, http, args.dry_run, force_board="manual run")
             return
@@ -393,6 +405,10 @@ async def run(args):
                  guardrails.MAX_IDEAS_PER_DAY, guardrails.MAX_TRADES_PER_DAY, guardrails.COOLDOWN_MIN,
                  guardrails.PERSONAL_DAILY_STOP, guardrails.DAILY_PROFIT_CAP)
         asyncio.create_task(guard_loop(px, http, args.dry_run))
+        asyncio.create_task(journal_export.loop(px, http, args.dry_run))
+        log.info("Journal export daily at %s Sydney to %s/%s/journal (%s)", journal_export.EXPORT_AT,
+                 journal_export.JOURNAL_REPO, journal_export.JOURNAL_BRANCH,
+                 "on" if journal_export.GITHUB_TOKEN else "OFF: set GITHUB_TOKEN")
         asyncio.create_task(daily_setups.loop(px, http, post, args.dry_run))
         log.info("Daily setups (SFP + weekly frameworks) after each close at %s New York to %s", daily_setups.POST_AT,
                  "the daily channel" if daily_setups.WEBHOOK else "the desk channel (set DISCORD_DAILY_WEBHOOK for its own)")
@@ -432,6 +448,9 @@ def main():
     p.add_argument("--rr-entry", type=float, default=0.0, help="entry past the open in rr-mode units (default 0)")
     p.add_argument("--rr-cont", choices=["close", "lowhigh", "half"], default="close",
                    help="bull/bear day: beyond prior close, prior low/high, or the 50%% rule")
+    p.add_argument("--journal-export", action="store_true",
+                   help="export recent TopstepX trades for the journal (to journal_out/, or desk-data with --publish)")
+    p.add_argument("--publish", action="store_true", help="with --journal-export: write to the desk-data branch")
     p.add_argument("--since", help="only count trades from this date, e.g. 2025-01-01")
     p.add_argument("--a-atr", help="A value(s) as a fraction of ATR, e.g. 0.1,0.15,0.2 (default ACD_A_ATR)")
     asyncio.run(run(p.parse_args()))
