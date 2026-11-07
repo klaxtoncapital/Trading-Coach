@@ -294,7 +294,7 @@ def draw_chart(tr: dict, bars5: list[dict], ctx: dict, path_or_buf) -> bool:
         return False
     if not bars5:
         return False
-    fig, ax = plt.subplots(figsize=(12, 6.5), dpi=110)
+    fig, ax = plt.subplots(figsize=(11, 6), dpi=85)
     bg, fg, up, dn = "#111418", "#c9d1d9", "#26a69a", "#ef5350"
     fig.patch.set_facecolor(bg)
     ax.set_facecolor(bg)
