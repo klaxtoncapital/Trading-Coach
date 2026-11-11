@@ -1,99 +1,96 @@
 {
- "generated_at": "2026-11-05T09:45:55+11:00",
- "trading_day": "2026-11-05",
- "summary": "Democrats won both houses of Congress and Wall St surged (Dow +3.0%, S&P +1.6%, Nasdaq +1.4%, Russell +1.6%) while oil crashed ~8% on Iran peace hopes and gold jumped 3.3%; the dollar hit a 5-week low and yields fell. AI/data-centre stocks lagged on regulation fears, sinking the Nikkei 3% Wednesday.",
+ "generated_at": "2026-11-12T09:45:02+11:00",
+ "trading_day": "2026-11-12",
+ "summary": "Wall St bounced Wednesday (S&P +1.3%, Nasdaq +1.6%) on CoreWeave's beat reviving the AI trade, a day after hot October CPI pushed December Fed hike odds to ~91% and the dollar to ~102. Bonds were shut for Veterans Day; oil kept sliding on US-Iran peace hopes and gold slipped.",
  "events_next_24h": [
-  "Fri 00:30 USD Unemployment claims (expected; FF calendar unreachable this run)",
-  "Thu US day USD Fed's Hammack and Barkin speak",
-  "Check Forex Factory manually: feed blocked this run"
+  "US Treasury market reopens after Veterans Day: first bond reaction since Wednesday's rally",
+  "Check Forex Factory manually: calendar feed blocked this run"
  ],
  "tier1_next_14d": [
-  "NFP (Oct) · Sat, 7 Nov, 00:30 (expected)",
-  "CPI (Oct) · date unconfirmed (calendar dataset unreadable), expected mid-Nov"
+  "No FOMC or BOJ decision in the window (next FOMC 8-9 Dec, BOJ 18 Dec); PCE (Oct) date unconfirmed, calendar dataset unreadable this run"
  ],
  "markets": {
   "ES": {
    "bias": "bullish",
-   "conviction": 2,
-   "why": "S&P +1.6% as Democrats took Congress (gridlock = fewer policy shocks) and oil crashed 8%; VIX -20%; funds mid-range (35th pct).",
-   "risk": "Oil spikes again on Iran headlines or yields jump on a hot jobs/ISM read."
+   "conviction": 1,
+   "why": "S&P +1.3% on the AI rebound and funds sit mid-range (35th pct), but ~91% Fed hike odds after hot CPI cap the upside.",
+   "risk": "Yields jump when bonds reopen or the AI rally fades."
   },
   "NQ": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Nasdaq +1.4% lagged the Dow as AI/data-centre stocks fell on regulation fears, and funds are crowded long (94th pct).",
-   "risk": "Tech leads a clean follow-through higher, or AI names drop and trigger a crowded-long unwind."
+   "why": "Nasdaq +1.6% on CoreWeave, but funds are crowded long (98th pct) and a near-certain Dec Fed hike hurts tech valuations.",
+   "risk": "Clean follow-through on AI names, or a crowded-long unwind if yields spike."
   },
   "YM": {
-   "bias": "bullish",
-   "conviction": 2,
-   "why": "Dow +3.0%, best day since April 2025, on the midterm result and plunging oil; broad buying in consumer and healthcare.",
-   "risk": "A sharp oil rebound or a hawkish Fed repricing of the December hike."
-  },
-  "RTY": {
-   "bias": "bullish",
-   "conviction": 2,
-   "why": "Russell +1.6% with lower yields and cheap oil helping domestic small caps; no crowded positioning data against it.",
-   "risk": "Yields climb back toward recent highs."
-  },
-  "NKD": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Nikkei fell 3% Wednesday as AI stocks were hit by US data-centre scrutiny; Wall St rally helps, but chip-heavy index and a firmer yen cut against it.",
-   "risk": "Japanese chip stocks bounce hard with US futures, or the AI selloff deepens."
+   "why": "Dow lagged (+0.5%) as the bounce was tech-led; rate-hike pricing offsets the risk-on tone.",
+   "risk": "Broadening rally into value or a yield spike."
+  },
+  "RTY": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Small caps rose 0.9% but are the most hurt by a Fed hike, now ~91% priced for December.",
+   "risk": "Yields fall when bonds reopen, or hike odds firm further."
+  },
+  "NKD": {
+   "bias": "bullish",
+   "conviction": 1,
+   "why": "Nikkei rose 1.4% to 61,298 for a third straight gain and US AI stocks rallied overnight; fund positioning is neutral (46th pct).",
+   "risk": "Yen surge on BoJ/intervention talk or AI stocks reverse."
   },
   "6E": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "The dollar slipped after the election and EUR/USD rose ~0.3% as US yields eased.",
-   "risk": "US data beat lifts Fed-hike odds and the dollar."
-  },
-  "6J": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Dollar and US yields fell while the BOJ is seen hiking in December; funds are neutral (74th pct), so room either way.",
-   "risk": "Risk-on carry trades weaken the yen again, or US yields rebound."
-  },
-  "6B": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Pound hit a seven-week high near $1.35 as the dollar fell to a 5-week low.",
-   "risk": "A dovish BoE surprise or broad dollar rebound."
-  },
-  "6A": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "RBA hiked to 4.85% Tuesday and the risk-on mood plus softer dollar lifted AUD (~0.70).",
-   "risk": "Risk-off reversal or a dollar rebound."
-  },
-  "ZN": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Treasuries rallied (10y ~4.89%, yields -3 to -7bp) as gridlock limits deficit spending and the oil crash eases inflation fears.",
-   "risk": "Strong jobs data push December Fed-hike odds (~77%) higher."
-  },
-  "GC": {
-   "bias": "bullish",
-   "conviction": 2,
-   "why": "Gold +3.3% (best day since Aug) back above $4,000 on a weaker dollar and lower yields; funds lean short (24th pct), leaving room to buy.",
-   "risk": "Dollar rebounds hard or Fed-hike odds jump on strong data."
-  },
-  "CL": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Oil crashed ~8% (WTI ~$88) on hopes Qatar mediation ends the US-Iran war; but funds are near-crowded short (13th pct), so squeezes likely.",
-   "risk": "Talks stall or new strikes revive the war premium; short squeeze risk."
+   "why": "Hot US CPI and ~91% Dec Fed hike odds keep the dollar firm near 102 on the index, a headwind for the euro.",
+   "risk": "Soft US data or a dovish Fed speaker cools hike bets."
+  },
+  "6J": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Fed hike bets favour the dollar, but USD/JPY near 158 is close to Japan's intervention zone and a Dec BoJ hike is expected.",
+   "risk": "Break toward 160 sparks intervention (yen up), or BoJ signals a delay (yen down)."
+  },
+  "6B": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Dollar firm on Fed hike pricing but risk-on mood helps; no clear UK driver found this run.",
+   "risk": "UK data surprise or a sharp USD move."
+  },
+  "6A": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Risk-on equities support the Aussie while a firm dollar on Fed hike bets weighs; signals cancel out.",
+   "risk": "A strong risk-on follow-through or a USD spike."
+  },
+  "ZN": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Hot Oct CPI pushed yields up and Fed hike odds to ~91%; bonds were shut Wednesday while stocks rallied.",
+   "risk": "Soft data or a dovish Fed voice pulls hike odds back."
+  },
+  "GC": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Gold fell 0.9% to about $3,995 as hike bets and a firm dollar weigh; funds already lean short (21st pct), limiting downside.",
+   "risk": "Iran talks collapse or yields drop, sparking a short squeeze."
+  },
+  "CL": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Oil keeps sliding on US-Iran peace hopes (WTI ~$86), but funds are crowded short (10th pct) and talks keep stalling.",
+   "risk": "Talks break down (squeeze up) or a deal is signed (more downside)."
   }
  },
  "sources": [
-  "https://finance.yahoo.com/markets/articles/trading-day-oil-tanks-stocks-220426496.html",
-  "https://www.cbsnews.com/news/stock-market-soar-democrats-take-control-of-congress/",
-  "https://www.investing.com/news/economy-news/trading-day-oil-tanks-stocks-leap-on-us-midterms-5001616",
-  "https://www.cbsnews.com/news/stock-market-soar-democrats-take-control-of-congress/",
-  "https://thestar.com.my/business/business-news/2026/11/04/japan039s-nikkei-drops-3-as-democratic-gains-in-us-midterms-hit-ai-stocks",
-  "https://gfxfts.substack.com/p/stocks-and-dollar-slip-as-democrats",
-  "https://traderfactor.com/dollar-slips-as-election-results-strong-jolts-take-focus/",
-  "https://www.aol.com/articles/analysis-boj-locks-december-hike-053516000.html",
+  "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026",
+  "https://vistapglobal.com/stock-market-today-november-11-2026-nasdaq-leads-veterans-day-rally-as-ai-shares-rebound-ant-be-cost-crwv-eprx-googl-modd-nvda-ser-spcx/",
+  "https://247wallst.com/cards/tech-did-the-heavy-lifting-again-the-nasdaq-s-1-55-close-m-gspc-market-bell-01m766s5wqxj8egm37q8ks13gp",
+  "https://tradingeconomics.com/united-states/currency/news/600231",
+  "https://tradingeconomics.com/japan/stock-market/news/600271",
+  "https://www.tradingnews.com/news/yen-firms-toward-156-as-tokyo-discloses-15t-yen-summer-intevention",
+  "https://www.khaleejtimes.com/business/dubai-gold-prices-surge-higher-24k-gains-dh625-as-us-inflation-concerns-ease",
   "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
  ]
 }
