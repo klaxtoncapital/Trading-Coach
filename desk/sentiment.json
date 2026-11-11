@@ -822,5 +822,73 @@
    }
   ],
   "created_at": "2026-11-07T04:37:37.178068+00:00"
+ },
+ {
+  "id": "2026-11-12-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Thu 12 Nov · 🟢 Risk-on",
+    "color": 2059090,
+    "description": "US stocks bounced hard on Wednesday as a strong result from AI cloud company CoreWeave brought buyers back into tech, one day after a hot inflation report rattled markets. \"Risk-on\" means investors are in a buying mood: they favour stocks and riskier assets over safe ones like bonds, gold and the yen. Today the mood is risk-on, but with a catch: traders now expect the Fed to RAISE interest rates in December, which is a headwind for stocks. The US bond market was shut Wednesday (Veterans Day), so its reaction comes today.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🟢 S&P 500 +1.3%, Nasdaq +1.6%, Dow +0.5%, Russell 2000 +0.9%\n🟢 CoreWeave +24% after a big beat and raised forecast, reviving AI stocks; Apple hit a record high\n🔴 Hot Oct CPI (Tue) still echoing: markets price ~91% odds of a Dec Fed hike\n⚪ Dollar index steady near 102.2\n⚪ Oil sliding on US-Iran peace-talk hopes (WTI ~$86)\n🔴 Gold -0.9% to about $3,995",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "CPI (Consumer Price Index) measures how fast prices rise. October came in hotter than expected (+0.4% vs +0.3%), so inflation isn't cooling. The Fed fights inflation by raising its interest rate, which makes borrowing dearer and slows the economy. A hike makes the dollar more attractive (higher returns) and is usually bad for bond prices, gold and richly valued tech stocks. Yesterday's rally shows earnings optimism beat rate fear, for now.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Tech led the bounce on CoreWeave and AI chip names. The catch for NQ: hedge funds are already heavily long (98th percentile, more bullish than almost any time in 3 years), so there are few new buyers left and a hit like a bond-yield spike could trigger fast selling. ES has more balanced positioning, so it's the cleaner of the two. Watch the bond market reopening today: rising yields (bond interest rates) would pressure both.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "The Nikkei rose 1.4% Wednesday to 61,298, a third straight gain after a 9% drop the week before; US AI strength should help again today. USD/JPY sits near 158 (6J down = yen weak). Japan spent ~¥15T defending the yen this summer, and 160 is seen as its line in the sand, so a sudden yen jump is a real risk. The Bank of Japan (BoJ) is expected to hike to 1.50% on 18 Dec, which also supports the yen over time.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude (CL): falling on hopes of a US-Iran peace deal that would free up supply, but talks keep stalling and funds are already very short, so rallies can be violent. Gold (GC): down as expected rate hikes and a firm dollar reduce its appeal (gold pays no interest). Silver: funds near their most bearish in 3 years (4th pct), squeeze risk. Copper: fund positioning neutral. Hogs: funds at a 3-year record short.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "• US bond market reopens: first reaction since the rally. Rising yields = pressure on NQ, gold and the yen.\n• Forex Factory calendar couldn't be loaded this run, so check it for any red-folder releases tonight.\n• Next big ones: Fed decision 8-9 Dec, BoJ 18 Dec.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "COT = the weekly CFTC report showing how big speculators are positioned; positions as of 2026-11-03. Percentile (pct) = where today's position sits vs the last 3 years (100 = most bullish ever, 0 = most bearish). A crowded side is fuel for a squeeze the other way.",
+    "fields": [
+     {
+      "name": "Positioning lines",
+      "value": "NKD · Neutral (46th pct) · AI rebound pushes up with room to run; no squeeze risk either way.\nNQ · Crowded long (98th pct) · News is bullish but everyone is already in; a yield spike could cause a sharp long squeeze down.\nES · Neutral (35th pct) · Rally has fresh buyers available; low squeeze risk.\n6J · Leaning long (77th pct) · Fed hike bets push against the yen longs; intervention could reward them suddenly.\nCL · Crowded short (10th pct) · Peace hopes push with the crowd, but stalled talks make a short squeeze up likely.",
+      "inline": false
+     },
+     {
+      "name": "More",
+      "value": "GC · Leaning short (21st pct) · Hike bets push with the shorts; any safe-haven scare could squeeze it up.\nSI · Crowded short (4th pct) · Firm dollar pushes with the crowd; a squeeze up is likely on any bounce.\nHE · Crowded short (0th pct) · Record short; no news either way, so a squeeze up is a risk.\nNG · Crowded short (0th pct) · Record short; squeeze-up risk on any cold-weather headline.\n\nBest setup today: crude (CL), where crowded shorts meet stalling Iran talks, so watch for an upside squeeze if a peace deal stalls again.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 2059090,
+    "description": "🟢 NKD · conviction ●○○ · Nikkei on a 3-day winning streak, US AI stocks rallied, funds neutral (room to buy).\n⚪ NQ · conviction ●○○ · Strong bounce but funds crowded long (98th pct) and a Fed hike is near-certain.\n🟢 ES · conviction ●○○ · Broad rally with balanced positioning; rate-hike pricing limits it to a lean.\n⚪ 6J · conviction ●○○ · Fed hike bets weigh on the yen, but intervention risk near 160 cuts the other way.\n🔴 GC · conviction ●○○ · Hike bets and a firm dollar weigh; funds already leaning short limits the downside.\n⚪ CL · conviction ●○○ · Peace hopes push oil down, but crowded shorts and stalled talks risk a squeeze.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call, and be pickier with setups against it. Today every call above is a 1 (a lean), so let your chart lead and keep size modest.",
+    "footer": {
+     "text": "Sources: TheStreet, 247 Wall St, VistaP Global, Trading Economics, TradingNews, Khaleej Times, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-11T22:45:35.251881+00:00"
  }
 ]
