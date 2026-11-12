@@ -1,96 +1,100 @@
 {
- "generated_at": "2026-11-12T09:45:02+11:00",
- "trading_day": "2026-11-12",
- "summary": "Wall St bounced Wednesday (S&P +1.3%, Nasdaq +1.6%) on CoreWeave's beat reviving the AI trade, a day after hot October CPI pushed December Fed hike odds to ~91% and the dollar to ~102. Bonds were shut for Veterans Day; oil kept sliding on US-Iran peace hopes and gold slipped.",
+ "generated_at": "2026-11-13T09:47:06+11:00",
+ "trading_day": "2026-11-13",
+ "summary": "Risk-off overnight: a hot October CPI has traders betting on a December Fed hike, pushing the 10-year yield back above 5% and the dollar to a 19-month high. Stocks slipped (S&P -0.4%, Nasdaq -0.6%) after Nvidia said CEO Jensen Huang resigned; gold fell ~3% and USD/JPY hit 160, raising Japan intervention risk.",
  "events_next_24h": [
-  "US Treasury market reopens after Veterans Day: first bond reaction since Wednesday's rally",
-  "Check Forex Factory manually: calendar feed blocked this run"
+  "Sat 12:30am USD PPI (October)",
+  "Sat 2:00am USD UMich consumer sentiment (prelim Nov)"
  ],
  "tier1_next_14d": [
-  "No FOMC or BOJ decision in the window (next FOMC 8-9 Dec, BOJ 18 Dec); PCE (Oct) date unconfirmed, calendar dataset unreadable this run"
+  "FOMC minutes (27-28 Oct meeting) · Thu, 19 Nov, 6:00am",
+  "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am"
  ],
  "markets": {
   "ES": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "S&P +1.3% on the AI rebound and funds sit mid-range (35th pct), but ~91% Fed hike odds after hot CPI cap the upside.",
-   "risk": "Yields jump when bonds reopen or the AI rally fades."
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Hot CPI and Fed hike bets lifted the 10-year above 5% and the S&P closed lower; fund positioning is neutral so no squeeze fuel either way.",
+   "risk": "A soft PPI print that cools hike bets."
   },
   "NQ": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Nasdaq +1.6% on CoreWeave, but funds are crowded long (98th pct) and a near-certain Dec Fed hike hurts tech valuations.",
-   "risk": "Clean follow-through on AI names, or a crowded-long unwind if yields spike."
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Higher yields hit growth stocks and Nvidia's CEO exit hit AI leaders; funds are crowded long (98th pct), so there is room to unwind.",
+   "risk": "Strong AI earnings (Cisco/AMAT) or a soft PPI sparking a dip-buy."
   },
   "YM": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Dow lagged (+0.5%) as the bounce was tech-led; rate-hike pricing offsets the risk-on tone.",
-   "risk": "Broadening rally into value or a yield spike."
+   "why": "Dow erased early gains into the close as rate-hike odds rose; a lean only, value names hold up better than tech.",
+   "risk": "Yields reversing lower after PPI."
   },
   "RTY": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Small caps rose 0.9% but are the most hurt by a Fed hike, now ~91% priced for December.",
-   "risk": "Yields fall when bonds reopen, or hike odds firm further."
+   "why": "Small caps are the most rate-sensitive and the 10-year back above 5% plus hike talk works against them; lean only.",
+   "risk": "A sharp fall in yields on soft data."
   },
   "NKD": {
-   "bias": "bullish",
+   "bias": "neutral",
    "conviction": 1,
-   "why": "Nikkei rose 1.4% to 61,298 for a third straight gain and US AI stocks rallied overnight; fund positioning is neutral (46th pct).",
-   "risk": "Yen surge on BoJ/intervention talk or AI stocks reverse."
+   "why": "Weak yen helps exporters but US tech/AI weakness and yen intervention risk at 160 pull the other way; funds neutral (46th pct).",
+   "risk": "Tokyo intervening (yen spike) would hit NKD; a quiet yen with tech rebound lifts it."
   },
   "6E": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Hot US CPI and ~91% Dec Fed hike odds keep the dollar firm near 102 on the index, a headwind for the euro.",
-   "risk": "Soft US data or a dovish Fed speaker cools hike bets."
+   "why": "The dollar hit a 19-month high on Fed hike bets after hot CPI; euro has no offsetting news.",
+   "risk": "Soft US PPI cooling the dollar."
   },
   "6J": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Fed hike bets favour the dollar, but USD/JPY near 158 is close to Japan's intervention zone and a Dec BoJ hike is expected.",
-   "risk": "Break toward 160 sparks intervention (yen up), or BoJ signals a delay (yen down)."
+   "why": "Rate gap favours a weaker yen, but USD/JPY at 160 brings Japan intervention warnings and BOJ December hike odds are rising; funds lean long (77th).",
+   "risk": "Actual intervention would send 6J sharply higher."
   },
   "6B": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Dollar firm on Fed hike pricing but risk-on mood helps; no clear UK driver found this run.",
-   "risk": "UK data surprise or a sharp USD move."
+   "why": "Broad dollar strength after hot US inflation weighs on sterling; lean only, no UK catalyst found.",
+   "risk": "Dollar reversal on soft US data."
   },
   "6A": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Risk-on equities support the Aussie while a firm dollar on Fed hike bets weighs; signals cancel out.",
-   "risk": "A strong risk-on follow-through or a USD spike."
+   "why": "Risk-off tone and a 19-month dollar high weigh on the risk-sensitive Aussie; lean only.",
+   "risk": "Risk appetite returning and the dollar easing."
   },
   "ZN": {
    "bias": "bearish",
    "conviction": 2,
-   "why": "Hot Oct CPI pushed yields up and Fed hike odds to ~91%; bonds were shut Wednesday while stocks rallied.",
-   "risk": "Soft data or a dovish Fed voice pulls hike odds back."
+   "why": "Hot CPI and a possible December Fed hike pushed the 10-year yield back above 5%, which means lower bond prices.",
+   "risk": "A soft PPI print or risk-off flight to safety into bonds."
   },
   "GC": {
    "bias": "bearish",
-   "conviction": 1,
-   "why": "Gold fell 0.9% to about $3,995 as hike bets and a firm dollar weigh; funds already lean short (21st pct), limiting downside.",
-   "risk": "Iran talks collapse or yields drop, sparking a short squeeze."
+   "conviction": 2,
+   "why": "Gold fell ~3% as the dollar and real yields jumped on Fed hike bets; funds lean short (21st pct) but are not yet crowded.",
+   "risk": "Dollar reversal or a geopolitical shock driving safe-haven buying."
   },
   "CL": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Oil keeps sliding on US-Iran peace hopes (WTI ~$86), but funds are crowded short (10th pct) and talks keep stalling.",
-   "risk": "Talks break down (squeeze up) or a deal is signed (more downside)."
+   "why": "Reports conflict on direction (oil gains vs Ukraine peace hopes) and funds are crowded short (10th pct), so downside fuel is thin.",
+   "risk": "Peace-deal headlines (down) or a short squeeze (up)."
   }
  },
  "sources": [
-  "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026",
-  "https://vistapglobal.com/stock-market-today-november-11-2026-nasdaq-leads-veterans-day-rally-as-ai-shares-rebound-ant-be-cost-crwv-eprx-googl-modd-nvda-ser-spcx/",
-  "https://247wallst.com/cards/tech-did-the-heavy-lifting-again-the-nasdaq-s-1-55-close-m-gspc-market-bell-01m766s5wqxj8egm37q8ks13gp",
-  "https://tradingeconomics.com/united-states/currency/news/600231",
-  "https://tradingeconomics.com/japan/stock-market/news/600271",
-  "https://www.tradingnews.com/news/yen-firms-toward-156-as-tokyo-discloses-15t-yen-summer-intevention",
-  "https://www.khaleejtimes.com/business/dubai-gold-prices-surge-higher-24k-gains-dh625-as-us-inflation-concerns-ease",
+  "https://247wallst.com/cards/rate-hike-odds-are-doing-the-damage-and-the-nasdaq-s-0-61-gspc-market-bell-01m78s60347w0kk4y4pfd5e2p6",
+  "https://www.stocktitan.net/articles/stock-market-today-live-november-12-2026",
+  "https://www.bbntimes.com/financial/dow-jones-falls-to-52-297-09-as-afternoon-selling-erases-gains-after-nvidia-ceo-exit",
+  "https://www.cnbc.com/2026/11/12/us-treasurys-bonds-yields.html",
+  "https://www.bloomberg.com/news/articles/2026-11-12/yen-falls-to-key-160-level-per-dollar-raising-intervention-risk",
+  "https://www.japantimes.co.jp/business/2026/11/12/economy/japan-producer-prices-october-pick-up/",
+  "https://www.usagold.com/daily-precious-metals-market-report-november-12-2026/",
+  "https://foxbusiness.com/economy/cpi-inflation-october-2026",
+  "https://www.bloomberg.com/news/articles/2026-11-12/trump-threatens-to-double-tariffs-on-mexican-goods-over-migrants",
+  "https://www.5paisa.com/blog/crude-oil-price-today-12-november-2026",
   "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
  ]
 }
