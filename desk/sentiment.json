@@ -890,5 +890,77 @@
    }
   ],
   "created_at": "2026-11-11T22:45:35.251881+00:00"
+ },
+ {
+  "id": "2026-11-13-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Fri 13 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Overnight was risk-off: investors sold riskier assets (stocks, gold, the Aussie) and bought the US dollar. The trigger is still this week's hot US inflation (CPI = the main consumer-price gauge), which has traders betting the Fed will RAISE interest rates in December. Higher rates make borrowing dearer and future company profits worth less today, which hurts tech stocks most. On top of that, Nvidia said CEO Jensen Huang resigned, a hit to the AI names that lead the Nasdaq.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 S&P 500 -0.4%, Nasdaq -0.6%; the Dow gave up early gains in afternoon selling.\n🔴 Nvidia said CEO Jensen Huang resigned after a board probe; NVDA fell (AMD and Broadcom rose).\n🔴 US 10-year Treasury yield back above 5% on Fed hike bets.\n🔴 Dollar at a 19-month high; gold -3% to ~$3,866, silver under $50.\n⚪ USD/JPY hit 160 (very weak yen); Japan's FX chief warned about intervention.\n🔴 Trump threatened to double tariffs on Mexican goods over migrants.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Prices are rising faster than the Fed wants (October CPI +0.4% vs forecast). When inflation is sticky the Fed raises its rate to slow spending, which pushes up bond yields (the interest the government pays to borrow). A 10-year yield above 5% raises mortgage and business borrowing costs and makes safe bonds a real alternative to stocks. A December hike is now being priced, so every data point (like PPI tonight) matters more.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Tech is hit twice: higher yields shrink the value of future growth, and Nvidia's leadership shock hits the AI trade. NQ is down 5% over 20 days and moving fast (VXN, the Nasdaq 'fear gauge', at 26.7, 72nd pct of the year). Funds are crowded long NQ (98th pct), so if selling continues they may be forced out, adding fuel. Cisco and Applied Materials reported after the close: watch their reaction at the open.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "USD/JPY at 160 means a very weak yen (6J down). A weak yen usually helps Japanese exporters and the Nikkei, but Tokyo spent a record ¥15.4tn defending the yen this summer and is warning again. If it intervenes, 6J jumps and NKD can drop fast. Japan's producer prices picked up, backing a Bank of Japan (BoJ) rate hike in December, which also supports the yen. Nikkei is -10% over 20 days and swinging hard.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: WTI ~$86, Brent ~$92; reports are mixed (CNBC says oil gained; others cite Ukraine peace hopes pulling it lower). Gold -3% and silver under $50: a strong dollar and higher yields make non-paying metals less attractive. Copper: no clear overnight driver found. Hogs (HE): funds hold a record short (0th pct), so watch for short-covering bounces.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Sat 12:30am · US PPI (Oct): prices businesses receive; a hot print adds to Fed hike bets (bad for NQ/ES, gold, bonds).\nSat 2:00am · UMich consumer sentiment (prelim Nov): how upbeat households are, incl. inflation expectations.\nAll day · Yen near 160: any Japan intervention headline moves 6J and NKD.\nRed-folder results this week: US CPI came in hot (+0.4% m/m). Forex Factory feed could not be read this run.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 10697258,
+    "fields": [
+     {
+      "name": "Trump · threatens to double tariffs on Mexican goods",
+      "value": "A tariff is a tax on imports. Doubling it on Mexico (a top US trade partner) raises costs for US firms and shoppers, which adds to inflation, the very thing pushing the Fed toward hikes. Negative for ES/NQ and for the peso; mildly positive for the dollar. It's a threat, not a policy yet, so the reaction may fade if talks start.",
+      "inline": false
+     },
+     {
+      "name": "Japan FX chief · warns markets not to forget summer intervention",
+      "value": "Japan's top currency official (finance ministry, not the BoJ) is reminding traders that Tokyo sold dollars to buy yen this summer. With USD/JPY at 160 this is a 'we will act' signal. Positive for 6J if acted on (yen up); negative for NKD, since a stronger yen cuts exporters' profits.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-11-03 (CFTC report, released 6 Nov). 'Crowded' = funds near a 3-year extreme, which can unwind fast.\n\nNKD · Neutral (46th pct) · Funds aren't leaning hard either way, so today's news drives price rather than a squeeze.\nNQ · Crowded long (98th pct) · Today's news (hike bets, Nvidia CEO exit) pushes AGAINST the crowd; a long-liquidation drop is the bigger risk.\nES · Neutral (35th pct) · Rate news is negative; positioning adds no squeeze fuel either way.\n6J · Leaning long (77th pct) · Funds expect a stronger yen while price keeps falling; an intervention would reward them with a fast squeeze higher.\nCL · Crowded short (10th pct) · Peace hopes push with the crowd, but with so many shorts a surprise supply headline could spark a sharp squeeze up.\nGC · Leaning short (21st pct) · Today's strong dollar pushes with the funds; not crowded enough yet for a big squeeze.\nSI · Crowded short (4th pct) · Silver under $50 agrees with the crowd, but shorts this extreme make violent bounces likely on any dollar dip.\nHE · Crowded short (0th pct) · Record short in hogs; little news today, so short-covering rallies are the main risk.\nNG · Crowded short (0th pct) · Record short in natural gas; a cold-weather forecast could trigger a squeeze up.\n\nBest setup to watch: NQ, where crowded longs (98th pct) meet negative news (hike bets + Nvidia), so rallies may be sold."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "⚪ NKD · conviction ●○○ · Neutral: weak yen helps but tech weakness and intervention risk pull the other way; funds neutral.\n🔴 NQ · conviction ●●○ · Bearish: higher yields + Nvidia CEO exit, and funds crowded long (98th pct) can unwind.\n🔴 ES · conviction ●●○ · Bearish: hot CPI and Fed hike bets lifted yields above 5%; positioning neutral.\n⚪ 6J · conviction ●○○ · Neutral: rate gap says weaker yen, but 160 brings intervention risk; funds lean long.\n🔴 GC · conviction ●●○ · Bearish: strong dollar and higher yields; funds lean short but not crowded.\n⚪ CL · conviction ●○○ · Neutral: mixed oil headlines and crowded shorts (10th pct) limit downside.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call, and be pickier with ones that fight it. PPI tonight (Sat 12:30am) can shift the picture, so reassess after it.",
+    "footer": {
+     "text": "Sources: CNBC, Bloomberg, 247WallSt, StockTitan, BBN Times, Japan Times, USAGold, Fox Business, 5paisa, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-12T22:47:45.214118+00:00"
  }
 ]
