@@ -962,5 +962,77 @@
    }
   ],
   "created_at": "2026-11-12T22:47:45.214118+00:00"
+ },
+ {
+  "id": "2026-11-16-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Mon 16 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "The big story is inflation: last week's US price data ran hot, so traders now expect the Fed to RAISE interest rates in December rather than cut. That pushed Treasury yields (the interest rate on US government bonds) to their highest since October, lifted the dollar and hurt tech and gold. \"Risk-off\" means money is leaving riskier assets (stocks, the Aussie dollar) for safety or cash; today that's the backdrop, with Nvidia earnings Wednesday morning our time as the big swing factor.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 US PPI (factory-gate prices) up 6.5% on the year, after a hot CPI — markets now price a likely December Fed hike.\n🔴 10-year Treasury yield touched ~5.17%, highest since October.\n🔴 Nasdaq −0.9%, S&P −0.4% Friday; Nvidia slid below $4T on uncertainty over CEO Jensen Huang's departure (Dow +0.1%).\n⚪ USD/JPY back near 160; Japan warns again after a record $50bn intervention.\n🔴 Weekend: Iran claims 3 tankers hit mines in Hormuz; US military disputes it and says the strait is open.\nRed-folder: PPI came out Friday (covered separately).",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Inflation that won't cool means the Fed may tighten (raise rates) to slow the economy. Higher rates make borrowing dearer for companies and households and make future tech profits worth less today. That's why growth stocks, gold (which pays no interest) and bonds all fell together while the dollar rose.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Pressure from rising yields plus an Nvidia-specific wobble. Hedge funds are crowded long Nasdaq (98th percentile of 3 years), so if selling continues they may be forced to cut, adding fuel. Nvidia reports Tue after the US close (~8:20am Wed Sydney): a strong beat could snap the market back, a miss could deepen the drop. Lean bearish, low conviction.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "A weak yen (USD/JPY ~160) helps Japanese exporters' profits, supporting the Nikkei, but chip stocks track Nvidia. The yen is near the level where Japan's Ministry of Finance has stepped in before — intervention means Japan buys yen to strengthen it, which would make 6J jump up and could knock NKD. Japan Q3 GDP is out at 10:50am today. Both neutral.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: Brent settled $95.84, WTI $88.56 after a 2nd weekly loss on supply-surplus talk and the ongoing US blockade of Iranian oil. The weekend Hormuz mine claims could spark a jump at the open, and funds are crowded short (10th pct) — squeeze risk. Gold: steep weekly loss as yields rose. Silver: funds crowded short (4th pct). Hogs: funds at a 3-year record short.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "10:50 Sydney · Japan Q3 GDP (how fast Japan's economy grew) — a weak print could delay a BoJ hike and weaken the yen.\n13:00 Sydney (approx) · China industrial output & retail sales — gauges China's demand; matters for AUD, copper and oil.\nThis week: US retail sales, FOMC minutes (notes from the Fed's last meeting), UK CPI, Nvidia earnings Wed ~8:20am.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 10697258,
+    "fields": [
+     {
+      "name": "Iran (navy/IRGC) · claims tankers hit mines in Hormuz",
+      "value": "Iran says three tankers using routes it hadn't approved struck mines and caught fire. The US military denies it and says main routes are clear. Hormuz carries a big share of world oil, so any confirmation is 🟢 for crude (prices up), 🔴 for stocks and bonds via inflation fears. If it's shown false, oil may ease.",
+      "inline": false
+     },
+     {
+      "name": "Trump · Iran blockade stays, no deal needed",
+      "value": "Trump said a deal with Iran isn't needed and the blockade of Iranian oil stays. That keeps supply tight over time (supportive for oil) and keeps geopolitical risk alive.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-11-03 (latest CFTC report on file — a week stale).\nNKD · Neutral (46th pct) · No crowd to squeeze; news (weak yen vs intervention risk) is two-sided.\nNQ · Crowded long (98th pct) · Hot inflation and Nvidia worries push against the crowd; a long-liquidation slide is the bigger risk, not a squeeze higher.\nES · Neutral (35th pct) · Rates news pushes down, but no crowd to accelerate it.\n6J · Leaning long (77th pct) · Yield gap pushes against funds' yen longs; intervention would reward them with a sharp yen squeeze up.\nCL · Crowded short (10th pct) · Surplus talk agrees with shorts, but Hormuz mine claims could force a short squeeze higher.\nGC · Leaning short (21st pct) · Rising yields push with the sellers; not crowded enough to expect a squeeze.\nSI · Crowded short (4th pct) · Yields push with shorts, but any safe-haven bid could squeeze silver up hard.\nHE · Crowded short (0th pct, 3-yr record) · Extreme short; little news, but any positive surprise risks a squeeze up.\nNG · Crowded short (0th pct) · Record short; weather or supply news could squeeze it sharply higher.\n\nBest setup to watch: crude — funds crowded short into weekend Hormuz mine claims is the clearest squeeze risk today."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · conviction ●○○ · Weak yen helps, chips and intervention risk hurt; funds neutral — no edge.\n🔴 NQ · conviction ●○○ · Rate-hike bets and Nvidia jitters, with funds crowded long; Nvidia earnings Wed could flip it.\n🔴 ES · conviction ●○○ · Same yield pressure, funds neutral; still had a winning week, so only a lean.\n⚪ 6J · conviction ●○○ · Yield gap says weaker yen, intervention says stronger; funds lean long — mixed.\n🔴 GC · conviction ●○○ · Rising yields hurt gold; funds lean short but Hormuz is a safe-haven wildcard.\n⚪ CL · conviction ●○○ · Surplus says lower, Hormuz claims plus crowded shorts say squeeze — mixed.\n\nUse this as a filter for your own setups, not as entries: favour setups that agree with a conviction 2-3 call and be pickier with ones that fight it. Today every call is low conviction, so treat it as a light tilt and respect Nvidia and any yen intervention headlines.",
+    "footer": {
+     "text": "Sources: AlainGuillot recap, FinanceFeeds, Investing.com, Lead-Lag Report, Morningstar/DJ, Newsquawk, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-15T22:46:06.744874+00:00"
  }
 ]
