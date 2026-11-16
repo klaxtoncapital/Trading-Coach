@@ -1034,5 +1034,104 @@
    }
   ],
   "created_at": "2026-11-15T22:46:06.744874+00:00"
+ },
+ {
+  "id": "2026-11-17-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Tue 17 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Overnight was **risk-off**: investors sold riskier assets (tech stocks, the Aussie dollar) and moved into 'safe havens', places money hides when nervous, like the yen and government bonds. The trigger was a fresh tech sell-off led by Nvidia after Washington tightened rules on selling AI chips abroad. Today's mood hinges on two things: US retail sales (12:30am tonight) and Nvidia's results (8am Wed), the single most important company for the AI trade.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 US stocks tumbled; Nvidia led another tech sell-off (CNN, Motley Fool).\n🔴 US tightened AI-chip export restrictions and analysts cut Nvidia price targets.\n⚪ Fed's Warsh said AI might 'disappoint'; Treasuries caught only a small bid (CNBC).\n🟢 Yen led as a safe haven; 🔴 Aussie sank (ActionForex).\n🔴 Gold hit its lowest in over a year despite the nervous mood.\n⚪ Oil held steady despite renewed Middle East attacks.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Last week's hot inflation (CPI/PPI) has markets betting the Fed may *raise* rates again, which keeps US yields (the interest rate the government pays to borrow) near 5%. High yields make borrowing pricey and make future tech profits worth less today. Now the AI boom, the main engine of stock gains, is being questioned too. No red-folder results came out overnight.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "NQ is tech-heavy, so chip curbs hit it hardest; the Nasdaq-100 was already down ~4% over 20 days. Fear gauges are high: VXN (Nasdaq's expected-volatility index) is in the 92nd percentile of its year, meaning bigger daily swings than usual. ES follows NQ but less violently. Nvidia reports Wed 8am Sydney: a beat could spark a sharp short-term bounce, so don't get too comfortable short into it.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "The Nikkei is packed with chip-related stocks (Advantest, Tokyo Electron, SoftBank), so US chip selling tends to spill over; it's down ~8.7% over 20 days. A stronger yen (6J up) also hurts, because it shrinks exporters' overseas profits. USD/JPY sits near 160, the line where Japan spent a record ~$50bn defending the yen recently, so 6J has a built-in floor of intervention risk.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "**Crude (CL):** steady; Middle East attacks offset by worries about too much supply. Funds are heavily short, so bad news for supply could spark a sharp jump.\n**Gold (GC):** at a one-year-plus low; high yields make a no-interest asset like gold less attractive, even on a scared day.\n**Silver/copper:** follow gold and growth fears; no fresh catalyst found.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "**Tue 11:30am · RBA minutes** (time unverified): notes from Australia's central bank meeting; hawkish hints = stronger Aussie.\n**Wed 12:30am · US retail sales:** how much Americans spent last month. Strong = more Fed hike fear, higher yields, weaker stocks and gold.\n**Wed 8:00am · Nvidia earnings:** the bellwether for AI; moves NQ, ES and NKD.\n**Thu 6:00am · FOMC minutes:** detailed notes from the Fed's last meeting.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "US government · tighter AI-chip export rules",
+      "value": "Washington tightened restrictions on selling advanced AI chips abroad. Fewer buyers means less revenue for Nvidia and chip makers. 🔴 Negative for NQ, and for NKD via Japan's chip-equipment makers. Neutral-to-positive for safe havens like the yen. (Source: Motley Fool, CNN)",
+      "inline": false
+     },
+     {
+      "name": "Fed's Warsh · AI 'might disappoint'",
+      "value": "A senior Fed official saying the AI boom may not live up to the hype adds to doubts about tech valuations. It's not a rate signal by itself, but with hike bets already high it reinforced the risk-off mood. 🔴 For NQ/ES. (Source: CNBC)",
+      "inline": false
+     },
+     {
+      "name": "Not checked",
+      "value": "The Trump Truth Social feed and Forex Factory couldn't be read this run, so any posts or red-folder times there aren't covered here.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "Positions as of 2026-11-03 (CFTC data is a couple of weeks old, so treat it as a guide). 'Pct' = where today's position ranks vs the last 3 years: 98th = more long than almost ever.",
+    "fields": [
+     {
+      "name": "Equities",
+      "value": "**NKD** · Neutral (46th pct) · No crowd to squeeze; chip selling and a firmer yen push it lower on news alone.\n**NQ** · Crowded long (98th pct) · Today's chip news pushes *against* the crowd; if they bail, selling accelerates. Nvidia beat is the squeeze-up risk.",
+      "inline": false
+     },
+     {
+      "name": "Index & FX",
+      "value": "**ES** · Neutral (35th pct) · News is negative but no crowd to force; follows NQ.\n**6J** · Leaning long (77th pct) · Risk-off pushes *with* the crowd; not crowded enough for a big squeeze lower unless US data is hot.",
+      "inline": false
+     },
+     {
+      "name": "Commodities",
+      "value": "**CL** · Crowded short (10th pct) · Steady price despite Middle East attacks; any supply shock could squeeze shorts sharply higher.\n**GC** · Leaning short (21st pct) · News (high yields) pushes with them; room left to fall, squeeze only on a shock.",
+      "inline": false
+     },
+     {
+      "name": "More markets",
+      "value": "**SI** · Crowded short (4th pct) · Gold weakness keeps pressure on, but shorts are extreme; a bounce could be violent.\n**HE** · Crowded short (0th pct) · Record short; no news today, but any good demand data could spark a squeeze.\n**NG** · Crowded short (0th pct) · Record short; a cold-weather forecast could squeeze it hard.\n\n**Best setup today:** NQ, where a record-crowded long meets bad chip news; the risk is Nvidia's report Wed 8am flipping it.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "🔴 **NKD** · conviction ●○○ · US chip selling spills into Tokyo and a firmer yen hurts exporters; funds neutral.\n🔴 **NQ** · conviction ●○○ · Chip curbs and the tech rout, with funds record long; low conviction because Nvidia reports in under a day.\n🔴 **ES** · conviction ●○○ · Broad risk-off with yields near 5%; funds neutral.\n🟢 **6J** · conviction ●○○ · Yen is the safe haven today and Japan defends ~160; funds lean long, not crowded.\n🔴 **GC** · conviction ●○○ · Year-plus low on high yields; funds lean short with room left.\n⚪ **CL** · conviction ●○○ · Middle East risk vs supply glut, with crowded shorts; no edge.\n\nUse this as a filter for your own setups, not as entries: favour setups that agree with a conviction 2-3 call and be pickier against it. Today every call is conviction 1, so it's a gentle lean only, especially before Nvidia.",
+    "footer": {
+     "text": "Sources: CNN, Motley Fool, Newsquawk, ActionForex, CNBC, Biztoc, Angel One, Morningstar, CFTC COT, Klaxton desk data. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-16T22:45:18.907249+00:00"
  }
 ]
