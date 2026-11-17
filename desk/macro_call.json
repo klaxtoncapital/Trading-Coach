@@ -1,41 +1,104 @@
 {
- "generated_at": "2026-11-17T09:48:00+11:00",
- "trading_day": "2026-11-17",
- "summary": "Risk-off Monday: US stocks tumbled as Nvidia led another tech sell-off after Washington tightened AI chip export rules and analysts cut targets; the yen led as a safe haven and the Aussie sank. Nvidia reports Wed 8am Sydney and US retail sales land Wed 12:30am, so tech calls are low conviction. Forex Factory and the Trump feed were unreadable this run; COT on file is dated 3 Nov.",
- "events_next_24h": [
-  "Tue 11:30 AUD RBA meeting minutes (time unverified)",
-  "Wed 00:30 USD Retail sales (Oct)",
-  "Wed 08:00 USD Nvidia Q3 earnings (after US close)"
- ],
- "tier1_next_14d": [
-  "FOMC minutes (27-28 Oct meeting) · Thu, 19 Nov, 6:00am",
-  "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am"
- ],
- "markets": {
-  "NQ": {"bias": "bearish", "conviction": 1, "why": "Tech rout resumed Monday as Nvidia sank on tighter US AI-chip curbs and target cuts; funds 98th-pct long leaves room to unwind.", "risk": "Nvidia results Wed 8am Sydney beat and reassure the AI trade."},
-  "ES": {"bias": "bearish", "conviction": 1, "why": "Broad risk-off led by tech with yields still near 5% on Fed hike bets; fund positioning neutral (35th pct).", "risk": "Strong retail sales with calm yields, or a reassuring Nvidia report."},
-  "YM": {"bias": "neutral", "conviction": 1, "why": "The Dow has held up better as money rotates out of chips, but a broad sell-off drags it too; no positioning data.", "risk": "Rotation into value accelerates (bullish) or selling broadens (bearish)."},
-  "RTY": {"bias": "neutral", "conviction": 1, "why": "High yields weigh on small caps, but I couldn't confirm Monday's Russell move or positioning, so no call.", "risk": "A sharp drop in yields after retail sales."},
-  "NKD": {"bias": "bearish", "conviction": 1, "why": "AI and chip selling in the US spills into Japan's chip-heavy index and a firmer yen hurts exporters; funds neutral (46th pct).", "risk": "Nvidia beat sparks a chip rebound in Tokyo."},
-  "6E": {"bias": "neutral", "conviction": 1, "why": "Fed hike bets favour the dollar, but I couldn't confirm Monday's euro move; no positioning data on file.", "risk": "Hot US retail sales lifts the dollar further."},
-  "6J": {"bias": "bullish", "conviction": 1, "why": "Yen led the safe-haven bid on the tech sell-off with USD/JPY pinned near 160 under intervention threat; funds lean long yen (77th).", "risk": "Strong US data pushes USD/JPY through 160 without Japan acting."},
-  "6B": {"bias": "neutral", "conviction": 1, "why": "Dollar strength leans against sterling, but UK CPI and jobs this week can change the picture; no positioning data.", "risk": "UK data surprise in either direction."},
-  "6A": {"bias": "bearish", "conviction": 1, "why": "The Aussie sank as the AI sell-off spread; it trades as a risk-on currency. RBA minutes today; no positioning data.", "risk": "Hawkish RBA minutes or a risk rebound after Nvidia."},
-  "ZN": {"bias": "neutral", "conviction": 1, "why": "Treasuries got only a small safe-haven bid while Fed hike bets keep yields near 5%; retail sales tonight can swing it.", "risk": "Weak retail sales rallies bonds; hot sales sinks them."},
-  "GC": {"bias": "bearish", "conviction": 1, "why": "Gold hit its lowest in over a year on Monday despite risk-off, hurt by high yields and Fed hike bets; funds lean short (21st), not crowded.", "risk": "Middle East escalation or a sharp yield drop triggers short covering."},
-  "CL": {"bias": "neutral", "conviction": 1, "why": "Oil held steady despite renewed Middle East attacks as surplus worries offset; funds crowded short (10th pct) raise squeeze risk.", "risk": "A confirmed Hormuz supply disruption (bullish) or Iran de-escalation (bearish)."}
- },
- "sources": [
-  "https://www.cnn.com/2026/11/16/business/stocks-nvidia-ai-anthropic",
-  "https://www.fool.com/coverage/stock-market-today/2026/11/16/stock-market-today-nov-16-nvidia-sinks-as-u-s-tightens-ai-chip-restrictions-and-analysts-slash-price-targets/",
-  "https://www.newsquawk.com/headlines/us-market-wrap---16th-november-2026-risk-off-trade-as-tech-rout-resumes-supporting-havens-",
-  "https://www.actionforex.com/action-insight/market-overview/661069-yen-leads-aussie-sinks-as-ai-selloff-spreads-but-bonds-offer-little-shelter/",
-  "https://www.cnbc.com/2026/11/16/treasury-yields-bonds-inflation.html",
-  "https://www.riotimesonline.com/global-economy-briefing-november-16-2026/",
-  "https://biztoc.com/x/e3b33fe408294346",
-  "https://www.angelone.in/news/commodities/crude-oil-prices-holds-steady-despite-renewed-middle-east-attacks-november-16-2026",
-  "https://www.morningstar.com/news/dow-jones/202611081345/japan-spent-record-50-billion-in-single-day-to-bolster-yen",
-  "https://www.tradingnews.com/news/usdjpy-holds-159-under-tokyo-160-line-a-close-above-160",
-  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
- ]
+  "generated_at": "2026-11-18T09:44:41+11:00",
+  "trading_day": "2026-11-18",
+  "summary": "Wall Street fell about 1% (Nasdaq -1.1%) on AI-trade unwinding and growing Fed rate-hike bets that lifted the dollar to a 19-month high and sank gold; Nvidia then beat and raised after the close, shares up after hours.",
+  "events_next_24h": [
+    "Wed 6:00pm GBP UK CPI (Oct)",
+    "Thu 6:00am USD FOMC minutes (27-28 Oct meeting)"
+  ],
+  "tier1_next_14d": [
+    "FOMC minutes (27-28 Oct meeting) · Thu 19 Nov 6:00am",
+    "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu 26 Nov 12:30am"
+  ],
+  "markets": {
+    "NQ": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "AI-led selloff and Fed hike bets are bearish, but Nvidia's beat-and-raise lifted shares after hours and funds are crowded long (98th pct).",
+      "risk": "A clean break either way after the Nvidia call and Thursday's FOMC minutes."
+    },
+    "ES": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "S&P fell ~1% on hike bets and AI worries, but Nvidia's beat gives a relief catalyst; signals conflict before FOMC minutes.",
+      "risk": "Hawkish minutes or Nvidia gains fading would tilt it bearish."
+    },
+    "YM": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "Dow led Tuesday's drop on rate-hike fears; no clear catalyst for the next session beyond the Nvidia read-through.",
+      "risk": "Hawkish FOMC minutes would tip it bearish."
+    },
+    "RTY": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "Small caps are hurt by higher-rate bets, but a broad Nvidia relief bounce could lift them; not enough evidence for a lean.",
+      "risk": "Minutes showing hike support would turn it bearish."
+    },
+    "NKD": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "Nikkei is down 9% in 20 days on chip selling and a firmer yen, but Nvidia's beat should help Tokyo chip names at the open.",
+      "risk": "Yen jump on intervention or semis failing to bounce would turn it bearish."
+    },
+    "6E": {
+      "bias": "bearish",
+      "conviction": 2,
+      "why": "Dollar hit a 19-month high on Fed hike bets and risk-off flows weighed on the euro; macro and price agree.",
+      "risk": "Dovish FOMC minutes or a risk-on rebound would weaken the dollar."
+    },
+    "6J": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "Intervention risk near 160 and BoJ December hike talk support the yen, but widening Fed hike bets push the other way.",
+      "risk": "Actual Japan intervention would send 6J sharply higher."
+    },
+    "6B": {
+      "bias": "bearish",
+      "conviction": 1,
+      "why": "Broad dollar strength and risk-off weighed on sterling; UK CPI at 6pm Sydney adds two-way risk.",
+      "risk": "A hot UK CPI that lifts BoE hike bets would support sterling."
+    },
+    "6A": {
+      "bias": "bearish",
+      "conviction": 1,
+      "why": "Aussie dipped as the dollar rallied on Fed hike bets and stocks sold off; it trades as a risk-sensitive currency.",
+      "risk": "An Nvidia-led risk-on rebound in Asia would lift the Aussie."
+    },
+    "ZN": {
+      "bias": "bearish",
+      "conviction": 1,
+      "why": "Markets are pricing Fed hikes and officials flag inflation going the wrong way, though yields steadied after retail sales.",
+      "risk": "Risk-off flight to safety or dovish minutes would lift bonds."
+    },
+    "GC": {
+      "bias": "bearish",
+      "conviction": 1,
+      "why": "Gold opened at its lowest since Sep 2025 as the dollar and hike bets rose; commercials are the most long in 3 years, a contrarian warning.",
+      "risk": "Dollar reversal or a geopolitical scare could spark a short-covering bounce."
+    },
+    "CL": {
+      "bias": "neutral",
+      "conviction": 1,
+      "why": "Supply-surplus outlook is pushing oil lower, but tanker attacks near Hormuz and funds near crowded short (10th pct) argue against chasing it.",
+      "risk": "A major Gulf supply disruption would send crude sharply higher."
+    }
+  },
+  "sources": [
+    "https://www.marketscreener.com/news/wall-street-ends-lower-ahead-of-nvidia-earnings-anthropic-debut-ce785edcdc8df226",
+    "https://www.investing.com/news/economy-news/trading-day-ai-trade-unwind-continues-but-nvidia-beats-5034195",
+    "https://www.cnbc.com/video/2026/11/17/nvidia-beats-on-results-and-guidance-in-first-earnings-report-since-huangs-exit.html",
+    "https://www.cnbc.com/2026/11/17/us-dollar-hits-19-month-peak-on-fed-hike-bets-aussie-dips.html",
+    "https://cnbc.com/2026/11/17/treasury-yields-bonds-inflation.html",
+    "https://www.fxstreet.com/news/japanese-yen-gathers-strength-amid-intervention-risk-traders-await-us-retail-sales-data-202611170232",
+    "https://www.japantimes.co.jp/business/2026/11/10/economy/boj-summary-opinions-october/",
+    "https://www.cnbc.com/amp/2026/11/17/oil-slips-on-supply-surplus-outlook-despite-gulf-tensions.html",
+    "https://www.ttnews.com/articles/oil-prices-vessel-attacks",
+    "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-tuesday-november-17-2026-gold-opens-at-lowest-price-since-september-29-2025-121421264.html",
+    "https://www.indexbox.io/blog/nikkei-falls-134-as-tech-and-chip-stocks-slide-ahead-of-nvidia-results-and-anthropic-ipo/",
+    "https://www.anews.com.tr/economy/2026/11/17/us-retail-sales-up-02-in-october-above-expectations",
+    "https://finance.yahoo.com/economy/policy/articles/fed-track-raise-interest-rates-195501318.html",
+    "https://www.ons.gov.uk/releases/consumerpriceinflationukoctober2026",
+    "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
+  ]
 }
