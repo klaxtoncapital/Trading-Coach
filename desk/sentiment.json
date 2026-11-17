@@ -1133,5 +1133,78 @@
    }
   ],
   "created_at": "2026-11-16T22:45:18.907249+00:00"
+ },
+ {
+  "id": "2026-11-18-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Wed 18 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Wall Street sold off again overnight: the S&P 500 fell about 1% and the Nasdaq 1.1%, as the AI-stock unwind continued and traders bet the Fed may *raise* interest rates next month. \"Risk-off\" means money leaving riskier things (stocks, the Aussie dollar, chip names) for safety (the US dollar). The big twist came after the close: Nvidia beat estimates and raised guidance, and its shares rose after hours. So the Asia open starts risk-off, with a possible Nvidia relief bounce in chips.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 US stocks fell ~1%, Dow down 800+ points, tech led lower ahead of Nvidia\n🔴 US dollar hit a 19-month high on Fed rate-hike bets; euro, pound, Aussie fell\n🟢 Nvidia beat on results and guidance (first report since Jensen Huang's exit); shares up after hours\n⚪ US retail sales rose 0.2% in Oct, slightly above forecasts but slowing\n🔴 Gold opened at its lowest since Sep 2025\n⚪ Oil slipped on a supply-surplus outlook despite tanker attacks near Hormuz",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Inflation is proving sticky, so markets now expect the Fed to *tighten* (raise rates) rather than cut. Higher rates make borrowing dearer, which hurts company profits and stock valuations, especially expensive tech. They also make the US dollar more attractive to hold, which is why the dollar is strong. Shoppers are still spending, but more slowly (retail sales +0.2%), so the economy is cooling, not collapsing.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Nasdaq-100 is down ~8% in 20 days and its fear gauge (VXN, implied volatility = how big a move options traders expect) is in the top 2% of the past year. Nvidia's beat is the key counterweight: it is the biggest AI stock, so a good report can lift the whole sector. The catch: rate-hike fears are the bigger theme, and Thursday 6am's FOMC minutes (notes from the Fed's last meeting) could revive them. Expect big, two-way swings.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei fell 1.3% Tuesday to below 59,000 (down ~9% in 20 days) on chip-stock selling. Nvidia's beat should help Tokyo chip names (Advantest, Tokyo Electron, SoftBank) early. Yen: USD/JPY is near 160, a level where Japan has stepped in before (intervention = Japan selling dollars to buy yen). 6J up = yen stronger. A stronger yen hurts Japanese exporters and the Nikkei. The Bank of Japan is seen likely to hike in December, also yen-supportive.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude oil (CL) slipped: forecasters see more supply than demand, but attacks on tankers near the Strait of Hormuz (a key oil shipping lane) keep spikes possible. Gold (GC) hit a 14-month low: a strong dollar and higher-rate bets hurt gold because it pays no interest. Silver followed gold lower. Lean hogs: funds are the most short in 3 years (squeeze risk if any bullish news).",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "**Wed 6:00pm** UK CPI (inflation, Oct): a hot number lifts Bank of England hike bets → pound (6B) up.\n**Thu 6:00am** FOMC minutes: the detailed notes from the Fed's Oct meeting. If they show officials leaning toward hikes, stocks and gold could drop and the dollar rise.\nAlso: Nvidia's call commentary and Anthropic's upcoming stock market debut are in focus for tech.\n(Forex Factory feed couldn't be read this morning; times from the desk calendar and ONS.)",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "Positions as of 2026-11-03 (CFTC COT, released 6 Nov). Percentile = where funds' net position sits vs the last 3 years (90+ = very crowded long, 10 or below = very crowded short). A crowded side can unwind fast.",
+    "fields": [
+     {
+      "name": "By market",
+      "value": "NKD · Neutral (46th pct) · Chip selling vs Nvidia bounce; funds aren't stretched, so no squeeze fuel either way.\nNQ · Crowded long (98th pct) · Hike bets push against the crowd; if Nvidia's bounce fades, long-unwinding could deepen the drop.\nES · Neutral (35th pct) · Funds net short but not extreme; a hawkish Fed suits them.\n6J · Leaning long (77th pct) · Intervention talk pushes with the crowd; Fed hike bets push against it.",
+      "inline": false
+     },
+     {
+      "name": "Commodities",
+      "value": "CL · Crowded short (10th pct) · Surplus news is with the crowd, but tanker attacks could trigger a short squeeze higher.\nGC · Leaning short (21st pct) · Strong dollar pushes with funds; commercials are the most long in 3 years, a bounce warning.\nSI · Crowded short (4th pct) · Gold's slide is with the crowd, but shorts this stretched squeeze easily.\nHE · Crowded short (0th pct) · Record short; any good demand news risks a sharp squeeze up.\nNG · Crowded short (0th pct) · Record short; a cold-weather forecast could squeeze it.",
+      "inline": false
+     },
+     {
+      "name": "Best setup to watch",
+      "value": "NQ: funds are near-record long while Fed hike bets build, so if the Nvidia after-hours pop fails to hold, the long crowd is fuel for further downside.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · conviction ●○○ · Chip selloff vs Nvidia beat; funds neutral, so no edge either way.\n⚪ NQ · conviction ●○○ · Hike bets bearish, Nvidia beat bullish, funds crowded long (98th pct) = two-way risk.\n⚪ ES · conviction ●○○ · Down 1% on hike fears, Nvidia relief possible; FOMC minutes Thu 6am.\n⚪ 6J · conviction ●○○ · Intervention + BoJ hike talk vs Fed hike bets; funds lean long.\n🔴 GC · conviction ●○○ · Strong dollar and hike bets; commercials heavily long warn of a bounce.\n⚪ CL · conviction ●○○ · Surplus outlook bearish but funds near crowded short and Gulf tanker risk.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call, and be pickier with setups against it. With nearly everything neutral today, let your chart levels lead and keep size modest into the FOMC minutes.",
+    "footer": {
+     "text": "Sources: Reuters, CNBC, MarketScreener, FXStreet, Japan Times, Yahoo Finance, IndexBox, ONS, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-17T22:45:13.891237+00:00"
  }
 ]
