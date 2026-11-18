@@ -1,104 +1,98 @@
 {
-  "generated_at": "2026-11-18T09:44:41+11:00",
-  "trading_day": "2026-11-18",
-  "summary": "Wall Street fell about 1% (Nasdaq -1.1%) on AI-trade unwinding and growing Fed rate-hike bets that lifted the dollar to a 19-month high and sank gold; Nvidia then beat and raised after the close, shares up after hours.",
-  "events_next_24h": [
-    "Wed 6:00pm GBP UK CPI (Oct)",
-    "Thu 6:00am USD FOMC minutes (27-28 Oct meeting)"
-  ],
-  "tier1_next_14d": [
-    "FOMC minutes (27-28 Oct meeting) · Thu 19 Nov 6:00am",
-    "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu 26 Nov 12:30am"
-  ],
-  "markets": {
-    "NQ": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "AI-led selloff and Fed hike bets are bearish, but Nvidia's beat-and-raise lifted shares after hours and funds are crowded long (98th pct).",
-      "risk": "A clean break either way after the Nvidia call and Thursday's FOMC minutes."
-    },
-    "ES": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "S&P fell ~1% on hike bets and AI worries, but Nvidia's beat gives a relief catalyst; signals conflict before FOMC minutes.",
-      "risk": "Hawkish minutes or Nvidia gains fading would tilt it bearish."
-    },
-    "YM": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Dow led Tuesday's drop on rate-hike fears; no clear catalyst for the next session beyond the Nvidia read-through.",
-      "risk": "Hawkish FOMC minutes would tip it bearish."
-    },
-    "RTY": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Small caps are hurt by higher-rate bets, but a broad Nvidia relief bounce could lift them; not enough evidence for a lean.",
-      "risk": "Minutes showing hike support would turn it bearish."
-    },
-    "NKD": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Nikkei is down 9% in 20 days on chip selling and a firmer yen, but Nvidia's beat should help Tokyo chip names at the open.",
-      "risk": "Yen jump on intervention or semis failing to bounce would turn it bearish."
-    },
-    "6E": {
-      "bias": "bearish",
-      "conviction": 2,
-      "why": "Dollar hit a 19-month high on Fed hike bets and risk-off flows weighed on the euro; macro and price agree.",
-      "risk": "Dovish FOMC minutes or a risk-on rebound would weaken the dollar."
-    },
-    "6J": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Intervention risk near 160 and BoJ December hike talk support the yen, but widening Fed hike bets push the other way.",
-      "risk": "Actual Japan intervention would send 6J sharply higher."
-    },
-    "6B": {
-      "bias": "bearish",
-      "conviction": 1,
-      "why": "Broad dollar strength and risk-off weighed on sterling; UK CPI at 6pm Sydney adds two-way risk.",
-      "risk": "A hot UK CPI that lifts BoE hike bets would support sterling."
-    },
-    "6A": {
-      "bias": "bearish",
-      "conviction": 1,
-      "why": "Aussie dipped as the dollar rallied on Fed hike bets and stocks sold off; it trades as a risk-sensitive currency.",
-      "risk": "An Nvidia-led risk-on rebound in Asia would lift the Aussie."
-    },
-    "ZN": {
-      "bias": "bearish",
-      "conviction": 1,
-      "why": "Markets are pricing Fed hikes and officials flag inflation going the wrong way, though yields steadied after retail sales.",
-      "risk": "Risk-off flight to safety or dovish minutes would lift bonds."
-    },
-    "GC": {
-      "bias": "bearish",
-      "conviction": 1,
-      "why": "Gold opened at its lowest since Sep 2025 as the dollar and hike bets rose; commercials are the most long in 3 years, a contrarian warning.",
-      "risk": "Dollar reversal or a geopolitical scare could spark a short-covering bounce."
-    },
-    "CL": {
-      "bias": "neutral",
-      "conviction": 1,
-      "why": "Supply-surplus outlook is pushing oil lower, but tanker attacks near Hormuz and funds near crowded short (10th pct) argue against chasing it.",
-      "risk": "A major Gulf supply disruption would send crude sharply higher."
-    }
+ "generated_at": "2026-11-19T09:44:28+11:00",
+ "trading_day": "2026-11-19",
+ "summary": "Hawkish FOMC minutes (Fed came close to an October hike; broad support for more hikes) lifted yields near 5% and the dollar near a 19-month high; Dow fell 561 points, Nvidia reversed lower, gold hit a 14-month low.",
+ "events_next_24h": [
+  "Thu 11:00pm USD Walmart Q3 earnings (date unconfirmed)",
+  "Fri 12:30am USD Initial jobless claims",
+  "Fri 10:30am JPY National CPI (Oct), just after the 24h window"
+ ],
+ "tier1_next_14d": [
+  "US PCE + personal income (Oct) and Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am"
+ ],
+ "markets": {
+  "ES": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Hawkish Fed minutes and ~5% yields hit stocks; S&P fell again with the Dow in a losing streak. Funds neutral (35th pct), no crowding to fight.",
+   "risk": "A dovish Fed speaker or soft jobless claims that pull hike odds down."
   },
-  "sources": [
-    "https://www.marketscreener.com/news/wall-street-ends-lower-ahead-of-nvidia-earnings-anthropic-debut-ce785edcdc8df226",
-    "https://www.investing.com/news/economy-news/trading-day-ai-trade-unwind-continues-but-nvidia-beats-5034195",
-    "https://www.cnbc.com/video/2026/11/17/nvidia-beats-on-results-and-guidance-in-first-earnings-report-since-huangs-exit.html",
-    "https://www.cnbc.com/2026/11/17/us-dollar-hits-19-month-peak-on-fed-hike-bets-aussie-dips.html",
-    "https://cnbc.com/2026/11/17/treasury-yields-bonds-inflation.html",
-    "https://www.fxstreet.com/news/japanese-yen-gathers-strength-amid-intervention-risk-traders-await-us-retail-sales-data-202611170232",
-    "https://www.japantimes.co.jp/business/2026/11/10/economy/boj-summary-opinions-october/",
-    "https://www.cnbc.com/amp/2026/11/17/oil-slips-on-supply-surplus-outlook-despite-gulf-tensions.html",
-    "https://www.ttnews.com/articles/oil-prices-vessel-attacks",
-    "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-tuesday-november-17-2026-gold-opens-at-lowest-price-since-september-29-2025-121421264.html",
-    "https://www.indexbox.io/blog/nikkei-falls-134-as-tech-and-chip-stocks-slide-ahead-of-nvidia-results-and-anthropic-ipo/",
-    "https://www.anews.com.tr/economy/2026/11/17/us-retail-sales-up-02-in-october-above-expectations",
-    "https://finance.yahoo.com/economy/policy/articles/fed-track-raise-interest-rates-195501318.html",
-    "https://www.ons.gov.uk/releases/consumerpriceinflationukoctober2026",
-    "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
-  ]
+  "NQ": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Nvidia gave back its post-earnings gains as rate-hike talk grew; funds are crowded long (98th pct), so there is room to unwind.",
+   "risk": "Nasdaq held up on the day; a strong AI bid (Anthropic IPO buzz) could squeeze shorts."
+  },
+  "YM": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Dow fell 561 points (-1.1%), extending its losing streak after the hawkish Fed minutes.",
+   "risk": "Walmart earnings beat or falling yields reviving value stocks."
+  },
+  "RTY": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Small caps are the most rate-sensitive; more Fed hikes and ~5% yields are a headwind. Lean only, no fresh RTY price data found.",
+   "risk": "Yields reversing lower on weak data."
+  },
+  "NKD": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Nikkei down 3.6% in 5 days on the tech rout; Nvidia's reversal weighs on Japan chip names. Funds neutral (46th pct).",
+   "risk": "Weak yen boosting exporters, or Japan CPI tomorrow shifting BOJ bets."
+  },
+  "6E": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Dollar near a 19-month high as markets price a Fed hike; EUR/USD pressing major support.",
+   "risk": "Support at multi-year lows holding and a dollar pullback."
+  },
+  "6J": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Hawkish Fed pushes USD/JPY up, but it stalls near 160 under Japan intervention warnings and a likely December BOJ hike. Funds leaning long yen (77th pct).",
+   "risk": "Actual intervention (yen spikes) or a break above 160 (yen slides)."
+  },
+  "6B": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Broad US-dollar strength on Fed hike bets; no UK-specific driver found.",
+   "risk": "A dollar reversal or hawkish BoE surprise."
+  },
+  "6A": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Strong dollar and risk-off stocks weigh on the Aussie, a risk-sensitive currency.",
+   "risk": "Risk-on rebound in equities."
+  },
+  "ZN": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Minutes showed broad support for more hikes; 10-year yields near 5% means bond prices falling.",
+   "risk": "Weak data or risk-off flight to safety lifting bonds."
+  },
+  "GC": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Gold broke below $3,800 to a 14-month low as hike bets lifted the dollar and yields. Funds 21st pct, not yet crowded short.",
+   "risk": "Dollar reversal or a geopolitical shock (Hormuz) sending buyers back."
+  },
+  "CL": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Oil slipped on a US stockpile build, but Hormuz risk lingers and funds are crowded short (10th pct), which could fuel a squeeze.",
+   "risk": "Fresh Middle East supply headline (up) or more inventory builds (down)."
+  }
+ },
+ "sources": [
+  "https://www.ibtimes.com/us-stocks-dow-falls-nvidia-earnings-fed-rate-hikes-3809938",
+  "https://www.investmentnews.com/equities/the-fed-came-close-to-an-october-rate-hike-fomc-minutes-show/269079",
+  "https://www.cnbc.com/2026/11/18/dollar-holds-near-19-month-high-as-data-supports-case-for-rate-hikes.html",
+  "https://www.kitco.com/news/article/2026-11-18/gold-plunges-14-month-low-silver-tumbles-fed-rate-hike-bets-intensify-kitco",
+  "https://hdfcsky.com/news/brent-crude-oil-price-today-november-18-2026-brent-falls-0-5percent-to-92-6-wti-drops-1-15percent-as-us-stockpiles-rise-middle-east-risks-limit-losses",
+  "https://www.fxstreet.com/news/japanese-yen-finds-support-as-intervention-risks-linger-near-16000-202611181610",
+  "https://www.nst.com.my/amp/business/economy/2026/11/1575983/japans-mimura-says-markets-shouldnt-forget-intervention-risks-yen",
+  "https://political.org/2026/11/01/bank-of-japan-governor-kazuo-ueda-all-but-locks-in-december-rate-hike-but-neutral-rate-uncertainty-clouds-path-beyond/",
+  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
+ ]
 }
