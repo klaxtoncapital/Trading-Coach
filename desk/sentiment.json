@@ -1206,5 +1206,94 @@
    }
   ],
   "created_at": "2026-11-17T22:45:13.891237+00:00"
+ },
+ {
+  "id": "2026-11-19-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Thu 19 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "The big story overnight: the Fed's minutes (the written record of its last meeting) showed officials came close to RAISING interest rates in October and broadly support more hikes. Higher rates make borrowing dearer and cash/bonds more attractive, which is bad for stocks and gold and good for the US dollar. That is 'risk-off': money moving out of riskier assets (stocks, small caps, commodities) toward safety and the dollar. Even Nvidia's blowout earnings couldn't hold up the market.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 Fed minutes hawkish (leaning to higher rates): a hike was a 'close call' in October, more hikes backed.\n🔴 Dow -561 pts (-1.1%), another down day; S&P slipped; Nasdaq edged up.\n🔴 Nvidia reversed its post-earnings jump and closed about 3% lower.\n🔴 Gold broke below $3,800 to a 14-month low; silver ~-3%.\n⚪ Dollar near a 19-month high; USD/JPY stuck just under 160.\n⚪ Oil dipped (WTI ~$84.5) on a US stockpile build.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Inflation is still too hot for the Fed's comfort, so instead of cutting rates it is talking about raising them. Markets now price a December hike. 10-year Treasury yields (the interest rate on US government 10-year loans) are near 5%; when yields rise, bond prices fall and future company profits are worth less today, which hits growth stocks. Red-folder data today: none released overnight apart from the minutes; breakdowns come in the data posts.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Nvidia beat on revenue and guidance but sold off: 'good news, bad price reaction' is a warning sign that buyers are tired. The Dow and S&P have fallen several sessions in a row; VXN (Nasdaq fear gauge) is at its highest in a year, so expect big swings. Tonight Anthropic's IPO (first day of public trading) is expected to start trading in the US, a ~$1T+ AI listing that could lift or drain AI-stock sentiment.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei is down 3.6% in 5 days on the tech sell-off; Nvidia's reversal hurts Japanese chip names (Advantest, Tokyo Electron, SoftBank). The yen is weak (USD/JPY near 160), which normally helps exporters, but Japan's finance officials keep warning they may 'intervene' (sell dollars, buy yen) as they did with a record $50B this month. The Bank of Japan has all but signalled a December hike. 6J up = yen stronger, so a surprise intervention would spike 6J and could knock NKD.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Gold: hit hard because higher US rates and a strong dollar make a no-interest metal less attractive. Silver followed. Crude: WTI ~$84.5, Brent ~$92 after US inventories rose (more supply), but Strait of Hormuz risk keeps a floor under prices. Copper: no fresh driver found; strong dollar is a mild headwind.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Thu 11:00pm Walmart earnings (date unconfirmed): a read on the US shopper; moves ES.\nFri 12:30am US jobless claims: weekly count of new unemployment filings; a jump would cool hike fears (stocks up), a drop adds to them.\nFri ~1:30am Anthropic IPO first trade (expected): big AI sentiment test for NQ.\nFri 10:30am Japan CPI (inflation): hot = BOJ hike more certain = yen up (6J up).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 10697258,
+    "fields": [
+     {
+      "name": "Fed (FOMC minutes) · 'We came close to hiking in October'",
+      "value": "The minutes are the detailed notes from the Fed's 27-28 Oct meeting, released 6:00am Sydney. They showed broad support for more rate hikes and flagged the AI spending boom as an inflation and financial-stability risk. Negative for stocks (NQ, ES, RTY), bonds (ZN) and gold; positive for the US dollar (so 6E, 6B, 6A fall).",
+      "inline": false
+     },
+     {
+      "name": "Japan Ministry of Finance · Mimura/Katayama yen warnings",
+      "value": "Japan's currency officials say yen moves near 160 are too fast and they will coordinate with the US Treasury. This is 'verbal intervention': talking to scare yen sellers. It caps USD/JPY near 160 and makes a sudden yen spike (6J up) a live risk, which can hit the Nikkei.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 3 Nov 2026 (latest CFTC report). pct = where funds' net position sits vs the last 3 years (90+ = very crowded long, 10 or less = very crowded short). Crowded trades unwind fast when news turns against them (a 'squeeze').",
+    "fields": [
+     {
+      "name": "Indices & yen",
+      "value": "NKD · Neutral (46th pct) · Tech sell-off pushes down, but no crowd to unwind; no squeeze setup.\nNQ · Crowded long (98th pct) · Hawkish Fed and Nvidia's reversal push AGAINST a very long crowd; risk of further long-unwinding (downside).\nES · Neutral (35th pct) · News is negative, positioning gives no extra fuel either way.\n6J · Leaning long yen (77th pct) · Fed hike talk pushes against yen longs, but intervention risk protects them; two-way risk.",
+      "inline": false
+     },
+     {
+      "name": "Commodities",
+      "value": "CL · Crowded short (10th pct) · Stockpile build pushes WITH the crowd, but any Hormuz headline could squeeze shorts sharply up.\nGC · Leaning short (21st pct) · Hawkish Fed pushes with sellers; funds not yet extreme, so room to fall further.\nSI · Crowded short (4th pct) · News pushes with the crowd, but shorts are near a 3-year extreme; a bounce/squeeze is possible.\nHE · Crowded short (0th pct) · Funds are the most short in 3 years; any good demand news could spark a short squeeze.\nNG · Crowded short (0th pct) · Record short; a cold-weather forecast could trigger a fast squeeze up.",
+      "inline": false
+     },
+     {
+      "name": "Best setup today",
+      "value": "NQ: funds are at the 98th percentile long while the Fed turns hawkish and Nvidia sold off on good news; that crowded-long-vs-bad-news mix is the clearest downside setup.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "🔴 NKD · conviction ●○○ · Tech sell-off and Nvidia's reversal weigh; funds neutral, Japan CPI Friday could shift things.\n🔴 NQ · conviction ●●○ · Hawkish Fed + Nvidia's failed rally; funds crowded long (98th pct) adds downside fuel.\n🔴 ES · conviction ●●○ · Rate-hike fears and a multi-day losing streak; funds neutral.\n⚪ 6J · conviction ●○○ · Fed pushes yen down, intervention threat pushes it up: no edge.\n🔴 GC · conviction ●●○ · 14-month low on dollar strength and hike bets; funds not crowded short yet.\n⚪ CL · conviction ●○○ · Stockpiles bearish, but crowded shorts and Hormuz risk make a squeeze possible.\n\nUse this as a filter for your own setups: favour setups that agree with a conviction 2-3 call, and be pickier with ones that fight it. It is not an entry signal.",
+    "footer": {
+     "text": "Sources: IBTimes, InvestmentNews, CNBC, Kitco, HDFC Sky, FXStreet, NST, Renaissance Capital, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-18T22:45:22.744429+00:00"
  }
 ]
