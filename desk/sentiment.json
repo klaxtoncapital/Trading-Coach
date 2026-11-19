@@ -1295,5 +1295,94 @@
    }
   ],
   "created_at": "2026-11-18T22:45:22.744429+00:00"
+ },
+ {
+  "id": "2026-11-20-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Fri 20 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Wall Street had a rough night: the Dow fell about 1,100 points and the S&P 500 and Nasdaq dropped about 2%, the S&P's 6th losing day in a row. The main driver is the Federal Reserve (the Fed, America's central bank) signalling it may RAISE interest rates again in December. \"Risk-off\" means investors are selling riskier things like stocks and parking money in safer places (the US dollar, sometimes bonds or gold). Today that mood should carry into the Asia open.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 Fed minutes (the written record of the last Fed meeting) showed officials expect more rate hikes; markets now price ~95% odds of a December hike.\n🔴 Dow -1,100, S&P and Nasdaq ~-2%; S&P down 6 days straight.\n🔴 Nvidia fell again despite record ~$115.8bn revenue, as investors weigh its CEO transition fallout.\n⚪ Anthropic debuted on Nasdaq (ticker ANT), pulling big money toward one new stock.\n🔴 Australian unemployment jumped to 4.9%; the Aussie dollar slumped.\n⚪ Trump met Xi and Putin together in China; no clear market headline found.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "A rate hike makes borrowing more expensive for companies and households. The Fed does that to cool inflation (prices rising too fast); reports tie part of it to AI data-center spending pushing up costs. Higher rates usually hurt stocks, especially high-growth tech, because future profits are worth less today. It also makes the dollar more attractive, so the dollar stays strong.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Both are in a clear downtrend: Nasdaq-100 was already -9% over 20 days before last night. Fear gauges are very high (VXN, the Nasdaq fear index, is at its 98th percentile for the year; VIX at 93rd), which means big daily swings both ways. When fear is this high, sharp short-covering bounces (sellers rushing to buy back) can happen without warning, so size down.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei is ~8% below where it was 20 days ago and usually follows a bad US night lower. USD/JPY is near 160, a level where Japan's finance ministry has stepped in before to buy yen (\"intervention\"), which makes 6J jump. The Bank of Japan (BOJ) is expected to raise its rates in December, which supports the yen; the Fed hiking pulls the other way. Japan's inflation figure lands at 10:30am Sydney.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: Brent eased to about $92 as traders talk about too much supply, but attacks on ships around the Strait of Hormuz (a key oil route near Iran) keep a floor under prices. Gold held steady near $3,715: a strong dollar and rate hikes weigh on it, Iran risk supports it. Silver and copper: no fresh overnight driver found. Lean hogs: funds are at a record short.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "10:30am Japan national CPI (inflation for October): hot numbers back a BOJ hike and can lift the yen and pressure the Nikkei.\nSat 1:45am US flash PMIs (quick surveys of business activity): strong = more hike fear, weak = possible relief bounce.\nSat 7:30am CFTC COT (weekly hedge-fund positions).\nRed-folder results out overnight: US weekly jobless claims (Forex Factory feed was unreachable this morning, so check the data posts).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 10697258,
+    "fields": [
+     {
+      "name": "Fed (FOMC minutes) · officials expect more hikes",
+      "value": "The minutes are notes from the Fed's 27-28 Oct meeting. They showed most officials think rates need to go higher, even though they paused in October. Negative for stocks (NQ, ES, YM, RTY) because borrowing gets dearer; positive for the US dollar, so it pressures the euro, Aussie and yen; mixed for bonds (ZN) and gold.",
+      "inline": false
+     },
+     {
+      "name": "Trump · met Xi and Putin together in China",
+      "value": "First three-way meeting at the APEC summit; Trump briefs the press Friday. No concrete trade or tariff change was reported that we could confirm. Any surprise tariff or China-deal headline from that briefing could move stocks and the Aussie dollar (China-sensitive). Note: Trump's Truth Social feed could not be checked this morning.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 3 Nov 2026 (CFTC COT; over two weeks old, so treat as a guide). Percentile = where today's fund position sits versus the last 3 years (90+ = very crowded long, 10 or less = very crowded short).",
+    "fields": [
+     {
+      "name": "By market",
+      "value": "NKD · Neutral (46th pct) · Not crowded; US selling pushes it down with no squeeze fuel either way.\nNQ · Crowded long (98th pct) · Hike news pushes AGAINST the crowd: longs may keep dumping, so a squeeze higher is unlikely near-term.\nES · Neutral (35th pct) · Funds are short-ish but not extreme; news pushes with them.\n6J · Leaning long (77th pct) · Funds already like the yen; intervention would reward them, a rate-gap push would squeeze them.",
+      "inline": false
+     },
+     {
+      "name": "Commodities",
+      "value": "CL · Crowded short (10th pct) · Surplus talk pushes with the crowd, but any Hormuz scare could squeeze shorts higher.\nGC · Leaning short (21st pct) · Hike news pushes with the crowd; Iran risk could force a short squeeze.\nSI · Crowded short (4th pct) · Very stretched; a weaker dollar would likely spark a squeeze up.\nHE · Crowded short (0th pct, record) · No news to fight it, but a squeeze up is a real risk.\nNG · Crowded short (0th pct, record) · Same: extreme crowding, squeeze risk is high.",
+      "inline": false
+     },
+     {
+      "name": "Best setup to watch",
+      "value": "NQ: funds are crowded long into a hawkish Fed and a tech selloff, so the news is pushing against the crowd and further unwinding is the cleanest positioning-plus-news setup today.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "🔴 NKD · conviction ●○○ · US selloff and BOJ hike ahead weigh; funds neutral, Japan CPI at 10:30am can shift it.\n🔴 NQ · conviction ●●○ · Fed hike fears hit tech; funds crowded long, so more longs may unwind.\n🔴 ES · conviction ●●○ · 6 down days on hike fears; funds neutral, not stretched.\n⚪ 6J · conviction ●○○ · Intervention risk and BOJ hike vs a wider US-Japan rate gap: mixed.\n⚪ GC · conviction ●○○ · Strong dollar vs Iran risk; funds lean short, so no clear edge.\n⚪ CL · conviction ●○○ · Surplus talk vs Hormuz attacks; funds crowded short, squeeze risk.\n\nUse this as a filter, not an entry signal: favour your own setups that agree with a conviction 2-3 call (NQ, ES short side), and be pickier with anything that fights it. Neutral means let your chart decide and keep size small.",
+    "footer": {
+     "text": "Sources: Yahoo Finance, Motley Fool, 24/7 Wall St, CNBC, Fortune, Seoul Economic Daily, FXStreet, Babypips, Trading Economics, HDFC Sky, Baird Maritime, USAGold, CFTC COT, Klaxton Desk Brief. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-19T22:45:56.579619+00:00"
  }
 ]
