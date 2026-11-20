@@ -1384,5 +1384,114 @@
    }
   ],
   "created_at": "2026-11-19T22:45:56.579619+00:00"
+ },
+ {
+  "id": "2026-11-17-cot-breakdown",
+  "embeds": [
+   {
+    "title": "🏦 Hedge fund positioning · week to 17 Nov 2026",
+    "color": 2311531,
+    "description": "**What this is.** The **COT report** (Commitments of Traders) is the CFTC's weekly count of who holds what in US futures. It comes out **Friday** (Sat morning Sydney) and shows positions as of the **Tuesday** before, so it's 3 days old when you see it.\n\n**Who's who.** *Funds* = speculators chasing price: **managed money** in commodities, **leveraged funds** (hedge funds) in indices and the yen. **Commercials** = producers and users hedging real business (oil drillers, farmers, miners); they tend to buy low and sell high, so they're the 'smart money' in commodities. In indices the big long-term holders are **asset managers** (pensions, mutual funds).\n\n**How to read it.** **Net long** = more long contracts than short (a bet on higher prices); **net short** = the reverse. **Open interest** = total contracts open. The **percentile** ranks today's net position against the last 3 years: 95th = more bullish than 95% of weeks, 5th = more bearish than 95%. At 90+ or 10- a trade is **crowded**: almost everyone who wants in is in, so there's little fresh buying (or selling) left. If price then turns against the crowd, they all rush for the exit at once: a **squeeze**. Crowded shorts forced to buy back = short squeeze up; crowded longs forced to sell = long liquidation down.\n\n**This week's 3 takeaways**\n1. **ES: hedge funds have bought back ~137k shorts in 4 weeks**; they're now the least short they've been in 3 years (94th pct). That buying fuel is spent, and stocks wobbled late this week. Upside from short covering is largely used up.\n2. **NQ: funds flipped** from a 3-year-high long (+12.9k on 10 Nov) to net short (-10.9k) in one week. The fast money has started leaving tech.\n3. **Commodities are full of crowded shorts with commercials on the other side**: natural gas, silver, crude, hogs. That's the classic COT bottoming setup. Nat gas funds have *started* covering.",
+    "fields": [
+     {
+      "name": "🎯 Biggest opportunities",
+      "value": "1. **NG** · funds 1st pct short, commercials 96th pct, funds covered 13k this week. Squeeze risk HIGH. Favour squeeze-long setups: wait for a daily SFP below a swing low or a break of last week's high.\n2. **SI** · funds 3rd pct, commercials 98th pct, but price fell ~13% this week to ~$42. Crowd still right; don't catch the knife. Long only after a daily reclaim of the breakdown level.\n3. **CL** · funds 10th pct (least long in 3y), commercials 99th pct (least short). Bullish COT backdrop; buy a confirmed higher low, not a falling price.\n4. **HE** · funds most short in 3y (0th pct) and still adding. Fuel builds, but no trigger yet; watch for a daily SFP.\n5. **ES** · the reverse: funds' short covering is near exhausted (94th pct of range). Favour fading rallies into resistance; short-side SFPs at highs over chasing longs.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "📈 Indices & yen",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "NQ · Leaning long · 🔴",
+      "value": "Funds net **-10,928** (53,394/64,322) · 85th pct of 3y · 4w **-11,878**\nFunds sold ~25k contracts in one week, flipping from the most bullish in 3 years to slightly short. Asset managers are still fairly long (77th pct), so there's room for more selling if they follow. Trend: **cutting longs**. Squeeze risk: **Medium**: the crowd stopped adding and is already exiting, so the risk is more downside from long liquidation, not an upside squeeze. Confirmation: daily close below the prior swing low / failed retest of the high.",
+      "inline": false
+     },
+     {
+      "name": "ES · Crowded long (vs own range) · 🔴",
+      "value": "Funds net **-234,978** (197,833/432,811) · 94th pct of 3y · 4w **+136,267**\nHedge funds are *always* net short ES (they hedge stock portfolios and run basis trades), so judge it against its own range: -516k to -189k. They're near the top of that range, meaning heavy short covering has already happened. Asset managers are the least long in a while (25th pct). Squeeze risk: **High** for a downside move: positioning is stretched and futures were selling off into Friday as Nvidia extended a losing streak. Confirmation: lower high on the daily, or a break of last week's low.",
+      "inline": false
+     },
+     {
+      "name": "NKD · Neutral · ⚪",
+      "value": "Funds net **+1,018** (4,078/3,060) · 32nd pct of 3y · 4w **+443**\nSmall, balanced positioning: COT gives no edge here. Trend: flat. Squeeze risk: **Low**. Trade NKD off its own chart and the yen; note it follows NQ on risk-off days.",
+      "inline": false
+     },
+     {
+      "name": "6J · Neutral · ⚪",
+      "value": "Funds net **-23,790** (93,108/116,898) · 70th pct of 3y · 4w **-900**\nFunds are net short the yen (betting on a *weaker* yen), but far less than usual (3y range -115k to +38k). They added ~7k shorts this week. Asset managers are fairly long yen (88th pct). Squeeze risk: **Low**. The BOJ meets 17-18 Dec; a hawkish surprise would push funds to cover, lifting the yen and usually weighing on the Nikkei.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🛢️ Energy & metals",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "CL · Crowded short · 🟢",
+      "value": "Funds net **+15,814** (153,611/137,797) · 10th pct of 3y · 4w **-20,373**\nFunds are barely long: the least bullish in 3 years. **Commercials are 99th pct** (least short ever in this window): producers aren't hedging at these prices, users are buying. That's the classic COT setup. Trend: funds **cutting**. Squeeze risk: **Medium**: crowded, but crude has kept falling (multiple weekly losses into mid-Nov). Confirmation: daily higher low + break of a lower high.",
+      "inline": false
+     },
+     {
+      "name": "NG · Crowded short · 🟢",
+      "value": "Funds net **-211,545** (180,973/392,518) · 1st pct of 3y · 4w **-54,136**\nThe most bearish funds have been in 3 years, against commercials at 96th pct. The key change: funds **covered ~13k this week** after piling in for a month, so the crowd has stopped adding. Squeeze risk: **High**. Winter weather headlines can light the fuse. Confirmation: daily SFP or close above last week's high.",
+      "inline": false
+     },
+     {
+      "name": "GC · Leaning short · 🟢",
+      "value": "Funds net **+102,942** (121,994/19,052) · 20th pct of 3y · 4w **-1,264**\nFunds are still long gold but less than usual. **Commercials are at a 3-year extreme (100th pct)**: miners have nearly stopped hedging. Supportive background, not crowded. Trend: flat-to-cutting. Squeeze risk: **Low**. Favour buying dips that hold support.",
+      "inline": false
+     },
+     {
+      "name": "SI · Crowded short · 🟢",
+      "value": "Funds net **+1,280** (16,254/14,974) · 3rd pct of 3y · 4w **-2,225**\nFunds are almost flat, near the most bearish in 3 years; commercials 98th pct. But silver fell ~13% this week to ~$42, a one-year low, so the crowd is still being paid. Squeeze risk: **Medium** (crowded, no turn yet). Confirmation: daily SFP/reclaim of the breakdown zone; until then it's a falling knife.",
+      "inline": false
+     },
+     {
+      "name": "HG · Neutral · ⚪",
+      "value": "Funds net **+28,692** (52,057/23,365) · 41st pct of 3y · 4w **-18,998**\nFunds have been trimming longs for a month; commercials at 87th pct (less short than usual) lean supportive. Not crowded. Squeeze risk: **Low**. No COT edge; trade the chart.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🌾 Livestock & grains",
+    "color": 2311531,
+    "fields": [
+     {
+      "name": "HE · Crowded short · 🟢",
+      "value": "Funds net **-63,323** (76,545/139,868) · 0th pct of 3y · 4w **-16,510**\nFunds are the most short lean hogs in 3 years and still adding; **commercials 100th pct** (packers buying). Maximum fuel for a squeeze, but no sign of the crowd stopping yet. Squeeze risk: **Medium**. Confirmation: daily SFP or close above last week's high.",
+      "inline": false
+     },
+     {
+      "name": "LE · Leaning short · ⚪",
+      "value": "Funds net **+42,197** (71,501/29,304) · 12th pct of 3y · 4w **-8,905**\nFunds have liquidated a lot of their cattle longs (3y range +13k to +157k), though they added back 9k this week. Commercials 95th pct. Not crowded yet. Squeeze risk: **Low**. Watch whether this week's buying continues.",
+      "inline": false
+     },
+     {
+      "name": "ZC · Neutral · ⚪",
+      "value": "Funds net **-33,862** (244,177/278,039) · 55th pct of 3y · 4w **-198,285**\nHuge swing: funds dumped ~198k in 4 weeks, going from long to slightly short. Mid-range, so not crowded. Squeeze risk: **Low**. The trend is down; no contrarian signal until it gets to the extremes.",
+      "inline": false
+     },
+     {
+      "name": "ZS · Neutral · ⚪",
+      "value": "Funds net **+113,630** (170,322/56,692) · 74th pct of 3y · 4w **-107,695**\nFunds are still long beans but cut ~108k in a month. Squeeze risk: **Low**. If cutting continues, more downside fuel remains (they're still well long).",
+      "inline": false
+     },
+     {
+      "name": "ZW · Neutral · ⚪",
+      "value": "Funds net **-84,836** (90,741/175,577) · 26th pct of 3y · 4w **-32,831**\nFunds are short wheat, as they usually are, adding 33k in a month, edging toward 'leaning short'. Squeeze risk: **Low** for now.",
+      "inline": false
+     }
+    ],
+    "footer": {
+     "text": "CFTC Commitments of Traders, futures only. Positioning is fuel, not a trigger: wait for price to confirm. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-20T23:20:03.147106+00:00"
  }
 ]
