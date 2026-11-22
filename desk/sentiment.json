@@ -1493,5 +1493,61 @@
    }
   ],
   "created_at": "2026-11-20T23:20:03.147106+00:00"
+ },
+ {
+  "id": "2026-11-23-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Mon 23 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Wall Street had a brutal Friday: the S&P 500 fell 3.7% and the Nasdaq 5.3%, its worst week since March 2020, as investors dumped AI and chip stocks. \"Risk-off\" means money runs from risky assets (stocks, the Aussie dollar) to safer ones (US government bonds, the US dollar). Today that is the backdrop: tech is under pressure, bonds are bid and the dollar is strong. Tokyo is shut for a holiday, so trading in Asia will be thin and moves can be jumpy.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 AI/chip rout: chip index (SOX) −10.7%, Nvidia −13.8%, AMD −13.3%, Micron −13.9%, Broadcom −12.1%.\n🔴 S&P 500 now in a \"correction\" (10%+ below its 6 Oct record) after 7 down days; Nasdaq is negative for 2026.\n🔴 Nikkei and Korea's Kospi each fell 5%+ on Friday; Europe sold off too.\n🔴 Markets price ~99% odds the Fed RAISES rates in Dec after Philly Fed's Paulson hinted more tightening.\n🟢 Safe-haven buying cut the 10-yr Treasury yield to 4.93% from 5.04%.\n⚪ Anthropic shares −9.1% to $88.30, still above the $83 IPO price.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "The Fed is raising rates (policy rate 3.75-4.00%) to fight inflation, which makes borrowing dearer and hits expensive growth stocks hardest. At the same time doubts about the payback from huge AI spending hit the market's biggest winners. Falling bond yields while the Fed is hiking means investors are getting nervous about growth: they are buying bonds for safety, not because they expect cuts.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Selling was led by the AI names that carried the market all year, so NQ is weakest. Hedge funds are still long the S&P near a 3-year extreme (94th pct), so if the slide continues there are many longs left to sell. After a 10% week, sharp short-lived bounces are common: don't confuse a bounce with a turn. Bias: bearish, conviction 2 for both.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Japan's cash market is closed (Labor Thanksgiving Day), but CME Nikkei futures trade and will mostly follow US tech. The yen is stuck: a strong dollar pushes USD/JPY toward 160, but Japan has spent record sums defending that line this year and ~86% of economists expect the BoJ to hike to 1.50% on 18 Dec. 6J up = yen stronger. Bias: NKD bearish (2), 6J neutral.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: Brent +0.6% to $92.57 on Strait of Hormuz tension in the US-Iran war; funds are crowded short, so a squeeze higher is possible. Gold: about −8% last week, near 14-month lows, crushed by the strong dollar and Fed hike bets (higher rates make non-yielding gold less attractive). Silver fell even harder and funds are crowded short (3rd pct). Copper: no fresh driver found.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "No US red-folder data due today. Mon 9:00am: Australia flash PMIs (survey of businesses; above 50 = growing, Oct composite was 48.2) can nudge 6A. All day: Japan holiday, so yen moves can overshoot on thin volume. Coming up: Thu 26 Nov 12:30am US PCE inflation + GDP (Tier 1, the Fed's preferred inflation gauge), then US Thanksgiving. Red-folder results: none released since Friday's close. Forex Factory feed couldn't be read this run.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "Positions as of 2026-11-17 (CFTC COT, released 20 Nov, so before Friday's crash).\nNKD · Neutral (32nd pct) · Funds aren't heavily positioned, so price will follow US tech rather than a squeeze.\nNQ · Leaning long (85th pct) · News pushes against the crowd: longs still to unwind; squeeze up only on a chip relief rally.\nES · Crowded long (94th pct) · News pushes against a crowded long, so forced selling can extend the drop; a squeeze lower is the bigger risk.\n6J · Neutral (70th pct) · No crowd to squeeze; intervention near 160 is the wildcard.\nCL · Crowded short (10th pct) · Iran/Hormuz news pushes against the crowd, so a short squeeze higher is likely if tension rises.\nGC · Leaning short (20th pct) · News is with the crowd (strong dollar, hikes), but shorts are building, so watch for a snap-back.\nSI · Crowded short (3rd pct) · News with the crowd, but positioning is extreme: a sharp short-covering bounce is a real risk.\nHE · Crowded short (0th pct) · No hog-specific news found; record shorts mean any good news can squeeze it.\nNG · Crowded short (1st pct) · Record shorts; a cold-weather headline could squeeze it.\nBest setup to watch: ES, where funds are crowded long into a fresh tech rout, so further liquidation could keep pressure on the downside."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 10697258,
+    "description": "🔴 NKD · conviction ●●○ · Nikkei fell 5%+ Friday on the chip rout and NKD tracks NQ while Tokyo is shut; funds neutral.\n🔴 NQ · conviction ●●○ · Worst week since 2020, Nvidia −13.8%; funds still lean long, so more selling is possible.\n🔴 ES · conviction ●●○ · S&P in a correction with a Fed hike priced; funds crowded long add fuel lower.\n⚪ 6J · conviction ●○○ · Strong dollar vs intervention risk at 160 and a likely BoJ hike: no edge.\n🔴 GC · conviction ●○○ · Strong dollar and hike bets hammer gold, but shorts are building so bounces can be sharp.\n🟢 CL · conviction ●○○ · Hormuz tension lifts oil and crowded fund shorts could be squeezed.\n\nUse this as a filter for your own setups: favour setups that agree with a conviction 2-3 call and be pickier with ones that fight it. It is not an entry signal; after a week this violent, expect fast bounces.",
+    "footer": {
+     "text": "Sources: AP/NBC, investingLive, Reuters/Khaleej Times, USAGOLD, FXStreet, StockStory, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-22T22:46:22.408925+00:00"
  }
 ]
