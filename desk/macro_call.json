@@ -1,45 +1,98 @@
 {
- "generated_at": "2026-11-20T09:46:00+11:00",
- "trading_day": "2026-11-20",
- "summary": "Risk-off overnight: the Dow fell about 1,100 points and the S&P 500 and Nasdaq about 2% (S&P's 6th straight loss) as hawkish FOMC minutes pushed December Fed hike odds near 95%, with Nvidia CEO fallout and Anthropic's IPO weighing on tech. The dollar stayed firm, USD/JPY sits near 160 under intervention watch, and Japan CPI is due at 10:30am Sydney.",
+ "generated_at": "2026-11-23T09:45:47+11:00",
+ "trading_day": "2026-11-23",
+ "summary": "Friday's AI and chip-led selloff sent the S&P 500 into a correction and the Nasdaq to its worst week since 2020, while Fed hike odds near 99% kept the dollar strong and gold weak. Tokyo is closed today, so Asia trades thin.",
  "events_next_24h": [
-  "Fri 10:30am JPY National CPI (Oct)",
-  "Sat 1:45am USD S&P Global flash PMIs (Nov)",
-  "Sat 7:30am USD CFTC COT report"
+  "Mon all day JPY Japan market holiday (Labor Thanksgiving Day), thin liquidity",
+  "Mon 9:00am AUD Flash PMIs (Nov)",
+  "Forex Factory feed unavailable this run: check it for other high-impact items"
  ],
  "tier1_next_14d": [
-  "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am"
+  "US PCE (Oct) + Q3 GDP 2nd estimate · Thu 26 Nov 12:30am",
+  "US non-farm payrolls (Nov) · Sat 5 Dec 12:30am"
  ],
  "markets": {
-  "ES": {"bias": "bearish", "conviction": 2, "why": "Hawkish Fed minutes put a December hike near 95% and the S&P fell ~2% for a 6th straight loss; fund positioning is neutral, not stretched.", "risk": "A soft flash PMI or Fed pushback on hikes could spark a sharp oversold bounce."},
-  "NQ": {"bias": "bearish", "conviction": 2, "why": "Rate-hike fears and Nvidia CEO fallout hit tech ~2%; funds were crowded long (98th pct) so there are longs left to unwind.", "risk": "Oversold with VXN at 98th pct; a dovish Fed headline or strong Anthropic trading could trigger a squeeze."},
-  "YM": {"bias": "bearish", "conviction": 2, "why": "The Dow dropped about 1,100 points on hike fears, a broad selloff, not just tech.", "risk": "Any easing in Fed hike pricing or a big rebound in defensives."},
-  "RTY": {"bias": "bearish", "conviction": 1, "why": "Small caps are most sensitive to higher borrowing costs as the Fed leans toward hiking again; lean only, no RTY-specific data found.", "risk": "A drop in yields after weak data would help small caps most."},
-  "NKD": {"bias": "bearish", "conviction": 1, "why": "Wall Street's 2% fall and a December BOJ hike in view weigh on Japan stocks already down 8% in 20 days; funds are neutral.", "risk": "A hot Japan CPI shift, yen intervention or a US futures rebound in Asia could flip it."},
-  "6E": {"bias": "bearish", "conviction": 1, "why": "Euro is stuck under 1.10 as Fed hike pricing keeps the dollar bid even on weak US data.", "risk": "Strong euro-area flash PMIs or a fall in US yields."},
-  "6J": {"bias": "neutral", "conviction": 1, "why": "Fed hikes widen the US-Japan rate gap (yen down) but intervention risk near 160, a December BOJ hike and risk-off pull the other way.", "risk": "Confirmed intervention would send the yen sharply stronger; a break above 160 USD/JPY the opposite."},
-  "6B": {"bias": "neutral", "conviction": 1, "why": "BoE hiked to 4.00% in early November but the dollar is firm; no fresh UK driver found overnight.", "risk": "UK flash PMIs or BoE speaker surprises."},
-  "6A": {"bias": "bearish", "conviction": 2, "why": "Australian unemployment jumped to 4.9%, raising doubts about the RBA, and risk-off weighs on the Aussie.", "risk": "A rebound in global stocks or strong China news."},
-  "ZN": {"bias": "neutral", "conviction": 1, "why": "Fed hike talk pushes yields up, but stock-market fear sends money into Treasuries; yields only ticked lower overnight.", "risk": "A hot flash PMI price index (bearish ZN) or deeper equity rout (bullish ZN)."},
-  "GC": {"bias": "neutral", "conviction": 1, "why": "Gold held steady after hawkish minutes: a firm dollar and hike odds weigh, Iran risk supports, and funds lean short (21st pct).", "risk": "A clear break in the dollar or a Middle East escalation."},
-  "CL": {"bias": "neutral", "conviction": 1, "why": "Brent slipped toward $92 on surplus talk while Hormuz attacks persist; funds are crowded short (10th pct), so downside is crowded.", "risk": "A new Hormuz incident could squeeze shorts; a peace deal would drop prices."}
+  "ES": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Friday's AI/chip rout sank the S&P 3.7% into a correction with 99% odds of a Fed hike; funds are crowded long (94th pct), so more longs may unwind.",
+   "risk": "A sharp oversold bounce after a 7-day losing streak, or softer Fed talk."
+  },
+  "NQ": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Nasdaq fell 5.3% Friday (worst week since 2020) as semis lost 10.7% and Nvidia 13.8%; funds still lean long (85th pct), leaving room to sell.",
+   "risk": "A relief rally in chips or a calming Nvidia headline could spark a squeeze."
+  },
+  "YM": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "The Dow fell less (-1.9%) than tech but still slid with the broad risk-off and Fed hike pricing.",
+   "risk": "Rotation out of tech into value names could hold the Dow up."
+  },
+  "RTY": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Rate-hike pricing hurts small caps, but I couldn't confirm Friday's Russell close or positioning, so no call.",
+   "risk": "A clear Russell move with the broad tape would set the direction."
+  },
+  "NKD": {
+   "bias": "bearish",
+   "conviction": 2,
+   "why": "Nikkei fell over 5% Friday on the chip rout and CME NKD follows NQ while Tokyo is shut today; funds are neutral (32nd pct).",
+   "risk": "A US futures bounce in thin holiday trade, or a weaker yen."
+  },
+  "6J": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Strong dollar and Fed hikes push the yen weaker, but USD/JPY sits near 160 where Japan has intervened and a BoJ Dec hike is ~86% expected.",
+   "risk": "A break above 160 with no intervention (bearish yen) or MoF action (bullish yen)."
+  },
+  "6E": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "The dollar is near a 19-month high on Fed hike bets, but I found no fresh euro-specific driver overnight.",
+   "risk": "A big dollar move on Fed talk or US data."
+  },
+  "6B": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Dollar strength weighs on sterling, but I couldn't verify Friday's GBP close or a UK-specific catalyst.",
+   "risk": "Confirmed new 2026 lows in GBP/USD would tilt it bearish."
+  },
+  "6A": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "The Aussie is a risk-sensitive currency and global stocks are in a rout while the Fed is set to hike.",
+   "risk": "A rebound in global stocks or China-led risk appetite."
+  },
+  "ZN": {
+   "bias": "bullish",
+   "conviction": 1,
+   "why": "Treasuries rallied as a safe haven Friday, pushing the 10-year yield down to 4.93% from 5.04%, though Fed hike pricing caps gains.",
+   "risk": "Hawkish Fed speakers or a stock rebound pulling money out of bonds."
+  },
+  "GC": {
+   "bias": "bearish",
+   "conviction": 1,
+   "why": "Gold dropped about 8% last week, near 14-month lows, on a strong dollar and Fed hike bets; funds lean short (20th pct), so a snap-back is possible.",
+   "risk": "A dollar reversal or haven buying if the stock rout deepens."
+  },
+  "CL": {
+   "bias": "bullish",
+   "conviction": 1,
+   "why": "Brent rose 0.6% to $92.57 Friday on Hormuz tension in the US-Iran war, and funds are crowded short (10th pct), a squeeze risk.",
+   "risk": "Fresh surplus forecasts or demand fears from the risk-off selloff."
+  }
  },
  "sources": [
-  "https://finance.yahoo.com/markets/live/stock-market-today-thursday-november-19-dow-sp-500-nasdaq-anthropic-ipo-live-141306032.html",
-  "https://www.fool.com/coverage/stock-market-today/2026/11/19/stock-market-today-nov-19-dow-plunges-1-100-points-as-the-s-and-p-500-suffers-its-6th-straight-day-of-losses/",
-  "https://www.fool.com/coverage/stock-market-today/2026/11/19/stock-market-today-nov-19-nvidia-slides-as-investors-weigh-ceo-transition-fallout-despite-strong-q3-results/",
-  "https://247wallst.com/cards/the-dow-s-1-091-point-drop-came-alongside-declines-in-both-t-gspc-market-bell-01m7tszafyfeyqr7mh8p14494j",
-  "https://en.sedaily.com/society/2026/11/19/us-dec-rate-hike-odds-at-957-percent-as-fed-resists-bigger",
-  "https://fortune.com/2026/11/19/fed-minutes-ai-inflation-data-centers-midterms-2027-rate-hike/",
-  "https://www.cnbc.com/2026/11/19/us-treasury-yields-investors-us-economy.html",
-  "https://www.fxstreet.com/news/japanese-yen-finds-support-as-intervention-risks-linger-near-16000-202611181610",
-  "https://1027wbow.com/2026/11/18/bank-of-japan-to-raise-interest-rates-in-december-and-again-by-end-march-economists-say/",
-  "https://www.fxstreet.com/news/euro-stuck-under-110-as-weak-us-data-fails-to-slow-the-dollar-202611192225",
-  "https://www.babypips.com/news/headline-australia-unemployment-46-aud-slides-rba-doubts-2026-11-19",
-  "https://tradingeconomics.com/united-kingdom/currency/news/598623",
-  "https://hdfcsky.com/news/brent-crude-oil-price-today-november-19-2026-brent-slips-0-2percent-to-91-7-wti-falls-to-82-7-as-surplus-looms",
-  "https://www.bairdmaritime.com/security/markets-are-betting-on-peace-but-hormuz-ship-attacks-persist",
-  "https://www.usagold.com/daily-precious-metals-market-report-november-19-2026/",
+  "https://www.nbcbayarea.com/news/national-international/november-20-stock-market-updates/4179477/",
+  "https://investinglive.com/news/economic-and-event-calendar-in-asia-23-november-2026-japanese-markets-are-closed-today/",
+  "https://www.khaleejtimes.com/gold-holds-near-14-month-low-as-fed-hike-bets-weigh",
+  "https://www.usagold.com/daily-precious-metals-market-report-november-20-2026/",
+  "https://investinglive.com/central-banks/boj-tipped-to-hike-to-1-50-in-december-its-first-three-hike-year-in-37-years/",
+  "https://www.fxstreet.com/analysis/the-japanese-yen-is-being-defended-by-words-not-money-and-its-working-202611161641",
+  "https://stockstory.org/us/stocks/nasdaq/nvda/news/earnings-call/nvidia-q3-cy2026-deep-dive-leadership-transition-and-surging-ai-demand-drive-outlook",
   "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json",
   "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
  ]
