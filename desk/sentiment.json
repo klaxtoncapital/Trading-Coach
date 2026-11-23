@@ -1549,5 +1549,82 @@
    }
   ],
   "created_at": "2026-11-22T22:46:22.408925+00:00"
+ },
+ {
+  "id": "2026-11-24-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Tue 24 Nov · 🟡 Mixed",
+    "color": 12024095,
+    "description": "Wall Street had its best day since April 2025: the Nasdaq jumped about 6% and the Dow about 1,400 points after Nvidia brought back Jensen Huang as CEO and its stock rose 31%. That is a relief rally — a sharp bounce after a heavy sell-off — not yet a new uptrend. \"Risk-on\" means investors buy riskier things (stocks, AI names); \"risk-off\" means they run to safety (bonds, yen, gold). Today is mixed: stocks are risk-on, but the Fed sounded tough on inflation and fear gauges are still at 1-year highs.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🟢 Nvidia reinstated Jensen Huang as CEO; NVDA +31%, Nasdaq ~+6%, best day since Apr 2025.\n🔴 NY Fed's Williams: Fed has \"work to do\" on inflation, sees 2% only in 2028; 2-year yield jumped.\n⚪ Trump backed Huang's return and blamed Democrats' midterm wins for the market's ~$6T fall.\n🔴 Oil: Brent fell 3%+ below $90 as Middle East supply recovers and surplus fears grow.\n🟢 Gold bounced ~2.5% off a 14-month low.\n⚪ Red-folder: no tier-1 US releases overnight; PCE lands Thu 12:30am Sydney.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Inflation is the big worry: when the Fed says it has \"work to do\", markets price higher interest rates for longer (even a hike). Higher rates make borrowing dearer and push up bond yields (the interest a bond pays; yields up = bond prices down). That's a headwind for stocks even on a good day. Monday's rally was about one company's leadership fix, not about the economy improving.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Nvidia is the AI bellwether, so removing its CEO uncertainty lifted the whole tech complex. But the VIX (S&P fear gauge) was ~36 and VXN (Nasdaq's) ~45 before the bounce — both at 1-year highs, meaning huge daily swings are normal now. Day-one relief rallies often fade or chop. NQ leans bullish (low conviction); ES neutral because hedge funds are already crowded long ES.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei fell ~10% over the past month on the AI rout, so it should follow US tech higher today; Asia AI/chip names are the key. USD/JPY is near 160 — the level where Japan has warned it may intervene (buy yen with its reserves). 6J up = yen stronger. The BOJ (Japan's central bank) is widely expected to hike in December, which supports the yen, but a hawkish Fed and risk-on mood push the other way. 6J neutral.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: falling on oversupply as Middle East flows recover, though Gulf shipping attacks are a wild card. Gold: bounced from a 14-month low; it's been hit by Fed hike bets and a strong dollar (gold pays no interest, so higher rates hurt it). Silver rallied with gold. Copper: no clear story. Hogs: funds at a record short — watch for squeezes.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Wed 2:00am Sydney · US Consumer Confidence (Nov): a survey of how upbeat Americans feel; a weak read after the stock rout could hit stocks.\nThu 12:30am Sydney · US PCE inflation + GDP: the Fed's preferred inflation gauge — the biggest event this week, could flip every call.\nThu 6:00am · Fed Beige Book. Thu/Fri: US Thanksgiving, thin trading.\n(Forex Factory feed unavailable this run — double-check times.)",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "Nvidia board · reinstated Jensen Huang as CEO",
+      "value": "His return removes a big uncertainty hanging over the most important AI stock. Positive for NQ, ES and NKD (Japan's chip and AI names track Nvidia). Watch whether the gains hold — if they do, it suggests the rout was overdone.",
+      "inline": false
+     },
+     {
+      "name": "NY Fed's John Williams · \"work to do\" on inflation",
+      "value": "Williams is one of the Fed's most influential voices. Saying inflation won't hit 2% until 2028 means rates stay high, maybe higher. Negative for bonds (ZN), gold and rate-sensitive small caps (RTY); supportive for the US dollar, which weighs on the yen, euro and Aussie.",
+      "inline": false
+     },
+     {
+      "name": "Trump · backs Huang, blames Democrats for market fall",
+      "value": "He publicly supported Huang's return and blamed Democrats' midterm wins and their policies for the ~$6T stock drop. Mostly political, ⚪ neutral for prices, but it signals the White House is watching the market closely.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 12024095,
+    "description": "Positions as of 2026-11-17 (CFTC COT, before Monday's rally). 'pct' = where funds sit versus the last 3 years; very high or low means a crowded trade that can unwind fast.\n• NKD · Neutral (32th pct) · Funds aren't loaded up, so the AI rebound has room to pull buyers in; squeeze risk is low either way.\n• NQ · Leaning long (85th pct) · News pushes with the crowd; already-long funds limit fresh buying fuel, so a fade on any disappointment is possible.\n• ES · Crowded long (94th pct) · News pushes with an already-crowded side; a downside flush is the bigger risk if the bounce stalls.\n• 6J · Neutral (70th pct) · Hawkish Fed works against the yen; a Japan intervention would hit any yen shorts hard.\n• CL · Crowded short (10th pct) · Surplus news pushes with the crowd, but shorts are packed — any Gulf supply scare could spark a sharp short squeeze up.\n• GC · Leaning short (20th pct) · Fed hike bets push with the shorts; Monday's 2.5% bounce shows short-covering is already starting.\n• SI · Crowded short (3th pct) · Shorts are extreme; silver's rally Monday is the kind of squeeze this sets up.\n• HE · Crowded short (0th pct) · Record short in hogs; no news to drive it, but any bullish surprise could squeeze hard.\n• NG · Crowded short (1th pct) · Gas slumped again, pushing with the crowd; squeeze risk high on a cold snap.\n\nBest setup to watch: crude (CL) — bearish news but a crowded short, so watch for a squeeze if Middle East supply headlines turn."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "🟢 NKD · conviction ●○○ · Following the US AI rebound; funds aren't crowded, but vol is very high.\n🟢 NQ · conviction ●○○ · Nvidia's CEO fix sparked a huge rally; funds already lean long and PCE looms.\n⚪ ES · conviction ●○○ · Big bounce, but funds are crowded long and the Fed sounds hawkish.\n⚪ 6J · conviction ●○○ · Yen near 160 with intervention threats vs a hawkish Fed; no edge.\n⚪ GC · conviction ●○○ · Bounced from a 14-month low as shorts cover, but rate-hike bets still weigh.\n🔴 CL · conviction ●○○ · Supply surplus is pushing oil lower, but crowded shorts mean squeeze risk.\n\nUse this as a filter for your own setups, not as entries: favour setups that agree with a conviction 2-3 call and be pickier against it. Today everything is conviction 1, so treat it as a light lean — size down with PCE on Thursday and extreme volatility.",
+    "footer": {
+     "text": "Sources: CNBC, Bloomberg, Yahoo Finance, FXStreet, Invezz, CFTC COT, Desk Brief. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-23T22:45:18.123898+00:00"
  }
 ]
