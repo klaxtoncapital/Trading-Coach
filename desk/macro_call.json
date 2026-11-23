@@ -1,98 +1,99 @@
 {
- "generated_at": "2026-11-23T09:45:47+11:00",
- "trading_day": "2026-11-23",
- "summary": "Friday's AI and chip-led selloff sent the S&P 500 into a correction and the Nasdaq to its worst week since 2020, while Fed hike odds near 99% kept the dollar strong and gold weak. Tokyo is closed today, so Asia trades thin.",
+ "generated_at": "2026-11-24T09:44:39+11:00",
+ "trading_day": "2026-11-24",
+ "summary": "Wall Street posted its best day since April 2025 as Nvidia reinstated Jensen Huang and jumped 31%, a relief rally after a heavy rout; NY Fed's Williams stayed hawkish on inflation, oil slid on surplus fears and gold bounced off a 14-month low.",
  "events_next_24h": [
-  "Mon all day JPY Japan market holiday (Labor Thanksgiving Day), thin liquidity",
-  "Mon 9:00am AUD Flash PMIs (Nov)",
-  "Forex Factory feed unavailable this run: check it for other high-impact items"
+  "Wed 2:00am USD CB Consumer Confidence (Nov) — Forex Factory feed unavailable this run, check the calendar"
  ],
  "tier1_next_14d": [
-  "US PCE (Oct) + Q3 GDP 2nd estimate · Thu 26 Nov 12:30am",
-  "US non-farm payrolls (Nov) · Sat 5 Dec 12:30am"
+  "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am",
+  "US non-farm payrolls (November) · Sat, 5 Dec, 12:30am"
  ],
  "markets": {
   "ES": {
-   "bias": "bearish",
-   "conviction": 2,
-   "why": "Friday's AI/chip rout sank the S&P 3.7% into a correction with 99% odds of a Fed hike; funds are crowded long (94th pct), so more longs may unwind.",
-   "risk": "A sharp oversold bounce after a 7-day losing streak, or softer Fed talk."
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Best day since April 2025 on Nvidia's CEO reinstatement, but VIX near 36, hawkish Williams and funds crowded long (94th pct) cap the case.",
+   "risk": "Follow-through buying into PCE would turn this bullish."
   },
   "NQ": {
-   "bias": "bearish",
-   "conviction": 2,
-   "why": "Nasdaq fell 5.3% Friday (worst week since 2020) as semis lost 10.7% and Nvidia 13.8%; funds still lean long (85th pct), leaving room to sell.",
-   "risk": "A relief rally in chips or a calming Nvidia headline could spark a squeeze."
+   "bias": "bullish",
+   "conviction": 1,
+   "why": "Nasdaq jumped ~6% as Nvidia rose 31% on Jensen Huang's return, lifting the AI overhang; funds lean long (85th pct) and vol is extreme.",
+   "risk": "A fade of Monday's gains or hot PCE Thursday flips it."
   },
   "YM": {
-   "bias": "bearish",
+   "bias": "neutral",
    "conviction": 1,
-   "why": "The Dow fell less (-1.9%) than tech but still slid with the broad risk-off and Fed hike pricing.",
-   "risk": "Rotation out of tech into value names could hold the Dow up."
+   "why": "Dow rallied ~1,400 points in a relief bounce, but a hawkish Fed and record-high vol leave one day of buying unproven.",
+   "risk": "Second day of broad gains would tilt bullish."
   },
   "RTY": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Rate-hike pricing hurts small caps, but I couldn't confirm Friday's Russell close or positioning, so no call.",
-   "risk": "A clear Russell move with the broad tape would set the direction."
+   "why": "Small caps join the bounce, but Williams says the Fed has work to do on inflation and higher 2-year yields hurt rate-sensitive firms.",
+   "risk": "Softer PCE and falling yields would favour small caps."
   },
   "NKD": {
-   "bias": "bearish",
-   "conviction": 2,
-   "why": "Nikkei fell over 5% Friday on the chip rout and CME NKD follows NQ while Tokyo is shut today; funds are neutral (32nd pct).",
-   "risk": "A US futures bounce in thin holiday trade, or a weaker yen."
-  },
-  "6J": {
-   "bias": "neutral",
+   "bias": "bullish",
    "conviction": 1,
-   "why": "Strong dollar and Fed hikes push the yen weaker, but USD/JPY sits near 160 where Japan has intervened and a BoJ Dec hike is ~86% expected.",
-   "risk": "A break above 160 with no intervention (bearish yen) or MoF action (bullish yen)."
+   "why": "Nikkei tracks the US AI rebound after a 10% monthly drop; fund positioning is neutral (32nd pct), so room to add, but vol is very high.",
+   "risk": "Renewed US tech selling or sharp yen strength would flip it."
   },
   "6E": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "The dollar is near a 19-month high on Fed hike bets, but I found no fresh euro-specific driver overnight.",
-   "risk": "A big dollar move on Fed talk or US data."
+   "why": "Euro data are resilient and ECB hike talk supports it, but the dollar sits near a 19-month high on Fed hike bets.",
+   "risk": "A soft PCE weakening the dollar would favour the euro."
+  },
+  "6J": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "USD/JPY sits near 160 with Tokyo warning on moves and a BOJ hike expected in Dec, against a hawkish Fed and risk-on mood.",
+   "risk": "Intervention or hawkish BOJ talk lifts 6J fast; hot PCE sinks it."
   },
   "6B": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Dollar strength weighs on sterling, but I couldn't verify Friday's GBP close or a UK-specific catalyst.",
-   "risk": "Confirmed new 2026 lows in GBP/USD would tilt it bearish."
+   "why": "Sterling edged higher but no clear UK catalyst; dollar strength on Fed hike bets offsets it.",
+   "risk": "A decisive dollar move after PCE sets the direction."
   },
   "6A": {
-   "bias": "bearish",
+   "bias": "neutral",
    "conviction": 1,
-   "why": "The Aussie is a risk-sensitive currency and global stocks are in a rout while the Fed is set to hike.",
-   "risk": "A rebound in global stocks or China-led risk appetite."
+   "why": "Risk-on rebound helps the Aussie, but the strong dollar and falling commodity prices like oil weigh on it.",
+   "risk": "Sustained equity gains with a softer dollar would tilt bullish."
   },
   "ZN": {
-   "bias": "bullish",
-   "conviction": 1,
-   "why": "Treasuries rallied as a safe haven Friday, pushing the 10-year yield down to 4.93% from 5.04%, though Fed hike pricing caps gains.",
-   "risk": "Hawkish Fed speakers or a stock rebound pulling money out of bonds."
-  },
-  "GC": {
    "bias": "bearish",
    "conviction": 1,
-   "why": "Gold dropped about 8% last week, near 14-month lows, on a strong dollar and Fed hike bets; funds lean short (20th pct), so a snap-back is possible.",
-   "risk": "A dollar reversal or haven buying if the stock rout deepens."
+   "why": "Williams says inflation stays above 2% until 2028 and 2-year yields jumped as stocks rebounded, pressuring Treasury prices.",
+   "risk": "Soft PCE or a renewed stock rout would send bonds higher."
+  },
+  "GC": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "Gold bounced ~2.5% from a 14-month low with funds leaning short (20th pct), but Fed hike bets and a firm dollar still weigh.",
+   "risk": "Hawkish PCE resumes the slide; dovish data extends the bounce."
   },
   "CL": {
-   "bias": "bullish",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Brent rose 0.6% to $92.57 Friday on Hormuz tension in the US-Iran war, and funds are crowded short (10th pct), a squeeze risk.",
-   "risk": "Fresh surplus forecasts or demand fears from the risk-off selloff."
+   "why": "Brent fell over 3% below $90 as Middle East flows recover and surplus fears grow; funds are crowded short (10th pct), so squeeze risk.",
+   "risk": "New Gulf shipping attacks or supply disruption would spark a short squeeze."
   }
  },
  "sources": [
-  "https://www.nbcbayarea.com/news/national-international/november-20-stock-market-updates/4179477/",
-  "https://investinglive.com/news/economic-and-event-calendar-in-asia-23-november-2026-japanese-markets-are-closed-today/",
-  "https://www.khaleejtimes.com/gold-holds-near-14-month-low-as-fed-hike-bets-weigh",
-  "https://www.usagold.com/daily-precious-metals-market-report-november-20-2026/",
-  "https://investinglive.com/central-banks/boj-tipped-to-hike-to-1-50-in-december-its-first-three-hike-year-in-37-years/",
-  "https://www.fxstreet.com/analysis/the-japanese-yen-is-being-defended-by-words-not-money-and-its-working-202611161641",
-  "https://stockstory.org/us/stocks/nasdaq/nvda/news/earnings-call/nvidia-q3-cy2026-deep-dive-leadership-transition-and-surging-ai-demand-drive-outlook",
+  "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo-market-rally.html",
+  "https://www.cnbc.com/2026/11/22/stock-market-today-live-updates.html",
+  "https://www.cnbc.com/amp/2026/11/23/treasury-yields-bonds-fed.html",
+  "https://www.bloomberg.com/news/articles/2026-11-23/fed-s-williams-says-officials-must-act-over-time-on-inflation",
+  "https://www.cnbc.com/2026/11/23/dollar-edges-off-19-month-high-after-market-rout-yen-softens.html",
+  "https://invezz.com/news/2026/11/23/oil-price-today-brent-below-90-surplus-fears/",
+  "https://journalarta.com/en/2026/11/23/gold-today-spot-price-surges-2-53-to-3622-as-silver-rallies-and-brent-oil-slides/",
+  "https://www.fxstreet.com/news/tokyos-warnings-hold-the-yen-near-16000-before-japan-inflation-data-202611162300",
+  "https://www.fxstreet.com/news/euro-resilient-data-supports-ecb-hikes-bbh-202611231122",
+  "https://finance.yahoo.com/markets/stocks/articles/trump-throws-weight-behind-jensen-041337724.html",
   "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json",
   "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
  ]
