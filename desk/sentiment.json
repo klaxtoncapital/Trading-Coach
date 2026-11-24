@@ -1626,5 +1626,77 @@
    }
   ],
   "created_at": "2026-11-23T22:45:18.123898+00:00"
+ },
+ {
+  "id": "2026-11-25-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Wed 25 Nov · 🟡 Mixed",
+    "color": 12024095,
+    "description": "Wall Street split in two overnight: old-economy stocks rallied (the Dow closed above 50,000 for the first time) while tech fell hard as chip stocks gave back Monday's huge Nvidia jump. \"Risk-on\" means investors are buying riskier things like stocks; \"risk-off\" means they're running to safety. Today is neither: money is rotating (moving from one group of stocks to another) rather than leaving the market. Everything now waits for US PCE inflation data at 12:30am Thursday Sydney.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 Nasdaq -1.5%, S&P 500 -0.5%: Nvidia ~-7%, AMD, Micron and Broadcom down hard after Monday's 31% Nvidia surge\n🟢 Dow +0.85% to 50,019 (record) and Russell 2000 +0.6%: money rotated into non-tech stocks\n🟢 US consumer confidence jumped to 103.3 from 91.9, highest since Jan 2025\n🔴 Markets price ~95% odds the Fed RAISES rates on 9 Dec\n🔴 Gold -2.7% to ~$3,552 on those Fed hike bets\n⚪ Trump officials reportedly readying a new round of targeted tariffs",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "The Fed (America's central bank) raises interest rates to cool inflation (prices rising too fast). Higher rates make borrowing dearer, which usually weighs on expensive growth stocks and gold. Shoppers feel upbeat (confidence surge, strong Best Buy/Dick's results), which is good for the economy but also keeps inflation pressure, and so Fed hike pressure, alive. Red-folder result out overnight: CB Consumer Confidence beat (103.3).",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "NQ is tech-heavy so the chip selloff hit it most; ES fell less because the Dow-type stocks inside it rose. Volatility is very high: VIX (the 'fear gauge' for S&P options) ~26, VXN (Nasdaq version) at the 99th percentile of the past year, so expect big swings both ways. Dell beat and raised its AI backlog after the close; HPE warned on AI margins. PCE tonight is the decider.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei is down ~10% in 20 days and has lots of chip-equipment stocks, so the US chip selloff is a headwind today. USD/JPY sits near 159 (6J weak); Finance Minister Katayama warns against 'one-sided, rapid' moves, meaning Japan could intervene (sell dollars, buy yen), which would make 6J jump. Most economists expect a Bank of Japan rate hike in December, a slow yen-positive.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude (CL) ~$81-83, up 1.6% Tuesday after a three-week losing streak: attacks on Gulf shipping near the Strait of Hormuz and a Houthi strike on a Saudi refinery keep a risk premium, while worries about too much supply weigh. OPEC+ meets 29 Nov. Gold -2.7% because higher rates make non-yielding gold less attractive. Silver followed gold lower. Copper: no major news found.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Thu 12:30am: US PCE inflation (the Fed's favourite inflation gauge) + Q3 GDP (economy's growth) + jobless claims. Hot = more Fed hikes = bad for NQ/gold, good for USD. Soft = relief rally.\nThu 2:00am: UMich consumer sentiment (how upbeat shoppers feel).\nThu 6:00am: Fed Beige Book (Fed's anecdotal survey of the economy).\nThu: US Thanksgiving, stock market shut, thin futures, so moves can be jumpy.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "White House · new targeted tariffs being readied",
+      "value": "Several outlets (Bloomberg, Axios, Semafor, 24 Nov) report Trump plans a new round of targeted tariffs (taxes on imports), reportedly not above levels in existing trade deals. Tariffs raise costs for importers and can push up inflation, mildly negative for stocks (ES/NQ) and positive for USD. 'Targeted' and capped makes it less scary than a broad blitz. Details not confirmed yet: watch for specifics.",
+      "inline": false
+     },
+     {
+      "name": "Fed · Waller, Williams, Cook stay hawkish",
+      "value": "'Hawkish' = favouring higher rates. Over the past week Waller said the Fed might need to 'shock people' and backed a 50bp (0.5%) hike; Williams said there's 'still work to do'. These are a few days old but are why markets now price ~95% odds of a December hike. Negative for NQ and gold, supportive for USD; a soft PCE would challenge it.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "Positions as of 2026-11-17. 'pct' = where funds' bet sits vs the last 3 years (100 = most bullish ever, 0 = most bearish). A crowded side can 'squeeze': if news goes against them they rush to exit, which speeds the move.\nNKD · Neutral (32nd pct) · Chip selloff pushes lower but funds aren't heavily positioned, so no squeeze fuel either way.\nNQ · Leaning long (85th pct) · Chip selloff hits a long-leaning crowd; a hot PCE could force more selling.\nES · Crowded long (94th pct) · Funds are heavily long into a Fed-hike scare, so downside is the squeeze risk if PCE runs hot.\n6J · Neutral (70th pct) · Intervention talk supports the yen; asset managers already long (88th pct), so a surprise intervention could spike 6J.\nCL · Crowded short (10th pct) · Gulf shipping attacks push against the shorts; a supply hit could squeeze oil higher.\nGC · Leaning short (20th pct) · Hawkish Fed pushes with the crowd today; a soft PCE could squeeze gold up.\nSI · Crowded short (3rd pct) · Silver fell with gold, with the crowd; extreme shorts mean any bounce could be sharp.\nHE · Crowded short (0th pct, record) · No fresh news; record shorts make a short squeeze in hogs a standing risk.\nNG · Crowded short (1st pct) · No fresh news found; extreme shorts leave squeeze risk on any cold-weather headline.\n\nBest setup to watch: CL, where funds are crowded short while Gulf shipping attacks keep a supply risk alive, so a headline could squeeze it higher."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · conviction ●○○ · Neutral: chip selloff weighs but positioning is neutral and PCE could flip it.\n⚪ NQ · conviction ●○○ · Neutral: chips falling and funds lean long, but PCE in hours could flip it either way.\n⚪ ES · conviction ●○○ · Neutral: Dow strength vs tech weakness; funds crowded long; PCE decides.\n⚪ 6J · conviction ●○○ · Neutral: intervention risk and BoJ hike support the yen, Fed hikes support the dollar.\n⚪ GC · conviction ●○○ · Neutral: hawkish Fed sank gold, but funds already lean short, so squeeze risk on soft PCE.\n⚪ CL · conviction ●○○ · Neutral: Gulf attacks vs supply worries; crowded shorts make it squeeze-prone.\n\nEvery market is neutral today because a tier-1 release (PCE) lands within 24 hours and could flip the picture; being honest about that is the edge. Use this as a filter, not entries: with no conviction call, be extra picky, size down into PCE, and let your own setups prove themselves after the number.",
+    "footer": {
+     "text": "Sources: Vista Partners, Yahoo Finance, TheStreet, Tradingpedia, Reuters via Yahoo, RoboForex, Mining.com, Bloomberg/Axios/Semafor headlines, CFTC COT. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-24T22:45:28.893968+00:00"
  }
 ]
