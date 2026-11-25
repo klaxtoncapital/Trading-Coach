@@ -1,101 +1,97 @@
 {
- "generated_at": "2026-11-25T09:44:41+11:00",
- "trading_day": "2026-11-25",
- "summary": "US stocks split: the Dow topped 50,000 while the Nasdaq fell 1.5% as Nvidia and chip stocks gave back Monday's surge; gold slid 2.7% on Fed hike bets and the 10y held near 4.90% ahead of PCE.",
+ "generated_at": "2026-11-26T09:45:20+11:00",
+ "trading_day": "2026-11-26",
+ "summary": "Wall Street erased a violent AI-led plunge (Nasdaq -4.6% at the lows) to close mixed after hot GDP and core PCE kept a December Fed hike ~92% priced; US markets are shut for Thanksgiving today.",
  "events_next_24h": [
-  "Thu 12:30am USD PCE and personal income (Oct) + Q3 GDP 2nd estimate",
-  "Thu 12:30am USD Initial jobless claims",
-  "Thu 2:00am USD UMich consumer sentiment (final Nov)",
-  "Thu 6:00am USD Fed Beige Book",
+  "Fri 1:30am USD US Thanksgiving: stocks closed, thin CME futures session",
+  "Fri 10:30am JPY Tokyo CPI (Nov) (just after the 24h window)",
   "Forex Factory feed unavailable this run; events from the desk calendar"
  ],
  "tier1_next_14d": [
-  "US PCE and personal income (Oct) + Q3 GDP 2nd estimate · Thu, 26 Nov, 12:30am",
-  "US non-farm payrolls (November) · Sat, 5 Dec, 12:30am",
-  "FOMC rate decision (press conference 2:30pm ET) · Thu, 10 Dec, 6:00am"
+  "US non-farm payrolls (Nov) · Sat 5 Dec, 12:30am",
+  "FOMC rate decision · Thu 10 Dec, 6:00am"
  ],
  "markets": {
   "ES": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "S&P fell 0.5% as chips sold off while the Dow rose; funds are crowded long (94th pct), PCE in 15h.",
-   "risk": "Soft PCE and chip rebound would tilt bullish; hot PCE bearish."
+   "why": "Hot GDP and 3.3% core PCE keep a December Fed hike ~92% priced, and funds sit crowded long (94th pct), but a huge intraday rebound says dip buyers are still active.",
+   "risk": "A second day of strong dip-buying through thin holiday trade would flip this to neutral."
   },
   "NQ": {
-   "bias": "neutral",
+   "bias": "bearish",
    "conviction": 1,
-   "why": "Nasdaq -1.5% as Nvidia gave back ~7% of Monday's 31% jump and AMD/Micron slid; funds lean long (85th pct).",
-   "risk": "Hot PCE extends the chip selloff; soft PCE revives the AI bid."
+   "why": "AI/chip selling (Nvidia -9% intraday) and hike pricing keep the downtrend (-11.6% in 20 days); funds lean long (85th pct), yet the late rebound makes this only a lean.",
+   "risk": "Nasdaq reclaiming its pre-selloff level in holiday trade would flip it."
   },
   "YM": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Dow rose 0.85% to a record above 50,000 on rotation out of tech, but Fed hike bets and PCE make it unproven.",
-   "risk": "A second day of rotation after a soft PCE would tilt bullish."
+   "why": "The Dow closed +0.3% after erasing a 1,105-point drop; rotation out of tech supports it while Fed hike pricing weighs.",
+   "risk": "A clean break either way after Thanksgiving would set the lean."
   },
   "RTY": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Russell 2000 +0.6% on rotation and strong consumer confidence, but small caps are most exposed to a Fed hike.",
-   "risk": "Hot PCE hits rate-sensitive small caps hardest."
+   "why": "Small caps rose 0.7% on rotation, but a priced December hike is a headwind for rate-sensitive small companies.",
+   "risk": "Yields jumping on hike talk would turn it bearish."
   },
   "NKD": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Nikkei down ~10% over 20 days and US chip selloff weighs, but positioning is neutral (32nd pct) and PCE is close.",
-   "risk": "Chip rebound plus soft PCE would lift it; deeper chip losses sink it."
-  },
-  "6E": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "EUR/USD near 1.09 under pressure from French budget worries and ~95% odds of a Dec Fed hike; PCE decides next leg.",
-   "risk": "Soft PCE lifts the euro; hot PCE extends dollar strength."
+   "why": "The Nikkei is down 8% in 20 days with US tech, but Asia may follow Wall Street's late rebound; funds are neutral (32nd pct).",
+   "risk": "Fresh AI/chip selling or a yen spike on intervention would turn it bearish."
   },
   "6J": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "USD/JPY near 159 with Katayama warning on rapid moves and a December BoJ hike expected; PCE could swing it.",
-   "risk": "Intervention or a hot PCE spike in USD/JPY are the two-way risks."
+   "why": "USD/JPY sits near 159.2 just under the 160 intervention line; Fed hike bets favour the dollar but Tokyo warnings and a BOJ December hike cap it.",
+   "risk": "Real Japan intervention would send 6J sharply higher."
+  },
+  "6E": {
+   "bias": "neutral",
+   "conviction": 1,
+   "why": "EUR/USD edged up to 1.097 as the dollar index slipped 0.2% after the data, but Fed hike pricing gives the dollar a floor.",
+   "risk": "A sharp dollar move on post-holiday Fed talk would set direction."
   },
   "6B": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "No fresh UK driver found overnight; pound trades off the dollar ahead of US PCE.",
-   "risk": "A US PCE surprise sets the direction."
+   "why": "GBP/USD was little changed near 1.311 with no UK catalyst overnight.",
+   "risk": "A broad dollar move would set direction."
   },
   "6A": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "No fresh Australian driver found; chip selloff is a risk-off drag but PCE is the bigger swing.",
-   "risk": "Risk-on after soft PCE would lift AUD."
+   "why": "AUD/USD slipped 0.15% to 0.663, the weakest major, as risk sentiment wobbled, but losses were small.",
+   "risk": "A renewed stock selloff would turn it bearish."
   },
   "ZN": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "10y yield 4.90%, little changed, with a Dec Fed hike ~95% priced; PCE is the next test.",
-   "risk": "Hot PCE pushes yields up (ZN down); soft PCE rallies bonds."
+   "why": "Hot data argues for higher yields, yet the 10y fell about 3bp to 4.87% as stocks flushed; the two pull opposite ways.",
+   "risk": "A deeper equity selloff would lift ZN; hawkish Fed talk would sink it."
   },
   "GC": {
    "bias": "neutral",
    "conviction": 1,
-   "why": "Gold fell 2.7% to ~$3,552 on hawkish Fed bets; funds lean short (20th pct), which cushions further downside.",
-   "risk": "A soft PCE could spark a short squeeze higher."
+   "why": "Gold hit its lowest since Sept 2025 on hike bets then bounced; funds lean short (20th pct), so further downside has less fuel.",
+   "risk": "A break below this week's low would turn it bearish."
   },
   "CL": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Crude held near $81-83 with Gulf shipping attacks vs supply worries; funds crowded short (10th pct), OPEC+ meets 29 Nov.",
-   "risk": "A Hormuz supply hit squeezes shorts higher; a US-Iran deal sinks it."
+   "bias": "bullish",
+   "conviction": 2,
+   "why": "WTI rose about 2.5% to ~$84 on reported shipping attacks near Hormuz, and funds are crowded short (10th pct), fuel for a squeeze higher.",
+   "risk": "Calm in the Gulf and the oversupply story returning would flip it."
   }
  },
  "sources": [
-  "https://vistapglobal.com/stock-market-today-november-24-2026-dow-tops-50000-as-nasdaq-slides-consumer-confidence-surges-with-pce-due-on-thanksgiving-eve-ant-bby-dell-dks-dltr-eprx-gld-insm-kymr-modd-msft-n/",
-  "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-november-24-dow-sp-500-nasdaq-chip-stocks-nvidia-140629923.html",
-  "https://www.thestreet.com/fed/nvidia-rally-fed-rate-hike-bets-december-2026",
-  "https://www.tradingpedia.com/2026/11/24/yen-firms-on-intervention-jitters-ahead-of-us-pce-data/",
-  "https://finance.yahoo.com/energy/articles/oil-prices-fall-amid-equity-022442236.html",
-  "https://roboforex.com/beginners/analytics/forex-forecast/currencies/eur-usd-forecast-2026-11-24/",
-  "https://www.mining.com/web/gold-price-falls-2-on-hawkish-fed-bets-us-inflation-data-in-focus/",
-  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json"
+  "https://investinglive.com/news/investinglive-americas-fx-news-wrap-25-nov-it-s-a-wrap-s-p-500-and-nasdaq-pare-steep-losses/",
+  "https://www.tmgm.com/en-eu/analysis/market-news/article/gold-sinks-despite-falling-us-yields-as-core-pce-hits-33-202611251933",
+  "https://www.koreatimes.co.kr/world/20261126/nasdaq-sp-500-ease-but-off-lows-of-the-day-as-investors-seek-bargains",
+  "https://www.fxstreet.com/news/yen-holds-under-16000-with-tokyo-cpi-due-on-a-us-holiday-202611242313",
+  "https://investinglive.com/forex/japan-s-mimura-warns-yen-moves-are-too-rapid-as-usd-jpy-pushes-back-toward-160/",
+  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json",
+  "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
  ]
 }
