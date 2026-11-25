@@ -1698,5 +1698,77 @@
    }
   ],
   "created_at": "2026-11-24T22:45:28.893968+00:00"
+ },
+ {
+  "id": "2026-11-26-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Thu 26 Nov · 🟡 Mixed",
+    "color": 12024095,
+    "description": "Wall Street had a wild Wednesday: the Nasdaq was down 4.6% at its worst on AI/chip selling, then buyers stepped in and it closed only 0.6% lower, while the Dow (+0.3%) and small caps (+0.7%) finished up. US economic data came in hot, so markets still expect the Fed to RAISE rates in December. \"Risk-on\" means investors buy riskier things like stocks; \"risk-off\" means they run to safety. Today is mixed: fear in the morning, bargain-hunting by the close. US markets are shut today for Thanksgiving, so trade will be thin (fewer traders = jumpier prices).",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 AI/chip rout: Nvidia fell ~9% intraday, chip index -7% before paring.\n🟢 Big rebound: S&P closed -0.25% after being -3.2%; Dow erased a 1,105-pt drop.\n🔴 Hot data: Q3 GDP 4.3% (vs 3.5% expected), core PCE 3.3% y/y (vs 3.2%).\n⚪ Fed hike odds for December ~92% (CME FedWatch), slightly down from 97%.\n🟢 Oil +2.5% to ~$84 on reported shipping attacks near the Strait of Hormuz.\n⚪ Trump floated tariffs on major partners, reportedly capped at 15% for the EU and Japan.",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "GDP is the total value of everything the US produces; 4.3% annualised growth is strong. PCE is the Fed's favourite inflation gauge; 'core' strips out food and energy, and 3.3% is well above the Fed's 2% goal. Jobless claims (new unemployment filings) were just 189K, a very tight job market. Strong growth + sticky inflation = the Fed is likely to hike (raise) its rate, which makes borrowing dearer and usually weighs on stocks, especially richly valued tech.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "NQ is down ~11.6% in 20 days and VXN (the Nasdaq 'fear gauge', expected volatility) is at its 99th percentile for the year: very high. The intraday flush and rebound show dip-buyers are alive, but the trend and Fed backdrop still lean down. ES held up better. Thanksgiving thin trade can exaggerate moves either way.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "The Nikkei is down ~8% in 20 days, dragged by the same AI/chip worries; Asia may take some comfort from Wall Street's late rebound. USD/JPY is ~159.2, just under 160, the level where Japan sold dollars to buy yen (intervention) earlier this month. Officials keep warning, and the Bank of Japan (BOJ) is expected to hike in December. A weak yen (6J down) helps Nikkei exporters; a sudden yen spike (6J up) usually hits NKD.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude (CL): +2.5% to ~$84 on Gulf shipping attack reports, though oversupply worries have kept it heavy for weeks. Gold (GC): touched its lowest since Sept 2025 on Fed hike bets, then bounced; sources disagree on the close (roughly $3,510-3,585). Silver +0.9% to ~$41.25. Copper: no major news found.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "Thu/Fri: US Thanksgiving, stock market closed, CME futures trade a thin, shortened session (from ~1:30am Fri Sydney). Fri 10:30am Sydney: Tokyo CPI (Nov), Tokyo's inflation reading and an early read on Japan's national inflation; a hot number boosts BOJ hike bets, which can lift the yen (6J) and pressure NKD. Fri: US early close (5am Sat Sydney).",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🎙️ Announcements explained",
+    "color": 12024095,
+    "fields": [
+     {
+      "name": "Trump · new tariffs on major trading partners",
+      "value": "Tariffs are taxes on imported goods. Per Reuters (via investingLive), the plan would cap tariffs at 15% for several partners including the EU and Japan. Negative for stocks broadly (higher costs, slower trade) and for the Nikkei (Japanese exporters), but a 15% cap is less bad than feared. Can lift inflation expectations, adding to Fed hike pressure.",
+      "inline": false
+     },
+     {
+      "name": "Trump · blamed the election results for the selloff",
+      "value": "A headline reported Trump linked Wednesday's market drop to the recent election results. Not a policy change by itself, but it signals political uncertainty is on investors' minds; neutral to slightly negative for risk assets.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "Positions as of 17 Nov 2026 (next report delayed to Tue 1 Dec for Thanksgiving). \"pct\" = where funds' position sits vs the last 3 years; 90+ means very crowded long, 10 or less very crowded short. A crowded side can unwind fast (a 'squeeze').\n• NKD · Neutral (32nd pct) · Funds aren't leaning hard, so news, not positioning, will drive it; no squeeze setup.\n• NQ · Leaning long (85th pct) · Hike bets and AI doubts push against these longs, so more liquidation is possible; a squeeze higher is less likely.\n• ES · Crowded long (94th pct) · Hot data pushes against a crowded long; if selling resumes, forced exits could add fuel to the downside.\n• 6J · Neutral (70th pct) · Funds are net short yen; an intervention would push against them and could trigger a sharp yen squeeze up.\n• CL · Crowded short (10th pct) · Gulf supply headlines push against the crowded shorts, so a short squeeze higher is likely if attacks continue.\n• GC · Leaning short (20th pct) · Hike bets push with the shorts, but positioning is getting stretched, so the bounce could extend.\n• SI · Crowded short (3rd pct) · Very crowded shorts and Wednesday's bounce make a squeeze higher plausible.\n• HE · Crowded short (0th pct) · Record short; no fresh news either way, but any good demand data could spark a squeeze.\n• NG · Crowded short (1st pct) · Extreme short; winter weather headlines could squeeze it higher.\n\nBest setup to watch today: CL, where crowded fund shorts meet Gulf shipping-attack headlines, a classic squeeze-higher combination."
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · conviction ●○○ · Neutral: tech weakness vs Wall St's late rebound; funds neutral (32nd pct), Tokyo CPI Fri.\n🔴 NQ · conviction ●○○ · Lean bearish: AI selling + Fed hike bets, funds still leaning long (85th pct); the late rebound keeps it a lean.\n🔴 ES · conviction ●○○ · Lean bearish: hot data, hike priced, funds crowded long (94th pct), but dip-buyers showed up.\n⚪ 6J · conviction ●○○ · Neutral: Fed hike bets weigh on the yen, intervention risk near 160 caps it; funds neutral.\n⚪ GC · conviction ●○○ · Neutral: hike bets vs a bounce off one-year lows; funds lean short (20th pct).\n🟢 CL · conviction ●●○ · Bullish: Hormuz shipping attacks lifted oil 2.5%, and crowded fund shorts (10th pct) add squeeze fuel.\n\nUse this as a filter for your own setups: favour setups that agree with a conviction 2-3 call (today only CL), and be pickier with trades against it. These are not entries; holiday-thin trade means wider swings, so size down.",
+    "footer": {
+     "text": "Sources: investingLive, TMGM/FXStreet, Korea Times, FXStreet, CFTC COT, CME FedWatch, Desk Brief. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-25T22:45:58.264769+00:00"
  }
 ]
