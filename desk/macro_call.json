@@ -1,97 +1,20 @@
-{
- "generated_at": "2026-11-26T09:45:20+11:00",
- "trading_day": "2026-11-26",
- "summary": "Wall Street erased a violent AI-led plunge (Nasdaq -4.6% at the lows) to close mixed after hot GDP and core PCE kept a December Fed hike ~92% priced; US markets are shut for Thanksgiving today.",
- "events_next_24h": [
-  "Fri 1:30am USD US Thanksgiving: stocks closed, thin CME futures session",
-  "Fri 10:30am JPY Tokyo CPI (Nov) (just after the 24h window)",
-  "Forex Factory feed unavailable this run; events from the desk calendar"
- ],
- "tier1_next_14d": [
-  "US non-farm payrolls (Nov) · Sat 5 Dec, 12:30am",
-  "FOMC rate decision · Thu 10 Dec, 6:00am"
- ],
- "markets": {
-  "ES": {
-   "bias": "bearish",
-   "conviction": 1,
-   "why": "Hot GDP and 3.3% core PCE keep a December Fed hike ~92% priced, and funds sit crowded long (94th pct), but a huge intraday rebound says dip buyers are still active.",
-   "risk": "A second day of strong dip-buying through thin holiday trade would flip this to neutral."
-  },
-  "NQ": {
-   "bias": "bearish",
-   "conviction": 1,
-   "why": "AI/chip selling (Nvidia -9% intraday) and hike pricing keep the downtrend (-11.6% in 20 days); funds lean long (85th pct), yet the late rebound makes this only a lean.",
-   "risk": "Nasdaq reclaiming its pre-selloff level in holiday trade would flip it."
-  },
-  "YM": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "The Dow closed +0.3% after erasing a 1,105-point drop; rotation out of tech supports it while Fed hike pricing weighs.",
-   "risk": "A clean break either way after Thanksgiving would set the lean."
-  },
-  "RTY": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Small caps rose 0.7% on rotation, but a priced December hike is a headwind for rate-sensitive small companies.",
-   "risk": "Yields jumping on hike talk would turn it bearish."
-  },
-  "NKD": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "The Nikkei is down 8% in 20 days with US tech, but Asia may follow Wall Street's late rebound; funds are neutral (32nd pct).",
-   "risk": "Fresh AI/chip selling or a yen spike on intervention would turn it bearish."
-  },
-  "6J": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "USD/JPY sits near 159.2 just under the 160 intervention line; Fed hike bets favour the dollar but Tokyo warnings and a BOJ December hike cap it.",
-   "risk": "Real Japan intervention would send 6J sharply higher."
-  },
-  "6E": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "EUR/USD edged up to 1.097 as the dollar index slipped 0.2% after the data, but Fed hike pricing gives the dollar a floor.",
-   "risk": "A sharp dollar move on post-holiday Fed talk would set direction."
-  },
-  "6B": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "GBP/USD was little changed near 1.311 with no UK catalyst overnight.",
-   "risk": "A broad dollar move would set direction."
-  },
-  "6A": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "AUD/USD slipped 0.15% to 0.663, the weakest major, as risk sentiment wobbled, but losses were small.",
-   "risk": "A renewed stock selloff would turn it bearish."
-  },
-  "ZN": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Hot data argues for higher yields, yet the 10y fell about 3bp to 4.87% as stocks flushed; the two pull opposite ways.",
-   "risk": "A deeper equity selloff would lift ZN; hawkish Fed talk would sink it."
-  },
-  "GC": {
-   "bias": "neutral",
-   "conviction": 1,
-   "why": "Gold hit its lowest since Sept 2025 on hike bets then bounced; funds lean short (20th pct), so further downside has less fuel.",
-   "risk": "A break below this week's low would turn it bearish."
-  },
-  "CL": {
-   "bias": "bullish",
-   "conviction": 2,
-   "why": "WTI rose about 2.5% to ~$84 on reported shipping attacks near Hormuz, and funds are crowded short (10th pct), fuel for a squeeze higher.",
-   "risk": "Calm in the Gulf and the oversupply story returning would flip it."
-  }
- },
- "sources": [
-  "https://investinglive.com/news/investinglive-americas-fx-news-wrap-25-nov-it-s-a-wrap-s-p-500-and-nasdaq-pare-steep-losses/",
-  "https://www.tmgm.com/en-eu/analysis/market-news/article/gold-sinks-despite-falling-us-yields-as-core-pce-hits-33-202611251933",
-  "https://www.koreatimes.co.kr/world/20261126/nasdaq-sp-500-ease-but-off-lows-of-the-day-as-investors-seek-bargains",
-  "https://www.fxstreet.com/news/yen-holds-under-16000-with-tokyo-cpi-due-on-a-us-holiday-202611242313",
-  "https://investinglive.com/forex/japan-s-mimura-warns-yen-moves-are-too-rapid-as-usd-jpy-pushes-back-toward-160/",
-  "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json",
-  "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"
- ]
+{"generated_at": "2026-11-27T09:45:00+11:00", "trading_day": "2026-11-27",
+"summary": "Wednesday's hotter-than-forecast core PCE (3.3%) cemented a priced-in December Fed hike, new tariff proposals up to 20% and an AI chip sell-off hit the Nasdaq; Asia rebounded on Thanksgiving while US markets were shut, and Friday is a thin early-close US session.",
+"events_next_24h": ["Fri 10:30 JPY Tokyo CPI (Nov)", "Sat 05:00 USD US stock market early close after Thanksgiving (thin liquidity)"],
+"tier1_next_14d": ["US non-farm payrolls (Nov) · Sat 5 Dec 12:30am", "FOMC rate decision · Thu 10 Dec 6:00am", "US CPI (Nov) · Fri 11 Dec 12:30am"],
+"markets": {
+"ES": {"bias": "bearish", "conviction": 1, "why": "Hot core PCE locked in a December Fed hike and new tariffs loom, while funds sit crowded long (94th pct), leaving room to unwind.", "risk": "A holiday-thin squeeze higher or softer Fed talk flips it."},
+"NQ": {"bias": "bearish", "conviction": 1, "why": "AI chip sell-off (Nvidia -3.9%) plus a priced Fed hike weigh on tech; Nasdaq is down about 12% in 20 days and VXN is near 1-year highs.", "risk": "Thursday's Asian tech rebound carrying into a thin US session."},
+"YM": {"bias": "neutral", "conviction": 1, "why": "Dow closed up 0.33% after erasing a 1,100-point drop, showing rotation into value even as the macro tone is hawkish.", "risk": "A renewed broad sell-off would drag it lower."},
+"RTY": {"bias": "neutral", "conviction": 1, "why": "Small caps rose 0.78% Wednesday on rotation, but Fed hikes are a headwind for rate-sensitive small firms.", "risk": "Higher yields after the hike pricing hurt small caps."},
+"NKD": {"bias": "neutral", "conviction": 1, "why": "Nikkei bounced 0.9% Thursday but is down 9% in 20 days; Tokyo CPI at 10:30 and BOJ hike talk keep the picture mixed.", "risk": "A hot Tokyo CPI or yen spike would pressure it."},
+"6J": {"bias": "neutral", "conviction": 1, "why": "Wide US-Japan rate gap pushes the yen weaker, but USD/JPY at 159.3 sits just under Tokyo's 160 intervention line.", "risk": "Intervention or a hot Tokyo CPI would send 6J sharply higher."},
+"6E": {"bias": "neutral", "conviction": 1, "why": "Fed hike pricing supports the dollar, but the move is fully priced and EU tariff threat is already known.", "risk": "A fresh dollar breakout would push 6E lower."},
+"6B": {"bias": "neutral", "conviction": 1, "why": "No fresh UK catalyst found; dollar strength from Fed hike bets is offset by fading momentum.", "risk": "A strong dollar move after the holiday."},
+"6A": {"bias": "neutral", "conviction": 1, "why": "Risk mood is mixed after the AI sell-off and Asia rebound; no Australian catalyst found.", "risk": "A risk-off turn in tech would hit the Aussie."},
+"ZN": {"bias": "neutral", "conviction": 1, "why": "Hot core PCE and hike pricing argue lower bonds, but haven buying pulled the 10-year yield down to 4.85%.", "risk": "Strong data next week ahead of NFP."},
+"GC": {"bias": "bearish", "conviction": 1, "why": "A priced Fed hike and firm dollar weigh on gold near one-year lows; funds are leaning short (20th pct), not yet crowded.", "risk": "A geopolitical shock or Fed wobble sparks a short squeeze."},
+"CL": {"bias": "bullish", "conviction": 2, "why": "Hormuz tanker attacks lifted WTI 2.5% to $84, and funds are crowded short (10th pct), which is fuel for a squeeze higher.", "risk": "Ceasefire or peace headlines, or a big inventory build."}
+},
+"sources": ["https://vistapglobal.com/stocks-close-mixed-on-wednesday-november-25-2026-as-hot-pce-inflation-new-tariff-plans-and-an-ai-sell-off-test-wall-street-amd-eprx-googl-modd-nvda-ser-spcx-vix/", "https://abcnews.com/Business/wireStory/global-stocks-rise-tech-shares-rebound-us-closes-138462620", "https://finscans.com/news/2026/11/26/usd-gains-face-resistance-as-markets-price-96-chance-of", "https://www.nst.com.my/amp/business/economy/2026/11/1575983/japans-mimura-says-markets-shouldnt-forget-intervention-risks-yen", "https://raw.githubusercontent.com/klaxtoncapital/trading-coach/desk-data/desk/cot.json", "https://claude.ai/artifact/UqfJKoKWqabXyY2EqUBmsJ"]
 }
