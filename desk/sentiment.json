@@ -1770,5 +1770,73 @@
    }
   ],
   "created_at": "2026-11-25T22:45:58.264769+00:00"
+ },
+ {
+  "id": "2026-11-27-morning-wrap",
+  "embeds": [
+   {
+    "title": "🌅 Morning macro wrap · Fri 27 Nov · 🔴 Risk-off",
+    "color": 10697258,
+    "description": "Wall Street was shut for Thanksgiving on Thursday, so the last real US session was Wednesday, and it was shaky: hotter inflation, new tariff plans and another AI chip sell-off. Asia bounced on Thursday, but the big picture is still cautious. \"Risk-off\" means investors are pulling money out of riskier things (tech stocks, small currencies) and leaning toward safer ones. Today the US runs a thin, half-day session, and thin markets can move sharply on little news.",
+    "fields": [
+     {
+      "name": "📰 What happened overnight",
+      "value": "🔴 US core PCE (the Fed's favourite inflation gauge, excluding food and energy) came in at 3.3%, 0.1 above forecast.\n🔴 Markets now price a ~96% chance the Fed RAISES rates on 9 Dec.\n🔴 The White House proposed tariffs (import taxes) of up to 20% on China, the EU, Japan and others, not before January.\n🔴 AI chip stocks slid: Nvidia -3.9%; AMD, Micron, Intel fell 9%+ intraday before recovering.\n🟢 Asia rebounded Thursday; Nikkei +0.9%.\n⚪ Red-folder results out: US PCE (core hot, headline in line).",
+      "inline": false
+     },
+     {
+      "name": "🏛️ What it means for the economy",
+      "value": "Inflation is sticky, so the Fed (the US central bank) is set to raise interest rates to cool it. Higher rates make borrowing pricier for companies and households and make future tech profits worth less today, which is why growth stocks get hit first. Tariffs add a second inflation push, since importers pass the tax on in prices. Bonds, though, were bought as a safe place to hide, pulling the 10-year Treasury yield (the US government's 10-year borrowing rate) down to about 4.85%.",
+      "inline": false
+     },
+     {
+      "name": "📈 Nasdaq (NQ) & S&P (ES)",
+      "value": "Wed: S&P 500 -0.25%, Nasdaq -0.62%, Dow +0.33% (after erasing a 1,100-point drop), Russell 2000 small caps +0.78%. The Nasdaq-100 is down ~12.6% in 20 days. VIX (the market's 'fear gauge') is ~28 and VXN (Nasdaq's version) is at the 99th percentile of its 1-year range, so expect big swings. Money rotated from tech into old-economy names. Today's session is thin and closes early.",
+      "inline": false
+     },
+     {
+      "name": "🇯🇵 Nikkei (NKD) & yen (6J)",
+      "value": "Nikkei closed +0.9% at 57,499 Thursday on a tech rebound, but is still ~9% lower over 20 days. USD/JPY is ~159.3, just under 160, the line where Japan's finance ministry has stepped in (\"intervention\" = Japan selling dollars to buy yen) before; officials repeated warnings this month. Intervention would send 6J sharply up. Tokyo CPI at 10:30 matters for whether the Bank of Japan hikes in December.",
+      "inline": false
+     },
+     {
+      "name": "🛢️ Commodities & metals",
+      "value": "Crude: WTI +2.5% to ~$84 Wed, Brent ~$91, on reports of tankers being targeted near the Strait of Hormuz (the narrow Gulf channel a big share of world oil passes through). Gold ~$3,600, pressured by a hawkish (rate-hiking) Fed and firm dollar, near one-year lows. Silver: funds are near record-low long exposure. No fresh copper or grains story found.",
+      "inline": false
+     },
+     {
+      "name": "⏱️ Today's events to watch",
+      "value": "10:30 Tokyo CPI (Nov): inflation in Japan's capital, an early read for the whole country. Hot = more BOJ hike odds = stronger yen, softer Nikkei.\nUS early close (equities shut ~5:00am Sat Sydney): low volume after Thanksgiving, so moves can be exaggerated and less meaningful.\nNo US red-folder data today. Next big ones: NFP jobs Sat 5 Dec, FOMC Thu 10 Dec.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🏦 Hedge funds vs today's news",
+    "color": 2059090,
+    "description": "From the CFTC COT report (who holds what in futures), positions as of 17 Nov. A 'crowded' side means funds are already heavily positioned, so there are fewer new buyers or sellers left and a sharp move the other way (a 'squeeze') becomes more likely.",
+    "fields": [
+     {
+      "name": "Positioning lines",
+      "value": "NKD · Neutral (32th pct) · Funds are balanced, so news alone (Tokyo CPI, yen) will drive it; no squeeze setup.\nNQ · Leaning long (85th pct) · Hawkish Fed and AI selling push against the longs; some room to unwind, not extreme.\nES · Crowded long (94th pct) · Hike pricing and tariffs push against a crowded long, so a further unwind lower is the risk.\n6J · Neutral (70th pct) · Rate gap pushes yen weaker, but intervention risk could squeeze yen shorts fast.\nCL · Crowded short (10th pct) · Hormuz supply risk pushes against crowded shorts; a short squeeze higher is plausible.",
+      "inline": false
+     },
+     {
+      "name": "Positioning lines (cont.)",
+      "value": "GC · Leaning short (20th pct) · Hawkish Fed pushes with the shorts; squeeze only on a shock.\nSI · Crowded short (3th pct) · Strong dollar is with the crowd, but positioning is so stretched any good news could squeeze it up.\nHE · Crowded short (0th pct) · Record short in lean hogs; no fresh news, but squeeze risk is high.\nNG · Crowded short (1th pct) · Funds extremely short natural gas; winter cold could squeeze it.\n\nBest setup today: CL, where crowded fund shorts collide with live Hormuz supply risk.",
+      "inline": false
+     }
+    ]
+   },
+   {
+    "title": "🧭 Today's bias in one place",
+    "color": 12024095,
+    "description": "⚪ NKD · neutral ●○○ · Bounce vs 20-day slide and Tokyo CPI pending; funds balanced.\n🔴 NQ · bearish ●○○ · AI chip selling and a priced Fed hike; funds lean long, room to unwind.\n🔴 ES · bearish ●○○ · Hike plus tariffs, with funds crowded long (94th pct) as extra downside fuel.\n⚪ 6J · neutral ●○○ · Rate gap vs intervention risk at 160; funds neutral.\n🔴 GC · bearish ●○○ · Hawkish Fed and firm dollar; funds lean short but not crowded.\n🟢 CL · bullish ●●○ · Hormuz supply risk plus crowded fund shorts.\n\nUse this as a filter, not as entries: favour your own setups that agree with a conviction 2-3 call and be pickier with setups against it. Conviction 1 is only a lean, especially in today's thin holiday trade.",
+    "footer": {
+     "text": "Sources: Vista Partners, AP/ABC News, FinScans, NST, CFTC COT, Desk Brief. Context, not signals. Not advice."
+    }
+   }
+  ],
+  "created_at": "2026-11-26T22:44:41.935747+00:00"
  }
 ]
